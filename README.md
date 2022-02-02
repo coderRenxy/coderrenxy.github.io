@@ -1,1 +1,3 @@
-# coderrenxy.github.io
+# renxy的博客
+1.Spring杂记（自上而下顺着链条看）
+2.我对MySQL的碎碎念念（持续更新...）怒肝16k字
