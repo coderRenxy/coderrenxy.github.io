@@ -1,0 +1,9 @@
+<h2>Future Events</h2>
+<ul>
+  {{ range where (where site.RegularPages "Type" "events") "Params.start_date" "gt" now }}
+    {{ $startDate := .Params.start_date | time.Format ":date_medium" }}
+    <li>
+      <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a> - {{ $startDate }}
+    </li>
+  {{ end }}
+</ul>
