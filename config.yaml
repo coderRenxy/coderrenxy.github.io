@@ -119,7 +119,7 @@ menu:
       url: /tags/
       weight: 20
     - identifier: example
-      name: 刷新
+      name: 主页
       url: https://coderrenxy.github.io/
       weight: 30
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
