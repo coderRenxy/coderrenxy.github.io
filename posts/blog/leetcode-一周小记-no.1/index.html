@@ -1,0 +1,267 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>LeetCode 一周小记 No.1 | 小任同学</title>
+<meta name=keywords content>
+<meta name=description content="刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy Level 都也被卡，目前进度为 2-3 medium / day。
+Monday （科普知识） 反码、补码 二进制的第一位是符号位，0是+，1是-，如果是1，怎么得到具体数字？ 二进制数全都取反，再+1就是对应结果的的绝对值 。 例如-1的二进制数全为1，则将后31个1全取反并+1，得到 000&mldr;1 的十进制数就是1 。
+如何把随机出现从 x 概率变为 x^3 概率？ Math.Max(Math.Random(),Math.Max(Math.Random(),Math.Random()));
+注意：Random生成一个[0,1)
+如何在 1-5（int）随机函数上生成1-7的随机函数？ 直接把1-5改成随机生成0、1的函数，1、2返回0，3就return重来，4、5就返回1 。
+再根据读书器返回0、1的函数处理:
+return （f（）<< 2）+ （f（）<< 1）+（f（）<< 0）; //0或4 + 0或2 + 0或1 注意：
+ 如果直接 相乘 是不行的，因为只返回 0、1 乘了 7 就变成 0、7 。会缺失中间的数。 0-7 有了，我们要 1-7 ，那只能 0-6 随机再+1 。1-7 只要遇 7 重来就行了。或者直接 0 重来。就不用再 +1。  为什么不能直接 (f() &#171; 2) + (f() &#171; 1) 呢？直接得到 0-6">
+<meta name=author content="Me">
+<link rel=canonical href=https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/>
+<meta name=google-site-verification content="XYZabc">
+<meta name=yandex-verification content="XYZabc">
+<meta name=msvalidate.01 content="XYZabc">
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css integrity="sha256-yIlj/i15RiAA/Q+xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as=style>
+<link rel=preload href=/%e7%82%8e%e4%ba%9a%e7%ba%b6.png as=image>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://coderrenxy.github.io/%3Clink%20/%20abs%20url%3E>
+<link rel=icon type=image/png sizes=16x16 href=https://coderrenxy.github.io/%3Clink%20/%20abs%20url%3E>
+<link rel=icon type=image/png sizes=32x32 href=https://coderrenxy.github.io/%3Clink%20/%20abs%20url%3E>
+<link rel=apple-touch-icon href=https://coderrenxy.github.io/%3Clink%20/%20abs%20url%3E>
+<link rel=mask-icon href=https://coderrenxy.github.io/%3Clink%20/%20abs%20url%3E>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.92.1">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-123-45','auto'),ga('send','pageview'))</script><meta property="og:title" content="LeetCode 一周小记 No.1">
+<meta property="og:description" content="刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy Level 都也被卡，目前进度为 2-3 medium / day。
+Monday （科普知识） 反码、补码 二进制的第一位是符号位，0是+，1是-，如果是1，怎么得到具体数字？ 二进制数全都取反，再+1就是对应结果的的绝对值 。 例如-1的二进制数全为1，则将后31个1全取反并+1，得到 000&mldr;1 的十进制数就是1 。
+如何把随机出现从 x 概率变为 x^3 概率？ Math.Max(Math.Random(),Math.Max(Math.Random(),Math.Random()));
+注意：Random生成一个[0,1)
+如何在 1-5（int）随机函数上生成1-7的随机函数？ 直接把1-5改成随机生成0、1的函数，1、2返回0，3就return重来，4、5就返回1 。
+再根据读书器返回0、1的函数处理:
+return （f（）<< 2）+ （f（）<< 1）+（f（）<< 0）; //0或4 + 0或2 + 0或1 注意：
+ 如果直接 相乘 是不行的，因为只返回 0、1 乘了 7 就变成 0、7 。会缺失中间的数。 0-7 有了，我们要 1-7 ，那只能 0-6 随机再+1 。1-7 只要遇 7 重来就行了。或者直接 0 重来。就不用再 +1。  为什么不能直接 (f() &#171; 2) + (f() &#171; 1) 呢？直接得到 0-6">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/"><meta property="og:image" content="https://coderrenxy.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-02-24T02:45:59+08:00">
+<meta property="article:modified_time" content="2022-02-24T02:45:59+08:00"><meta property="og:site_name" content="ExampleSite">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://coderrenxy.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E">
+<meta name=twitter:title content="LeetCode 一周小记 No.1">
+<meta name=twitter:description content="刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy Level 都也被卡，目前进度为 2-3 medium / day。
+Monday （科普知识） 反码、补码 二进制的第一位是符号位，0是+，1是-，如果是1，怎么得到具体数字？ 二进制数全都取反，再+1就是对应结果的的绝对值 。 例如-1的二进制数全为1，则将后31个1全取反并+1，得到 000&mldr;1 的十进制数就是1 。
+如何把随机出现从 x 概率变为 x^3 概率？ Math.Max(Math.Random(),Math.Max(Math.Random(),Math.Random()));
+注意：Random生成一个[0,1)
+如何在 1-5（int）随机函数上生成1-7的随机函数？ 直接把1-5改成随机生成0、1的函数，1、2返回0，3就return重来，4、5就返回1 。
+再根据读书器返回0、1的函数处理:
+return （f（）<< 2）+ （f（）<< 1）+（f（）<< 0）; //0或4 + 0或2 + 0或1 注意：
+ 如果直接 相乘 是不行的，因为只返回 0、1 乘了 7 就变成 0、7 。会缺失中间的数。 0-7 有了，我们要 1-7 ，那只能 0-6 随机再+1 。1-7 只要遇 7 重来就行了。或者直接 0 重来。就不用再 +1。  为什么不能直接 (f() &#171; 2) + (f() &#171; 1) 呢？直接得到 0-6">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"","item":"https://coderrenxy.github.io/posts/"},{"@type":"ListItem","position":2,"name":"","item":"https://coderrenxy.github.io/posts/blog/"},{"@type":"ListItem","position":3,"name":"LeetCode 一周小记 No.1","item":"https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"LeetCode 一周小记 No.1","name":"LeetCode 一周小记 No.1","description":"刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy Level 都也被卡，目前进度为 2-3 medium / day。\nMonday （科普知识） 反码、补码 二进制的第一位是符号位，0是+，1是-，如果是1，怎么得到具体数字？ 二进制数全都取反，再+1就是对应结果的的绝对值 。 例如-1的二进制数全为1，则将后31个1全取反并+1，得到 000\u0026hellip;1 的十进制数就是1 。\n如何把随机出现从 x 概率变为 x^3 概率？ Math.Max(Math.Random(),Math.Max(Math.Random(),Math.Random()));\n注意：Random生成一个[0,1)\n如何在 1-5（int）随机函数上生成1-7的随机函数？ 直接把1-5改成随机生成0、1的函数，1、2返回0，3就return重来，4、5就返回1 。\n再根据读书器返回0、1的函数处理:\nreturn （f（）\u0026lt;\u0026lt; 2）+ （f（）\u0026lt;\u0026lt; 1）+（f（）\u0026lt;\u0026lt; 0）; //0或4 + 0或2 + 0或1 注意：\n 如果直接 相乘 是不行的，因为只返回 0、1 乘了 7 就变成 0、7 。会缺失中间的数。 0-7 有了，我们要 1-7 ，那只能 0-6 随机再+1 。1-7 只要遇 7 重来就行了。或者直接 0 重来。就不用再 +1。  为什么不能直接 (f() \u0026laquo; 2) + (f() \u0026laquo; 1) 呢？直接得到 0-6","keywords":[],"articleBody":"刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy Level 都也被卡，目前进度为 2-3 medium / day。\nMonday （科普知识） 反码、补码 二进制的第一位是符号位，0是+，1是-，如果是1，怎么得到具体数字？ 二进制数全都取反，再+1就是对应结果的的绝对值 。 例如-1的二进制数全为1，则将后31个1全取反并+1，得到 000…1 的十进制数就是1 。\n如何把随机出现从 x 概率变为 x^3 概率？ Math.Max(Math.Random(),Math.Max(Math.Random(),Math.Random()));\n注意：Random生成一个[0,1)\n如何在 1-5（int）随机函数上生成1-7的随机函数？ 直接把1-5改成随机生成0、1的函数，1、2返回0，3就return重来，4、5就返回1 。\n再根据读书器返回0、1的函数处理:\nreturn （f（） 2）+ （f（） 1）+（f（） 0）; //0或4 + 0或2 + 0或1 注意：\n 如果直接 相乘 是不行的，因为只返回 0、1 乘了 7 就变成 0、7 。会缺失中间的数。 0-7 有了，我们要 1-7 ，那只能 0-6 随机再+1 。1-7 只要遇 7 重来就行了。或者直接 0 重来。就不用再 +1。  为什么不能直接 (f() « 2) + (f() « 1) 呢？直接得到 0-6\n 因为左移两位得到要么是0要么是4，左移一位是0或2，不移动0、1 。得到的具体数字不是范围，再将其相加，产生的和才是一个范围。  如何改变一个任一固定概率的随机0、1函数变为产生0、1都为50%的函数？ 运行两次该函数，两次得到0的概率为 p^2 ,两次得到 1 的概率为 (1-p)^2 ;而一次 0 一次 1 的概率是 p*(1-p); 所以只要两次返回一次为 0 一次为 1 就行。不然就重新执行。\nTuesday 206. 反转链表 这题一定要按清楚头指针 pre、next 指针只是指针，不是一个结点指向另一个结点的指针。定义出这两个指针、画好图就很容易操作。这是单链表的反转，至于双链表就是多加了一个 last 指针指向上一个，只需要在存 next 时多存一个 last ，其他无需改动。\n704. 二分查找 这题要注意的就是首先把 left 、middle 、 right 都定义出来。然后要注意的是先排除 array[length - 1] 的情况再写循环，循环条件看区间是否闭合。在之后就是把中间位置重置放在循环第一行，也就是在判断之前，if 中只调整 left 活着 right 的位置。\n27. 移除元素 暴力解法：需要注意，i–；是因为既然当前值为 ？的点的右边所有点一切都左移了一位，所以现在的 i 指向的是已删除（被覆盖）的位置，该位置补了后面那位没被扫描的数字，而该次循环结束就要 i++了，所以会指向这个没扫描的下一个进行扫描，就漏掉一个了。再一个注意溢出边界问题，还有一个就是无限循环容易发生是因为 for 循环条件不能是 Wednesday 977. 有序数组的平方 这一题犯了一个总是犯的错误，总是忘记写返回值，以后第一步确定返回值，不明则？？表示。\n该题暴力解法就是平方再排序美滋滋~，但是时间复杂度为O(n^2)，有O(n)的解法：双指针。\n双指针解法一定要注意边界。\n209. 长度最小的子数组 暴力解法要注意必须双层循环。为了避免要判断第一次 target，把 len 初始值设为Interger.MAX_VALUE。滑动窗口：注意循环条件的边界。\nThursday 59. 螺旋矩阵 II 该题一定要注意别自己瞎套，while 的条件按照（循环次数）来。偏移量每次+2，从左到右，从上到下的循环条件要-offset。\n203. 移除链表元素 先把头的 val 确定 ≠ val、≠null 再去定义 cur 等等其他结点，记得依次讨论头不为空（头的 val 为 val）、头为空（return head把整个链表有可能为空的情况删除整个链表了直接提前退出）。\n不为空 \u0026\u0026 头的 val == val 一定要把 ≠null 写在 \u0026\u0026 前面，不然先判断 head.val 如果说 head == null ，那就直接报错了。\n删除一定要 XXX.next = XXX.next 这样操作，自己定义的 cur 、 next 都只存一个地址，cur = nextNode 就是 cur 指针走到了 nextNode 这个位置。\nFriday 707. 设计链表 只要把get、addIndex、delete写出来就行了，另外两个addHead、addTail直接调用这个addIndex就行了，至于get、delete都是用addIndex里面for查找的逻辑找到，主线就是写出addIndex，注意在addIndex里面 size++ 就够了，不要反复 ++ ；\n另外自己定义一个 ListNode 的 class ，构造方法只要空参。成员变量 int val、 ListNode next；\n24. 两两交换链表中的结点 非必要情况下，不要定义那么多 next、cur 结点，不然判空很头大，如果是在 while 内，cur、next、pre 都在变换，判空繁琐，在初始化时也要判空，还是尽量只定义一个 pre 结点，反正操作链表的元素有个 pre 就够了。\n19.删除链表的倒数第N个节点 暴力解法：注意考虑传入的值的合法性。\n进阶版本：首先一边扫描肯定无从下手，想想，倒数第 n 个结点，是正着数的第几个 ?\n 显而易见：size-n 个，那如何拼凑出 size ？那是肯定要扫描一遍完整的链表结点的。  如果扫描 size++ 出长度那必然要再操作一遍，落入了扫描多次的圈套，so what？\n 定义一个 fast 指针、一个 slow 指针，fast 扫描全文，而 slow 指向要被删除的结点的上一结点。如何凑出 size -n？先让 fast 走 n 次，再让 fast 和 slow 一起走剩下的 size-n次，此时fast 指向了最后一个元素，slow 指向了删除的结点的上一结点。   持续更新中…….. 敬请期待\n ","wordCount":"267","inLanguage":"en","datePublished":"2022-02-24T02:45:59+08:00","dateModified":"2022-02-24T02:45:59+08:00","author":{"@type":"Person","name":"Me"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/"},"publisher":{"@type":"Organization","name":"小任同学","logo":{"@type":"ImageObject","url":"https://coderrenxy.github.io/%3Clink%20/%20abs%20url%3E"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://coderrenxy.github.io/ accesskey=h title="coder.Ren (Alt + H)">
+<img src=https://coderrenxy.github.io/%E7%82%8E%E4%BA%9A%E7%BA%B6.png alt=logo aria-label=logo height=55>coder.Ren</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://coderrenxy.github.io/ title=跳转主页>
+<span>跳转主页</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://coderrenxy.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://coderrenxy.github.io/posts/></a>&nbsp;»&nbsp;<a href=https://coderrenxy.github.io/posts/blog/></a></div>
+<h1 class=post-title>
+LeetCode 一周小记 No.1
+</h1>
+<div class=post-meta><span title="2022-02-24 02:45:59 +0800 CST">February 24, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Me&nbsp;|&nbsp;<a href=https://github.com/coderRenxy/coderrenxy.github.io/content/posts/blog/LeetCode%20%e4%b8%80%e5%91%a8%e5%b0%8f%e8%ae%b0%20No.1.md rel="noopener noreferrer" target=_blank>Edit</a>
+</div>
+</header> <div class=toc>
+<details>
+<summary accesskey=c title="(Alt + C)">
+<span class=details>Table of Contents</span>
+</summary>
+<div class=inner><ul>
+<li>
+<a href=#monday---%e7%a7%91%e6%99%ae%e7%9f%a5%e8%af%86 aria-label="Monday   （科普知识）">Monday （科普知识）</a><ul>
+<li>
+<a href=#%e5%8f%8d%e7%a0%81%e8%a1%a5%e7%a0%81 aria-label=反码、补码>反码、补码</a></li>
+<li>
+<a href=#%e5%a6%82%e4%bd%95%e6%8a%8a%e9%9a%8f%e6%9c%ba%e5%87%ba%e7%8e%b0%e4%bb%8e-x-%e6%a6%82%e7%8e%87%e5%8f%98%e4%b8%ba-x3-%e6%a6%82%e7%8e%87 aria-label="如何把随机出现从 x 概率变为 x^3 概率？">如何把随机出现从 x 概率变为 x^3 概率？</a></li>
+<li>
+<a href=#%e5%a6%82%e4%bd%95%e5%9c%a8-1-5int%e9%9a%8f%e6%9c%ba%e5%87%bd%e6%95%b0%e4%b8%8a%e7%94%9f%e6%88%901-7%e7%9a%84%e9%9a%8f%e6%9c%ba%e5%87%bd%e6%95%b0 aria-label="如何在 1-5（int）随机函数上生成1-7的随机函数？">如何在 1-5（int）随机函数上生成1-7的随机函数？</a></li>
+<li>
+<a href=#%e5%a6%82%e4%bd%95%e6%94%b9%e5%8f%98%e4%b8%80%e4%b8%aa%e4%bb%bb%e4%b8%80%e5%9b%ba%e5%ae%9a%e6%a6%82%e7%8e%87%e7%9a%84%e9%9a%8f%e6%9c%ba01%e5%87%bd%e6%95%b0%e5%8f%98%e4%b8%ba%e4%ba%a7%e7%94%9f01%e9%83%bd%e4%b8%ba50%e7%9a%84%e5%87%bd%e6%95%b0 aria-label=如何改变一个任一固定概率的随机0、1函数变为产生0、1都为50%的函数？>如何改变一个任一固定概率的随机0、1函数变为产生0、1都为50%的函数？</a></li></ul>
+</li>
+<li>
+<a href=#tuesday aria-label=Tuesday>Tuesday</a><ul>
+<li>
+<a href=#206-%e5%8f%8d%e8%bd%ac%e9%93%be%e8%a1%a8 aria-label="206. 反转链表">206. 反转链表</a></li>
+<li>
+<a href=#704-%e4%ba%8c%e5%88%86%e6%9f%a5%e6%89%be aria-label="704. 二分查找">704. 二分查找</a></li>
+<li>
+<a href=#27--%e7%a7%bb%e9%99%a4%e5%85%83%e7%b4%a0 aria-label="27.  移除元素">27. 移除元素</a></li></ul>
+</li>
+<li>
+<a href=#wednesday aria-label=Wednesday>Wednesday</a><ul>
+<ul>
+<ul>
+<li>
+<a href=#977-%e6%9c%89%e5%ba%8f%e6%95%b0%e7%bb%84%e7%9a%84%e5%b9%b3%e6%96%b9 aria-label="977. 有序数组的平方">977. 有序数组的平方</a></li></ul>
+</ul>
+<li>
+<a href=#209-%e9%95%bf%e5%ba%a6%e6%9c%80%e5%b0%8f%e7%9a%84%e5%ad%90%e6%95%b0%e7%bb%84 aria-label="209. 长度最小的子数组">209. 长度最小的子数组</a></li></ul>
+</li>
+<li>
+<a href=#thursday aria-label=Thursday>Thursday</a><ul>
+<ul>
+<ul>
+<li>
+<a href=#59-%e8%9e%ba%e6%97%8b%e7%9f%a9%e9%98%b5-ii aria-label="59. 螺旋矩阵 II">59. 螺旋矩阵 II</a></li></ul>
+</ul>
+<li>
+<a href=#203-%e7%a7%bb%e9%99%a4%e9%93%be%e8%a1%a8%e5%85%83%e7%b4%a0 aria-label="203. 移除链表元素">203. 移除链表元素</a></li></ul>
+</li>
+<li>
+<a href=#friday aria-label=Friday>Friday</a><ul>
+<ul>
+<ul>
+<li>
+<a href=#707-%e8%ae%be%e8%ae%a1%e9%93%be%e8%a1%a8 aria-label="707. 设计链表">707. 设计链表</a></li></ul>
+</ul>
+<li>
+<a href=#24-%e4%b8%a4%e4%b8%a4%e4%ba%a4%e6%8d%a2%e9%93%be%e8%a1%a8%e4%b8%ad%e7%9a%84%e7%bb%93%e7%82%b9 aria-label="24. 两两交换链表中的结点">24. 两两交换链表中的结点</a></li>
+<li>
+<a href=#19%e5%88%a0%e9%99%a4%e9%93%be%e8%a1%a8%e7%9a%84%e5%80%92%e6%95%b0%e7%ac%acn%e4%b8%aa%e8%8a%82%e7%82%b9 aria-label=19.删除链表的倒数第N个节点>19.删除链表的倒数第N个节点</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<div class=post-content><p>刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy Level 都也被卡，目前进度为 2-3 medium / day。</p>
+<h2 id=monday---科普知识>Monday （科普知识）<a hidden class=anchor aria-hidden=true href=#monday---科普知识>#</a></h2>
+<h3 id=反码补码>反码、补码<a hidden class=anchor aria-hidden=true href=#反码补码>#</a></h3>
+<p>二进制的第一位是符号位，0是+，1是-，如果是1，怎么得到具体数字？
+二进制数全都取反，再+1就是对应结果的的绝对值 。
+例如-1的二进制数全为1，则将后31个1全取反并+1，得到 000&mldr;1 的十进制数就是1 。</p>
+<h3 id=如何把随机出现从-x-概率变为-x3-概率>如何把随机出现从 x 概率变为 x^3 概率？<a hidden class=anchor aria-hidden=true href=#如何把随机出现从-x-概率变为-x3-概率>#</a></h3>
+<p>Math.Max(Math.Random(),Math.Max(Math.Random(),Math.Random()));<br>
+注意：Random生成一个[0,1)</p>
+<h3 id=如何在-1-5int随机函数上生成1-7的随机函数>如何在 1-5（int）随机函数上生成1-7的随机函数？<a hidden class=anchor aria-hidden=true href=#如何在-1-5int随机函数上生成1-7的随机函数>#</a></h3>
+<p>直接把1-5改成随机生成0、1的函数，1、2返回0，3就return重来，4、5就返回1 。</p>
+<p>再根据读书器返回0、1的函数处理:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-java data-lang=java><span style=color:#66d9ef>return</span> <span style=color:#960050;background-color:#1e0010>（</span>f<span style=color:#960050;background-color:#1e0010>（）</span><span style=color:#f92672>&lt;&lt;</span> 2<span style=color:#960050;background-color:#1e0010>）</span><span style=color:#f92672>+</span> <span style=color:#960050;background-color:#1e0010>（</span>f<span style=color:#960050;background-color:#1e0010>（）</span><span style=color:#f92672>&lt;&lt;</span> 1<span style=color:#960050;background-color:#1e0010>）</span><span style=color:#f92672>+</span><span style=color:#960050;background-color:#1e0010>（</span>f<span style=color:#960050;background-color:#1e0010>（）</span><span style=color:#f92672>&lt;&lt;</span> 0<span style=color:#960050;background-color:#1e0010>）</span><span style=color:#f92672>;</span> <span style=color:#75715e>//0或4 + 0或2 + 0或1
+</span></code></pre></div><p>注意：</p>
+<ul>
+<li>如果直接 <strong>相乘</strong> 是不行的，因为只返回 0、1 乘了 7 就变成 0、7 。会缺失中间的数。</li>
+<li>0-7 有了，我们要 1-7 ，那只能 0-6 随机再+1 。1-7 只要遇 7 重来就行了。或者直接 0 重来。就不用再 +1。</li>
+</ul>
+<p>为什么不能直接 (f() &#171; 2) + (f() &#171; 1) 呢？直接得到 0-6</p>
+<ul>
+<li>因为左移两位得到要么是0要么是4，左移一位是0或2，不移动0、1 。得到的具体数字不是范围，再将其相加，产生的和才是一个范围。</li>
+</ul>
+<h3 id=如何改变一个任一固定概率的随机01函数变为产生01都为50的函数>如何改变一个任一固定概率的随机0、1函数变为产生0、1都为50%的函数？<a hidden class=anchor aria-hidden=true href=#如何改变一个任一固定概率的随机01函数变为产生01都为50的函数>#</a></h3>
+<p>运行两次该函数，两次得到0的概率为 p^2 ,两次得到 1 的概率为 (1-p)^2 ;而一次 0 一次 1 的概率是 p*(1-p); 所以只要两次返回一次为 0 一次为 1 就行。不然就重新执行。</p>
+<h2 id=tuesday>Tuesday<a hidden class=anchor aria-hidden=true href=#tuesday>#</a></h2>
+<h3 id=206-反转链表>206. 反转链表<a hidden class=anchor aria-hidden=true href=#206-反转链表>#</a></h3>
+<p>这题一定要按清楚头指针 pre、next 指针只是指针，不是一个结点指向另一个结点的指针。定义出这两个指针、画好图就很容易操作。这是单链表的反转，至于双链表就是多加了一个 last 指针指向上一个，只需要在存 next 时多存一个 last ，其他无需改动。</p>
+<h3 id=704-二分查找>704. 二分查找<a hidden class=anchor aria-hidden=true href=#704-二分查找>#</a></h3>
+<p>这题要注意的就是首先把 left 、middle 、 right 都定义出来。然后要注意的是先排除 &lt;array[0]、>array[length - 1] 的情况再写循环，循环条件看区间是否闭合。在之后就是把中间位置重置放在循环第一行，也就是在判断之前，if 中只调整 left 活着 right 的位置。</p>
+<h3 id=27--移除元素>27. 移除元素<a hidden class=anchor aria-hidden=true href=#27--移除元素>#</a></h3>
+<p>暴力解法：需要注意，i&ndash;；是因为既然当前值为 ？的点的右边所有点一切都左移了一位，所以现在的 i 指向的是已删除（被覆盖）的位置，该位置补了后面那位没被扫描的数字，而该次循环结束就要 i++了，所以会指向这个没扫描的下一个进行扫描，就漏掉一个了。再一个注意溢出边界问题，还有一个就是无限循环容易发生是因为 for 循环条件不能是 &lt; length。而应该是 &lt;size 这个自定义的，会随着更新而更新。</p>
+<h2 id=wednesday>Wednesday<a hidden class=anchor aria-hidden=true href=#wednesday>#</a></h2>
+<h5 id=977-有序数组的平方>977. 有序数组的平方<a hidden class=anchor aria-hidden=true href=#977-有序数组的平方>#</a></h5>
+<p>这一题犯了一个总是犯的错误，总是忘记写返回值，以后第一步确定返回值，不明则？？表示。<br>
+该题暴力解法就是平方再排序美滋滋~，但是时间复杂度为O(n^2)，有O(n)的解法：双指针。<br>
+双指针解法一定要注意边界。</p>
+<h3 id=209-长度最小的子数组>209. 长度最小的子数组<a hidden class=anchor aria-hidden=true href=#209-长度最小的子数组>#</a></h3>
+<p>暴力解法要注意必须双层循环。为了避免要判断第一次 >target，把 len 初始值设为Interger.MAX_VALUE。滑动窗口：注意循环条件的边界。</p>
+<h2 id=thursday>Thursday<a hidden class=anchor aria-hidden=true href=#thursday>#</a></h2>
+<h5 id=59-螺旋矩阵-ii>59. 螺旋矩阵 II<a hidden class=anchor aria-hidden=true href=#59-螺旋矩阵-ii>#</a></h5>
+<p>该题一定要注意别自己瞎套，while 的条件按照（循环次数）来。偏移量每次+2，从左到右，从上到下的循环条件要-offset。</p>
+<h3 id=203-移除链表元素>203. 移除链表元素<a hidden class=anchor aria-hidden=true href=#203-移除链表元素>#</a></h3>
+<p>先把头的 val 确定 ≠ val、≠null 再去定义 cur 等等其他结点，记得依次讨论头不为空（头的 val 为 val）、头为空（return head把整个链表有可能为空的情况删除整个链表了直接提前退出）。<br>
+不为空 && 头的 val == val 一定要把 ≠null 写在 && 前面，不然先判断 head.val 如果说 head == null ，那就直接报错了。<br>
+删除一定要 XXX.next = XXX.next 这样操作，自己定义的 cur 、 next 都只存一个地址，cur = nextNode 就是 cur 指针走到了 nextNode 这个位置。</p>
+<h2 id=friday>Friday<a hidden class=anchor aria-hidden=true href=#friday>#</a></h2>
+<h5 id=707-设计链表>707. 设计链表<a hidden class=anchor aria-hidden=true href=#707-设计链表>#</a></h5>
+<p>只要把get、addIndex、delete写出来就行了，另外两个addHead、addTail直接调用这个addIndex就行了，至于get、delete都是用addIndex里面for查找的逻辑找到，主线就是写出addIndex，注意在addIndex里面 size++ 就够了，不要反复 ++ ；<br>
+另外自己定义一个 ListNode 的 class ，构造方法只要空参。成员变量 int val、 ListNode next；</p>
+<h3 id=24-两两交换链表中的结点>24. 两两交换链表中的结点<a hidden class=anchor aria-hidden=true href=#24-两两交换链表中的结点>#</a></h3>
+<p>非必要情况下，不要定义那么多 next、cur 结点，不然判空很头大，如果是在 while 内，cur、next、pre 都在变换，判空繁琐，在初始化时也要判空，还是尽量只定义一个 pre 结点，反正操作链表的元素有个 pre 就够了。</p>
+<h3 id=19删除链表的倒数第n个节点>19.删除链表的倒数第N个节点<a hidden class=anchor aria-hidden=true href=#19删除链表的倒数第n个节点>#</a></h3>
+<p><strong>暴力解法</strong>：注意考虑传入的值的合法性。<br>
+<strong>进阶版本</strong>：首先一边扫描肯定无从下手，想想，倒数第 n 个结点，是正着数的第几个 ?</p>
+<ul>
+<li>显而易见：size-n 个，那如何拼凑出 size ？那是肯定要扫描一遍完整的链表结点的。</li>
+</ul>
+<p>如果扫描 size++ 出长度那必然要再操作一遍，落入了扫描多次的圈套，so what？</p>
+<ul>
+<li>定义一个 fast 指针、一个 slow 指针，fast 扫描全文，而 slow 指向要被删除的结点的上一结点。如何凑出 size -n？先让 fast 走 n 次，再让 fast 和 slow 一起走剩下的 size-n次，此时fast 指向了最后一个元素，slow 指向了删除的结点的上一结点。</li>
+</ul>
+<blockquote>
+<p>持续更新中&mldr;&mldr;.. 敬请期待</p>
+</blockquote>
+</div>
+<footer class=post-footer>
+<nav class=paginav>
+<a class=prev href=https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.2/>
+<span class=title>« Prev Page</span>
+<br>
+<span>LeetCode 一周小记 No.2</span>
+</a>
+<a class=next href=https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/>
+<span class=title>Next Page »</span>
+<br>
+<span>Spring MVC小结</span>
+</a>
+</nav>
+<div class=share-buttons>
+<a target=_blank rel="noopener noreferrer" aria-label="share LeetCode 一周小记 No.1 on twitter" href="https://twitter.com/intent/tweet/?text=LeetCode%20%e4%b8%80%e5%91%a8%e5%b0%8f%e8%ae%b0%20No.1&url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fleetcode-%25E4%25B8%2580%25E5%2591%25A8%25E5%25B0%258F%25E8%25AE%25B0-no.1%2f&hashtags="><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM195.519 424.544c135.939.0 210.268-112.643 210.268-210.268.0-3.218.0-6.437-.153-9.502 14.406-10.421 26.973-23.448 36.935-38.314-13.18 5.824-27.433 9.809-42.452 11.648 15.326-9.196 26.973-23.602 32.49-40.92-14.252 8.429-30.038 14.56-46.896 17.931-13.487-14.406-32.644-23.295-53.946-23.295-40.767.0-73.87 33.104-73.87 73.87.0 5.824.613 11.494 1.992 16.858-61.456-3.065-115.862-32.49-152.337-77.241-6.284 10.881-9.962 23.601-9.962 37.088.0 25.594 13.027 48.276 32.95 61.456-12.107-.307-23.448-3.678-33.41-9.196v.92c0 35.862 25.441 65.594 59.311 72.49-6.13 1.686-12.72 2.606-19.464 2.606-4.751.0-9.348-.46-13.946-1.38 9.349 29.426 36.628 50.728 68.965 51.341-25.287 19.771-57.164 31.571-91.8 31.571-5.977.0-11.801-.306-17.625-1.073 32.337 21.15 71.264 33.41 112.95 33.41z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share LeetCode 一周小记 No.1 on linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fleetcode-%25E4%25B8%2580%25E5%2591%25A8%25E5%25B0%258F%25E8%25AE%25B0-no.1%2f&title=LeetCode%20%e4%b8%80%e5%91%a8%e5%b0%8f%e8%ae%b0%20No.1&summary=LeetCode%20%e4%b8%80%e5%91%a8%e5%b0%8f%e8%ae%b0%20No.1&source=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fleetcode-%25E4%25B8%2580%25E5%2591%25A8%25E5%25B0%258F%25E8%25AE%25B0-no.1%2f"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM160.461 423.278V197.561h-75.04v225.717h75.04zm270.539.0V293.839c0-69.333-37.018-101.586-86.381-101.586-39.804.0-57.634 21.891-67.617 37.266v-31.958h-75.021c.995 21.181.0 225.717.0 225.717h75.02V297.222c0-6.748.486-13.492 2.474-18.315 5.414-13.475 17.767-27.434 38.494-27.434 27.135.0 38.007 20.707 38.007 51.037v120.768H431zM123.448 88.722C97.774 88.722 81 105.601 81 127.724c0 21.658 16.264 39.002 41.455 39.002h.484c26.165.0 42.452-17.344 42.452-39.002-.485-22.092-16.241-38.954-41.943-39.002z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share LeetCode 一周小记 No.1 on reddit" href="https://reddit.com/submit?url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fleetcode-%25E4%25B8%2580%25E5%2591%25A8%25E5%25B0%258F%25E8%25AE%25B0-no.1%2f&title=LeetCode%20%e4%b8%80%e5%91%a8%e5%b0%8f%e8%ae%b0%20No.1"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zM446 265.638c0-22.964-18.616-41.58-41.58-41.58-11.211.0-21.361 4.457-28.841 11.666-28.424-20.508-67.586-33.757-111.204-35.278l18.941-89.121 61.884 13.157c.756 15.734 13.642 28.29 29.56 28.29 16.407.0 29.706-13.299 29.706-29.701.0-16.403-13.299-29.702-29.706-29.702-11.666.0-21.657 6.792-26.515 16.578l-69.105-14.69c-1.922-.418-3.939-.042-5.585 1.036-1.658 1.073-2.811 2.761-3.224 4.686l-21.152 99.438c-44.258 1.228-84.046 14.494-112.837 35.232-7.468-7.164-17.589-11.591-28.757-11.591-22.965.0-41.585 18.616-41.585 41.58.0 16.896 10.095 31.41 24.568 37.918-.639 4.135-.99 8.328-.99 12.576.0 63.977 74.469 115.836 166.33 115.836s166.334-51.859 166.334-115.836c0-4.218-.347-8.387-.977-12.493 14.564-6.47 24.735-21.034 24.735-38.001zM326.526 373.831c-20.27 20.241-59.115 21.816-70.534 21.816-11.428.0-50.277-1.575-70.522-21.82-3.007-3.008-3.007-7.882.0-10.889 3.003-2.999 7.882-3.003 10.885.0 12.777 12.781 40.11 17.317 59.637 17.317 19.522.0 46.86-4.536 59.657-17.321 3.016-2.999 7.886-2.995 10.885.008 3.008 3.011 3.003 7.882-.008 10.889zm-5.23-48.781c-16.373.0-29.701-13.324-29.701-29.698.0-16.381 13.328-29.714 29.701-29.714 16.378.0 29.706 13.333 29.706 29.714.0 16.374-13.328 29.698-29.706 29.698zM160.91 295.348c0-16.381 13.328-29.71 29.714-29.71 16.369.0 29.689 13.329 29.689 29.71.0 16.373-13.32 29.693-29.689 29.693-16.386.0-29.714-13.32-29.714-29.693z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share LeetCode 一周小记 No.1 on facebook" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fleetcode-%25E4%25B8%2580%25E5%2591%25A8%25E5%25B0%258F%25E8%25AE%25B0-no.1%2f"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H342.978V319.085h66.6l12.672-82.621h-79.272v-53.617c0-22.603 11.073-44.636 46.58-44.636H425.6v-70.34s-32.71-5.582-63.982-5.582c-65.288.0-107.96 39.569-107.96 111.204v62.971h-72.573v82.621h72.573V512h-191.104c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share LeetCode 一周小记 No.1 on whatsapp" href="https://api.whatsapp.com/send?text=LeetCode%20%e4%b8%80%e5%91%a8%e5%b0%8f%e8%ae%b0%20No.1%20-%20https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fleetcode-%25E4%25B8%2580%25E5%2591%25A8%25E5%25B0%258F%25E8%25AE%25B0-no.1%2f"><svg viewBox="0 0 512 512"><path d="M449.446.0C483.971.0 512 28.03 512 62.554v386.892C512 483.97 483.97 512 449.446 512H62.554c-34.524.0-62.554-28.03-62.554-62.554V62.554c0-34.524 28.029-62.554 62.554-62.554h386.892zm-58.673 127.703c-33.842-33.881-78.847-52.548-126.798-52.568-98.799.0-179.21 80.405-179.249 179.234-.013 31.593 8.241 62.428 23.927 89.612l-25.429 92.884 95.021-24.925c26.181 14.28 55.659 21.807 85.658 21.816h.074c98.789.0 179.206-80.413 179.247-179.243.018-47.895-18.61-92.93-52.451-126.81zM263.976 403.485h-.06c-26.734-.01-52.954-7.193-75.828-20.767l-5.441-3.229-56.386 14.792 15.05-54.977-3.542-5.637c-14.913-23.72-22.791-51.136-22.779-79.287.033-82.142 66.867-148.971 149.046-148.971 39.793.014 77.199 15.531 105.329 43.692 28.128 28.16 43.609 65.592 43.594 105.4-.034 82.149-66.866 148.983-148.983 148.984zm81.721-111.581c-4.479-2.242-26.499-13.075-30.604-14.571-4.105-1.495-7.091-2.241-10.077 2.241-2.986 4.483-11.569 14.572-14.182 17.562-2.612 2.988-5.225 3.364-9.703 1.12-4.479-2.241-18.91-6.97-36.017-22.23C231.8 264.15 222.81 249.484 220.198 245s-.279-6.908 1.963-9.14c2.016-2.007 4.48-5.232 6.719-7.847 2.24-2.615 2.986-4.484 4.479-7.472 1.493-2.99.747-5.604-.374-7.846-1.119-2.241-10.077-24.288-13.809-33.256-3.635-8.733-7.327-7.55-10.077-7.688-2.609-.13-5.598-.158-8.583-.158-2.986.0-7.839 1.121-11.944 5.604-4.105 4.484-15.675 15.32-15.675 37.364.0 22.046 16.048 43.342 18.287 46.332 2.24 2.99 31.582 48.227 76.511 67.627 10.685 4.615 19.028 7.371 25.533 9.434 10.728 3.41 20.492 2.929 28.209 1.775 8.605-1.285 26.499-10.833 30.231-21.295 3.732-10.464 3.732-19.431 2.612-21.298-1.119-1.869-4.105-2.99-8.583-5.232z"/></svg>
+</a>
+<a target=_blank rel="noopener noreferrer" aria-label="share LeetCode 一周小记 No.1 on telegram" href="https://telegram.me/share/url?text=LeetCode%20%e4%b8%80%e5%91%a8%e5%b0%8f%e8%ae%b0%20No.1&url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fleetcode-%25E4%25B8%2580%25E5%2591%25A8%25E5%25B0%258F%25E8%25AE%25B0-no.1%2f"><svg viewBox="2 2 28 28"><path d="M26.49 29.86H5.5a3.37 3.37.0 01-2.47-1 3.35 3.35.0 01-1-2.47V5.48A3.36 3.36.0 013 3 3.37 3.37.0 015.5 2h21A3.38 3.38.0 0129 3a3.36 3.36.0 011 2.46V26.37a3.35 3.35.0 01-1 2.47 3.38 3.38.0 01-2.51 1.02zm-5.38-6.71a.79.79.0 00.85-.66L24.73 9.24a.55.55.0 00-.18-.46.62.62.0 00-.41-.17q-.08.0-16.53 6.11a.59.59.0 00-.41.59.57.57.0 00.43.52l4 1.24 1.61 4.83a.62.62.0 00.63.43.56.56.0 00.4-.17L16.54 20l4.09 3A.9.9.0 0021.11 23.15zM13.8 20.71l-1.21-4q8.72-5.55 8.78-5.55c.15.0.23.0.23.16a.18.18.0 010 .06s-2.51 2.3-7.52 6.8z"/></svg>
+</a>
+</div>
+</footer><script src=https://utteranc.es/client.js repo=https://github.com/coderRenxy/coderrenxy.github.io/issues issue-term=pathname theme=github-light crossorigin=anonymous async></script>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2022 <a href=https://coderrenxy.github.io/>小任同学</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script>
+</body>
+</html>
