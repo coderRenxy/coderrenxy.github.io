@@ -1,0 +1,8 @@
+.post-entry:hover {
+    transition: transform 0.5s;
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.03) translateZ(0) translate3d(0, 0, 0) rotate(0.01deg);
+}

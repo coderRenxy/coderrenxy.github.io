@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>小任同学&#39;s Blog</title>
+    <title>📋 文章 on 小任同学&#39;s Blog</title>
     <link>https://coderrenxy.github.io/posts/blog/</link>
-    <description>Recent content on 小任同学&#39;s Blog</description>
+    <description>Recent content in 📋 文章 on 小任同学&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 31 Mar 2022 05:13:32 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/posts/blog/index.xml" rel="self" type="application/rss+xml" />
