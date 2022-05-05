@@ -1,0 +1,5 @@
+<article class="post-single">
+  {{- if (.Param "comments") }}
+    {{- partial "comments.html" . }}
+  {{- end }}
+</article>
