@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>📋 文章 on 小任同学&#39;s Blog</title>
+    <title>📋 技术 on 小任同学&#39;s Blog</title>
     <link>https://coderrenxy.github.io/posts/blog/</link>
-    <description>Recent content in 📋 文章 on 小任同学&#39;s Blog</description>
+    <description>Recent content in 📋 技术 on 小任同学&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 31 Mar 2022 05:13:32 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/posts/blog/index.xml" rel="self" type="application/rss+xml" />
@@ -14,15 +14,6 @@
       
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.5/</guid>
       <description>description：前序+中序 / 中序+后序返回树想破脑袋，然后以后要每天花 monring 来复习考试内容，一日之际在于晨，每天题量直接 cut off。接下来</description>
-    </item>
-    
-    <item>
-      <title>二叉树遍历小结</title>
-      <link>https://coderrenxy.github.io/posts/blog/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</link>
-      <pubDate>Sat, 19 Mar 2022 07:42:29 +0800</pubDate>
-      
-      <guid>https://coderrenxy.github.io/posts/blog/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</guid>
-      <description>首先二叉树的遍历分为，深度优先遍历（dfs）、广度优先遍历（bfs）。 注意：但凡遍历都要注意根节点为 null； 深度优先遍历又分为前中后序遍历</description>
     </item>
     
     <item>
@@ -95,6 +86,15 @@
       
       <guid>https://coderrenxy.github.io/posts/blog/%E6%88%91%E5%AF%B9mysql%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%E5%BF%B5%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0...%E6%80%92%E8%82%9D16k%E5%AD%97-%E5%89%AF%E6%9C%AC/</guid>
       <description>​ 学习、面试、开发过程难免遇到 MySQL 难题，本文记录博主近期学习汇总和一路的成长，和我一起变成大佬吧。 首先关于数据库一个误区，我们用的 MySQL、</description>
+    </item>
+    
+    <item>
+      <title>二叉树遍历小结</title>
+      <link>https://coderrenxy.github.io/posts/blog/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</link>
+      <pubDate>Sat, 08 Jan 2022 23:33:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</guid>
+      <description>首先二叉树的遍历分为，深度优先遍历（dfs）、广度优先遍历（bfs）。 注意：但凡遍历都要注意根节点为 null； 深度优先遍历又分为前中后序遍历</description>
     </item>
     
     <item>

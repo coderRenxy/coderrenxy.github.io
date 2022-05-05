@@ -164,7 +164,7 @@ params:
     #         SiteVerificationTag: "XYZabc"
 
     assets:
-        favicon: "img/icon-512.png"
+        #favicon: "img/icon-512.png"
         favicon: "img/icon-512.png"
         favicon16x16: "img/icon-512.png"
         favicon32x32: "icon-512.png"
