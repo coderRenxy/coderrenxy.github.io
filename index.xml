@@ -8,6 +8,15 @@
     <language>zh-cn</language>
     <lastBuildDate>Thu, 31 Mar 2022 05:13:32 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>🔍搜索</title>
+      <link>https://coderrenxy.github.io/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/search/</guid>
+      <description>/* 手机适配 */ @media screen and (max-width: 500px) { .search{ padding-right: 25px; } .search input{ width: 100%; } .search button{ display: none; } } /* 电脑适配 */ @media screen and (min-width: 500px) { .search{ width: 500px; } .search input{ width: 444px; } } /* 通用样式 */ .search{ margin: auto; } .search input{ outline: none; border: 2px solid #c05b4d; height: 32px; padding:</description>
+    </item>
+    
+    <item>
       <title>🙋🏻‍♂️关于</title>
       <link>https://coderrenxy.github.io/about/</link>
       <pubDate>Thu, 05 May 2022 23:33:37 +0800</pubDate>
@@ -17,7 +26,7 @@
     </item>
     
     <item>
-      <title>LeetCode 一周小记 No.4</title>
+      <title>LeetCode 一周小记 No.5</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.5/</link>
       <pubDate>Thu, 31 Mar 2022 05:13:32 +0800</pubDate>
       
@@ -133,15 +142,6 @@
       <description>正文&amp;hellip;. test&amp;hellip;..</description>
     </item>
     
-    
-    <item>
-      <title>搜索功能</title>
-      <link>https://coderrenxy.github.io/search/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://coderrenxy.github.io/search/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>🤝友链</title>
