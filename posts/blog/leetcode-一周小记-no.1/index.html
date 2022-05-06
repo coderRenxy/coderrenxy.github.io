@@ -6,12 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>LeetCode 一周小记 No.1 | 小任同学&#39;s Blog</title>
-<meta name="keywords" content="" />
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta name="keywords" content="算法" />
 <meta name="description" content="刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy Level 都也被卡，目前进度为 2-3 medium / day。 Monday （科普知识） 反码、补码 二进制的第一位是符号位，0是&#43;，1是-，">
 <meta name="author" content="
 作者:&nbsp;小任同学">
 <link rel="canonical" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.d8b1a110701eda43651f219bc5960719ecc0cf305b17b3722c3e545c32602612.css" integrity="sha256-2LGhEHAe2kNlHyGbxZYHGezAzzBbF7NyLD5UXDJgJhI=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.ade1a87770a48f3e6af30001c46e274cb84ea09949a4a05881af672dfd5b8f69.css" integrity="sha256-reGod3Ckjz5q8wABxG4nTLhOoJlJpKBYga9nLf1bj2k=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
@@ -63,7 +65,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-02-24T02:45:59&#43;08:00" />
-<meta property="article:modified_time" content="2022-02-24T02:45:59&#43;08:00" />
+<meta property="article:modified_time" content="2022-05-05T23:33:37&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="LeetCode 一周小记 No.1"/>
@@ -104,17 +106,17 @@
   "name": "LeetCode 一周小记 No.1",
   "description": "刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy Level 都也被卡，目前进度为 2-3 medium / day。 Monday （科普知识） 反码、补码 二进制的第一位是符号位，0是+，1是-，",
   "keywords": [
-    
+    "算法"
   ],
   "articleBody": "刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy Level 都也被卡，目前进度为 2-3 medium / day。\nMonday （科普知识） 反码、补码 二进制的第一位是符号位，0是+，1是-，如果是1，怎么得到具体数字？ 二进制数全都取反，再+1就是对应结果的的绝对值 。 例如-1的二进制数全为1，则将后31个1全取反并+1，得到 000…1 的十进制数就是1 。\n如何把随机出现从 x 概率变为 x^3 概率？ Math.Max(Math.Random(),Math.Max(Math.Random(),Math.Random()));\n注意：Random生成一个[0,1)\n如何在 1-5（int）随机函数上生成1-7的随机函数？ 直接把1-5改成随机生成0、1的函数，1、2返回0，3就return重来，4、5就返回1 。\n再根据读书器返回0、1的函数处理:\n1  return （f（））+ （f（））+（f（））; //0或4 + 0或2 + 0或1   注意：\n 如果直接 相乘 是不行的，因为只返回 0、1 乘了 7 就变成 0、7 。会缺失中间的数。 0-7 有了，我们要 1-7 ，那只能 0-6 随机再+1 。1-7 只要遇 7 重来就行了。或者直接 0 重来。就不用再 +1。  为什么不能直接 (f() « 2) + (f() « 1) 呢？直接得到 0-6\n 因为左移两位得到要么是0要么是4，左移一位是0或2，不移动0、1 。得到的具体数字不是范围，再将其相加，产生的和才是一个范围。  如何改变一个任一固定概率的随机0、1函数变为产生0、1都为50%的函数？ 运行两次该函数，两次得到0的概率为 p^2 ,两次得到 1 的概率为 (1-p)^2 ;而一次 0 一次 1 的概率是 p*(1-p); 所以只要两次返回一次为 0 一次为 1 就行。不然就重新执行。\nTuesday 206. 反转链表 这题一定要按清楚头指针 pre、next 指针只是指针，不是一个结点指向另一个结点的指针。定义出这两个指针、画好图就很容易操作。这是单链表的反转，至于双链表就是多加了一个 last 指针指向上一个，只需要在存 next 时多存一个 last ，其他无需改动。\n704. 二分查找 首先把 left 、mid 、 right 都定义出来。mid 的赋值，左右指针的跳转都在循环内完成，注意要 left=mid+1，right = mid-1，不然藏在边界的 target 就查不到了。\n27. 移除元素 暴力解法：需要注意，i–；是因为既然当前值为 ？的点的右边所有点一切都左移了一位，所以现在的 i 指向的是已删除（被覆盖）的位置，该位置补了后面那位没被扫描的数字，而该次循环结束就要 i++了，所以会指向这个没扫描的下一个进行扫描，就漏掉一个了。再一个注意溢出边界问题，还有一个就是无限循环容易发生是因为 for 循环条件不能是 Wednesday 977. 有序数组的平方 这一题犯了一个总是犯的错误，总是忘记写返回值，以后第一步确定返回值，不明则？？表示。\n该题暴力解法就是平方再排序美滋滋~，但是时间复杂度为O(n^2)，有O(n)的解法：双指针。\n双指针解法一定要注意边界。\n209. 长度最小的子数组 暴力解法要注意必须双层循环。为了避免要判断第一次 target，把 len 初始值设为Interger.MAX_VALUE。滑动窗口：注意循环条件的边界。\nThursday 59. 螺旋矩阵 II 该题一定要注意别自己瞎套，while 的条件按照（循环次数）来。偏移量每次+2，从左到右，从上到下的循环条件要-offset。\n203. 移除链表元素 先把头的 val 确定 ≠ val、≠null 再去定义 cur 等等其他结点，记得依次讨论头不为空（头的 val 为 val）、头为空（return head把整个链表有可能为空的情况删除整个链表了直接提前退出）。\n不为空 \u0026\u0026 头的 val == val 一定要把 ≠null 写在 \u0026\u0026 前面，不然先判断 head.val 如果说 head == null ，那就直接报错了。\n删除一定要 XXX.next = XXX.next 这样操作，自己定义的 cur 、 next 都只存一个地址，cur = nextNode 就是 cur 指针走到了 nextNode 这个位置。\nFriday 707. 设计链表 只要把get、addIndex、delete写出来就行了，另外两个addHead、addTail直接调用这个addIndex就行了，至于get、delete都是用addIndex里面for查找的逻辑找到，主线就是写出addIndex，注意在addIndex里面 size++ 就够了，不要反复 ++ ；\n另外自己定义一个 ListNode 的 class ，构造方法只要空参。成员变量 int val、 ListNode next；\n24. 两两交换链表中的结点 非必要情况下，不要定义那么多 next、cur 结点，不然判空很头大，如果是在 while 内，cur、next、pre 都在变换，判空繁琐，在初始化时也要判空，还是尽量只定义一个 pre 结点，反正操作链表的元素有个 pre 就够了。\n19.删除链表的倒数第N个节点 暴力解法：注意考虑传入的值的合法性。\n进阶版本：首先一边扫描肯定无从下手，想想，倒数第 n 个结点，是正着数的第几个 ?\n 显而易见：size-n 个，那如何拼凑出 size ？那是肯定要扫描一遍完整的链表结点的。  如果扫描 size++ 出长度那必然要再操作一遍，落入了扫描多次的圈套，so what？\n 定义一个 fast 指针、一个 slow 指针，fast 扫描全文，而 slow 指向要被删除的结点的上一结点。如何凑出 size -n？先让 fast 走 n 次，再让 fast 和 slow 一起走剩下的 size-n次，此时fast 指向了最后一个元素，slow 指向了删除的结点的上一结点。   持续更新中…….. 敬请期待\n ",
   "wordCount" : "2035",
   "inLanguage": "en",
   "datePublished": "2022-02-24T02:45:59+08:00",
-  "dateModified": "2022-02-24T02:45:59+08:00",
-  "author":{
+  "dateModified": "2022-05-05T23:33:37+08:00",
+  "author":[{
     "@type": "Person",
     "name": "小任同学"
-  },
+  }],
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/"
@@ -218,6 +220,7 @@
       LeetCode 一周小记 No.1
     </h1>
     <div class="post-meta">
+		  <p id="wc" style="font-size: 12px;">本文总阅读量<span id="busuanzi_value_page_pv"></span>次&nbsp;&nbsp;</p>
 
 
 
@@ -228,7 +231,8 @@
 
 
 
-创建:&nbsp;<span title='2022-02-24 02:45:59 +0800 CST'>2022-02-24</span>&nbsp;|&nbsp;更新:&nbsp;2022-02-24&nbsp;|&nbsp;字数:&nbsp;2035字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;
+
+创建:&nbsp;<span title='2022-02-24 02:45:59 +0800 CST'>2022-02-24</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-05&nbsp;|&nbsp;字数:&nbsp;2035字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;
 作者:&nbsp;小任同学
 
 </div>
@@ -445,6 +449,7 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="https://coderrenxy.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.2/">
@@ -459,29 +464,6 @@
   </a>
 </nav>
 
-
-<div class="share-buttons">
-	<h2>分享至: &nbsp &nbsp</h>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share LeetCode 一周小记 No.1 on facebook"
-        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fleetcode-%25E4%25B8%2580%25E5%2591%25A8%25E5%25B0%258F%25E8%25AE%25B0-no.1%2f">
-        <svg t="1651680695552" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3017" width="81" height="81"><path d="M985.742 749.936c0 130.864-106.178 236.964-237.17 236.964H274.298c-130.954 0-237.092-106.102-237.092-236.964V276.018c0-130.902 106.138-236.966 237.092-236.966h474.274c130.992 0 237.17 106.064 237.17 236.966v473.918z" fill="#235B9E" p-id="3018"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3019"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3020"></path><path d="M556.712 216.778l91.59 0.384v101.512H581.76c-10.808 0-26.208 5.362-26.208 28.464v47.362h94.252l-10.808 118.482H551v296.192h-118.568V512.982H373.14V394.5h58.792v-53.534c0-48.478 23.118-124.188 124.78-124.188m0-19.754c-64.452 0-98.87 28.234-116.394 51.92-24.486 33.094-28.142 71.862-28.142 92.024v33.78H373.14c-10.91 0-19.754 8.844-19.754 19.754v118.482c0 10.91 8.844 19.754 19.754 19.754h39.54v276.438c0 10.91 8.844 19.754 19.754 19.754h118.568c10.91 0 19.754-8.844 19.754-19.754V532.738h68.242a19.756 19.756 0 0 0 19.672-17.96l10.808-118.482a19.76 19.76 0 0 0-19.672-21.55h-74.498v-27.608c0-4.532 0.948-6.908 1.758-7.568 0.7-0.568 2.422-1.142 4.696-1.142h66.542c10.91 0 19.754-8.844 19.754-19.754v-101.512a19.752 19.752 0 0 0-19.67-19.754l-91.59-0.384h-0.086z" fill="#1A4477" p-id="3021"></path><path d="M728.078 956.122H294.83c-124.896 0-226.506-101.636-226.506-226.566V296.358c0-124.908 101.61-226.526 226.506-226.526h433.248c124.918 0 226.544 101.62 226.544 226.526v433.198c0.002 124.928-101.626 226.566-226.544 226.566zM294.83 89.636c-113.976 0-206.702 92.734-206.702 206.72v433.198c0 114.008 92.726 206.762 206.702 206.762h433.248c113.996 0 206.74-92.754 206.74-206.762V296.358c0-113.986-92.744-206.72-206.74-206.72H294.83z" fill="#1A4477" p-id="3022"></path></svg>
-
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share LeetCode 一周小记 No.1 on whatsapp"
-        href="https://api.whatsapp.com/send?text=LeetCode%20%e4%b8%80%e5%91%a8%e5%b0%8f%e8%ae%b0%20No.1%20-%20https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fleetcode-%25E4%25B8%2580%25E5%2591%25A8%25E5%25B0%258F%25E8%25AE%25B0-no.1%2f">
-        <svg t="1651681184624" class="icon" viewBox="0 0 1586 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9888" width="81" height="81"><path d="M160.587294 1019.542588h1261.327059a145.568627 145.568627 0 0 0 145.548549-145.52847V146.291451A145.528471 145.528471 0 0 0 1421.914353 0.803137H160.587294A145.568627 145.568627 0 0 0 15.058824 146.311529V874.014118a145.588706 145.588706 0 0 0 145.52847 145.548549z" fill="#F4B459" p-id="9889"></path><path d="M63.849412 981.955765l607.091451-467.184941L65.174588 37.205333C34.695529 63.909647 15.058824 102.600784 15.058824 146.311529V874.014118c0 43.028078 19.07451 81.317647 48.790588 107.961725zM1518.371137 38.048627l-629.539137 478.067451 628.956863 466.56251c30.278275-26.644078 49.694118-65.254902 49.694117-108.684549V146.331608c0-43.208784-19.215059-81.598745-49.091764-108.282981z" fill="#E8AB54" p-id="9890"></path><path d="M1548.247843 944.971294L1018.096941 520.774275l536.495686-433.894902a145.66902 145.66902 0 0 0-55.737725-63.688785L813.578039 571.371922 109.748706 10.380549A145.608784 145.608784 0 0 0 40.357647 64.471843l566.673569 454.515451L47.666196 964.668235A144.946196 144.946196 0 0 0 122.88 1013.960784l554.164706-438.312157 33.812078 27.26651a142.436392 142.436392 0 0 0 205.603138 0l31.48298-25.459451 538.423216 426.36549a145.086745 145.086745 0 0 0 61.861647-58.829803z" fill="#FADAAC" p-id="9891"></path></svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share LeetCode 一周小记 No.1 on telegram"
-        href="https://telegram.me/share/url?text=LeetCode%20%e4%b8%80%e5%91%a8%e5%b0%8f%e8%ae%b0%20No.1&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fleetcode-%25E4%25B8%2580%25E5%2591%25A8%25E5%25B0%258F%25E8%25AE%25B0-no.1%2f">
-        <svg t="1651680820373" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3832" width="81" height="81"><path d="M679.424 746.862l84.005-395.996c7.424-34.852-12.581-48.567-35.438-40.009L234.277 501.138c-33.72 13.13-33.134 32-5.706 40.558l126.282 39.424 293.156-184.576c13.714-9.143 26.295-3.986 16.018 5.157L426.898 615.973l-9.143 130.304c13.13 0 18.871-5.706 25.71-12.581l61.696-59.429 128 94.282c23.442 13.129 40.01 6.29 46.3-21.724zM1024 512c0 282.843-229.157 512-512 512S0 794.843 0 512 229.157 0 512 0s512 229.157 512 512z" fill="#1296DB" p-id="3833"></path></svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share LeetCode 一周小记 No.1 on reddit"
-        href="https://twitter.com/intent/tweet/?text=LeetCode%20%e4%b8%80%e5%91%a8%e5%b0%8f%e8%ae%b0%20No.1&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fleetcode-%25E4%25B8%2580%25E5%2591%25A8%25E5%25B0%258F%25E8%25AE%25B0-no.1%2f&amp;hashtags=">
-        <svg t="1651764155941" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1736" width="81" height="81"><path d="M295.2 338c120.2 61 221.7 57.4 221.7 57.4s-38.5-134.8 80.5-194.6 200.9 41 200.9 41 20.8-5.7 36.2-11.4c15.5-5.7 37.8-15.9 37.8-15.9l-36.7 65.8 56.5-6s-7 10.2-29.6 31-31.9 31.6-31.9 31.6 8.1 162.3-77 287.2C668.5 749 558.6 824 398.9 839.8c-159.7 15.8-263.7-49.2-263.7-49.2s69.8-4 114.3-21.1S358 707.4 358 707.4s-91-28.1-123.7-59.8c-32.7-31.6-40.8-50.4-40.8-50.4l89.8-1.2s-94.5-50.4-121.3-90.3-30.3-78.5-30.3-78.5l69.1 28s-57.4-78.4-65.6-139.4c-8.2-61 10.5-93.8 10.5-93.8s29.3 55 149.5 116z" fill="#5DD7FC" p-id="1737"></path></svg>
-    </a>
-	
-</div>
-
   </footer>
 </article>
     </main>
@@ -493,6 +475,13 @@
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
         <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
     </span>
+	<span id="busuanzi_container_site_pv">
+    本站访问量：<span id="busuanzi_value_site_pv"></span>次
+</span>
+&nbsp;
+<span id="busuanzi_container_site_uv">
+    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+</span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
@@ -554,6 +543,11 @@
     })
 
 </script>
+ <div>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<i class="fa fa-user"></i>  <span id="busuanzi_value_site_pv"></span>|
+<i class="fa fa-eye"></i> <span id="busuanzi_value_site_uv"></span>----------人次---------
+</div>
 <script>
     document.querySelectorAll('pre > code').forEach((codeblock) => {
         const container = codeblock.parentNode.parentNode;
@@ -600,7 +594,6 @@
             codeblock.parentNode.appendChild(copybutton);
         }
     });
-</script>
-</body>
+</script></body>
 
 </html>

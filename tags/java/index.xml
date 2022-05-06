@@ -6,7 +6,34 @@
     <description>Recent content in Java on 小任同学&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 08 Jan 2022 23:33:37 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 Mar 2022 05:52:59 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>集合浅原理篇</title>
+      <link>https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/</link>
+      <pubDate>Mon, 07 Mar 2022 05:52:59 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/</guid>
+      <description>​ description：学习是 “循序渐进” 这句话，大家都会说，但是实际运用起来很难，大家都想一步把一个甚至从未接触的知识点啃透，巴不得这辈</description>
+    </item>
+    
+    <item>
+      <title>Spring MVC小结</title>
+      <link>https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/</link>
+      <pubDate>Wed, 02 Feb 2022 02:45:59 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/</guid>
+      <description>​ description：本打算直接干到Spring MVC源码的，中途发现了算法的重要性，于是学习过半而中道崩殂，今学习三分，先把整套数据结</description>
+    </item>
+    
+    <item>
+      <title>Spring杂记（顺着链条自上往下看）</title>
+      <link>https://coderrenxy.github.io/posts/blog/spring%E6%9D%82%E8%AE%B0/</link>
+      <pubDate>Wed, 02 Feb 2022 02:45:59 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/spring%E6%9D%82%E8%AE%B0/</guid>
+      <description>本篇文章都是本人的理解，看不懂可以评论，会回复评论。持续更新&amp;hellip;&amp;hellip;&amp;hellip;. 讲到Spring就一定绕不开I</description>
+    </item>
+    
     <item>
       <title>异常</title>
       <link>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</link>

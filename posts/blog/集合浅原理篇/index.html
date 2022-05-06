@@ -6,12 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>集合浅原理篇 | 小任同学&#39;s Blog</title>
-<meta name="keywords" content="" />
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta name="keywords" content="集合, Java" />
 <meta name="description" content="​ description：学习是 “循序渐进” 这句话，大家都会说，但是实际运用起来很难，大家都想一步把一个甚至从未接触的知识点啃透，巴不得这辈">
 <meta name="author" content="
 作者:&nbsp;小任同学">
 <link rel="canonical" href="https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.d8b1a110701eda43651f219bc5960719ecc0cf305b17b3722c3e545c32602612.css" integrity="sha256-2LGhEHAe2kNlHyGbxZYHGezAzzBbF7NyLD5UXDJgJhI=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.ade1a87770a48f3e6af30001c46e274cb84ea09949a4a05881af672dfd5b8f69.css" integrity="sha256-reGod3Ckjz5q8wABxG4nTLhOoJlJpKBYga9nLf1bj2k=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
@@ -63,7 +65,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-03-07T05:52:59&#43;08:00" />
-<meta property="article:modified_time" content="2022-03-07T05:52:59&#43;08:00" />
+<meta property="article:modified_time" content="2022-05-05T23:33:37&#43;08:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="集合浅原理篇"/>
@@ -104,17 +106,17 @@
   "name": "集合浅原理篇",
   "description": "​ description：学习是 “循序渐进” 这句话，大家都会说，但是实际运用起来很难，大家都想一步把一个甚至从未接触的知识点啃透，巴不得这辈",
   "keywords": [
-    
+    "集合", "Java"
   ],
   "articleBody": "​\n description：学习是 “循序渐进” 这句话，大家都会说，但是实际运用起来很难，大家都想一步把一个甚至从未接触的知识点啃透，巴不得这辈子再不相见，怎么可能呢？等真正学了又往，忘了再学才真正学会做笔记，我个人目前是将学习分为至少“三个阶段”：\n 第一阶段：简单运用。 第二阶段：了解一些原理（浅层次）。 第三阶段：深挖原理甚至在应用层面有所体现，从这一阶段就可以无数迭代了，因为原理都是一挖一堆。   废话不多说，步入正题……..\n集合的概念：对象的容器，定义了对多个对象进行操作的常用方法。可实现数组的功能。\n和数组的区别：\n 数组长度固定，集合长度不固定。 数组可以存储基本数据类型、引用数据类型，集合只能存储引用数据类型。所以看到的 Map都是 Map，而不是 Map 。   Collection体系集合下两个接口（List、Set）： List： List 特点：有序、有下标、元素可重复。\nList 实现类： ArrayList、LinkedList、Vector。\n ArrayList：容量是动态的、但是牺牲效率，DEFAULT_CAPACITY = 10; 默认容量为10；若未添加元素，容量 0；扩容每次是原来的1.5倍，下文详解。相比于数组，数组没有删除方法，ArrayList.add() 不带索引则默认从 0 开始。 Vector、ArrayList：都是数组结构实现，但是 Vector 是线程安全的，ArrayList 线程不安全，而 LinkedList 是链表结构实现。开辟连续空间。笼统来说，ArrayList 查询快、插入慢，LinkedList 查询慢、插入快，因为 ArrayList 要把插入位后面的值全都后移一位，但是有特殊情况，下文详解。 LinkedList ：存储结构：双向链表。 无需开辟连续空间，查询慢，增删快。具体下文再比较效率 。 ArrayList 底层基于数组实现，LinkedList 底层基于链表实现，确切的说是循环双向链表（JDK 1.6 之前是双向循环链表、JDK 1.7 开始取消了循环），LinkedList 链表由一系列表项连接而成，一个表项包含 3 个部分：元素内容、前驱表、后驱表。LinkedList 链表内部还有一个 header 表项，既是链表的开始也是链表的结尾。header 的后继表项是链表中的第一个元素，header 的前驱表项是链表中的最后一个元素。\nArrayList 的增删未必比 LinkedList 慢：  如果增删都是在末尾来操作【每次调用的都是 remove() 和 add()】，此时 ArrayList 就不需要移动和复制数组来进行操作了。 数据量达到百万级的时，速度是会比 LinkedList 要快的。 删除操作的位置是在中间。由于 LinkedList 的消耗主要是在遍历上，ArrayList 的消耗主要是在移动和复制上（底层调用的是 arrayCopy() 方法，是本地方法）。LinkedList 的遍历速度是要慢于 ArrayList 的复制移动速度，数据量达到百万级的时，还是 ArrayList 要快。    ArrayList 扩容： 起初empty ArrayList with elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA，当使用 add 方法的时候首先调用 ensureCapacityInternal 方法，源码中的 Capacity 是容量，size 是当前the number of elements it contains（当前包含的元素数），传入 size+1 进去，检查是否需要扩充 elementData 数组的大小，再传入值；具体扩容过程如下（不拿 add（） 的重载举例）：\n1 2 3 4 5  public boolean add(E e) { ensureCapacityInternal(size + 1); // Increments modCount!!  elementData[size++] = e; return true; }   若 add() 第一个元素，则传入 DEFAULT_CAPACITY = 10，默认容量为10，注意很多博主讲到扩容，minCapacity 、newCapacity、oldCapacity、size 名词组合拳就把人整晕了，其实传入的 size+1 就是 ensureCapacityInternal 方法中的 minCapacity。\n1 2 3  private void ensureCapacityInternal(int minCapacity) { ensureExplicitCapacity(calculateCapacity(elementData, minCapacity)); }   可以看到判断扩容的方法里调用了ensureExplicitCapacity和 calculateCapacity ，方法体如下：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14  private static int calculateCapacity(Object[] elementData, int minCapacity) { if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) { return Math.max(DEFAULT_CAPACITY, minCapacity); } return minCapacity; } private void ensureExplicitCapacity(int minCapacity) { modCount++; // overflow-conscious code  if (minCapacity - elementData.length  0) grow(minCapacity); }   calculateCapacity 方法传入 elementData （即当前存 “元素数据引用” 的地址）, minCapacity（即size+1），意思当第一次调用add(E e)方法的时候，判读是不是无参构造函数创建的对象，如果是， 将 DEFAULT_CAPACITY 即 10 作为 ArrayList 的容量，此时 minCapacity = 1。返回的容量作为ensureExplicitCapacity的参数传入，此时 modCount++；是fail-fast iterators 相关，先不用管，而 DataElement 是现在用于存储的的数组，当 size+1 大于这个值，意味着要扩容了，然后调用grow（）方法扩容 ：\n1 2 3 4 5 6 7 8 9 10 11  private void grow(int minCapacity) { // overflow-conscious code  int oldCapacity = elementData.length; int newCapacity = oldCapacity + (oldCapacity  1); if (newCapacity - minCapacity if (newCapacity - MAX_ARRAY_SIZE  0) newCapacity = hugeCapacity(minCapacity); // minCapacity is usually close to size, so this is a win:  elementData = Arrays.copyOf(elementData, newCapacity); }   其中 oldCapacity 是原来的容量大小，oldCapacity » 1 为位运算的右移操作，右移一位相当于除以 2，所以这句代码就等于 int newCapacity = oldCapacity + oldCapacity / 2；\nnewCapacity = 扩充数组为原来的 1.5 倍(不能自定义)，然后判断 minCapacity 是否大于MAX_ARRAY_SIZE(Integer.MAX_VALUE – 8) ，如果大于数组最大容量，就取 Integer.MAX_VALUE；后回到 grow（）方法，调用 Arrays.copyof 方法，即复制原数组内容到一个新容量的大数组里。这里Arrays.copyof 方法实际是调用 System.arraycopy方法。\n与 Vector 不同的是，Vector 每次扩容容量是翻倍，即为原来的 2倍，而 ArrayList 是 1.5倍。看似 1.5倍增长的很慢，那经常增加大量元素会不会导致经常扩容，数组重新分配导致效率低下呢？其实不然，每次增长为原来的 1.5倍实际增长的量会越来越大的。当然，如果一开始知道数据量很大的话，可以在初始化时预先指定容量。\n Set Set 特点：无序、无下标、元素不能重复\nSet 实现类：HashSet、SortedSet 接口（TreeSet 实现类）\n TreeSet：基于排列顺序实现元素不重复。实现了 SortedSet 接口，对集合元素自动排序。元素对象的类型必须实现 Comparable 接口，指定排序规则方法的返回值为 0，则认为是重复元素。 HashSet：储存结构为哈希表（数组+链表+红黑树）。  HashSet 存储过程：\n 根据 hashcode 计算保存的位置，如果此位置为空，则直接保存，如果不为空执行第二步。 再执行 equals 方法，如果 equals 方法为 true ，则认为是重复，否则，形成链表。  HashSet、TreeSet的实现原理: HashSet 的实现是依赖于 HashMap 的，HashSet 的值都是存储在 HashMap 中的。在 HashSet 的构造法中会初始化一个 HashMap 对象，HashSet 不允许值重复。因此，HashSet 的值是作为 HashMap 的 key 存储在 HashMap 中的，当存储的值已经存在时返回 false。\n Map 集合体系 Map 父接口特点：存储一对一数据，无序、无下标，键不可重复，值可以重复。\n HashMap ：存储结构（哈希表：数组+链表+红黑树）允许 null key、value。\nHashTable：不允许 null key、value。线程安全。\nTreeMap：实现了 SortedMap 接口（Map 的子接口），可以对 key 自动排序。\nHashMap底层原理： jdk 1.7 的数据结构是 “ Entry数组+链表 ”，jdk 1.8 的数据结构是 ” Node 数组+链表/红黑树 “。当链表的深度达到 8 并且数组长度 = 64 时自动转化成红黑树，节点变成树节点，\t以提高搜索效率和插入效率到 O(logN)。Entry 和 Node 都包含 key、value、hash、next 属性。\nHashMap 默认容量为 16，通过 hashcode 查询的时候是要先 ” hashcode % 数组长度 “ 进行运算才能找到数组对应位置下的链表。该数组只存引用的地址，其对象存在堆里。\n在 jdk 1.7 时插入元素是头插法，jdk 1.8 时是尾插法，头插法的插入很快（插完要移动一下，让该结点在原来头节点在数组中的槽位），尾插法要遍历再插入（jdk1.8）。\nput 时先会判断是否空数组，是空就会先初始化，put 一对 key-value 时，系统会根据 key 的hashcode\t来确认其在 “数组” 的存储位置，若没有元素则直接插入，否则会遍历该处的链表并依次比较其 key 的 hashcode，如果两个 key 的 hashcode 相同且 key 值相同，新的 value 会覆盖旧的 value 并返回旧的 value（不覆盖返回的是 NULLl）。如果 hashcode 相同但 key 值不同，则会进行插入操作，并且该链表的 size++。\n那么 key 值如何比较呢？ equals 方法。这里涉及 哈希碰撞：\n输入数据长度不固定，而输出的哈希值却是固定长度的，这意味着哈希值是一个有限集合，而输入数据则可以是无穷多个，那么建立一对一关系明显是不现实的。所以“碰撞”是必然会发生的。\n那既然 equals 方法这么有效，为什么还要用 hashcode ？\n因为 hashcode 快！\n如果现在有大量的对象需要比较，每个都用 equals() 效率是很低的，但 hashCode() 效率很高。\n所以有这种设计：先用 hashCode() 判断，如果 hashCode() 不同，则对象不等，如果 hashCode() 相同，再比较 equals() ，大大提高了效率。\nkey 可以等于 null，源码对 Entry 的两个约束：\n 数组每个槽位下都不为空。 所有结点平均分布在每一个槽位下的链表。  也正因如此，HashMap 的长度必须为 2 的次幂。讲到长度，就跑不掉 HashMap扩容了：\nHashMap 扩容条件：HashMap 扩容的加载因子默认为 0.75 ，阈值为 ” 0.75 * 数组长度 “，意思是每当 ”HashMap当前元素数“ 到达 ”当前容量 * 0.75“ 时 且 “插入位置不为 NULL” 就判断是否符合 “ 数组长度是否最大 ”。最大就不扩容，否则就是扩容到原容量的 2倍。\nHashMap 扩容原理：new 一个两倍长度的 Entry/Node 数组，然后内容转移新的数组，扩容后链表会倒序。因此，多线程同时 put（）时，如果同时触发了 rehash（） 操作会导致 HashMap 中的链表中出现循环节点，进而使得后面 get（） 的时候，会死循环。\n另外，扩容之后链表可能减短，提高 get（） 时的效率。\nHashTable 和 HashMap 的区别：\n HashTable 不允许 key 和 value 为 null；HashMap 遇到 key 为 null 的时候，调用 putForNullKey（）进行处理，而对 value 没有处理；Hashtable 遇到 null，直接返回 NullPointerException。 HashTable 线程安全，但是 HashTable 线程安全的策略实现代价却太大了，简单粗暴，get/put 所有相关操作都是 synchronized 的，这相当于给整个哈希表加了一把大锁，多线程访问时候，只要有一个线程访问或操作该对象，那其他线程只 能阻塞，相当于将所有的操作串行化，在竞争激烈的并发场景中性能就会非常差。  ConcurrentHashMap 实现原理：\n就是对HashMap加上个分段式锁，put和HashMap类似，先通过hashCode找到位置如果该处为null就new一个segment对象，\tsegment对象中有个hashEntry数组。HashMap 不是线程安全的，而 ConcurrentHashMap 是线程安全的。ConcurrentHashMap 采用锁分段技术，将整个Hash桶进行了分段segment ，也就是将这个大的数组分成了几个小的片段 segment，而且每个小的片段 segment 上面都有锁存在，那么在插入元素的时候就需要先找到应该插入到哪一个片段 segment，然后再在这个片段上面进行插入，而且这里还需要获取 segment 锁，这样做明显减小了锁的粒度.比HashTable效率高。\nLinkedHashMap实现原理：\nLinkedHashMap 也是基于 HashMap 实现的，不同的是它定义了一个 Entry header，这个 header 不是放在 Table 里，它是额外独立出来的。LinkedHashMap 通过继承 hashMap 中的 Entry，并添加两个属性 Entry before，Entry after 和 header 结合起来组成一个双向链表，来实现按插入顺序或访问顺序排序。\n Enumeration ，Iterator，ListIterator 的较量： Iterator 可用来遍历 Set 和 List 集合，但是 ListIterator 只能用来遍历 List。Iterator 对集合只能是前向遍历，ListIterator 可以双向遍历。ListIterator 实现了 Iterator 接口，并包含其他的功能，比如：增加元素，替换元素，获取前一个和后一个元素的索引等等。\n与 Enumeration 相比，Iterator 更加安全，因为当一个集合正在被遍历的时候，它会阻止其它线程去修改集合。否则会抛出\tConcurrentModificationException 异常。这其实就是 fail-fast 机制。具体区别有三点：\n Iterator 的方法名比 Enumeration 更科学； Iterator 有 fail-fast 机制，比 Enumeration 更安全； Iterator 能够删除元素，Enumeration 并不能删除元素。  持续更新中…… 如有错误，敬请斧正…..\n",
   "wordCount" : "4728",
   "inLanguage": "en",
   "datePublished": "2022-03-07T05:52:59+08:00",
-  "dateModified": "2022-03-07T05:52:59+08:00",
-  "author":{
+  "dateModified": "2022-05-05T23:33:37+08:00",
+  "author":[{
     "@type": "Person",
     "name": "小任同学"
-  },
+  }],
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/"
@@ -218,6 +220,7 @@
       集合浅原理篇
     </h1>
     <div class="post-meta">
+		  <p id="wc" style="font-size: 12px;">本文总阅读量<span id="busuanzi_value_page_pv"></span>次&nbsp;&nbsp;</p>
 
 
 
@@ -228,7 +231,8 @@
 
 
 
-创建:&nbsp;<span title='2022-03-07 05:52:59 +0800 CST'>2022-03-07</span>&nbsp;|&nbsp;更新:&nbsp;2022-03-07&nbsp;|&nbsp;字数:&nbsp;4728字&nbsp;|&nbsp;时长: 10分钟&nbsp;|&nbsp;
+
+创建:&nbsp;<span title='2022-03-07 05:52:59 +0800 CST'>2022-03-07</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-05&nbsp;|&nbsp;字数:&nbsp;4728字&nbsp;|&nbsp;时长: 10分钟&nbsp;|&nbsp;
 作者:&nbsp;小任同学
 
 </div>
@@ -534,6 +538,8 @@ LinkedHashMap 也是基于 HashMap 实现的，不同的是它定义了一个 En
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="https://coderrenxy.github.io/tags/%E9%9B%86%E5%90%88/">集合</a></li>
+      <li><a href="https://coderrenxy.github.io/tags/java/">Java</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.3/">
@@ -548,29 +554,6 @@ LinkedHashMap 也是基于 HashMap 实现的，不同的是它定义了一个 En
   </a>
 </nav>
 
-
-<div class="share-buttons">
-	<h2>分享至: &nbsp &nbsp</h>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share 集合浅原理篇 on facebook"
-        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2f%25E9%259B%2586%25E5%2590%2588%25E6%25B5%2585%25E5%258E%259F%25E7%2590%2586%25E7%25AF%2587%2f">
-        <svg t="1651680695552" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3017" width="81" height="81"><path d="M985.742 749.936c0 130.864-106.178 236.964-237.17 236.964H274.298c-130.954 0-237.092-106.102-237.092-236.964V276.018c0-130.902 106.138-236.966 237.092-236.966h474.274c130.992 0 237.17 106.064 237.17 236.966v473.918z" fill="#235B9E" p-id="3018"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3019"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3020"></path><path d="M556.712 216.778l91.59 0.384v101.512H581.76c-10.808 0-26.208 5.362-26.208 28.464v47.362h94.252l-10.808 118.482H551v296.192h-118.568V512.982H373.14V394.5h58.792v-53.534c0-48.478 23.118-124.188 124.78-124.188m0-19.754c-64.452 0-98.87 28.234-116.394 51.92-24.486 33.094-28.142 71.862-28.142 92.024v33.78H373.14c-10.91 0-19.754 8.844-19.754 19.754v118.482c0 10.91 8.844 19.754 19.754 19.754h39.54v276.438c0 10.91 8.844 19.754 19.754 19.754h118.568c10.91 0 19.754-8.844 19.754-19.754V532.738h68.242a19.756 19.756 0 0 0 19.672-17.96l10.808-118.482a19.76 19.76 0 0 0-19.672-21.55h-74.498v-27.608c0-4.532 0.948-6.908 1.758-7.568 0.7-0.568 2.422-1.142 4.696-1.142h66.542c10.91 0 19.754-8.844 19.754-19.754v-101.512a19.752 19.752 0 0 0-19.67-19.754l-91.59-0.384h-0.086z" fill="#1A4477" p-id="3021"></path><path d="M728.078 956.122H294.83c-124.896 0-226.506-101.636-226.506-226.566V296.358c0-124.908 101.61-226.526 226.506-226.526h433.248c124.918 0 226.544 101.62 226.544 226.526v433.198c0.002 124.928-101.626 226.566-226.544 226.566zM294.83 89.636c-113.976 0-206.702 92.734-206.702 206.72v433.198c0 114.008 92.726 206.762 206.702 206.762h433.248c113.996 0 206.74-92.754 206.74-206.762V296.358c0-113.986-92.744-206.72-206.74-206.72H294.83z" fill="#1A4477" p-id="3022"></path></svg>
-
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share 集合浅原理篇 on whatsapp"
-        href="https://api.whatsapp.com/send?text=%e9%9b%86%e5%90%88%e6%b5%85%e5%8e%9f%e7%90%86%e7%af%87%20-%20https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2f%25E9%259B%2586%25E5%2590%2588%25E6%25B5%2585%25E5%258E%259F%25E7%2590%2586%25E7%25AF%2587%2f">
-        <svg t="1651681184624" class="icon" viewBox="0 0 1586 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9888" width="81" height="81"><path d="M160.587294 1019.542588h1261.327059a145.568627 145.568627 0 0 0 145.548549-145.52847V146.291451A145.528471 145.528471 0 0 0 1421.914353 0.803137H160.587294A145.568627 145.568627 0 0 0 15.058824 146.311529V874.014118a145.588706 145.588706 0 0 0 145.52847 145.548549z" fill="#F4B459" p-id="9889"></path><path d="M63.849412 981.955765l607.091451-467.184941L65.174588 37.205333C34.695529 63.909647 15.058824 102.600784 15.058824 146.311529V874.014118c0 43.028078 19.07451 81.317647 48.790588 107.961725zM1518.371137 38.048627l-629.539137 478.067451 628.956863 466.56251c30.278275-26.644078 49.694118-65.254902 49.694117-108.684549V146.331608c0-43.208784-19.215059-81.598745-49.091764-108.282981z" fill="#E8AB54" p-id="9890"></path><path d="M1548.247843 944.971294L1018.096941 520.774275l536.495686-433.894902a145.66902 145.66902 0 0 0-55.737725-63.688785L813.578039 571.371922 109.748706 10.380549A145.608784 145.608784 0 0 0 40.357647 64.471843l566.673569 454.515451L47.666196 964.668235A144.946196 144.946196 0 0 0 122.88 1013.960784l554.164706-438.312157 33.812078 27.26651a142.436392 142.436392 0 0 0 205.603138 0l31.48298-25.459451 538.423216 426.36549a145.086745 145.086745 0 0 0 61.861647-58.829803z" fill="#FADAAC" p-id="9891"></path></svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share 集合浅原理篇 on telegram"
-        href="https://telegram.me/share/url?text=%e9%9b%86%e5%90%88%e6%b5%85%e5%8e%9f%e7%90%86%e7%af%87&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2f%25E9%259B%2586%25E5%2590%2588%25E6%25B5%2585%25E5%258E%259F%25E7%2590%2586%25E7%25AF%2587%2f">
-        <svg t="1651680820373" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3832" width="81" height="81"><path d="M679.424 746.862l84.005-395.996c7.424-34.852-12.581-48.567-35.438-40.009L234.277 501.138c-33.72 13.13-33.134 32-5.706 40.558l126.282 39.424 293.156-184.576c13.714-9.143 26.295-3.986 16.018 5.157L426.898 615.973l-9.143 130.304c13.13 0 18.871-5.706 25.71-12.581l61.696-59.429 128 94.282c23.442 13.129 40.01 6.29 46.3-21.724zM1024 512c0 282.843-229.157 512-512 512S0 794.843 0 512 229.157 0 512 0s512 229.157 512 512z" fill="#1296DB" p-id="3833"></path></svg>
-    </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share 集合浅原理篇 on reddit"
-        href="https://twitter.com/intent/tweet/?text=%e9%9b%86%e5%90%88%e6%b5%85%e5%8e%9f%e7%90%86%e7%af%87&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2f%25E9%259B%2586%25E5%2590%2588%25E6%25B5%2585%25E5%258E%259F%25E7%2590%2586%25E7%25AF%2587%2f&amp;hashtags=">
-        <svg t="1651764155941" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1736" width="81" height="81"><path d="M295.2 338c120.2 61 221.7 57.4 221.7 57.4s-38.5-134.8 80.5-194.6 200.9 41 200.9 41 20.8-5.7 36.2-11.4c15.5-5.7 37.8-15.9 37.8-15.9l-36.7 65.8 56.5-6s-7 10.2-29.6 31-31.9 31.6-31.9 31.6 8.1 162.3-77 287.2C668.5 749 558.6 824 398.9 839.8c-159.7 15.8-263.7-49.2-263.7-49.2s69.8-4 114.3-21.1S358 707.4 358 707.4s-91-28.1-123.7-59.8c-32.7-31.6-40.8-50.4-40.8-50.4l89.8-1.2s-94.5-50.4-121.3-90.3-30.3-78.5-30.3-78.5l69.1 28s-57.4-78.4-65.6-139.4c-8.2-61 10.5-93.8 10.5-93.8s29.3 55 149.5 116z" fill="#5DD7FC" p-id="1737"></path></svg>
-    </a>
-	
-</div>
-
   </footer>
 </article>
     </main>
@@ -582,6 +565,13 @@ LinkedHashMap 也是基于 HashMap 实现的，不同的是它定义了一个 En
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
         <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
     </span>
+	<span id="busuanzi_container_site_pv">
+    本站访问量：<span id="busuanzi_value_site_pv"></span>次
+</span>
+&nbsp;
+<span id="busuanzi_container_site_uv">
+    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+</span>
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
@@ -643,6 +633,11 @@ LinkedHashMap 也是基于 HashMap 实现的，不同的是它定义了一个 En
     })
 
 </script>
+ <div>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<i class="fa fa-user"></i>  <span id="busuanzi_value_site_pv"></span>|
+<i class="fa fa-eye"></i> <span id="busuanzi_value_site_uv"></span>----------人次---------
+</div>
 <script>
     document.querySelectorAll('pre > code').forEach((codeblock) => {
         const container = codeblock.parentNode.parentNode;
@@ -689,7 +684,6 @@ LinkedHashMap 也是基于 HashMap 实现的，不同的是它定义了一个 En
             codeblock.parentNode.appendChild(copybutton);
         }
     });
-</script>
-</body>
+</script></body>
 
 </html>
