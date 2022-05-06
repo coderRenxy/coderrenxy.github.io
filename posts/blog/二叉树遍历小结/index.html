@@ -6,12 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>二叉树遍历小结 | 小任同学&#39;s Blog</title>
-<meta name="keywords" content="" />
+<meta name="keywords" content="算法" />
 <meta name="description" content="首先二叉树的遍历分为，深度优先遍历（dfs）、广度优先遍历（bfs）。 注意：但凡遍历都要注意根节点为 null； 深度优先遍历又分为前中后序遍历">
 <meta name="author" content="
 作者:&nbsp;小任同学">
 <link rel="canonical" href="https://coderrenxy.github.io/posts/blog/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.2c18753c588296670d372f41b1c7e51f63fbd7dd4ddf8f7f839e9c9c3c0fcb0b.css" integrity="sha256-LBh1PFiClmcNNy9BscflH2P7191N349/g56cnDwPyws=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.d8b1a110701eda43651f219bc5960719ecc0cf305b17b3722c3e545c32602612.css" integrity="sha256-2LGhEHAe2kNlHyGbxZYHGezAzzBbF7NyLD5UXDJgJhI=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
@@ -104,7 +104,7 @@
   "name": "二叉树遍历小结",
   "description": "首先二叉树的遍历分为，深度优先遍历（dfs）、广度优先遍历（bfs）。 注意：但凡遍历都要注意根节点为 null； 深度优先遍历又分为前中后序遍历",
   "keywords": [
-    
+    "算法"
   ],
   "articleBody": "首先二叉树的遍历分为，深度优先遍历（dfs）、广度优先遍历（bfs）。\n注意：但凡遍历都要注意根节点为 null；\n深度优先遍历又分为前中后序遍历，前面文章都讲过了，递归三个语句换个位置就解决了。\n注意：这里是深度优先遍历结果放在一个集合里 List 。广度优先遍历（层序遍历）才能分到不同的 List 中， {{1，3}，{4，1}}的形式。\n但凡是遍历，不论是深度（栈）、广度（队列），都是弹出一个再判断是否要塞（是否存在左右孩子）。\n深度优先的迭代做法后序遍历就是把前序的 left 、 right 压入顺序反转一下，再把得到的 List 反转一下，为什么？因为中前后（前序）、前后中（后序），后序逆转就是中后前，后前再逆转，就是中前后（前序）。关系明了吧！中序就不同，需要借助一个辅助的 cur 树节点，让其初始指向 root 根节点，利用 cur 和 stack 作为条件判空控制循环，然后 cur 不断变换位置。细节自己抠！前后序是 双if，中序 if…else…\n广度优先遍历（层序遍历）：\n递归（不推荐）方法利用 deep 控制深度。一个 if 判 root 空，一个 if（size resList.get(deep - 1).add(node.val); 最后两个递归完美收官。这里可以选择放入一个 List，也可以放入 List 中的 List，按需求来。\n迭代法（墙裂推荐！）：迭代法可以解决很多的遍历问题，而且很方便！主要就是利用队列，深度用循环来控制，条件为非空，那肯定是要不断有新的结点 offer 进来和 poll，这又要限制遍历一个深度再里面元素的次数了，这是又一个循环，这个循环不断进出，长度一直在变，所以要有个在内循环不变、外循环变化的 len 来控制内循环次数，每一次外循环都记录下该层深度的节点个数。\n根据遍历返回树后有感 到这里才发现。自己对遍历的认识是多么浅，别人写遍历的时候是根据遍历写代码，我是根据递归的代码来想遍历。这样也未尝是件坏事，至少把递归的前中后序遍历死死记住了.\n为什么前序求高度后序求深度?\n因为前序先走到叶子节点再 add，而后序是从头结点一路吃过去。add 我称为吃。\n其实理解递归/遍历 这样：\n前序：中左右：中是吃的操作，左右都是遍历，这样就能很好的理解遍历为何先进这个而不是那个。\nPS：堆是一棵完全二叉树，同时保证父子节点的顺序关系（有序）。 但完全二叉树一定是平衡二叉树，堆的排序是父节点大于子节点，而搜索树是父节点大于左孩子，小于右孩子，所以堆不是平衡二叉搜索树 。 持续更新中…… 如有错误，敬请斧正…..\n",
   "wordCount" : "1004",
@@ -334,6 +334,7 @@
 
   <footer class="post-footer">
     <ul class="post-tags">
+      <li><a href="https://coderrenxy.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a></li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://coderrenxy.github.io/posts/life/%E6%B5%8B%E8%AF%95/">
@@ -365,7 +366,7 @@
         <svg t="1651680820373" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3832" width="81" height="81"><path d="M679.424 746.862l84.005-395.996c7.424-34.852-12.581-48.567-35.438-40.009L234.277 501.138c-33.72 13.13-33.134 32-5.706 40.558l126.282 39.424 293.156-184.576c13.714-9.143 26.295-3.986 16.018 5.157L426.898 615.973l-9.143 130.304c13.13 0 18.871-5.706 25.71-12.581l61.696-59.429 128 94.282c23.442 13.129 40.01 6.29 46.3-21.724zM1024 512c0 282.843-229.157 512-512 512S0 794.843 0 512 229.157 0 512 0s512 229.157 512 512z" fill="#1296DB" p-id="3833"></path></svg>
     </a>
     <a target="_blank" rel="noopener noreferrer" aria-label="share 二叉树遍历小结 on reddit"
-        href="https://twitter.com/intent/tweet/?text=%e4%ba%8c%e5%8f%89%e6%a0%91%e9%81%8d%e5%8e%86%e5%b0%8f%e7%bb%93&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2f%25E4%25BA%258C%25E5%258F%2589%25E6%25A0%2591%25E9%2581%258D%25E5%258E%2586%25E5%25B0%258F%25E7%25BB%2593%2f&amp;hashtags=">
+        href="https://twitter.com/intent/tweet/?text=%e4%ba%8c%e5%8f%89%e6%a0%91%e9%81%8d%e5%8e%86%e5%b0%8f%e7%bb%93&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2f%25E4%25BA%258C%25E5%258F%2589%25E6%25A0%2591%25E9%2581%258D%25E5%258E%2586%25E5%25B0%258F%25E7%25BB%2593%2f&amp;hashtags=%e7%ae%97%e6%b3%95">
         <svg t="1651764155941" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1736" width="81" height="81"><path d="M295.2 338c120.2 61 221.7 57.4 221.7 57.4s-38.5-134.8 80.5-194.6 200.9 41 200.9 41 20.8-5.7 36.2-11.4c15.5-5.7 37.8-15.9 37.8-15.9l-36.7 65.8 56.5-6s-7 10.2-29.6 31-31.9 31.6-31.9 31.6 8.1 162.3-77 287.2C668.5 749 558.6 824 398.9 839.8c-159.7 15.8-263.7-49.2-263.7-49.2s69.8-4 114.3-21.1S358 707.4 358 707.4s-91-28.1-123.7-59.8c-32.7-31.6-40.8-50.4-40.8-50.4l89.8-1.2s-94.5-50.4-121.3-90.3-30.3-78.5-30.3-78.5l69.1 28s-57.4-78.4-65.6-139.4c-8.2-61 10.5-93.8 10.5-93.8s29.3 55 149.5 116z" fill="#5DD7FC" p-id="1737"></path></svg>
     </a>
 	

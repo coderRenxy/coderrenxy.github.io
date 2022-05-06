@@ -47,19 +47,22 @@
     <loc>https://coderrenxy.github.io/posts/life/</loc>
     <lastmod>2022-02-02T02:45:59+08:00</lastmod>
   </url><url>
+    <loc>https://coderrenxy.github.io/tags/java/</loc>
+    <lastmod>2022-05-05T23:33:37+08:00</lastmod>
+  </url><url>
     <loc>https://coderrenxy.github.io/tags/</loc>
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
   </url><url>
     <loc>https://coderrenxy.github.io/posts/blog/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</loc>
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
   </url><url>
+    <loc>https://coderrenxy.github.io/tags/%E5%BC%82%E5%B8%B8/</loc>
+    <lastmod>2022-05-05T23:33:37+08:00</lastmod>
+  </url><url>
     <loc>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</loc>
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
   </url><url>
-    <loc>https://coderrenxy.github.io/tags/%E6%A0%87%E7%AD%BE1/</loc>
-    <lastmod>2022-05-05T23:33:37+08:00</lastmod>
-  </url><url>
-    <loc>https://coderrenxy.github.io/tags/%E6%A0%87%E7%AD%BE2/</loc>
+    <loc>https://coderrenxy.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
   </url><url>
     <loc>https://coderrenxy.github.io/posts/read/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</loc>
@@ -75,5 +78,7 @@
     <loc>https://coderrenxy.github.io/archives/</loc>
   </url><url>
     <loc>https://coderrenxy.github.io/search/</loc>
+  </url><url>
+    <loc>https://coderrenxy.github.io/links/</loc>
   </url>
 </urlset>
