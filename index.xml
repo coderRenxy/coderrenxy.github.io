@@ -116,6 +116,15 @@
     </item>
     
     <item>
+      <title>异常</title>
+      <link>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</link>
+      <pubDate>Sat, 08 Jan 2022 23:33:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</guid>
+      <description>description：面试可能问到的异常相关八股文。 （一）finally 块中的代码什么时候会执行？ 在 Java 语言的异常处理中，finally 块的</description>
+    </item>
+    
+    <item>
       <title>阅读测试</title>
       <link>https://coderrenxy.github.io/posts/read/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</link>
       <pubDate>Sat, 08 Jan 2022 23:33:37 +0800</pubDate>
@@ -124,15 +133,6 @@
       <description>正文&amp;hellip;. test&amp;hellip;..</description>
     </item>
     
-    
-    <item>
-      <title>异常</title>
-      <link>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</guid>
-      <description>description：面试可能问到的异常相关八股文。 （一）finally 块中的代码什么时候会执行？ 在 Java 语言的异常处理中，finally 块的</description>
-    </item>
     
     <item>
       <title>搜索功能</title>
