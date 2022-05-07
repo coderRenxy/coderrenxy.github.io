@@ -7,6 +7,9 @@
     <loc>https://coderrenxy.github.io/about/</loc>
     <lastmod>2022-05-06T23:33:37+08:00</lastmod>
   </url><url>
+    <loc>https://coderrenxy.github.io/categories/</loc>
+    <lastmod>2022-05-05T23:33:37+08:00</lastmod>
+  </url><url>
     <loc>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.5/</loc>
     <lastmod>2022-05-02T23:33:37+08:00</lastmod>
   </url><url>
@@ -17,6 +20,9 @@
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
   </url><url>
     <loc>https://coderrenxy.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2022-05-05T23:33:37+08:00</lastmod>
+  </url><url>
+    <loc>https://coderrenxy.github.io/categories/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
   </url><url>
     <loc>https://coderrenxy.github.io/posts/blog/</loc>
@@ -34,7 +40,13 @@
     <loc>https://coderrenxy.github.io/tags/java/</loc>
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
   </url><url>
+    <loc>https://coderrenxy.github.io/categories/java/</loc>
+    <lastmod>2022-05-05T23:33:37+08:00</lastmod>
+  </url><url>
     <loc>https://coderrenxy.github.io/tags/%E9%9B%86%E5%90%88/</loc>
+    <lastmod>2022-05-05T23:33:37+08:00</lastmod>
+  </url><url>
+    <loc>https://coderrenxy.github.io/categories/%E9%9B%86%E5%90%88/</loc>
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
   </url><url>
     <loc>https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/</loc>
@@ -49,10 +61,19 @@
     <loc>https://coderrenxy.github.io/tags/mysql/</loc>
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
   </url><url>
+    <loc>https://coderrenxy.github.io/categories/mysql/</loc>
+    <lastmod>2022-05-05T23:33:37+08:00</lastmod>
+  </url><url>
     <loc>https://coderrenxy.github.io/tags/spring/</loc>
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
   </url><url>
+    <loc>https://coderrenxy.github.io/categories/spring/</loc>
+    <lastmod>2022-05-05T23:33:37+08:00</lastmod>
+  </url><url>
     <loc>https://coderrenxy.github.io/tags/spring-mvc/</loc>
+    <lastmod>2022-05-05T23:33:37+08:00</lastmod>
+  </url><url>
+    <loc>https://coderrenxy.github.io/categories/spring-mvc/</loc>
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
   </url><url>
     <loc>https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/</loc>
@@ -76,6 +97,9 @@
     <loc>https://coderrenxy.github.io/tags/%E5%BC%82%E5%B8%B8/</loc>
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
   </url><url>
+    <loc>https://coderrenxy.github.io/categories/%E5%BC%82%E5%B8%B8/</loc>
+    <lastmod>2022-05-05T23:33:37+08:00</lastmod>
+  </url><url>
     <loc>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</loc>
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
   </url><url>
@@ -84,8 +108,6 @@
   </url><url>
     <loc>https://coderrenxy.github.io/posts/read/</loc>
     <lastmod>2022-05-05T23:33:37+08:00</lastmod>
-  </url><url>
-    <loc>https://coderrenxy.github.io/categories/</loc>
   </url><url>
     <loc>https://coderrenxy.github.io/series/</loc>
   </url><url>
