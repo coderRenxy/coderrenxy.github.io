@@ -17,24 +17,6 @@
     </item>
     
     <item>
-      <title>Spring MVC小结</title>
-      <link>https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/</link>
-      <pubDate>Wed, 02 Feb 2022 02:45:59 +0800</pubDate>
-      
-      <guid>https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/</guid>
-      <description>​ description：本打算直接干到Spring MVC源码的，中途发现了算法的重要性，于是学习过半而中道崩殂，今学习三分，先把整套数据结</description>
-    </item>
-    
-    <item>
-      <title>Spring杂记（顺着链条自上往下看）</title>
-      <link>https://coderrenxy.github.io/posts/blog/spring%E6%9D%82%E8%AE%B0/</link>
-      <pubDate>Wed, 02 Feb 2022 02:45:59 +0800</pubDate>
-      
-      <guid>https://coderrenxy.github.io/posts/blog/spring%E6%9D%82%E8%AE%B0/</guid>
-      <description>本篇文章都是本人的理解，看不懂可以评论，会回复评论。持续更新&amp;hellip;&amp;hellip;&amp;hellip;. 讲到Spring就一定绕不开I</description>
-    </item>
-    
-    <item>
       <title>异常</title>
       <link>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</link>
       <pubDate>Sat, 08 Jan 2022 23:33:37 +0800</pubDate>
