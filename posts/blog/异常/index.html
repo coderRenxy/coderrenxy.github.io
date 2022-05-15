@@ -64,13 +64,11 @@
 </noscript><meta property="og:title" content="异常" />
 <meta property="og:description" content="description：面试可能问到的异常相关八股文。 （一）finally 块中的代码什么时候会执行？ 在 Java 语言的异常处理中，finally 块的" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/" />
-<meta property="og:image" content="https://coderrenxy.github.io/img/icon-192.png" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-01-08T23:33:37&#43;08:00" />
 <meta property="article:modified_time" content="2022-05-05T23:33:37&#43;08:00" />
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://coderrenxy.github.io/img/icon-192.png" />
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="异常"/>
 <meta name="twitter:description" content="description：面试可能问到的异常相关八股文。 （一）finally 块中的代码什么时候会执行？ 在 Java 语言的异常处理中，finally 块的"/>
 
@@ -114,7 +112,7 @@
   "articleBody": " description：面试可能问到的异常相关八股文。\n （一）finally 块中的代码什么时候会执行？ 在 Java 语言的异常处理中，finally 块的作用就是为了保证无论出现什么情况，finally 块里的代码一定会被执行。\n由于程序执行 return 就意味着结束对当前函数的调用并跳出这个函数体，因此任何语句要执行都只能在 return 前执行（除非碰到 exit 函数），\t因此 finally 块里的代码也是在 return 之前执行的。\n此外，如果 try-finally 或者 catch-finally 中都有 return，那么 finally 块中\t的 return 将会覆盖别处的 return 语句，最终返回到调用者那里的是 finally 中 return 的值。\n（二）finally是不是一定会被执行到？ 不一定。\n下面列举两种执行不到的情况：\n 当程序进入 try 块之前就出现异常时，会直接结束，不会执行 finally 块中的代码； 当程序在 try 块中强制退出时也不会去执行 finally 块中的代码，比如在 try 块中执行 exit 方法。  （三）try-catch-finally中，如果catch中了return还会不会执行finally？ 会。\n程序在执行到 return 时会首先将返回值存储在一个指定的位置，其次去执行 finally 块，最后再返回。\n因此，对基本数据类\t型，在 finally 块中改变 return 的值没有任何影响，直接覆盖掉；而对引用类型是有影响的，返回的是在 finally 对 前面 return 语句返回对象的修改值。\n（四）try-catch-finally中哪个部分可以省略？ catch 和 finally可以省略其中一个，但必须保留其中一个。\ntry 只适合处理运行时异常，try+catch 适合处理运行时异常+普通异常。\n也就是说，如果你只用 try 去处理普通异常却不加以 catch 处理，编译是通不过的，因为编译器硬性规定，普通异常如果选择捕获，则必须用 catch 显示声明以便进一步处理。\n而运行时异常在编译时没有如此规定，所以 catch 可以省略，你加上 catch 编译器也觉得无可厚非。\n（五）Error和Exception的区别？ Error 类和 Exception 类的父类都是 Throwable 类。主要区别如下：\n Error 类： 一般是指与虚拟机相关的问题，如：系统崩溃、虚拟机错误、内存空间不足、方法调用栈溢出等。这类错误将会导致应用程序中断，仅靠程序本身无法恢复和预防； Exception 类：分为运行时异常和受检查的异常。  （六）运行时异常与受检异常有何异同？  运行时异常：如：空指针异常、指定的类找不到、数组越界、方法传递参数错误、数据类型转换错误。\n可以编译通过，但是一运行就停止了，程序不会自己处理； 受检查异常：要么用 try … catch… 捕获，要么用 throws 声明抛出，交给父类处理。  （七）throw和throws的区别?  throw：在方法体内部，表示抛出异常，由方法体内部的语句处理；throw 是具体向外抛出异常的动作，所以它抛出的是一\t个异常实例； throws：在方法声明后面，表示如果抛出异常，由该方法的调用者来进行异常的处理；表示出现异常的可能性，并不一定\t会发生这种异常。  （八）常见的异常类有哪些  NullPointerException：当应用程序试图访问空对象时，则抛出该异常。 SQLException：提供关于数据库访问错误或其他错误信息的异常。 IndexOutOfBoundsException：指示某排序索引（例如对数组、字符串或向量的排序）超出范围时抛出。 FileNotFoundException：当试图打开指定路径名表示的文件失败时，抛出此异常。 IOException：当发生某种 I/O 异常时，抛出此异常。此类是失败或中断的 I/O 操作生成的异常的通用类。 ClassCastException：当试图将对象强制转换为不是实例的子类时，抛出该异常。 IllegalArgumentException：抛出的异常表明向方法传递了一个不合法或不正确的参数  （九）主线程可以捕获到子线程的异常吗？ 线程设计的理念：“线程的问题应该线程自己本身来解决，而不要委托到外部”。\n正常情况下，如果不做特殊的处理，在主线程中是不能够捕获到子线程中的异常的。\n如果想要在主线程中捕获子线程的异常，我们可以用如下的方式进行处理，使用 Thread 的静态方法\nThread.setDefaultUncaughtExceptionHandler(new MyUncaughtExceptionHandle());\n 持续更新中…….. 敬请期待\n ",
   "wordCount" : "1618",
   "inLanguage": "en",
-  "image":"https://coderrenxy.github.io/img/icon-192.png","datePublished": "2022-01-08T23:33:37+08:00",
+  "datePublished": "2022-01-08T23:33:37+08:00",
   "dateModified": "2022-05-05T23:33:37+08:00",
   "author":[{
     "@type": "Person",
@@ -179,11 +177,6 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://coderrenxy.github.io/search" title="🔍搜索">
-                    <span>🔍搜索</span>
-                </a>
-            </li>
-            <li>
                 <a href="https://coderrenxy.github.io/" title="🏠主页">
                     <span>🏠主页</span>
                 </a>
@@ -245,10 +238,7 @@
 作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/blog/%e5%bc%82%e5%b8%b8.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
 
 </div>
-  </header> 
-<figure class="entry-cover1"><img loading="lazy" src="https://coderrenxy.github.io/img/icon-192.png" alt="">
-        
-</figure><aside id="toc-container" class="toc-container wide">
+  </header> <aside id="toc-container" class="toc-container wide">
     <div class="toc">
         <details  open>
             <summary accesskey="c" title="(Alt + C)">

@@ -6,7 +6,7 @@
     <description>Recent content on 小任同学&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 11 May 2022 15:15:37 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 12 May 2022 17:26:37 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🔍搜索</title>
       <link>https://coderrenxy.github.io/search/</link>
@@ -14,6 +14,15 @@
       
       <guid>https://coderrenxy.github.io/search/</guid>
       <description>/* 手机适配 */ @media screen and (max-width: 500px) { .search{ padding-right: 25px; } .search input{ width: 100%; } .search button{ display: none; } } /* 电脑适配 */ @media screen and (min-width: 500px) { .search{ width: 500px; } .search input{ width: 444px; } } /* 通用样式 */ .search{ margin: auto; } .search input{ outline: none; border: 2px solid #c05b4d; height: 32px; padding:</description>
+    </item>
+    
+    <item>
+      <title>进度</title>
+      <link>https://coderrenxy.github.io/posts/life/%E5%87%86%E5%A4%87%E8%BF%9B%E5%BA%A6/</link>
+      <pubDate>Thu, 12 May 2022 17:26:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/life/%E5%87%86%E5%A4%87%E8%BF%9B%E5%BA%A6/</guid>
+      <description>最近准备面试的复习进度</description>
     </item>
     
     <item>
@@ -76,7 +85,7 @@
       <pubDate>Mon, 07 Mar 2022 05:52:59 +0800</pubDate>
       
       <guid>https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/</guid>
-      <description>​ description：学习是 “循序渐进” 这句话，大家都会说，但是实际运用起来很难，大家都想一步把一个甚至从未接触的知识点啃透，巴不得这辈</description>
+      <description>​ description：对集合的一些理解。 集合的概念：对象的容器，定义了对多个对象进行操作的常用方法。可实现数组的功能。 和数组的区别： 数组</description>
     </item>
     
     <item>
@@ -103,7 +112,7 @@
       <pubDate>Wed, 02 Feb 2022 02:45:59 +0800</pubDate>
       
       <guid>https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/</guid>
-      <description>​ description：本打算直接干到Spring MVC源码的，中途发现了算法的重要性，于是学习过半而中道崩殂，今学习三分，先把整套数据结</description>
+      <description>description：正文开始。 Spring MVC的优点有哪些？ 可以支持各种视图技术,而不仅仅局限于JSP； 与Spring框架集成（如IOC容器、A</description>
     </item>
     
     <item>
