@@ -22,7 +22,7 @@
       <pubDate>Thu, 31 Mar 2022 05:13:32 +0800</pubDate>
       
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.5/</guid>
-      <description>description：前序+中序 / 中序+后序返回树想破脑袋，然后以后要每天花 monring 来复习考试内容，一日之际在于晨，每天题量直接 cut down。接下</description>
+      <description>Monday 106.从中序与后序遍历序列构造二叉树 key1：中后序的第一个元素一定是左下角那个，因为中序是：左中右，后序是：左右中。都是先递归左。、后</description>
     </item>
     
     <item>
@@ -31,7 +31,7 @@
       <pubDate>Tue, 15 Mar 2022 05:13:45 +0800</pubDate>
       
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.4/</guid>
-      <description>description：前序+中序 / 中序+后序返回树想破脑袋，然后以后要每天花 monring 来复习考试内容，一日之际在于晨，每天题量直接 cut off。接下来</description>
+      <description>Monday 102.二叉树的层序遍历 递归思路：仍然是先深度到顶确定好 deep 把每一深度的 ArrayList new 出来，再往里依次添值。 是否创建 ArrayList 用 if 判断，进了递归的方法 deep 就要 +</description>
     </item>
     
     <item>
@@ -40,7 +40,7 @@
       <pubDate>Thu, 10 Mar 2022 02:56:12 +0800</pubDate>
       
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.3/</guid>
-      <description>description：其实每个周都不止一周好吧，只是规则性收缩了。避免二刷速度快要反复切换文章来编辑。 Monday 18.四数之和 思路 ：就是昨天三数之</description>
+      <description>其实每个周都不止一周好吧，只是规则性收缩了。避免二刷速度快要反复切换文章来编辑。</description>
     </item>
     
     <item>
@@ -67,7 +67,7 @@
       <pubDate>Thu, 24 Feb 2022 02:45:59 +0800</pubDate>
       
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/</guid>
-      <description>刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy Level 都也被卡，目前进度为 2-3 medium / day。 Monday （科普知识） 反码、补码 二进制的第一位是符号位，0是+，1是-，</description>
+      <description>刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy 题都也被卡，目前进度为 2-3 medium / day。 Monday （科普知识） 反码、补码 二进制的第一位是符号位，0是+，1是-，</description>
     </item>
     
     <item>
