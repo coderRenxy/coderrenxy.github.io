@@ -9,7 +9,7 @@
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <meta name="keywords" content="Spring MVC, 框架" />
-<meta name="description" content="description：正文开始。 Spring MVC的优点有哪些？ 可以支持各种视图技术,而不仅仅局限于JSP； 与Spring框架集成（如IOC容器、A">
+<meta name="description" content="正文开始。">
 <meta name="author" content="
 作者:&nbsp;小任同学">
 <link rel="canonical" href="https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/" />
@@ -62,7 +62,7 @@
 
     </style>
 </noscript><meta property="og:title" content="Spring MVC小结" />
-<meta property="og:description" content="description：正文开始。 Spring MVC的优点有哪些？ 可以支持各种视图技术,而不仅仅局限于JSP； 与Spring框架集成（如IOC容器、A" />
+<meta property="og:description" content="正文开始。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-02-02T02:45:59&#43;08:00" />
@@ -70,7 +70,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Spring MVC小结"/>
-<meta name="twitter:description" content="description：正文开始。 Spring MVC的优点有哪些？ 可以支持各种视图技术,而不仅仅局限于JSP； 与Spring框架集成（如IOC容器、A"/>
+<meta name="twitter:description" content="正文开始。"/>
 
 
 <script type="application/ld+json">
@@ -105,12 +105,12 @@
   "@type": "BlogPosting",
   "headline": "Spring MVC小结",
   "name": "Spring MVC小结",
-  "description": "description：正文开始。 Spring MVC的优点有哪些？ 可以支持各种视图技术,而不仅仅局限于JSP； 与Spring框架集成（如IOC容器、A",
+  "description": "正文开始。",
   "keywords": [
     "Spring MVC", "框架"
   ],
-  "articleBody": " description：正文开始。\n Spring MVC的优点有哪些？   可以支持各种视图技术,而不仅仅局限于JSP；\n  与Spring框架集成（如IOC容器、AOP等）；\n  清晰的角色分配：\n 前端控制器(dispatcherServlet) ； 请求到处理器映射（handlerMapping)； 处理器适配器（HandlerAdapter)； 视图解析器（ViewResolver）；    支持各种请求资源的映射策略；\n  DispatcherServlet处理流程 Spring MVC框架的控制器（Controller）解析用户输入并将其转换为一个由视图呈现给用户的模型。\n控制器的核心DispatcherServlet处理请求和响应，处理流程如下：\n DispatcherServlet向处理器映射器（HandlerMapping）请求获取Handler。 返回Handler给DispatcherServlet。 DispatcherServlet向处理器适配器（HandlerAdapter）请求执行Handler并返回视图ModelAndView给DispatcherServlet。 向视图解析器（ViewResolver）通过视图名称查找视图并返回给DispatcherServlet真正的视图对象。 进行视图的渲染并返回给DispatcherServlet渲染后的视图。相当于给了controller控制器。以上png为转载，如有侵权，请联系本人。  常见注解 @PathVariable 和 @RequestMapping 和 @RequestParam：\n@PathVariable和和@RequestParam不要混淆，\n区别是用法上不同：\n@PathVariable在 @RequestMapping请求路径后接”/{参数名}“，多个参数就再接多个“/{路径中的参数名}”，在对应的参数列表的参数前加上 @PathVariable 注解。该请求路径中参数名和参数列表 @PathVariable 注解的 value，再在网页路径上传入参数。\n而@RequestParam取参读取 /路径？后的name=”参数“，@RequestParam注解有三个参数，\n1、value：参数名。\n2、required：表示当前属性值是否必须存在（默认是true）。\n3、defaultValue：如果value传递参数了，使用参数，如果没有，使用默认值。\n@RequestHeader、@CookieValue也是一样的这三个参数。\n@RequestBody： 注解实现接收http请求的json数据，将json转换为java对象。\n注：@ResponseBody ＋ @Controller == @RestController\n例如：前台Ajax传递到controller的json格式数据绑定到后台方法的参数列表的某个参数上。\n1 2 3 4 5 6 7 8 9  $.ajax({ url:\"/login\", type:\"POST\", data:'{\"userName\":\"admin\",\"pwd\",\"admin123\"}', content-type:\"application/json charset=utf-8\", success:function(data){ alert(\"request success ! \"); } });   1 2 3 4 5 6  @requestMapping(\"/login\") public void login(@requestBody String userName,@requestBody String pwd){ //也可换做是user对象来绑定，会根据属性名赋值， //但是必须属性名和json的key对应上，否则请求不过去。 　System.out.println(userName+\" ：\"+pwd); }   @ResponseBody： 该注解实现将controller方法返回的java对象转化为json对象响应给客户。 换句话说：表示当前请求的内容直接作为响应体，用于接收。\n注意：在使用 @RequestMapping后，返回值通常解析为跳转路径，但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。\n使用：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  @RequestMapping(\"/login\") @ResponseBody public User login(User user){ return user; } User字段：userName pwd; 那么在前台接收到的数据为：'{\"userName\":\"xxx\",\"pwd\":\"xxx\"}' 效果等同于如下代码： @RequestMapping(\"/login\") public void login(User user, HttpServletResponse response){ //通过response对象输出指定格式的数据 　response.getWriter.write(JSONObject.fromObject(user).toString()); }   @ModelAttribute：\n@ModelAttribute最主要的作用是将数据添加到模型对象中，用于视图页面展示时使用。说白了就是数据回显。 但远远不仅于此…..\n在方法参数上使用 @ModelAttribute 注解:\n可以描述为数据绑定，注解在方法参数上说明了该方法的该参数将由 model 中取得，如果model找不到，那么该参数会被优先实例化，然后被添加进model，再把请求中所有名称与之匹配的参数填充到该参数中。\n对方法使用 @ModelAttribute ：\n添加该注解的方法会率先其他方法执行。\n如果方法无返回值，就在添加该注解的方法中 model.addAttribute ，在该控制器的其他方法返回的页面可以拿到这个 model。\n有无返回值的 @ModelAttribute 方法区别是，无返回值的是 model.addAttribute(String key,Object value)来向model增加参数，而有返回值的直接将需要增加的参数返回。过程说出来就是赘述，联想一下。\n以上都是在 @ModelAttribute 中不加 value ，这样如果是有返回值的 @ModelAttribute 方法，就会默认返回名称为“返回值类型的小驼峰化的对象名称”，如果指定 value，那就是返回指定的，比如返回值类型是User，那默认名称则为user，指定名称为 pp，那返回参数名称就是pp。\nrest中的get、post、delete、put请求 get是获取资源、post新建资源、put更新资源、delete删除资源。\n在选择method只能发送post和get请求，因此可以用过滤器filter将post请求转化为put、delete请求以达到put、delete的效果。\n编码问题详解 编码问题无外乎两种情况：\n post： 或者在web.xml配置一个CharacterEncodingFilter过滤器，设置为utf-8。 get：在tomcat的server.xml文件中，添加URLEncoding=utf-8。或者对request、response参数重新编码。 注意：过滤器顺序：一个应用程序中可能会包含N个过滤器，这N个过滤器一般是没有顺序要求的，但是如果设置了编码过滤器，那么一定要把它放到最上面，保证过滤器的运行。不论是Spring MVC自带的编码器还是自定义的，都要这样。  后端向前端传值的方式 前面都是前端往后端传数据，现在看后端往前端传数据\n前面都是前端往后端传数据，现在看后端往前端传数据\n1、map.put(”msg”,”hello data”)，在参数列表加Map。return 的是页面路径。\n2、model.addAttribute(”mac”,”hello mac”)，在参数列表中加Model 对象名。return 的是页面路径。\n1 2 3 4 5 6 7  @RequestMapping(\"/testModel\") public String testModel(Model model){ model.addAttribute(\"name\",\"赵六\"); model.addAttribute(\"age\",12); model.addAttribute(\"address\",\"上海\"); return \"user\"; }   3、modelMap.addAttribute(”mac”,”hello mac”)，在参数列表中加ModelMap 对象名。return 的是页面路径。\n4、也可以用ModelAndView传递数据，方法内new一个modelAndView对象并且“该对象”.setViewName(”页面路径”)，再addObject(”mac”,”hello mac”);return的是“该对象”，上述三种返回的是页面路径。\n1 2 3 4 5 6 7 8 9 10 11  @RequestMapping(\"testModelAndView\") public ModelAndView testModelAndView(){ ModelAndView modelAndView = new ModelAndView(); //设置跳转页面名称 \tmodelAndView.setViewName(\"user\"); //设置携带的参数 \tmodelAndView.addObject(\"name\",\"赵六\"); modelAndView.addObject(\"age\",12); modelAndView.addObject(\"address\",\"上海\"); return modelAndView; }   以上都可以用于数据回显，前3种方式的回显数据保存在哪个作用域？\n1、page：当前页面\n2、request ：当前请求 （保存在这）\n3、session：当前会话\n4、application：当前应用\n当使用上述（map、model、modelMap）参数传递数据时会把数据都放置到Request作用域。\n如果要存在session中：在类名上+@SessionAttributes(”msg”);该注解表示每次向request中设置属性值时顺带向session中保存一份。\n转发、重定向 转发：在返回值前面加\"forward:\"，譬如\"forward:user.do?name=method4”\n重定向：在返回值前面加\"redirect:\"，譬如\"redirect:http://www.baidu.com\"\n处理静态资源 在处理静态资源时（例如图片），不做处理的话所有请求都会交由dispatcherServlet来处理，但是dispatcherServlet中没有处理静态资源的逻辑，所以访问不到，添加mvc默认配置后就可以了，由\n1  default-servlet-hanlder/   SpringMVC和struct2的区别  SpringMVC的入口是一个servlet即前端控制器（DispatchServlet），而struts2入口是一个filter过虑器（StrutsPrepareAndExecuteFilter） SpringMVC是基于方法开发（一个url对应一个方法），请求参数传递到方法的形参，可以设计为单例、多例。struct2是基于类开发，传递参数通过类的属性，只能设计为多例。  SpringMVC异常处理  可以抛给Spring框架来处理。 可以配置简单的异常处理器，在异常处理器中添加视图页面即可。  SpringMVC的控制器是不是单例模式？如果是，有什么问题？怎么解决？ 是单例模式。 在多线程访问的时候有线程安全问题。 解决方案是在控制器里面不能写可变状态量，如果需要使用这些可变状态，可以使用ThreadLocal机制解决，为每个线程单独生成一份变量副本，独立操作，互不影响。\nSpringMVC 里面拦截器是怎么写  实现 HandlerInterceptor 接口； 继承适配器类，接着在接口方法当中，实现处理逻辑，然后在 SpringMVC 的配置文件中配置拦截器即可。  注意 自定义类型转化器的时候一定要注意对应的属性值 跟 方法中的参数的值要对应起来。\n",
-  "wordCount" : "4023",
+  "articleBody": "Spring MVC的优点有哪些？   可以支持各种视图技术,而不仅仅局限于JSP；\n  与Spring框架集成（如IOC容器、AOP等）；\n  清晰的角色分配：\n 前端控制器(dispatcherServlet) ； 请求到处理器映射（handlerMapping)； 处理器适配器（HandlerAdapter)； 视图解析器（ViewResolver）；    支持各种请求资源的映射策略；\n  DispatcherServlet处理流程 Spring MVC框架的控制器（Controller）解析用户输入并将其转换为一个由视图呈现给用户的模型。\n控制器的核心DispatcherServlet处理请求和响应，处理流程如下：\n DispatcherServlet向处理器映射器（HandlerMapping）请求获取Handler。 返回Handler给DispatcherServlet。 DispatcherServlet向处理器适配器（HandlerAdapter）请求执行Handler并返回视图ModelAndView给DispatcherServlet。 向视图解析器（ViewResolver）通过视图名称查找视图并返回给DispatcherServlet真正的视图对象。 进行视图的渲染并返回给DispatcherServlet渲染后的视图。相当于给了controller控制器。以上png为转载，如有侵权，请联系本人。  常见注解 @PathVariable 和 @RequestMapping 和 @RequestParam：\n@PathVariable和@RequestParam不要混淆，\n区别是用法上不同：\n@PathVariable在 @RequestMapping请求路径后接”/{参数名}“，多个参数就再接多个“/{路径中的参数名}”，在对应的参数列表的参数前加上 @PathVariable 注解。该请求路径中参数名和参数列表 @PathVariable 注解的 value，再在网页路径上传入参数。\n而@RequestParam取参读取 /路径？后的name=”参数“，@RequestParam注解有三个参数，\n1、value：参数名。\n2、required：表示当前属性值是否必须存在（默认是true）。\n3、defaultValue：如果value传递参数了，使用参数，如果没有，使用默认值。\n@RequestHeader、@CookieValue也是一样的这三个参数。\n@RequestBody： 注解实现接收http请求的json数据，将json转换为java对象。\n注：@ResponseBody ＋ @Controller == @RestController\n例如：前台Ajax传递到controller的json格式数据绑定到后台方法的参数列表的某个参数上。\n1 2 3 4 5 6 7 8 9  $.ajax({ url:\"/login\", type:\"POST\", data:'{\"userName\":\"admin\",\"pwd\",\"admin123\"}', content-type:\"application/json charset=utf-8\", success:function(data){ alert(\"request success ! \"); } });   1 2 3 4 5 6  @requestMapping(\"/login\") public void login(@requestBody String userName,@requestBody String pwd){ //也可换做是user对象来绑定，会根据属性名赋值， //但是必须属性名和json的key对应上，否则请求不过去。 　System.out.println(userName+\" ：\"+pwd); }   @ResponseBody： 该注解实现将controller方法返回的java对象转化为json对象响应给客户。 换句话说：表示当前请求的内容直接作为响应体，用于接收。\n注意：在使用 @RequestMapping后，返回值通常解析为跳转路径，但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。\n使用：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  @RequestMapping(\"/login\") @ResponseBody public User login(User user){ return user; } User字段：userName pwd; 那么在前台接收到的数据为：'{\"userName\":\"xxx\",\"pwd\":\"xxx\"}' 效果等同于如下代码： @RequestMapping(\"/login\") public void login(User user, HttpServletResponse response){ //通过response对象输出指定格式的数据 　response.getWriter.write(JSONObject.fromObject(user).toString()); }   @ModelAttribute：\n@ModelAttribute最主要的作用是将数据添加到模型对象中，用于视图页面展示时使用。说白了就是数据回显。 但远远不仅于此…..\n在方法参数上使用 @ModelAttribute 注解:\n可以描述为数据绑定，注解在方法参数上说明了该方法的该参数将由 model 中取得，如果model找不到，那么该参数会被优先实例化，然后被添加进model，再把请求中所有名称与之匹配的参数填充到该参数中。\n对方法使用 @ModelAttribute ：\n添加该注解的方法会率先其他方法执行。\n如果方法无返回值，就在添加该注解的方法中 model.addAttribute ，在该控制器的其他方法返回的页面可以拿到这个 model。\n有无返回值的 @ModelAttribute 方法区别是，无返回值的是 model.addAttribute(String key,Object value)来向model增加参数，而有返回值的直接将需要增加的参数返回。过程说出来就是赘述，联想一下。\n以上都是在 @ModelAttribute 中不加 value ，这样如果是有返回值的 @ModelAttribute 方法，就会默认返回名称为“返回值类型的小驼峰化的对象名称”，如果指定 value，那就是返回指定的，比如返回值类型是User，那默认名称则为user，指定名称为 pp，那返回参数名称就是pp。\nrest中的get、post、delete、put请求 get是获取资源、post新建资源、put更新资源、delete删除资源。\n在选择method只能发送post和get请求，因此可以用过滤器filter将post请求转化为put、delete请求以达到put、delete的效果。\n编码问题详解 编码问题无外乎两种情况：\n post： 或者在web.xml配置一个CharacterEncodingFilter过滤器，设置为utf-8。 get：在tomcat的server.xml文件中，添加URLEncoding=utf-8。或者对request、response参数重新编码。 注意：过滤器顺序：一个应用程序中可能会包含N个过滤器，这N个过滤器一般是没有顺序要求的，但是如果设置了编码过滤器，那么一定要把它放到最上面，保证过滤器的运行。不论是Spring MVC自带的编码器还是自定义的，都要这样。  后端向前端传值的方式 前面都是前端往后端传数据，现在看后端往前端传数据\n前面都是前端往后端传数据，现在看后端往前端传数据\n1、map.put(”msg”,”hello data”)，在参数列表加Map。return 的是页面路径。\n2、model.addAttribute(”mac”,”hello mac”)，在参数列表中加Model 对象名。return 的是页面路径。\n1 2 3 4 5 6 7  @RequestMapping(\"/testModel\") public String testModel(Model model){ model.addAttribute(\"name\",\"赵六\"); model.addAttribute(\"age\",12); model.addAttribute(\"address\",\"上海\"); return \"user\"; }   3、modelMap.addAttribute(”mac”,”hello mac”)，在参数列表中加ModelMap 对象名。return 的是页面路径。\n4、也可以用ModelAndView传递数据，方法内new一个modelAndView对象并且“该对象”.setViewName(”页面路径”)，再addObject(”mac”,”hello mac”);return的是“该对象”，上述三种返回的是页面路径。\n1 2 3 4 5 6 7 8 9 10 11  @RequestMapping(\"testModelAndView\") public ModelAndView testModelAndView(){ ModelAndView modelAndView = new ModelAndView(); //设置跳转页面名称 \tmodelAndView.setViewName(\"user\"); //设置携带的参数 \tmodelAndView.addObject(\"name\",\"赵六\"); modelAndView.addObject(\"age\",12); modelAndView.addObject(\"address\",\"上海\"); return modelAndView; }   以上都可以用于数据回显，前3种方式的回显数据保存在哪个作用域？\n1、page：当前页面\n2、request ：当前请求 （保存在这）\n3、session：当前会话\n4、application：当前应用\n当使用上述（map、model、modelMap）参数传递数据时会把数据都放置到Request作用域。\n如果要存在session中：在类名上+@SessionAttributes(”msg”);该注解表示每次向request中设置属性值时顺带向session中保存一份。\n转发、重定向 转发：在返回值前面加\"forward:\"，譬如\"forward:user.do?name=method4”\n重定向：在返回值前面加\"redirect:\"，譬如\"redirect:http://www.baidu.com\"\n处理静态资源 在处理静态资源时（例如图片），不做处理的话所有请求都会交由dispatcherServlet来处理，但是dispatcherServlet中没有处理静态资源的逻辑，所以访问不到，添加mvc默认配置后就可以了，由\n1  default-servlet-hanlder/   SpringMVC和struct2的区别  SpringMVC的入口是一个servlet即前端控制器（DispatchServlet），而struts2入口是一个filter过虑器（StrutsPrepareAndExecuteFilter） SpringMVC是基于方法开发（一个url对应一个方法），请求参数传递到方法的形参，可以设计为单例、多例。struct2是基于类开发，传递参数通过类的属性，只能设计为多例。  SpringMVC异常处理  可以抛给Spring框架来处理。 可以配置简单的异常处理器，在异常处理器中添加视图页面即可。  SpringMVC的控制器是不是单例模式？如果是，有什么问题？怎么解决？ 是单例模式。 在多线程访问的时候有线程安全问题。 解决方案是在控制器里面不能写可变状态量，如果需要使用这些可变状态，可以使用ThreadLocal机制解决，为每个线程单独生成一份变量副本，独立操作，互不影响。\nSpringMVC 里面拦截器是怎么写  实现 HandlerInterceptor 接口； 继承适配器类，接着在接口方法当中，实现处理逻辑，然后在 SpringMVC 的配置文件中配置拦截器即可。  注意 自定义类型转化器的时候一定要注意对应的属性值 跟 方法中的参数的值要对应起来。\n",
+  "wordCount" : "4005",
   "inLanguage": "en",
   "datePublished": "2022-02-02T02:45:59+08:00",
   "dateModified": "2022-05-13T21:55:37+08:00",
@@ -221,6 +221,9 @@
     <h1 class="post-title">
       Spring MVC小结
     </h1>
+    <div class="post-description">
+      正文开始。
+    </div>
     <div class="post-meta">
 			<p id="wc" style="font-size: 12px;">本文总阅读量<span id="busuanzi_value_page_pv"></span>次&nbsp;&nbsp;</p>
 
@@ -234,7 +237,7 @@
 
 
 
-创建:&nbsp;<span title='2022-02-02 02:45:59 +0800 CST'>2022-02-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-13&nbsp;|&nbsp;字数:&nbsp;4023字&nbsp;|&nbsp;时长: 9分钟&nbsp;|&nbsp;
+创建:&nbsp;<span title='2022-02-02 02:45:59 +0800 CST'>2022-02-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-13&nbsp;|&nbsp;字数:&nbsp;4005字&nbsp;|&nbsp;时长: 8分钟&nbsp;|&nbsp;
 作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/blog/Spring%20MVC%e5%b0%8f%e7%bb%93.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
 
 </div>
@@ -339,10 +342,7 @@
     }
 </script>
 
-  <div class="post-content"><blockquote>
-<p>description：正文开始。</p>
-</blockquote>
-<h3 id="spring-mvc的优点有哪些">Spring MVC的优点有哪些？<a hidden class="anchor" aria-hidden="true" href="#spring-mvc的优点有哪些">#</a></h3>
+  <div class="post-content"><h3 id="spring-mvc的优点有哪些">Spring MVC的优点有哪些？<a hidden class="anchor" aria-hidden="true" href="#spring-mvc的优点有哪些">#</a></h3>
 <ol>
 <li>
 <p>可以支持各种视图技术,而不仅仅局限于JSP；</p>
@@ -377,7 +377,7 @@
 </ol>
 <h3 id="常见注解">常见注解<a hidden class="anchor" aria-hidden="true" href="#常见注解">#</a></h3>
 <p><strong>@PathVariable</strong> 和 <strong>@RequestMapping</strong> 和 <strong>@RequestParam</strong>：<br>
-@PathVariable和和@RequestParam不要混淆，<br>
+@PathVariable和@RequestParam不要混淆，<br>
 区别是用法上不同：<br>
 @PathVariable在 @RequestMapping请求路径后接”/{参数名}“，多个参数就再接多个“/{路径中的参数名}”，在对应的参数列表的参数前加上 @PathVariable 注解。该请求路径中参数名和参数列表 @PathVariable 注解的 value，再在网页路径上传入参数。<br>
 而@RequestParam取参读取 /路径？后的name=”参数“，@RequestParam注解有三个参数，</p>
