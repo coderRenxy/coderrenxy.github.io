@@ -6,7 +6,7 @@
     <description>Recent content on 小任同学&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 25 May 2022 14:13:37 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 26 Jun 2022 00:15:37 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🔍搜索</title>
       <link>https://coderrenxy.github.io/search/</link>
@@ -14,6 +14,24 @@
       
       <guid>https://coderrenxy.github.io/search/</guid>
       <description>/* 手机适配 */ @media screen and (max-width: 500px) { .search{ padding-right: 25px; } .search input{ width: 100%; } .search button{ display: none; } } /* 电脑适配 */ @media screen and (min-width: 500px) { .search{ width: 500px; } .search input{ width: 444px; } } /* 通用样式 */ .search{ margin: auto; } .search input{ outline: none; border: 2px solid #c05b4d; height: 32px; padding:</description>
+    </item>
+    
+    <item>
+      <title>6月总结</title>
+      <link>https://coderrenxy.github.io/posts/life/6%E6%9C%88%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sun, 26 Jun 2022 00:15:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/life/6%E6%9C%88%E6%80%BB%E7%BB%93/</guid>
+      <description>六月总结和未来三个月计划</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 回溯</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E5%9B%9E%E6%BA%AF/</link>
+      <pubDate>Sat, 25 Jun 2022 05:23:42 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E5%9B%9E%E6%BA%AF/</guid>
+      <description>由此正式浸润回溯，其实之前也用到过回溯，现在系统刷一遍题目。</description>
     </item>
     
     <item>
