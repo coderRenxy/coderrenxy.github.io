@@ -13,7 +13,7 @@
 <meta name="author" content="
 作者:&nbsp;小任同学">
 <link rel="canonical" href="https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.40ff79c9e21b4a4219cc51ccc301b456ad2b1bfaefae38fd7155266478bad5b2.css" integrity="sha256-QP95yeIbSkIZzFHMwwG0Vq0rG/rvrjj9cVUmZHi61bI=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
 <link rel="preload" href="img/icon-32.png" as="image">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -389,45 +389,45 @@
 注解实现接收http请求的json数据，将json转换为java对象。<br>
 注：@ResponseBody ＋ @Controller == @RestController<br>
 例如：前台Ajax传递到controller的json格式数据绑定到后台方法的参数列表的某个参数上。</p>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">9
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">       $.ajax({
-　　　　　　　　url:<span style="color:#0ff;font-weight:bold">&#34;/login&#34;</span>,
-　　　　　　　　type:<span style="color:#0ff;font-weight:bold">&#34;POST&#34;</span>,
-　　　　　　　　data:<span style="color:#0ff;font-weight:bold">&#39;{&#34;userName&#34;:&#34;admin&#34;,&#34;pwd&#34;,&#34;admin123&#34;}&#39;</span>,
-　　　　　　　　content-type:<span style="color:#0ff;font-weight:bold">&#34;application/json charset=utf-8&#34;</span>,
-　　　　　　　　success:<span style="color:#fff;font-weight:bold">function</span>(data){
-　　　　　　　　　　alert(<span style="color:#0ff;font-weight:bold">&#34;request success ! &#34;</span>);
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">       $.ajax({
+　　　　　　　　url:<span style="color:#009c00">&#34;/login&#34;</span>,
+　　　　　　　　type:<span style="color:#009c00">&#34;POST&#34;</span>,
+　　　　　　　　data:<span style="color:#009c00">&#39;{&#34;userName&#34;:&#34;admin&#34;,&#34;pwd&#34;,&#34;admin123&#34;}&#39;</span>,
+　　　　　　　　content-type:<span style="color:#009c00">&#34;application/json charset=utf-8&#34;</span>,
+　　　　　　　　success:<span style="color:#00f">function</span>(data){
+　　　　　　　　　　alert(<span style="color:#009c00">&#34;request success ! &#34;</span>);
 　　　　　　　　}
 　　　　});
 </code></pre></td></tr></table>
 </div>
-</div><div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+</div><div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">6
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">　　　　@requestMapping(<span style="color:#0ff;font-weight:bold">&#34;/login&#34;</span>)
-　　　　<span style="color:#fff;font-weight:bold">public</span> <span style="color:#fff;font-weight:bold">void</span> login(@requestBody String userName,@requestBody String pwd){   
-<span style="color:#007f7f">//也可换做是user对象来绑定，会根据属性名赋值，  
-</span><span style="color:#007f7f">//但是必须属性名和json的key对应上，否则请求不过去。
-</span><span style="color:#007f7f"></span>　　　　　　System.<span style="color:#007f7f">out</span>.<span style="color:#007f7f">println</span>(userName+<span style="color:#0ff;font-weight:bold">&#34; ：&#34;</span>+pwd);
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">　　　　<span style="color:#cc00a3">@requestMapping</span>(<span style="color:#009c00">&#34;/login&#34;</span>)
+　　　　<span style="color:#00f">public</span> <span style="color:#00f">void</span> <span style="color:#c34e00">login</span>(<span style="color:#cc00a3">@requestBody</span> String userName,<span style="color:#cc00a3">@requestBody</span> String pwd){   
+<span style="color:#f00;font-style:italic">//也可换做是user对象来绑定，会根据属性名赋值，  
+</span><span style="color:#f00;font-style:italic">//但是必须属性名和json的key对应上，否则请求不过去。
+</span><span style="color:#f00;font-style:italic"></span>　　　　　　System.out.println(userName+<span style="color:#009c00">&#34; ：&#34;</span>+pwd);
 　　　　}
 </code></pre></td></tr></table>
 </div>
@@ -436,39 +436,39 @@
 换句话说：表示当前请求的内容直接作为响应体，用于接收。</p>
 <p>注意：在使用 @RequestMapping后，返回值通常解析为跳转路径，但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如前台异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。<br>
 使用：</p>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">15
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">　　@RequestMapping(<span style="color:#0ff;font-weight:bold">&#34;/login&#34;</span>)
-　　@ResponseBody
-　　<span style="color:#fff;font-weight:bold">public</span> User login(User user){
-　　　　<span style="color:#fff;font-weight:bold">return</span> user;
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">　　<span style="color:#cc00a3">@RequestMapping</span>(<span style="color:#009c00">&#34;/login&#34;</span>)
+　　<span style="color:#cc00a3">@ResponseBody</span>
+　　<span style="color:#00f">public</span> User <span style="color:#c34e00">login</span>(User user){
+　　　　<span style="color:#00f">return</span> user;
 　　}
-　　User字段<span style="color:#f00">：</span>userName pwd;
-　　那么在前台接收到的数据为<span style="color:#f00">：&#39;</span>{<span style="color:#0ff;font-weight:bold">&#34;userName&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;xxx&#34;</span>,<span style="color:#0ff;font-weight:bold">&#34;pwd&#34;</span>:<span style="color:#0ff;font-weight:bold">&#34;xxx&#34;</span>}<span style="color:#f00">&#39;</span>
+　　User字段：userName pwd;
+　　那么在前台接收到的数据为：&#39;{<span style="color:#009c00">&#34;userName&#34;</span>:<span style="color:#009c00">&#34;xxx&#34;</span>,<span style="color:#009c00">&#34;pwd&#34;</span>:<span style="color:#009c00">&#34;xxx&#34;</span>}&#39;
 
-　　效果等同于如下代码<span style="color:#f00">：</span>
-　　@RequestMapping(<span style="color:#0ff;font-weight:bold">&#34;/login&#34;</span>)
-　　<span style="color:#fff;font-weight:bold">public</span> <span style="color:#fff;font-weight:bold">void</span> login(User user, HttpServletResponse response){
+　　效果等同于如下代码：
+　　<span style="color:#cc00a3">@RequestMapping</span>(<span style="color:#009c00">&#34;/login&#34;</span>)
+　　<span style="color:#00f">public</span> <span style="color:#00f">void</span> <span style="color:#c34e00">login</span>(User user, HttpServletResponse response){
 
-              <span style="color:#007f7f">//通过response对象输出指定格式的数据
-</span><span style="color:#007f7f"></span>　　　　response.<span style="color:#007f7f">getWriter</span>.<span style="color:#007f7f">write</span>(JSONObject.<span style="color:#007f7f">fromObject</span>(user).<span style="color:#007f7f">toString</span>());
+              <span style="color:#f00;font-style:italic">//通过response对象输出指定格式的数据
+</span><span style="color:#f00;font-style:italic"></span>　　　　response.getWriter.write(JSONObject.fromObject(user).toString());
 　　}
 </code></pre></td></tr></table>
 </div>
@@ -498,53 +498,53 @@
 <p>前面都是前端往后端传数据，现在看后端往前端传数据</p>
 <p>1、map.put(”msg”,”hello data”)，在参数列表加Map。return 的是页面路径。</p>
 <p>2、model.addAttribute(”mac”,”hello mac”)，在参数列表中加Model 对象名。return 的是页面路径。</p>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">7
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@RequestMapping(<span style="color:#0ff;font-weight:bold">&#34;/testModel&#34;</span>)
-<span style="color:#fff;font-weight:bold">public</span> String testModel(Model model){
-    model.<span style="color:#007f7f">addAttribute</span>(<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>,<span style="color:#0ff;font-weight:bold">&#34;赵六&#34;</span>);
-    model.<span style="color:#007f7f">addAttribute</span>(<span style="color:#0ff;font-weight:bold">&#34;age&#34;</span>,12);
-    model.<span style="color:#007f7f">addAttribute</span>(<span style="color:#0ff;font-weight:bold">&#34;address&#34;</span>,<span style="color:#0ff;font-weight:bold">&#34;上海&#34;</span>);
-    <span style="color:#fff;font-weight:bold">return</span> <span style="color:#0ff;font-weight:bold">&#34;user&#34;</span>;
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#cc00a3">@RequestMapping</span>(<span style="color:#009c00">&#34;/testModel&#34;</span>)
+<span style="color:#00f">public</span> String <span style="color:#c34e00">testModel</span>(Model model){
+    model.addAttribute(<span style="color:#009c00">&#34;name&#34;</span>,<span style="color:#009c00">&#34;赵六&#34;</span>);
+    model.addAttribute(<span style="color:#009c00">&#34;age&#34;</span>,12);
+    model.addAttribute(<span style="color:#009c00">&#34;address&#34;</span>,<span style="color:#009c00">&#34;上海&#34;</span>);
+    <span style="color:#00f">return</span> <span style="color:#009c00">&#34;user&#34;</span>;
 }
 </code></pre></td></tr></table>
 </div>
 </div><p>3、modelMap.addAttribute(”mac”,”hello mac”)，在参数列表中加ModelMap 对象名。return 的是页面路径。</p>
 <p>4、也可以用ModelAndView传递数据，方法内new一个modelAndView对象并且“该对象”.setViewName(”页面路径”)，再addObject(”mac”,”hello mac”);return的是“该对象”，上述三种返回的是页面路径。</p>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">11
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">@RequestMapping(<span style="color:#0ff;font-weight:bold">&#34;testModelAndView&#34;</span>)
-<span style="color:#fff;font-weight:bold">public</span> ModelAndView testModelAndView(){
-	ModelAndView modelAndView = <span style="color:#fff;font-weight:bold">new</span> ModelAndView();
-	<span style="color:#007f7f">//设置跳转页面名称
-</span><span style="color:#007f7f"></span>	modelAndView.<span style="color:#007f7f">setViewName</span>(<span style="color:#0ff;font-weight:bold">&#34;user&#34;</span>);
-	<span style="color:#007f7f">//设置携带的参数
-</span><span style="color:#007f7f"></span>	modelAndView.<span style="color:#007f7f">addObject</span>(<span style="color:#0ff;font-weight:bold">&#34;name&#34;</span>,<span style="color:#0ff;font-weight:bold">&#34;赵六&#34;</span>);
-	modelAndView.<span style="color:#007f7f">addObject</span>(<span style="color:#0ff;font-weight:bold">&#34;age&#34;</span>,12);
-	modelAndView.<span style="color:#007f7f">addObject</span>(<span style="color:#0ff;font-weight:bold">&#34;address&#34;</span>,<span style="color:#0ff;font-weight:bold">&#34;上海&#34;</span>);
-	<span style="color:#fff;font-weight:bold">return</span> modelAndView;
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#cc00a3">@RequestMapping</span>(<span style="color:#009c00">&#34;testModelAndView&#34;</span>)
+<span style="color:#00f">public</span> ModelAndView <span style="color:#c34e00">testModelAndView</span>(){
+	ModelAndView modelAndView = <span style="color:#00f">new</span> ModelAndView();
+	<span style="color:#f00;font-style:italic">//设置跳转页面名称
+</span><span style="color:#f00;font-style:italic"></span>	modelAndView.setViewName(<span style="color:#009c00">&#34;user&#34;</span>);
+	<span style="color:#f00;font-style:italic">//设置携带的参数
+</span><span style="color:#f00;font-style:italic"></span>	modelAndView.addObject(<span style="color:#009c00">&#34;name&#34;</span>,<span style="color:#009c00">&#34;赵六&#34;</span>);
+	modelAndView.addObject(<span style="color:#009c00">&#34;age&#34;</span>,12);
+	modelAndView.addObject(<span style="color:#009c00">&#34;address&#34;</span>,<span style="color:#009c00">&#34;上海&#34;</span>);
+	<span style="color:#00f">return</span> modelAndView;
 }
 </code></pre></td></tr></table>
 </div>
@@ -560,12 +560,12 @@
 <p><strong>重定向</strong>：在返回值前面加&quot;redirect:&quot;，譬如&quot;redirect:<a href="http://www.baidu.com/">http://www.baidu.com</a>&quot;</p>
 <h3 id="处理静态资源">处理静态资源<a hidden class="anchor" aria-hidden="true" href="#处理静态资源">#</a></h3>
 <p>在处理静态资源时（例如图片），不做处理的话所有请求都会交由dispatcherServlet来处理，但是dispatcherServlet中没有处理静态资源的逻辑，所以访问不到，添加mvc默认配置后就可以了，由</p>
-<div class="highlight"><div style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#727272">1
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">&lt;mvc:<span style="color:#fff;font-weight:bold">default</span>-servlet-hanlder/&gt;&lt;mvc:annotation-driven&gt;
+<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">&lt;mvc:<span style="color:#00f">default</span>-servlet-hanlder/&gt;&lt;mvc:annotation-driven&gt;
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="springmvc和struct2的区别">SpringMVC和struct2的区别<a hidden class="anchor" aria-hidden="true" href="#springmvc和struct2的区别">#</a></h3>
