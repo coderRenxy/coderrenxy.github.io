@@ -6,7 +6,7 @@
     <description>Recent content on 小任同学&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 26 Jun 2022 00:15:37 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 09 Jul 2022 11:40:37 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🔍搜索</title>
       <link>https://coderrenxy.github.io/search/</link>
@@ -14,6 +14,15 @@
       
       <guid>https://coderrenxy.github.io/search/</guid>
       <description>/* 手机适配 */ @media screen and (max-width: 500px) { .search{ padding-right: 25px; } .search input{ width: 100%; } .search button{ display: none; } } /* 电脑适配 */ @media screen and (min-width: 500px) { .search{ width: 500px; } .search input{ width: 444px; } } /* 通用样式 */ .search{ margin: auto; } .search input{ outline: none; border: 2px solid #c05b4d; height: 32px; padding:</description>
+    </item>
+    
+    <item>
+      <title>July No.1 Weekly Summary</title>
+      <link>https://coderrenxy.github.io/posts/life/july.no1-weekly-summary/</link>
+      <pubDate>Sat, 09 Jul 2022 11:40:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/life/july.no1-weekly-summary/</guid>
+      <description>七月第一篇周总结</description>
     </item>
     
     <item>
