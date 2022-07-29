@@ -434,12 +434,12 @@ Spring提供两个接口用以表示容器，一个是BeanFactory，一个是App
  <hr>
  		先透个实底：Spring通过提前暴露对象的方式解决循环依赖问题，即
  对“半成品对象”（实例化后、初始化前的对象叫做“半成品对象”）设置缓存来预存对象，等后续再根据A对象的引用来完成赋值操作，实例化后、初始化前的对象叫做“半成品对象”。这里缓存有三级。了解三级缓存前，先了解spring常用的6个方法：	
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> getBean--&gt;doGetBean--&gt;createBean--&gt;doCreateBean--&gt;createInstance--&gt;populateBean 
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> getBean--&gt;doGetBean--&gt;createBean--&gt;doCreateBean--&gt;createInstance--&gt;populateBean 
 </code></pre></td></tr></table>
 </div>
 </div><pre><code>	  那三层分别什么作用?   
@@ -581,12 +581,19 @@ async>
         <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
     </span>
 	<span id="busuanzi_container_site_pv">
-    本站访问量：<span id="busuanzi_value_site_pv"></span>次
+    访问量：<span id="busuanzi_value_site_pv"></span>次
 </span>
 &nbsp;
 <span id="busuanzi_container_site_uv">
     您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 </span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">

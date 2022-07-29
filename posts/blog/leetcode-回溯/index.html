@@ -351,56 +351,56 @@
 <li>为什么要 for：如果没有，找到第一个符合条件的组合就层层 remove 了。</li>
 <li>for 的结束条件控制的是什么：控制当前层的可选个数。i &lt; n - (k - path.size()) + 1 可以当作 i &lt; n - k + 1看待，在第一层可选择的个数就是 n-k+1，因为考虑到后面要跟元素，所以要留 k-1 个位置，第二层要为下一层留位置，所以可选项反而多了，预留 k-2个位置就行，可选项为 n-(k-1)+1。</li>
 </ol>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">24
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    List&lt;Integer&gt; path = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    <span style="color:#00f">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#c34e00">combine</span>(<span style="color:#00f">int</span> n, <span style="color:#00f">int</span> k) {
-        <span style="color:#00f">if</span>(k &gt; n)   <span style="color:#00f">return</span> <span style="color:#00f">null</span>;
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    List&lt;Integer&gt; path = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    <span style="color:#0087ff">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#0087ff">combine</span>(<span style="color:#af0000">int</span> n, <span style="color:#af0000">int</span> k) {
+        <span style="color:#5f8700">if</span>(k &gt; n)   <span style="color:#5f8700">return</span> <span style="color:#d75f00">null</span>;
         dfs(1,n,k);
-        <span style="color:#00f">return</span> list;
+        <span style="color:#5f8700">return</span> list;
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">void</span> <span style="color:#c34e00">dfs</span>(<span style="color:#00f">int</span> start,<span style="color:#00f">int</span> n,<span style="color:#00f">int</span> k){<span style="color:#f00;font-style:italic">// n 个里面取 k 个
-</span><span style="color:#f00;font-style:italic"></span>        <span style="color:#f00;font-style:italic">//终止条件
-</span><span style="color:#f00;font-style:italic"></span>        <span style="color:#00f">if</span>(k == path.size()){<span style="color:#f00;font-style:italic">//层数/深度限定在此
-</span><span style="color:#f00;font-style:italic"></span>            list.add(<span style="color:#00f">new</span> ArrayList&lt;&gt;(path));
-            <span style="color:#00f">return</span>;
+    <span style="color:#0087ff">public</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">dfs</span>(<span style="color:#af0000">int</span> start,<span style="color:#af0000">int</span> n,<span style="color:#af0000">int</span> k){<span style="color:#4e4e4e">// n 个里面取 k 个
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">//终止条件
+</span><span style="color:#4e4e4e"></span>        <span style="color:#5f8700">if</span>(k == path.size()){<span style="color:#4e4e4e">//层数/深度限定在此
+</span><span style="color:#4e4e4e"></span>            list.add(<span style="color:#5f8700">new</span> ArrayList&lt;&gt;(path));
+            <span style="color:#5f8700">return</span>;
         }
 
-        <span style="color:#f00;font-style:italic">//单层逻辑
-</span><span style="color:#f00;font-style:italic"></span>        <span style="color:#00f">for</span>(; start &lt;= n-(k-path.size())+1; start++){<span style="color:#f00;font-style:italic">//循环才能出多个结果，不然直接找到就remove多层。
-</span><span style="color:#f00;font-style:italic"></span>            path.add(start);
+        <span style="color:#4e4e4e">//单层逻辑
+</span><span style="color:#4e4e4e"></span>        <span style="color:#5f8700">for</span>(; start &lt;= n-(k-path.size())+1; start++){<span style="color:#4e4e4e">//循环才能出多个结果，不然直接找到就remove多层。
+</span><span style="color:#4e4e4e"></span>            path.add(start);
             dfs(start+1,n,k);
             path.remove(path.size()-1);
         }
-        <span style="color:#00f">return</span>;
+        <span style="color:#5f8700">return</span>;
     }
 }
 </code></pre></td></tr></table>
@@ -409,56 +409,56 @@
 <h3 id="216组合总和iii">216.组合总和III<a hidden class="anchor" aria-hidden="true" href="#216组合总和iii">#</a></h3>
 <p><strong>思路</strong>：回溯做法，集合就是 1-9 九个数字里面取，递归终止条件是 size == k &amp;&amp; sum == n</p>
 <p><strong>注意</strong>：一定要加一个 if（sum&gt;n || path.size()&gt;k）return;  不然会超时。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">24
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    List&lt;Integer&gt; path = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    <span style="color:#00f">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#c34e00">combinationSum3</span>(<span style="color:#00f">int</span> k, <span style="color:#00f">int</span> n) {
-        <span style="color:#00f">if</span>(k&gt;n) <span style="color:#00f">return</span> list;
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    List&lt;Integer&gt; path = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    <span style="color:#0087ff">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#0087ff">combinationSum3</span>(<span style="color:#af0000">int</span> k, <span style="color:#af0000">int</span> n) {
+        <span style="color:#5f8700">if</span>(k&gt;n) <span style="color:#5f8700">return</span> list;
         dfs(1,k,n,0);
-        <span style="color:#00f">return</span> list;
+        <span style="color:#5f8700">return</span> list;
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">void</span> <span style="color:#c34e00">dfs</span>(<span style="color:#00f">int</span> start,<span style="color:#00f">int</span> k,<span style="color:#00f">int</span> n,<span style="color:#00f">int</span> sum){
-        <span style="color:#00f">if</span>(sum == n &amp;&amp; k == path.size()){
-            list.add(<span style="color:#00f">new</span> ArrayList&lt;&gt;(path));
-            <span style="color:#00f">return</span>;
+    <span style="color:#0087ff">public</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">dfs</span>(<span style="color:#af0000">int</span> start,<span style="color:#af0000">int</span> k,<span style="color:#af0000">int</span> n,<span style="color:#af0000">int</span> sum){
+        <span style="color:#5f8700">if</span>(sum == n &amp;&amp; k == path.size()){
+            list.add(<span style="color:#5f8700">new</span> ArrayList&lt;&gt;(path));
+            <span style="color:#5f8700">return</span>;
         }
-        <span style="color:#00f">if</span>(sum &gt;= n || k &lt;= path.size())    <span style="color:#00f">return</span>;
-        <span style="color:#00f">for</span>(;start&lt;=9-(k-path.size())+1;start++){
+        <span style="color:#5f8700">if</span>(sum &gt;= n || k &lt;= path.size())    <span style="color:#5f8700">return</span>;
+        <span style="color:#5f8700">for</span>(;start&lt;=9-(k-path.size())+1;start++){
             sum += start;
             path.add(start);
             dfs(start+1,k,n,sum);
             sum -= start;
             path.remove(path.size()-1);
         }
-        <span style="color:#00f">return</span>;
+        <span style="color:#5f8700">return</span>;
     }
 }
 </code></pre></td></tr></table>
@@ -466,56 +466,56 @@
 </div><hr>
 <h3 id="17电话号码的字母组合">17.电话号码的字母组合<a hidden class="anchor" aria-hidden="true" href="#17电话号码的字母组合">#</a></h3>
 <p>思路：递归层数（深度）就是号码字符串长度，递归层度由递归终止条件控制，for 循环控制的次数是当前号码字符串中数字对应的字母映射。把一个数组的 index 和 content 作为 号码数字 和 字母的映射。用到 Stringbuilder、charAt、deleteCharAt、toString、append.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">24
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    List&lt;String&gt; list = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    String nums[] = {<span style="color:#009c00">&#34;&#34;</span>,<span style="color:#009c00">&#34;&#34;</span>,<span style="color:#009c00">&#34;abc&#34;</span>,<span style="color:#009c00">&#34;def&#34;</span>,<span style="color:#009c00">&#34;ghi&#34;</span>,<span style="color:#009c00">&#34;jkl&#34;</span>,<span style="color:#009c00">&#34;mno&#34;</span>,<span style="color:#009c00">&#34;pqrs&#34;</span>,<span style="color:#009c00">&#34;tuv&#34;</span>,<span style="color:#009c00">&#34;wxyz&#34;</span>};
-    StringBuilder sb = <span style="color:#00f">new</span> StringBuilder();
-    <span style="color:#00f">public</span> List&lt;String&gt; <span style="color:#c34e00">letterCombinations</span>(String digits) {
-        <span style="color:#00f">if</span>(digits.length() == 0 || digits == <span style="color:#00f">null</span>)    <span style="color:#00f">return</span> list;
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    List&lt;String&gt; list = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    String nums[] = {<span style="color:#00afaf">&#34;&#34;</span>,<span style="color:#00afaf">&#34;&#34;</span>,<span style="color:#00afaf">&#34;abc&#34;</span>,<span style="color:#00afaf">&#34;def&#34;</span>,<span style="color:#00afaf">&#34;ghi&#34;</span>,<span style="color:#00afaf">&#34;jkl&#34;</span>,<span style="color:#00afaf">&#34;mno&#34;</span>,<span style="color:#00afaf">&#34;pqrs&#34;</span>,<span style="color:#00afaf">&#34;tuv&#34;</span>,<span style="color:#00afaf">&#34;wxyz&#34;</span>};
+    StringBuilder sb = <span style="color:#5f8700">new</span> StringBuilder();
+    <span style="color:#0087ff">public</span> List&lt;String&gt; <span style="color:#0087ff">letterCombinations</span>(String digits) {
+        <span style="color:#5f8700">if</span>(digits.length() == 0 || digits == <span style="color:#d75f00">null</span>)    <span style="color:#5f8700">return</span> list;
         backTracking(digits,0);
-        <span style="color:#00f">return</span> list;
+        <span style="color:#5f8700">return</span> list;
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">void</span> <span style="color:#c34e00">backTracking</span>(String digits,<span style="color:#00f">int</span> index){
-        <span style="color:#f00;font-style:italic">//深度由递归终止条件控制
-</span><span style="color:#f00;font-style:italic"></span>        <span style="color:#00f">if</span>(sb.length() == digits.length()){
+    <span style="color:#0087ff">public</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">backTracking</span>(String digits,<span style="color:#af0000">int</span> index){
+        <span style="color:#4e4e4e">//深度由递归终止条件控制
+</span><span style="color:#4e4e4e"></span>        <span style="color:#5f8700">if</span>(sb.length() == digits.length()){
             list.add(sb.toString());
-            <span style="color:#00f">return</span>;
+            <span style="color:#5f8700">return</span>;
         }
 
-        <span style="color:#00f">for</span>(<span style="color:#00f">int</span> i=0;i&lt;nums[digits.charAt(index)-<span style="color:#009c00">&#39;0&#39;</span>].length();i++){
-            sb.append(nums[digits.charAt(index)-<span style="color:#009c00">&#39;0&#39;</span>].charAt(i));
+        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i=0;i&lt;nums[digits.charAt(index)-<span style="color:#00afaf">&#39;0&#39;</span>].length();i++){
+            sb.append(nums[digits.charAt(index)-<span style="color:#00afaf">&#39;0&#39;</span>].charAt(i));
             backTracking(digits,index+1);
             sb.deleteCharAt(sb.length()-1);
         }
-        <span style="color:#00f">return</span>;
+        <span style="color:#5f8700">return</span>;
     }
 }
 </code></pre></td></tr></table>
@@ -525,64 +525,64 @@
 <p>莽夫<strong>思路</strong>：直接回溯。</p>
 <p><strong>优化</strong>思路：先排序，在 for 中 add 之前判断如果要 add的数 + sum &gt; target，就 break，因为后面只会越来越大。</p>
 <p><strong>注意</strong>：循环条件赋初值给上次用完的数，这样就是把上次用的重复用了，如果赋初值为 0，那么会出现同一个组合的不同排列。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">28
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    List&lt;Integer&gt; path = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    <span style="color:#00f">int</span> sum = 0;
-    <span style="color:#00f">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#c34e00">combinationSum</span>(<span style="color:#00f">int</span>[] candidates, <span style="color:#00f">int</span> target) {
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    List&lt;Integer&gt; path = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    <span style="color:#af0000">int</span> sum = 0;
+    <span style="color:#0087ff">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#0087ff">combinationSum</span>(<span style="color:#af0000">int</span>[] candidates, <span style="color:#af0000">int</span> target) {
         Arrays.sort(candidates);
-        <span style="color:#00f">if</span>(candidates == <span style="color:#00f">null</span> || candidates.length == 0)    <span style="color:#00f">return</span> list;
+        <span style="color:#5f8700">if</span>(candidates == <span style="color:#d75f00">null</span> || candidates.length == 0)    <span style="color:#5f8700">return</span> list;
         getPaths(candidates,target,0);
-        <span style="color:#00f">return</span> list;
+        <span style="color:#5f8700">return</span> list;
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">void</span> <span style="color:#c34e00">getPaths</span>(<span style="color:#00f">int</span>[] candidates, <span style="color:#00f">int</span> target,<span style="color:#00f">int</span> index){
-        <span style="color:#f00;font-style:italic">//终止条件
-</span><span style="color:#f00;font-style:italic"></span>        <span style="color:#00f">if</span>(sum == target){
-            list.add(<span style="color:#00f">new</span> ArrayList&lt;&gt;(path));
-            <span style="color:#00f">return</span>;
+    <span style="color:#0087ff">public</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">getPaths</span>(<span style="color:#af0000">int</span>[] candidates, <span style="color:#af0000">int</span> target,<span style="color:#af0000">int</span> index){
+        <span style="color:#4e4e4e">//终止条件
+</span><span style="color:#4e4e4e"></span>        <span style="color:#5f8700">if</span>(sum == target){
+            list.add(<span style="color:#5f8700">new</span> ArrayList&lt;&gt;(path));
+            <span style="color:#5f8700">return</span>;
         }
-        <span style="color:#f00;font-style:italic">//单层逻辑
-</span><span style="color:#f00;font-style:italic"></span>        <span style="color:#00f">for</span>(<span style="color:#00f">int</span> i=index;i&lt;candidates.length;i++){
-            <span style="color:#00f">if</span>(sum + candidates[i] &gt; target)    <span style="color:#00f">break</span>;
+        <span style="color:#4e4e4e">//单层逻辑
+</span><span style="color:#4e4e4e"></span>        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i=index;i&lt;candidates.length;i++){
+            <span style="color:#5f8700">if</span>(sum + candidates[i] &gt; target)    <span style="color:#5f8700">break</span>;
             path.add(candidates[i]);
             sum += candidates[i];
             getPaths(candidates,target,i);
             path.remove(path.size()-1);
             sum -= candidates[i];
         }
-        <span style="color:#00f">return</span>;
+        <span style="color:#5f8700">return</span>;
     }
 }
 </code></pre></td></tr></table>
@@ -591,64 +591,64 @@
 <h3 id="40组合总和ii">40.组合总和II<a hidden class="anchor" aria-hidden="true" href="#40组合总和ii">#</a></h3>
 <p><strong>思路</strong>：和39差的就是要去重，这里的去重指的是同一递归层的去重，绝不能和其他层关联，否则会少结果集。</p>
 <p><strong>注意</strong>：千万不要把去重的 if 里的 i&gt;index 写作 i&gt;0，这样只会保证不越界，但是每次都会把两层之间的数去重，而 i&gt;index 则恰好不越界不影响其他层。还有传入递归的 index 位置的不是 index+1，而是 i+1.</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">28
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    List&lt;Integer&gt; path = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    <span style="color:#00f">int</span> sum = 0;
-    <span style="color:#00f">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#c34e00">combinationSum2</span>(<span style="color:#00f">int</span>[] candidates, <span style="color:#00f">int</span> target) {
-        <span style="color:#00f">if</span>(candidates == <span style="color:#00f">null</span> || candidates.length == 0)    <span style="color:#00f">return</span> list;
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    List&lt;Integer&gt; path = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    <span style="color:#af0000">int</span> sum = 0;
+    <span style="color:#0087ff">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#0087ff">combinationSum2</span>(<span style="color:#af0000">int</span>[] candidates, <span style="color:#af0000">int</span> target) {
+        <span style="color:#5f8700">if</span>(candidates == <span style="color:#d75f00">null</span> || candidates.length == 0)    <span style="color:#5f8700">return</span> list;
         Arrays.sort(candidates);
         getPaths(candidates,target,0);
-        <span style="color:#00f">return</span> list;
+        <span style="color:#5f8700">return</span> list;
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">void</span> <span style="color:#c34e00">getPaths</span>(<span style="color:#00f">int</span>[] candidates, <span style="color:#00f">int</span> target,<span style="color:#00f">int</span> index){
-        <span style="color:#f00;font-style:italic">//结束条件
-</span><span style="color:#f00;font-style:italic"></span>        <span style="color:#00f">if</span>(target == sum){
-            list.add(<span style="color:#00f">new</span> ArrayList&lt;&gt;(path));
-            <span style="color:#00f">return</span>;
+    <span style="color:#0087ff">public</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">getPaths</span>(<span style="color:#af0000">int</span>[] candidates, <span style="color:#af0000">int</span> target,<span style="color:#af0000">int</span> index){
+        <span style="color:#4e4e4e">//结束条件
+</span><span style="color:#4e4e4e"></span>        <span style="color:#5f8700">if</span>(target == sum){
+            list.add(<span style="color:#5f8700">new</span> ArrayList&lt;&gt;(path));
+            <span style="color:#5f8700">return</span>;
         }
-        <span style="color:#f00;font-style:italic">//单层逻辑
-</span><span style="color:#f00;font-style:italic"></span>        <span style="color:#00f">for</span>(<span style="color:#00f">int</span> i=index;i&lt;candidates.length &amp;&amp; sum + candidates[i] &lt;= target;i++){
-            <span style="color:#00f">if</span>(i &gt; index &amp;&amp; candidates[i-1] == candidates[i])    <span style="color:#00f">continue</span>;
+        <span style="color:#4e4e4e">//单层逻辑
+</span><span style="color:#4e4e4e"></span>        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i=index;i&lt;candidates.length &amp;&amp; sum + candidates[i] &lt;= target;i++){
+            <span style="color:#5f8700">if</span>(i &gt; index &amp;&amp; candidates[i-1] == candidates[i])    <span style="color:#5f8700">continue</span>;
             path.add(candidates[i]);
             sum += candidates[i];
             getPaths(candidates,target,i+1);
             path.remove(path.size()-1);
             sum -= candidates[i];
         }
-        <span style="color:#00f">return</span>;
+        <span style="color:#5f8700">return</span>;
     }
 }
 </code></pre></td></tr></table>
@@ -662,64 +662,64 @@
 <li>终止条件：当切割起始位置 index == 长度（末尾索引+1）</li>
 </ol>
 <p>代码：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">28
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    List&lt;List&lt;String&gt;&gt; list = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    List&lt;String&gt; listSon = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    <span style="color:#00f">public</span> List&lt;List&lt;String&gt;&gt; <span style="color:#c34e00">partition</span>(String s) {
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    List&lt;List&lt;String&gt;&gt; list = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    List&lt;String&gt; listSon = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    <span style="color:#0087ff">public</span> List&lt;List&lt;String&gt;&gt; <span style="color:#0087ff">partition</span>(String s) {
         backTracking(s,0);
-        <span style="color:#00f">return</span> list;
+        <span style="color:#5f8700">return</span> list;
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">void</span> <span style="color:#c34e00">backTracking</span>(String s,<span style="color:#00f">int</span> begin){
-        <span style="color:#00f">if</span>(begin == s.length()){
-            list.add(<span style="color:#00f">new</span> ArrayList&lt;&gt;(listSon));
-            <span style="color:#00f">return</span>;
+    <span style="color:#0087ff">public</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">backTracking</span>(String s,<span style="color:#af0000">int</span> begin){
+        <span style="color:#5f8700">if</span>(begin == s.length()){
+            list.add(<span style="color:#5f8700">new</span> ArrayList&lt;&gt;(listSon));
+            <span style="color:#5f8700">return</span>;
         }
-        <span style="color:#00f">for</span>(<span style="color:#00f">int</span> i=begin;i&lt;s.length();i++){
-            <span style="color:#00f">if</span>(isPalindrome(s,begin,i))
+        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i=begin;i&lt;s.length();i++){
+            <span style="color:#5f8700">if</span>(isPalindrome(s,begin,i))
                 listSon.add(s.substring(begin,i+1));
-            <span style="color:#00f">else</span> 
-                <span style="color:#00f">continue</span>;
+            <span style="color:#5f8700">else</span> 
+                <span style="color:#5f8700">continue</span>;
             backTracking(s,i+1);
             listSon.remove(listSon.size()-1);
         }
-        <span style="color:#00f">return</span>;
+        <span style="color:#5f8700">return</span>;
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">boolean</span> <span style="color:#c34e00">isPalindrome</span>(String s,<span style="color:#00f">int</span> begin,<span style="color:#00f">int</span> end){
-        <span style="color:#00f">for</span>(<span style="color:#00f">int</span> i=begin,j=end;i&lt;j;i++,j--)
-            <span style="color:#00f">if</span>(s.charAt(i)!=s.charAt(j)) <span style="color:#00f">return</span> <span style="color:#00f">false</span>; 
-        <span style="color:#00f">return</span> <span style="color:#00f">true</span>;
+    <span style="color:#0087ff">public</span> <span style="color:#af0000">boolean</span> <span style="color:#0087ff">isPalindrome</span>(String s,<span style="color:#af0000">int</span> begin,<span style="color:#af0000">int</span> end){
+        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i=begin,j=end;i&lt;j;i++,j--)
+            <span style="color:#5f8700">if</span>(s.charAt(i)!=s.charAt(j)) <span style="color:#5f8700">return</span> <span style="color:#d75f00">false</span>; 
+        <span style="color:#5f8700">return</span> <span style="color:#d75f00">true</span>;
     }
 }
 </code></pre></td></tr></table>
@@ -728,78 +728,78 @@
 <h3 id="93复原ip地址">93.复原IP地址<a hidden class="anchor" aria-hidden="true" href="#93复原ip地址">#</a></h3>
 <p>这题主要是&quot;.&quot;、如何确保是四串，这两个问题可以合成一个，就是通过&quot;.&ldquo;的数量来知道是否已经4串。</p>
 <p>还有就是：怎么才是合法的串？0不能开头，除非它是一个独立的0，范围要在0-255，而且只能是数字。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">34
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">35
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    List&lt;String&gt; result = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    <span style="color:#00f">public</span> List&lt;String&gt; <span style="color:#c34e00">restoreIpAddresses</span>(String s) {
-        <span style="color:#00f">if</span>(s.length() &gt; 12)   <span style="color:#00f">return</span> result;
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    List&lt;String&gt; result = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    <span style="color:#0087ff">public</span> List&lt;String&gt; <span style="color:#0087ff">restoreIpAddresses</span>(String s) {
+        <span style="color:#5f8700">if</span>(s.length() &gt; 12)   <span style="color:#5f8700">return</span> result;
         backTrack(s,0,0);
-        <span style="color:#00f">return</span> result;
+        <span style="color:#5f8700">return</span> result;
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">void</span> <span style="color:#c34e00">backTrack</span>(String s,<span style="color:#00f">int</span> startIndex,<span style="color:#00f">int</span> pointNum){
-        <span style="color:#00f">if</span>(pointNum == 3){ <span style="color:#f00;font-style:italic">//.的个数
-</span><span style="color:#f00;font-style:italic"></span>                <span style="color:#00f">if</span>(isValid(s,startIndex,s.length()-1)) {result.add(s);}
-                <span style="color:#00f">return</span>;
+    <span style="color:#0087ff">public</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">backTrack</span>(String s,<span style="color:#af0000">int</span> startIndex,<span style="color:#af0000">int</span> pointNum){
+        <span style="color:#5f8700">if</span>(pointNum == 3){ <span style="color:#4e4e4e">//.的个数
+</span><span style="color:#4e4e4e"></span>                <span style="color:#5f8700">if</span>(isValid(s,startIndex,s.length()-1)) {result.add(s);}
+                <span style="color:#5f8700">return</span>;
         }
-        <span style="color:#00f">for</span>(<span style="color:#00f">int</span> i=startIndex;i&lt;s.length()-3+pointNum;i++){
-            <span style="color:#00f">if</span>(isValid(s,startIndex,i)){
-                s = s.substring(0,i+1)+<span style="color:#009c00">&#34;.&#34;</span>+s.substring(i+1);
+        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i=startIndex;i&lt;s.length()-3+pointNum;i++){
+            <span style="color:#5f8700">if</span>(isValid(s,startIndex,i)){
+                s = s.substring(0,i+1)+<span style="color:#00afaf">&#34;.&#34;</span>+s.substring(i+1);
                 pointNum++;
                 backTrack(s,i+2,pointNum);
                 s = s.substring(0,i+1)+s.substring(i+2);
                 pointNum--; 
             }
-            <span style="color:#00f">else</span> {<span style="color:#00f">break</span>;}
+            <span style="color:#5f8700">else</span> {<span style="color:#5f8700">break</span>;}
         }
     }
-    <span style="color:#00f">public</span> Boolean <span style="color:#c34e00">isValid</span>(String s,<span style="color:#00f">int</span> begin,<span style="color:#00f">int</span> end){
-        <span style="color:#00f">if</span>(begin &gt; end) <span style="color:#00f">return</span> <span style="color:#00f">false</span>;
-        <span style="color:#00f">int</span> num = 0;
-        <span style="color:#00f">if</span>(s.charAt(begin) == <span style="color:#009c00">&#39;0&#39;</span> &amp;&amp; begin != end)  <span style="color:#00f">return</span> <span style="color:#00f">false</span>;<span style="color:#f00;font-style:italic">//0不能开头，可当一个数字单独存在；
-</span><span style="color:#f00;font-style:italic"></span>        <span style="color:#00f">for</span>(<span style="color:#00f">int</span> i=begin;i&lt;=end;i++){
-            <span style="color:#00f">if</span>(s.charAt(i)&gt;<span style="color:#009c00">&#39;9&#39;</span> || s.charAt(i)&lt;<span style="color:#009c00">&#39;0&#39;</span>) <span style="color:#00f">return</span> <span style="color:#00f">false</span>;
-            num = (s.charAt(i)-<span style="color:#009c00">&#39;0&#39;</span>)+num*10;
-            <span style="color:#00f">if</span>(num &gt; 255)   <span style="color:#00f">return</span> <span style="color:#00f">false</span>;
+    <span style="color:#0087ff">public</span> Boolean <span style="color:#0087ff">isValid</span>(String s,<span style="color:#af0000">int</span> begin,<span style="color:#af0000">int</span> end){
+        <span style="color:#5f8700">if</span>(begin &gt; end) <span style="color:#5f8700">return</span> <span style="color:#d75f00">false</span>;
+        <span style="color:#af0000">int</span> num = 0;
+        <span style="color:#5f8700">if</span>(s.charAt(begin) == <span style="color:#00afaf">&#39;0&#39;</span> &amp;&amp; begin != end)  <span style="color:#5f8700">return</span> <span style="color:#d75f00">false</span>;<span style="color:#4e4e4e">//0不能开头，可当一个数字单独存在；
+</span><span style="color:#4e4e4e"></span>        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i=begin;i&lt;=end;i++){
+            <span style="color:#5f8700">if</span>(s.charAt(i)&gt;<span style="color:#00afaf">&#39;9&#39;</span> || s.charAt(i)&lt;<span style="color:#00afaf">&#39;0&#39;</span>) <span style="color:#5f8700">return</span> <span style="color:#d75f00">false</span>;
+            num = (s.charAt(i)-<span style="color:#00afaf">&#39;0&#39;</span>)+num*10;
+            <span style="color:#5f8700">if</span>(num &gt; 255)   <span style="color:#5f8700">return</span> <span style="color:#d75f00">false</span>;
         }
-        <span style="color:#00f">return</span> <span style="color:#00f">true</span>;
+        <span style="color:#5f8700">return</span> <span style="color:#d75f00">true</span>;
     }
 }
 </code></pre></td></tr></table>
@@ -807,42 +807,42 @@
 </div><hr>
 <h3 id="78子集">78.子集<a hidden class="anchor" aria-hidden="true" href="#78子集">#</a></h3>
 <p>主要是每一次进回溯都new一个List，反正集合没有重复元素，正常回溯足够解题。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-        List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-        List&lt;Integer&gt; listSon = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    <span style="color:#00f">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#c34e00">subsets</span>(<span style="color:#00f">int</span>[] nums) {
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+        List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+        List&lt;Integer&gt; listSon = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    <span style="color:#0087ff">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#0087ff">subsets</span>(<span style="color:#af0000">int</span>[] nums) {
         backTrack(nums,0);
-        <span style="color:#00f">return</span> list;
+        <span style="color:#5f8700">return</span> list;
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">void</span> <span style="color:#c34e00">backTrack</span>(<span style="color:#00f">int</span> nums[],<span style="color:#00f">int</span> begin){
-        list.add(<span style="color:#00f">new</span> ArrayList&lt;&gt;(listSon));
-        <span style="color:#00f">for</span>(<span style="color:#00f">int</span> i=begin;i&lt;nums.length;i++){
+    <span style="color:#0087ff">public</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">backTrack</span>(<span style="color:#af0000">int</span> nums[],<span style="color:#af0000">int</span> begin){
+        list.add(<span style="color:#5f8700">new</span> ArrayList&lt;&gt;(listSon));
+        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i=begin;i&lt;nums.length;i++){
             listSon.add(nums[i]);
             backTrack(nums,i+1);
             listSon.remove(listSon.size()-1);
         }
-        <span style="color:#00f">return</span>;
+        <span style="color:#5f8700">return</span>;
     }
 }
 </code></pre></td></tr></table>
@@ -850,50 +850,50 @@
 </div><hr>
 <h3 id="90子集ii">90.子集II<a hidden class="anchor" aria-hidden="true" href="#90子集ii">#</a></h3>
 <p>跟上一个子集差别就是List&lt;List<Integer>&gt;去重以及还有一个在用nums前先sort，因为乱序可能导致[1,4] 和 [4,1] 无法去重。比如nums={4，1，4}，就会出现这种情况。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">21
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    Set&lt;List&lt;Integer&gt;&gt; set = <span style="color:#00f">new</span> HashSet&lt;&gt;();
-    List&lt;Integer&gt; listSon = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    <span style="color:#00f">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#c34e00">subsetsWithDup</span>(<span style="color:#00f">int</span>[] nums) {
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    Set&lt;List&lt;Integer&gt;&gt; set = <span style="color:#5f8700">new</span> HashSet&lt;&gt;();
+    List&lt;Integer&gt; listSon = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    <span style="color:#0087ff">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#0087ff">subsetsWithDup</span>(<span style="color:#af0000">int</span>[] nums) {
         Arrays.sort(nums);
         backTrack(nums,0);
-        List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-        <span style="color:#00f">for</span>(List i:set)
+        List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+        <span style="color:#5f8700">for</span>(List i:set)
             list.add(i);
-        <span style="color:#00f">return</span> list;
+        <span style="color:#5f8700">return</span> list;
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">void</span> <span style="color:#c34e00">backTrack</span>(<span style="color:#00f">int</span>[] nums,<span style="color:#00f">int</span> begin){
-        set.add(<span style="color:#00f">new</span> ArrayList&lt;&gt;(listSon));
-        <span style="color:#00f">for</span>(<span style="color:#00f">int</span> i=begin;i&lt;nums.length;i++){
+    <span style="color:#0087ff">public</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">backTrack</span>(<span style="color:#af0000">int</span>[] nums,<span style="color:#af0000">int</span> begin){
+        set.add(<span style="color:#5f8700">new</span> ArrayList&lt;&gt;(listSon));
+        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i=begin;i&lt;nums.length;i++){
             listSon.add(nums[i]);
             backTrack(nums,i+1);
             listSon.remove(listSon.size()-1);
         }
-        <span style="color:#00f">return</span>;
+        <span style="color:#5f8700">return</span>;
     }
 }
 </code></pre></td></tr></table>
@@ -901,44 +901,44 @@
 </div><hr>
 <h3 id="46全排列">46.全排列<a hidden class="anchor" aria-hidden="true" href="#46全排列">#</a></h3>
 <p>主要是每次从0开始，用LinkedList作子list方便使用contains方法，当子list包含该元素时就continue，否则就正常回溯。或者用used数组来标识是否已经存在当前元素。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">20
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    LinkedList&lt;Integer&gt; listSon = <span style="color:#00f">new</span> LinkedList&lt;&gt;();
-    <span style="color:#00f">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#c34e00">permute</span>(<span style="color:#00f">int</span>[] nums) {
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    List&lt;List&lt;Integer&gt;&gt; list = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    LinkedList&lt;Integer&gt; listSon = <span style="color:#5f8700">new</span> LinkedList&lt;&gt;();
+    <span style="color:#0087ff">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#0087ff">permute</span>(<span style="color:#af0000">int</span>[] nums) {
         backTrack(nums);
-        <span style="color:#00f">return</span> list;
+        <span style="color:#5f8700">return</span> list;
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">void</span> <span style="color:#c34e00">backTrack</span>(<span style="color:#00f">int</span>[] nums){
-        <span style="color:#00f">if</span>(nums.length == listSon.size()){
-                list.add(<span style="color:#00f">new</span> ArrayList&lt;&gt;(listSon));
-                <span style="color:#00f">return</span>;
+    <span style="color:#0087ff">public</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">backTrack</span>(<span style="color:#af0000">int</span>[] nums){
+        <span style="color:#5f8700">if</span>(nums.length == listSon.size()){
+                list.add(<span style="color:#5f8700">new</span> ArrayList&lt;&gt;(listSon));
+                <span style="color:#5f8700">return</span>;
         }
-        <span style="color:#00f">for</span>(<span style="color:#00f">int</span> i=0;i&lt;nums.length;i++){
-            <span style="color:#00f">if</span>(listSon.contains(nums[i]))   <span style="color:#00f">continue</span>;
+        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i=0;i&lt;nums.length;i++){
+            <span style="color:#5f8700">if</span>(listSon.contains(nums[i]))   <span style="color:#5f8700">continue</span>;
             listSon.add(nums[i]);
             backTrack(nums);
             listSon.remove(listSon.size()-1);
@@ -950,57 +950,57 @@
 </div><hr>
 <h3 id="47全排列-ii">47.全排列 II<a hidden class="anchor" aria-hidden="true" href="#47全排列-ii">#</a></h3>
 <p>和 全排列I 一样的处理逻辑，但是用used数组做，因为有重复元素，数组只看下标是否被使用，而contains看包不包含这个元素值。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">25
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    Set&lt;List&lt;Integer&gt;&gt; set = <span style="color:#00f">new</span> HashSet&lt;&gt;();
-    List&lt;Integer&gt; list = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-    <span style="color:#00f">boolean</span>[] used;
-    <span style="color:#00f">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#c34e00">permuteUnique</span>(<span style="color:#00f">int</span>[] nums) {
-        <span style="color:#00f">if</span>(nums.length == 0) <span style="color:#00f">return</span> <span style="color:#00f">null</span>;
-        used = <span style="color:#00f">new</span> <span style="color:#00f">boolean</span>[nums.length];
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Java" data-lang="Java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    Set&lt;List&lt;Integer&gt;&gt; set = <span style="color:#5f8700">new</span> HashSet&lt;&gt;();
+    List&lt;Integer&gt; list = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+    <span style="color:#af0000">boolean</span>[] used;
+    <span style="color:#0087ff">public</span> List&lt;List&lt;Integer&gt;&gt; <span style="color:#0087ff">permuteUnique</span>(<span style="color:#af0000">int</span>[] nums) {
+        <span style="color:#5f8700">if</span>(nums.length == 0) <span style="color:#5f8700">return</span> <span style="color:#d75f00">null</span>;
+        used = <span style="color:#5f8700">new</span> <span style="color:#af0000">boolean</span>[nums.length];
         backTrack(nums);
-        <span style="color:#00f">return</span> <span style="color:#00f">new</span> ArrayList&lt;&gt;(set);
+        <span style="color:#5f8700">return</span> <span style="color:#5f8700">new</span> ArrayList&lt;&gt;(set);
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">void</span> <span style="color:#c34e00">backTrack</span>(<span style="color:#00f">int</span>[] nums){
-        <span style="color:#00f">if</span>(list.size() == nums.length){
-            set.add(<span style="color:#00f">new</span> ArrayList&lt;&gt;(list));
-            <span style="color:#00f">return</span>;
+    <span style="color:#0087ff">public</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">backTrack</span>(<span style="color:#af0000">int</span>[] nums){
+        <span style="color:#5f8700">if</span>(list.size() == nums.length){
+            set.add(<span style="color:#5f8700">new</span> ArrayList&lt;&gt;(list));
+            <span style="color:#5f8700">return</span>;
         }
-        <span style="color:#00f">for</span>(<span style="color:#00f">int</span> i=0;i&lt;nums.length;i++){
-            <span style="color:#00f">if</span>(used[i]) <span style="color:#00f">continue</span>;
-            used[i] = <span style="color:#00f">true</span>;
+        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i=0;i&lt;nums.length;i++){
+            <span style="color:#5f8700">if</span>(used[i]) <span style="color:#5f8700">continue</span>;
+            used[i] = <span style="color:#d75f00">true</span>;
             list.add(nums[i]);
             backTrack(nums);
             list.remove(list.size()-1);
-            used[i] = <span style="color:#00f">false</span>;
+            used[i] = <span style="color:#d75f00">false</span>;
         }
     }
 }
@@ -1022,15 +1022,15 @@
       <li><a href="https://coderrenxy.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://coderrenxy.github.io/posts/blog/leetcode-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+  <a class="prev" href="https://coderrenxy.github.io/posts/life/6%E6%9C%88%E6%80%BB%E7%BB%93/">
     <span class="title">« 上一篇</span>
     <br>
-    <span>LeetCode 回溯</span>
+    <span>6月总结</span>
   </a>
-  <a class="next" href="https://coderrenxy.github.io/posts/blog/leetcode-%E8%B4%AA%E5%BF%83/">
+  <a class="next" href="https://coderrenxy.github.io/posts/blog/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%9A%84%E5%8C%BA%E5%88%AB/">
     <span class="title">下一篇 »</span>
     <br>
-    <span>LeetCode 贪心</span>
+    <span>接口和抽象的区别</span>
   </a>
 </nav>
 
@@ -1054,12 +1054,19 @@ async>
         <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
     </span>
 	<span id="busuanzi_container_site_pv">
-    本站访问量：<span id="busuanzi_value_site_pv"></span>次
+    访问量：<span id="busuanzi_value_site_pv"></span>次
 </span>
 &nbsp;
 <span id="busuanzi_container_site_uv">
     您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 </span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">

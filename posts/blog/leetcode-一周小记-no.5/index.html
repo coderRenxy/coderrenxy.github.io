@@ -401,107 +401,107 @@
 <p><strong>迭代</strong>法：利用二叉搜索树的特点，类中序遍历，记录当前、上一结点。</p>
 <h3 id="236-二叉树的最近公共祖先"><strong><strong>236. 二叉树的最近公共祖先</strong></strong><a hidden class="anchor" aria-hidden="true" href="#236-二叉树的最近公共祖先">#</a></h3>
 <p><strong>暴力</strong>解法：分别记录找到 p 、q 的路径（递归+回溯）再双层 for 找最末位置的匹配项。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">29
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">30
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">31
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">32
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">33
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">34
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    <span style="color:#00f">public</span> TreeNode <span style="color:#c34e00">lowestCommonAncestor</span>(TreeNode root, TreeNode p, TreeNode q) {
-        <span style="color:#00f">if</span>(root == <span style="color:#00f">null</span>)    <span style="color:#00f">return</span> <span style="color:#00f">null</span>;
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    <span style="color:#0087ff">public</span> TreeNode <span style="color:#0087ff">lowestCommonAncestor</span>(TreeNode root, TreeNode p, TreeNode q) {
+        <span style="color:#5f8700">if</span>(root == <span style="color:#d75f00">null</span>)    <span style="color:#5f8700">return</span> <span style="color:#d75f00">null</span>;
         TreeNode node = root;
-        List&lt;TreeNode&gt; list1 = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
-        List&lt;TreeNode&gt; list2 = <span style="color:#00f">new</span> ArrayList&lt;&gt;();
+        List&lt;TreeNode&gt; list1 = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
+        List&lt;TreeNode&gt; list2 = <span style="color:#5f8700">new</span> ArrayList&lt;&gt;();
         getPath(list1, root, p);
         getPath(list2, root, q);
-        <span style="color:#00f">for</span>(<span style="color:#00f">int</span> i=0; i&lt;list1.size(); i++){
-            <span style="color:#00f">for</span>(<span style="color:#00f">int</span> j=0; j&lt;list2.size(); j++){
-                <span style="color:#00f">if</span>(list1.get(i).val == list2.get(j).val)
+        <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> i=0; i&lt;list1.size(); i++){
+            <span style="color:#5f8700">for</span>(<span style="color:#af0000">int</span> j=0; j&lt;list2.size(); j++){
+                <span style="color:#5f8700">if</span>(list1.get(i).val == list2.get(j).val)
                     node = list1.get(i);
             }
         }
-        <span style="color:#00f">return</span> node;
+        <span style="color:#5f8700">return</span> node;
     }
-    <span style="color:#00f">public</span> <span style="color:#00f">boolean</span> <span style="color:#c34e00">getPath</span>(List&lt;TreeNode&gt; list, TreeNode root, TreeNode target){
-        <span style="color:#00f">if</span>(root.val == target.val){
+    <span style="color:#0087ff">public</span> <span style="color:#af0000">boolean</span> <span style="color:#0087ff">getPath</span>(List&lt;TreeNode&gt; list, TreeNode root, TreeNode target){
+        <span style="color:#5f8700">if</span>(root.val == target.val){
             list.add(target);
-            <span style="color:#00f">return</span> <span style="color:#00f">true</span>; 
+            <span style="color:#5f8700">return</span> <span style="color:#d75f00">true</span>; 
         }
-        <span style="color:#00f">if</span>(root.left != <span style="color:#00f">null</span>){
+        <span style="color:#5f8700">if</span>(root.left != <span style="color:#d75f00">null</span>){
             list.add(root);
-            <span style="color:#00f">if</span>(getPath(list, root.left, target)) <span style="color:#00f">return</span> <span style="color:#00f">true</span>;
+            <span style="color:#5f8700">if</span>(getPath(list, root.left, target)) <span style="color:#5f8700">return</span> <span style="color:#d75f00">true</span>;
             list.remove(root);
         }
-        <span style="color:#00f">if</span>(root.right != <span style="color:#00f">null</span>){
+        <span style="color:#5f8700">if</span>(root.right != <span style="color:#d75f00">null</span>){
             list.add(root);
-            <span style="color:#00f">if</span>(getPath(list, root.right, target)) <span style="color:#00f">return</span> <span style="color:#00f">true</span>;
+            <span style="color:#5f8700">if</span>(getPath(list, root.right, target)) <span style="color:#5f8700">return</span> <span style="color:#d75f00">true</span>;
             list.remove(root);
         }
-        <span style="color:#00f">return</span> <span style="color:#00f">false</span>;
+        <span style="color:#5f8700">return</span> <span style="color:#d75f00">false</span>;
     }
 }
 </code></pre></td></tr></table>
 </div>
 </div><p>最优解法思路：后序遍历，从下往上找，找到目标 p、q 就存下来，这个 p、q 必然是某棵子数的左右孩子，找到了左右孩子分别不断往上传递，到了最小祖宗深度之后直接不断返回 root。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    <span style="color:#00f">public</span> TreeNode <span style="color:#c34e00">lowestCommonAncestor</span>(TreeNode root, TreeNode p, TreeNode q) {<span style="color:#f00;font-style:italic">//就算p、q有一个是根节点，也会在这里将其当作最小祖宗结点返回。
-</span><span style="color:#f00;font-style:italic"></span>        <span style="color:#00f">if</span>(root == <span style="color:#00f">null</span> || root == p || root == q)    <span style="color:#00f">return</span> root;<span style="color:#f00;font-style:italic">//不管这个结点是叶子结点、p、q都会返回来，是叶子节点就返回一个null（到递归层）。否则返回一个p、q（到递归层）
-</span><span style="color:#f00;font-style:italic"></span>        TreeNode left = lowestCommonAncestor(root.left, p, q);<span style="color:#f00;font-style:italic">//左子树去遍历寻找p、q，递归层（遍历过程）找到了p、q就会返回回来并保存下来，如果到了叶子节点返回的为null就存不到结点
-</span><span style="color:#f00;font-style:italic"></span>        TreeNode right = lowestCommonAncestor(root.right, p, q);<span style="color:#f00;font-style:italic">//右子树去遍历寻找p、q
-</span><span style="color:#f00;font-style:italic"></span>        <span style="color:#f00;font-style:italic">//具体的判断找没找到那个p、q，找到就不断往上次递归层传递。上层递归再判断是否p、q齐全，以上两行递归完便找到了left、right，都找到才会回到deep=最小祖宗这一行返回root，更深处都是不会返回root，然后以上的deep层层跳出递归都是走return root这行。
-</span><span style="color:#f00;font-style:italic"></span>        <span style="color:#00f">if</span>(left != <span style="color:#00f">null</span> &amp;&amp; right != <span style="color:#00f">null</span>)   <span style="color:#00f">return</span> root;
-        <span style="color:#00f">if</span>(left != <span style="color:#00f">null</span> &amp;&amp; right == <span style="color:#00f">null</span>)   <span style="color:#00f">return</span> left;
-        <span style="color:#00f">if</span>(left == <span style="color:#00f">null</span> &amp;&amp; right != <span style="color:#00f">null</span>)   <span style="color:#00f">return</span> right;
-        <span style="color:#00f">return</span> <span style="color:#00f">null</span>;
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    <span style="color:#0087ff">public</span> TreeNode <span style="color:#0087ff">lowestCommonAncestor</span>(TreeNode root, TreeNode p, TreeNode q) {<span style="color:#4e4e4e">//就算p、q有一个是根节点，也会在这里将其当作最小祖宗结点返回。
+</span><span style="color:#4e4e4e"></span>        <span style="color:#5f8700">if</span>(root == <span style="color:#d75f00">null</span> || root == p || root == q)    <span style="color:#5f8700">return</span> root;<span style="color:#4e4e4e">//不管这个结点是叶子结点、p、q都会返回来，是叶子节点就返回一个null（到递归层）。否则返回一个p、q（到递归层）
+</span><span style="color:#4e4e4e"></span>        TreeNode left = lowestCommonAncestor(root.left, p, q);<span style="color:#4e4e4e">//左子树去遍历寻找p、q，递归层（遍历过程）找到了p、q就会返回回来并保存下来，如果到了叶子节点返回的为null就存不到结点
+</span><span style="color:#4e4e4e"></span>        TreeNode right = lowestCommonAncestor(root.right, p, q);<span style="color:#4e4e4e">//右子树去遍历寻找p、q
+</span><span style="color:#4e4e4e"></span>        <span style="color:#4e4e4e">//具体的判断找没找到那个p、q，找到就不断往上次递归层传递。上层递归再判断是否p、q齐全，以上两行递归完便找到了left、right，都找到才会回到deep=最小祖宗这一行返回root，更深处都是不会返回root，然后以上的deep层层跳出递归都是走return root这行。
+</span><span style="color:#4e4e4e"></span>        <span style="color:#5f8700">if</span>(left != <span style="color:#d75f00">null</span> &amp;&amp; right != <span style="color:#d75f00">null</span>)   <span style="color:#5f8700">return</span> root;
+        <span style="color:#5f8700">if</span>(left != <span style="color:#d75f00">null</span> &amp;&amp; right == <span style="color:#d75f00">null</span>)   <span style="color:#5f8700">return</span> left;
+        <span style="color:#5f8700">if</span>(left == <span style="color:#d75f00">null</span> &amp;&amp; right != <span style="color:#d75f00">null</span>)   <span style="color:#5f8700">return</span> right;
+        <span style="color:#5f8700">return</span> <span style="color:#d75f00">null</span>;
     }
 }
 </code></pre></td></tr></table>
@@ -510,48 +510,48 @@
 <h2 id="friday">Friday<a hidden class="anchor" aria-hidden="true" href="#friday">#</a></h2>
 <h3 id="235-二叉搜索树的最近公共祖先"><strong><strong>235. 二叉搜索树的最近公共祖先</strong></strong><a hidden class="anchor" aria-hidden="true" href="#235-二叉搜索树的最近公共祖先">#</a></h3>
 <p><strong>key</strong>：第一个出现在 (p.val,q.val) 的结点就是搜索二叉树的最近公共祖先。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    TreeNode node = <span style="color:#00f">null</span>;
-    <span style="color:#00f">public</span> TreeNode <span style="color:#c34e00">lowestCommonAncestor</span>(TreeNode root, TreeNode p, TreeNode q) {
-        <span style="color:#00f">if</span>(root.val &gt; p.val &amp;&amp; root.val &gt; q.val)    <span style="color:#00f">return</span> lowestCommonAncestor(root.left , p, q);
-        <span style="color:#00f">if</span>(root.val &lt; p.val &amp;&amp; root.val &lt; q.val)    <span style="color:#00f">return</span> lowestCommonAncestor(root.right, p, q);
-        <span style="color:#00f">return</span> root;
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    TreeNode node = <span style="color:#d75f00">null</span>;
+    <span style="color:#0087ff">public</span> TreeNode <span style="color:#0087ff">lowestCommonAncestor</span>(TreeNode root, TreeNode p, TreeNode q) {
+        <span style="color:#5f8700">if</span>(root.val &gt; p.val &amp;&amp; root.val &gt; q.val)    <span style="color:#5f8700">return</span> lowestCommonAncestor(root.left , p, q);
+        <span style="color:#5f8700">if</span>(root.val &lt; p.val &amp;&amp; root.val &lt; q.val)    <span style="color:#5f8700">return</span> lowestCommonAncestor(root.right, p, q);
+        <span style="color:#5f8700">return</span> root;
     }
 }
 </code></pre></td></tr></table>
 </div>
 </div><h3 id="701二叉搜索树中的插入操作"><strong><strong>701.二叉搜索树中的插入操作</strong></strong><a hidden class="anchor" aria-hidden="true" href="#701二叉搜索树中的插入操作">#</a></h3>
 <p><strong>key</strong>：如果 root.val &gt; target 递归左子树找最接近的点，如果遇到 null 就 return new target，比到直到 new 了一个结点，也就是搞定了，会一路 return 回去，至于为什么一路都是 return 呢？因为 &gt; \ &lt; 只会走进一个 if ，进了出来只会去 return，return 是当前这个点，而我们 insert 结点是在最深一层遍历，插入的位置也是一个结点的 左/右 孩子，然后一路返回的都是之前存在的结点。</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">8
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    <span style="color:#00f">public</span> TreeNode <span style="color:#c34e00">insertIntoBST</span>(TreeNode root, <span style="color:#00f">int</span> val) {
-        <span style="color:#00f">if</span>(root == <span style="color:#00f">null</span>)    <span style="color:#00f">return</span> <span style="color:#00f">new</span> TreeNode(val);
-        <span style="color:#00f">if</span>(val &gt; root.val)  root.right = insertIntoBST(root.right, val);
-        <span style="color:#00f">if</span>(val &lt; root.val)  root.left  = insertIntoBST(root.left , val);
-        <span style="color:#00f">return</span> root;
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    <span style="color:#0087ff">public</span> TreeNode <span style="color:#0087ff">insertIntoBST</span>(TreeNode root, <span style="color:#af0000">int</span> val) {
+        <span style="color:#5f8700">if</span>(root == <span style="color:#d75f00">null</span>)    <span style="color:#5f8700">return</span> <span style="color:#5f8700">new</span> TreeNode(val);
+        <span style="color:#5f8700">if</span>(val &gt; root.val)  root.right = insertIntoBST(root.right, val);
+        <span style="color:#5f8700">if</span>(val &lt; root.val)  root.left  = insertIntoBST(root.left , val);
+        <span style="color:#5f8700">return</span> root;
     }
 }
 </code></pre></td></tr></table>
@@ -563,66 +563,66 @@
 <p><strong>key3</strong>：当 root.left or root.right 为 null，return 不为空的结点。</p>
 <p>否则就递归并将返回为左右孩子。</p>
 <p><strong>code</strong>：</p>
-<div class="highlight"><div style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">18
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">19
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">20
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">21
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">22
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">23
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">24
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">25
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">26
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">27
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">28
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">29
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#00f">class</span> <span style="color:#007575">Solution</span> {
-    <span style="color:#00f">public</span> TreeNode <span style="color:#c34e00">deleteNode</span>(TreeNode root, <span style="color:#00f">int</span> key) {
-        <span style="color:#00f">if</span>(root == <span style="color:#00f">null</span> || (root.val == key &amp;&amp; root.left == <span style="color:#00f">null</span> &amp;&amp; root.right ==<span style="color:#00f">null</span>))   
-						<span style="color:#00f">return</span> <span style="color:#00f">null</span>; 
-        <span style="color:#00f">return</span> deleteNode1(root, key);
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0087ff">class</span> <span style="color:#0087ff">Solution</span> {
+    <span style="color:#0087ff">public</span> TreeNode <span style="color:#0087ff">deleteNode</span>(TreeNode root, <span style="color:#af0000">int</span> key) {
+        <span style="color:#5f8700">if</span>(root == <span style="color:#d75f00">null</span> || (root.val == key &amp;&amp; root.left == <span style="color:#d75f00">null</span> &amp;&amp; root.right ==<span style="color:#d75f00">null</span>))   
+						<span style="color:#5f8700">return</span> <span style="color:#d75f00">null</span>; 
+        <span style="color:#5f8700">return</span> deleteNode1(root, key);
     }
-    <span style="color:#00f">public</span> TreeNode <span style="color:#c34e00">deleteNode1</span>(TreeNode root, <span style="color:#00f">int</span> key) {
-        <span style="color:#00f">if</span>(root == <span style="color:#00f">null</span>)    <span style="color:#00f">return</span> <span style="color:#00f">null</span>;
-        <span style="color:#00f">if</span>(root.val &gt; key)  root.left  = deleteNode1(root.left , key);
-        <span style="color:#00f">if</span>(root.val &lt; key)  root.right = deleteNode1(root.right, key);
-        <span style="color:#00f">if</span>(root.val == key){ 
-            <span style="color:#00f">if</span>(root.right != <span style="color:#00f">null</span> &amp;&amp; root.left != <span style="color:#00f">null</span>){
-                <span style="color:#f00;font-style:italic">//无论该处是否为null，都将root.right传进来取root.right最左祖孙。
-</span><span style="color:#f00;font-style:italic"></span>                TreeNode temp = root.right;<span style="color:#f00;font-style:italic">//6
-</span><span style="color:#f00;font-style:italic"></span>                <span style="color:#00f">while</span>(temp.left != <span style="color:#00f">null</span>)<span style="color:#f00;font-style:italic">//找到最左祖孙。
-</span><span style="color:#f00;font-style:italic"></span>                    temp = temp.left;
+    <span style="color:#0087ff">public</span> TreeNode <span style="color:#0087ff">deleteNode1</span>(TreeNode root, <span style="color:#af0000">int</span> key) {
+        <span style="color:#5f8700">if</span>(root == <span style="color:#d75f00">null</span>)    <span style="color:#5f8700">return</span> <span style="color:#d75f00">null</span>;
+        <span style="color:#5f8700">if</span>(root.val &gt; key)  root.left  = deleteNode1(root.left , key);
+        <span style="color:#5f8700">if</span>(root.val &lt; key)  root.right = deleteNode1(root.right, key);
+        <span style="color:#5f8700">if</span>(root.val == key){ 
+            <span style="color:#5f8700">if</span>(root.right != <span style="color:#d75f00">null</span> &amp;&amp; root.left != <span style="color:#d75f00">null</span>){
+                <span style="color:#4e4e4e">//无论该处是否为null，都将root.right传进来取root.right最左祖孙。
+</span><span style="color:#4e4e4e"></span>                TreeNode temp = root.right;<span style="color:#4e4e4e">//6
+</span><span style="color:#4e4e4e"></span>                <span style="color:#5f8700">while</span>(temp.left != <span style="color:#d75f00">null</span>)<span style="color:#4e4e4e">//找到最左祖孙。
+</span><span style="color:#4e4e4e"></span>                    temp = temp.left;
                 temp.left = root.left;
-                <span style="color:#00f">return</span> root.right;
-            }<span style="color:#00f">else</span> <span style="color:#00f">if</span>(root.right != <span style="color:#00f">null</span> &amp;&amp; root.left == <span style="color:#00f">null</span>){
-                <span style="color:#00f">return</span> root.right; 
-            }<span style="color:#00f">else</span> <span style="color:#00f">if</span>(root.right == <span style="color:#00f">null</span> &amp;&amp; root.left != <span style="color:#00f">null</span>){
-                <span style="color:#00f">return</span> root.left;
-            }<span style="color:#00f">else</span>{
-                <span style="color:#00f">return</span> <span style="color:#00f">null</span>;
+                <span style="color:#5f8700">return</span> root.right;
+            }<span style="color:#5f8700">else</span> <span style="color:#5f8700">if</span>(root.right != <span style="color:#d75f00">null</span> &amp;&amp; root.left == <span style="color:#d75f00">null</span>){
+                <span style="color:#5f8700">return</span> root.right; 
+            }<span style="color:#5f8700">else</span> <span style="color:#5f8700">if</span>(root.right == <span style="color:#d75f00">null</span> &amp;&amp; root.left != <span style="color:#d75f00">null</span>){
+                <span style="color:#5f8700">return</span> root.left;
+            }<span style="color:#5f8700">else</span>{
+                <span style="color:#5f8700">return</span> <span style="color:#d75f00">null</span>;
             }
         }
-        <span style="color:#00f">return</span> root;
+        <span style="color:#5f8700">return</span> root;
     }
 }
 </code></pre></td></tr></table>
@@ -671,12 +671,19 @@ async>
         <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
     </span>
 	<span id="busuanzi_container_site_pv">
-    本站访问量：<span id="busuanzi_value_site_pv"></span>次
+    访问量：<span id="busuanzi_value_site_pv"></span>次
 </span>
 &nbsp;
 <span id="busuanzi_container_site_uv">
     您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 </span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
