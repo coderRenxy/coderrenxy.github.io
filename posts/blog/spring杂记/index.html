@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Spring杂记（顺着链条自上往下看） | 小任同学&#39;s Blog</title>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta name="keywords" content="Spring, 框架" />
+<meta name="description" content="本篇文章都是本人的理解，看不懂可以评论，会回复评论。">
+<meta name="author" content="
+作者:&nbsp;小任同学">
+<link rel="canonical" href="https://coderrenxy.github.io/posts/blog/spring%E6%9D%82%E8%AE%B0/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link rel="preload" href="img/icon-32.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="apple-touch-icon" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.92.1" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Spring杂记（顺着链条自上往下看）" />
+<meta property="og:description" content="本篇文章都是本人的理解，看不懂可以评论，会回复评论。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://coderrenxy.github.io/posts/blog/spring%E6%9D%82%E8%AE%B0/" />
+<meta property="og:image" content="https://coderrenxy.github.io/img/spring.webp" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-02T02:45:59&#43;08:00" />
+<meta property="article:modified_time" content="2022-05-05T23:33:37&#43;08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://coderrenxy.github.io/img/spring.webp" />
+<meta name="twitter:title" content="Spring杂记（顺着链条自上往下看）"/>
+<meta name="twitter:description" content="本篇文章都是本人的理解，看不懂可以评论，会回复评论。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "📚 文章",
+      "item": "https://coderrenxy.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📋 技术",
+      "item": "https://coderrenxy.github.io/posts/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Spring杂记（顺着链条自上往下看）",
+      "item": "https://coderrenxy.github.io/posts/blog/spring%E6%9D%82%E8%AE%B0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Spring杂记（顺着链条自上往下看）",
+  "name": "Spring杂记（顺着链条自上往下看）",
+  "description": "本篇文章都是本人的理解，看不懂可以评论，会回复评论。",
+  "keywords": [
+    "Spring", "框架"
+  ],
+  "articleBody": "讲到Spring就一定绕不开IOC、AOP两个概念了，在我看来Spring的一切都基于IOC，所以先聊IOC吧。\nIOC 什么是IOC 首先看看IOC的作用，我们可以试着写一个从service层到dao层的用例，会发现如果是一层一 层实现了这个用例，将来要修改就要一层层改，这样耦合度极高，而把控制权交给第三方（Test中 new一个serviceImpl来set一个userDao），能达到解耦目的。此时，主动去new一个dao对象叫正向获取，而等着serviceImpl来set是等着别人给我这个对象，是反向获取。就像自己找对象（正向）和婚介公司分配对象（反向）。\nIOC的两种容器及异同 对于IOC最重要的是容器，容器管理着Bean的生命周期，控制着Bean的DI（依赖注入），那Spring是怎么设计的容器？\nSpring提供两个接口用以表示容器，一个是BeanFactory，一个是ApplicationContext，咱们就聊聊异同吧。\n BeanFactory粗暴简单，可以理解为一个HashMap，key是BeanName，value是Bean实例，通常只提供注册（put），获取（get）功能，我们称为低级容器。BeanFactory是 Spring 底层 IoC 容器，ApplicationContext 是 BeanFactory 的子接口。在该接口中利用反射创建对象。 ApplicationContext称为高级容器，因为他比BeanFactory多了更多功能，他继承了多个接口。因此具备更多功能，例如资源的获取、支持多种消息（例如jsp tag的支持）、对比BeanFactory多了工具级别的支持等等。所以名字也不是BeanFactory之类的工厂了，而是“应用上下文”，代表整个大容器的所有功能，该接口定义了一个refresh方法（刷新整个容器，即重新加载所有的bean）。 隶属 ApplicationContext 的 “高级容器”，依赖着 “低级容器”，这里说的是依赖，不是继承哦。他依赖着 “低级容器” 的 getBean 功能。而高级容器有更多的功能：支持不同的信息源头，可以访问文件资源，支持应用事件（Observer模式），而低级容器只负责加载Bean、获取Bean。值得一提的还有两个容器之间的区别。了解区别之前必须明白IOC在启动过程做了些什么操作，IOC启动过程分为两个阶段：\n1. 容器的启动：加载配置信息，分析配置信息。\n2. Bean的实例：实例化对象，装配依赖，生命周期回调。 两者的区别：BeanFactory延时加载，只有在使用某个bean时（即调用getBean()方法时），才会对bean进行实例化，而ApplicationContext 在容器启动的时候，一次性完成两个阶段，因此BeanFactory在启动过程不能在容器启动阶段发现配置问题，而ApplicationContext可以，但是由于一次性实例化所有的Bean，启动花费的时间也长。  Bean的生命周期 其实吧，上面的IOC启动过程都与Bean的生命周期有关，聊到这里就避不开这个话题了。Bean的生命周期：\n Bean的定义：beanDefinitionReader（抽象接口约束）加载配置文件（xml、properties、注解、yaml）读取bean的定义信息并包装成BeanDefinition。 执行BeanFactoryPostProcessor准备BeanPostProcessor、广播器、监听器。（注：beanfactorypostprocessor完成对beanfactory相关信息的修改和拓展(容器运行需要的对象)。beanpostprocessor完成对bean的修改或拓展（用户自定义对象））。 Bean的实例化：在ioc中利用反射实例化所有的非懒加载的单例bean。 Bean的初始化：\n1. Bean的属性赋值：实例化后的对象还是一个空对象，根据 Bean 的元信息对该对象的所有属性进行赋值。即PopulateBean方法。\n2. 执行Aware接口的方法。Bean分为两种，一种是用户bean对象，一种容器对象bean（environment、applicationContext、beanFactory），aware接口是为了使某些用户bean对象能够方便的获取容器bean对象。\n3. 执行BeanPostProcessor（增强器）的before方法。“增强Bean（AOP）”。\n4. 执行init-method方法。\n5. 执行BeanPostProcessor（增强器）的after方法。 对应过程before，这样就获得了完整对象。如果一个对象需要生成代理对象来增强bean，会进行反射的普通创建一个实例化的对象，所以叫拓展。不是所有的bean都会增强，所以一定是会创建新的（代理）对象。 Bean的调用：有三种方式可以得到Bean并进行调用：  使用BeanWrapper。 使用BeanFactory 。 使用ApplicationContext。   Bean的销毁：  使用配置文件中的 destory-method 属性。 实现 org.springframwork.bean.factory.DisposebleBean接口。    IOC常见的实现方式 IOC是个原理（基于工厂模式+反射机制），是把以前在工厂方法中写死的对象生成代码，改由配置文件来定义，真正的实现方式常见的有两种： 1、依赖注入。 2、依赖查找。\n两者都是调用相关接口获取bean对象，区别在于DI（依赖注入）是IoC容器启动时由容器帮你实现，DL（依赖查找）要手动。目前用到DL（依赖查找）的非常少了，所以来聊聊DI（依赖注入），依赖注入从XML配置上来说就是ref标签，对应的是Spring中的RuntimeBeanReference对象，实现方法如下。\nDI（依赖注入）的实现方式  构造器注入：构造器依赖注入通过容器触发一个类的构造器来实现的，通过构造器的参数注入相关依赖对象。用xml文件配置就是property中通过construct-arg来指定构造器的参数，用注解配置就是在构造方法上加上@Autowire注解。这种方式好比学渣从一开始就赖上了一个学霸，并且和这个学霸建立了长期合作关系。 setter注入：通过 setter 方法注入依赖对象，也可以理解为字段注入。通过Xml配置就是property中指定name=”age”或Age；ref=”…..”。因为Spring会自动的将首字母大写再在前面加上set，这里也可以看到，有关的是set方法后的名称，而与属性（成员变量无关）。用注解来写就是在setter方法上加上@Autowire注解。这种方式学霸和学渣只是暂时的合作关系，如果学渣赖上了另一个学霸（调用set()方法传入了另一个对象），那么学渣和上一学霸的合作关系就结束了。 属性注入（方法参数注入）：定义成员变量来添加@Autowire注入。这种方式不建议使用，但是工作中用的最多，因为真的方便。这么方便为什么不推荐？如果是IOC以外的环境，除了使用反射来提供他需要的依赖，无法复用该实现类。  那setter注入和构造器注入用哪个？看上面我的描述，构造器不是有点强买强卖的意思？所以构造器参数实现强制依赖，setter方法实现可选依赖。构造器注入可以保证有序的被注入，而setter方法注入是通过反射机制注入，无法保证注入顺序。构造器注入不允许出现循环依赖，因此被注入的对象需要保证能实例化，构造器依赖初始化时对象才注入依赖对象，保证了bean初始化后就是不变的对象。setter方法的循环依赖Spring已经解决了，先聊聊循环依赖吧。\n这里多嘴提一句Autowired：@Autowired默认是byType，类型一样时会根据id查找，默认的id为类名（自动改为首字母小写）。找到了直接注入，找不到报错。如果指定id（别名）就是用@Qualifier。如果@Autowired添加在方法上时，此方法在创建对象的时候会默认调用，同时方法中的参数会自动进行装配。@Autowired也能用在方法的参数上指定当前属性的别名。Jdk提供了@Resource和@Autowired一样的功能。Resource可以在其他框架中用，是按照id进行装配的，id找不到就用type。Autowired通过反射来注入。\n循环依赖 （只有单例Bean才会出现循环依赖）\n如果一段依赖关系为beanA–beanB–beanC–beanA，这就是循环依赖。如果没有最后一个beanA而是beanA–beanB–beanC，此时Spring将创建beanC，然后创建beanB（并将beanC注入beanB）然后创建beanA（并将beanB注入beanA），但是在有两次beanA时，Spring无法决定应该首先创建哪个bean（注意：这里是创建，不是初始化，初始化在上文Bean的生命周期有记载，是根据用户xml中对bean定义的顺序来加载，若有依赖，先用占位符_代替，那为什么不在加载Bean的时候直接注入呢？因为我们并不能要求用户按照顺序定义Bean，这样是不人道的！可能A依赖于B，但是B还没有加载好），因为他们彼此依赖，这个情况下Spring将在加载上下文时引发BeanCurrentlyInCreationException。使用构造方法注入时，他可能在Spring中发生，其他类型应该无此问题（setter注入的循环依赖已经被Spring解决）。\n 那在构造器注入中如何解决循环依赖呢?其实方法很多，当然我们只讲流行的，况且最好的方法就是重新设计或者用setter注入，简单了解一下吧。   使用@Lazy放在构造方法参数列表的参数前，意思就是懒洋洋的初始化其中一个bean。它不是完全初始化bean，而是创建一个代理将它注入到另一个bean。注入的bean只有第一次需要时才会完全创建。用人话来讲就是第一次被需要才创建，之后在需要这个bean就是创建它的代理对象。\n  在其中一个bean上加@AutoWired，其他依赖项上使用@PostConstruct。\n那我们肯定还是要了解一下setter注入中Spring是怎么解决循环依赖的吧！\n   先透个实底：Spring通过提前暴露对象的方式解决循环依赖问题，即 对“半成品对象”（实例化后、初始化前的对象叫做“半成品对象”）设置缓存来预存对象，等后续再根据A对象的引用来完成赋值操作，实例化后、初始化前的对象叫做“半成品对象”。这里缓存有三级。了解三级缓存前，先了解spring常用的6个方法：\t1  getBean--doGetBean--createBean--doCreateBean--createInstance--populateBean   \t那三层分别什么作用? 一级缓存singletonObjects：存放成品对象。 二级缓存earlySingletonObjects：存放半成品对象。 三级缓存singletonFactories：存放lamdb表达式。  为何要有三级？只用第一级行不行？只用一、二级行不行? 别着急，小任细细道来。\n如果只有一级缓存：那么意味着半成品对象和成品对象都要放到一级缓存，那就有可能获取到对象的非完整状态，此时不可以使用。\n如果只有一二级缓存：没有AOP的时候就可以，三级缓存是解决代理过程中的循环依赖。\n 总结一下以上：每次我们在获取对象的时候，是通过对象的name来获取bean的，如果原始对象和代理对象同时存在的话，那么我通过名字再进行获取的时候应该选择哪个？无法选择的，其实还有最核心的点，你怎么能够确认对象什么时候需要被引用呢？使用lambda表达式其实代表了一种回调机制，当需要使用当前对象的时候，通过lamdba表达式来最终返回一个确定的最终版本对象，而不需要判断几个对象，因为是替换的过程，所以只能有一个。接下来给IOC留个结尾干巴的面试题吧，干就完了！  Spring核心类  BeanFactory：产生一个新的实例，可以实现单例模式。 BeanWrapper：提供统一的get及set方法。 ApplicationContext:提供框架的实现，包括BeanFactory的所有功能。  Spring中的设计模式  工厂模式：Spring使用工厂模式，通过BeanFactory和ApplicationContext来创建对象。 单例模式：Bean默认为单例模式。 代理模式：Spring的AOP功能用到了JDK的动态代理和CGLIB字节码生成技术。 模板方法：可以将相同部分的代码放在父类中，而将不同的代码放入不同的子类中，用来解决代码重复的问题。比如RestTemplate, JmsTemplate, JpaTemplate。 适配器模式：Spring AOP的增强或通知（Advice）使用到了适配器模式，Spring MVC中也是用到了适配器模式适配Controller。 策略模式：例如Resource的实现类，针对不同的资源文件，实现了不同方式的资源获取策略。 观察者模式：Spring事件驱动模型就是观察者模式的一个经典应用。 桥接模式：可以根据客户的需求能够动态切换不同的数据源。比如我们的项目需要连接多个数据库，客户在每次访问中根据需要会去访问不同的数据库。  Bean的作用域  singleton：这种bean范围是默认的，这种范围确保不管接受到多少个请求，每个容器中只有一个bean的实例，单例的模式由BeanFactory自身来维护。 prototype：原型范围与单例范围相反，为每一个bean请求提供一个实例。 request：在请求Bean范围内会对每一个来自客户端的网络请求创建一个实例，在请求完成以后，Bean会失效并被垃圾回收器回收。 session：与请求范围类似，确保每个session中有一个bean的实例，在session过期后，bean会随之失效。 globalsession：每个全局的HTTP Session，使用session定义的Bean都将产生一个新实例。典型情况下，仅在使用portlet context的时候有效。（不知所云）  ApplicationContext 通常的实现  FileSystemXmlApplicationContext：此容器从一个 XML 文件中加载beans 的定义，XML Bean 配置文件的全路径名必须提供给它的构造函数。 ClassPathXmlApplicationContext：此容器也从一个 XML 文件中加载beans 的定义，这里，你需要正确设置 classpath 因为这个容器将在 classpath 里找 bean 配置。 WebXmlApplicationContext：此容器加载一个 XML 文件，此文件定义了一个 Web 应用的所有 bean。  AOP 温馨提示：上面IOC没捋顺就别往下看AOP了\n通知 大家都是怎么描述AOP和其中各种名词呢? 听听小任的见解。\n想象一下：方法是纵向的，而各种打印的日志信息就都是横向的，横纵向的交汇点就是连接点，通俗来讲一个方法中可以填入额外的代码的地方都叫做连接点，而实际填充了代码的叫做切入点，切入点是连接点的子集。切面类就是存放打印日志方法的logUtil类，每一个切面类对应的方法都是横切面，使用AOP的话就在切面类上加@Aspect。 通知注解的几种类型：\n @Before前置通知：方法执行前执行。 @After后置通知：方法执行后执行。 @AfterReturing返回通知：结果返回后运行。 @AfterThrowing异常通知：出现异常时使用。 @Around环绕通知：其他四个注解都是方法被调用就会根据情景来执行的，比如异常了就执行@AfterThrowing，其他四个注解都是被方法绑死，而环绕通知比较特殊，他能决定一个类是否需要返回对象，能决定该方法是否被调用。它是spring框架为我们提供的一种可以在代码中手动控制增强方法何时执行的方式。  执行顺序：环绕前置通知–before–环绕后置通知–after–afterReturing或者：环绕前置通知–before–环绕后置通知–after–afterThrowing。\n这些通知都需要指定方法的权限修饰符、方法的返回值类型、方法的全限定名。在方法的参数的列表中不要随便添加参数值，会异常，如果需要参数就在参数列表加上joinpoint来getArgs（获取参数列表），返回值在注解中指定（returning=”result”）之后才能从在方法的参数列表指定。execution精确匹配的方式其实并不友好，一般用的是通配符（*和.）的方式也可以多个execution来进行逻辑运算（与或非）。\n代理 讲到AOP一定逃不掉的一个东西：动态代理的实现\n有动态，那静态呢？ 动态代理的代理类是动态生成的 ，静态代理的代理类是我们提前写好的。 那为什么要有动态代理呢？且先看看静态代理的优劣：\n静态代理的好处是：我们的真实角色更加纯粹 . 不再去关注一些公共的事情 ，公共的业务由代理来完成， 实现了业务的分工，公共业务发生扩展时变得更加集中和方便。说白了就是（动态、静态）代理类的好处。\n静态代理的缺点是：类多了 , 多了代理类 , 工作量变大了 . 开发效率降低 。 我们想要静态代理的好处，又不想要静态代理的缺点，所以 , 就有了动态代理 !\n动态代理的核心：一个动态代理 , 一般代理某一类业务 , 一个动态代理可以代理多个类，代理的是接口！\n动态代理分为两类 : 一类是基于接口动态代理 , 一类是基于类的动态代理。 两种实现方式：\n JDK代理：基于接口的动态代理。 CGlib代理：基于类的动态代理。 二者区别是：JDK代理只能对实现接口的类生成代理，利用反射机制生成一个匿名类，CGlib是针对类实现代理，对指定的类生成一个子类，并覆盖其中的方法，但是这种通过继承类的实现方式不能代理final修饰的类。  如何实现JDK动态代理？\t（JDK 动态代理最核心的一个接口和方法如下）\n InvocationHandler 接口：使用方法首先是需要实现该接口，并且我们可以在 invoke方法中调用被代理类的方法并获得返回值，自然也可以在调用该方法的前后去做一些额外的事情，从而实现动态代理。传入的参数如下：\n1. proxy：被代理的类的实例；\n2. method：调用被代理的类的方法；\n3. args：该方法需要的参数； Proxy 类中的 newProxyInstance 方法：该方法会返回一个被修改过的类的实例，从而可以自由的调用该实例的方法。传入参数如下：\n1. loader：被代理的类的类加载器；\n2. interfaces：被代理类的接口数组；\n3. invocationHandler：调用处理器类的对象实例；  Spring的事务 事务分为两种：声明式事务、编程式事务。一一介绍一下，先来精简的。\n 编程式事务：在代码中直接加入处理逻辑，可能需要在代码中显式调用beginTransaction、commit、rollback方法。 声明式事务：方法外部添加@Transational注解或在配置文件中直接定义，将事务代码和业务方法分离，以声明的方式实现事务管理。AOP恰好能完成，通过AOP方法模块化，进而实现声明式事务。其中，声明式事务用法值得一提其中的属性：\n1. isolation：隔离级别。（大写不方便本人认读，所以还是小写）事务应该不会陌生吧?跟着MySQL/Oracle走，如果是MySQL，那隔离级别默认为RR（可重复读Read Repeated）Oracle则是默认RC（读已提交Read Commited)。\n2. timeout：超过时间。\n3. readonly：设置为只读事务。\n4. noRollBackfor：设置为发生该异常也不回滚（指定异常类的类名.class）只对特定异常类起作用。\n5. rollBackfor发生指定异常回滚（指定异常类的类名.class）只对特定异常类起作用。   持续更新中…….. 敬请期待\n ",
+  "wordCount" : "7997",
+  "inLanguage": "en",
+  "image":"https://coderrenxy.github.io/img/spring.webp","datePublished": "2022-02-02T02:45:59+08:00",
+  "dateModified": "2022-05-05T23:33:37+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "小任同学"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://coderrenxy.github.io/posts/blog/spring%E6%9D%82%E8%AE%B0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "小任同学's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://coderrenxy.github.io/img/icon-512.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://coderrenxy.github.io/" accesskey="h" title="小任同学&#39;s Blog (Alt + H)">
+                <img src="https://coderrenxy.github.io/img/icon-32.png" alt="logo" aria-label="logo"
+                    height=" 30px">小任同学&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://coderrenxy.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/search/" title="🔍搜索">
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/links" title="🤝友链">
+                    <span>🤝友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://coderrenxy.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/">📚 文章</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/blog/">📋 技术</a></div>
+    <h1 class="post-title">
+      Spring杂记（顺着链条自上往下看）
+    </h1>
+    <div class="post-description">
+      本篇文章都是本人的理解，看不懂可以评论，会回复评论。
+    </div>
+    <div class="post-meta">
+			<p id="wc" style="font-size: 12px;">本文总阅读量<span id="busuanzi_value_page_pv"></span>次&nbsp;&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-02-02 02:45:59 +0800 CST'>2022-02-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-05&nbsp;|&nbsp;字数:&nbsp;7997字&nbsp;|&nbsp;时长: 16分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/blog/Spring%e6%9d%82%e8%ae%b0.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+
+</div>
+  </header> 
+<figure class="entry-cover1"><img loading="lazy" src="https://coderrenxy.github.io/img/spring.webp" alt="">
+        
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                
+				<span class="details">文章目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#ioc" aria-label="IOC">IOC</a><ul>
+                            <ul>
+                            
+                    <li>
+                        <a href="#%e4%bb%80%e4%b9%88%e6%98%afioc" aria-label="什么是IOC">什么是IOC</a></li>
+                    <li>
+                        <a href="#ioc%e7%9a%84%e4%b8%a4%e7%a7%8d%e5%ae%b9%e5%99%a8%e5%8f%8a%e5%bc%82%e5%90%8c" aria-label="IOC的两种容器及异同">IOC的两种容器及异同</a></li>
+                    <li>
+                        <a href="#bean%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" aria-label="Bean的生命周期">Bean的生命周期</a></li>
+                    <li>
+                        <a href="#ioc%e5%b8%b8%e8%a7%81%e7%9a%84%e5%ae%9e%e7%8e%b0%e6%96%b9%e5%bc%8f" aria-label="IOC常见的实现方式">IOC常见的实现方式</a></li>
+                    <li>
+                        <a href="#di%e4%be%9d%e8%b5%96%e6%b3%a8%e5%85%a5%e7%9a%84%e5%ae%9e%e7%8e%b0%e6%96%b9%e5%bc%8f" aria-label="DI（依赖注入）的实现方式">DI（依赖注入）的实现方式</a></li>
+                    <li>
+                        <a href="#%e5%be%aa%e7%8e%af%e4%be%9d%e8%b5%96" aria-label="循环依赖">循环依赖</a></li>
+                    <li>
+                        <a href="#spring%e6%a0%b8%e5%bf%83%e7%b1%bb" aria-label="Spring核心类">Spring核心类</a></li>
+                    <li>
+                        <a href="#spring%e4%b8%ad%e7%9a%84%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" aria-label="Spring中的设计模式">Spring中的设计模式</a></li>
+                    <li>
+                        <a href="#bean%e7%9a%84%e4%bd%9c%e7%94%a8%e5%9f%9f" aria-label="Bean的作用域">Bean的作用域</a></li>
+                    <li>
+                        <a href="#applicationcontext-%e9%80%9a%e5%b8%b8%e7%9a%84%e5%ae%9e%e7%8e%b0" aria-label="ApplicationContext 通常的实现">ApplicationContext 通常的实现</a></li></ul>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#aop" aria-label="AOP">AOP</a><ul>
+                            <ul>
+                            
+                    <li>
+                        <a href="#%e9%80%9a%e7%9f%a5" aria-label="通知">通知</a></li>
+                    <li>
+                        <a href="#%e4%bb%a3%e7%90%86" aria-label="代理">代理</a></li>
+                    <li>
+                        <a href="#spring%e7%9a%84%e4%ba%8b%e5%8a%a1" aria-label="Spring的事务">Spring的事务</a>
+                    </li>
+                </ul>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+  <div class="post-content"><p>讲到Spring就一定绕不开IOC、AOP两个概念了，在我看来Spring的一切都基于IOC，所以先聊IOC吧。</p>
+<h1 id="ioc">IOC<a hidden class="anchor" aria-hidden="true" href="#ioc">#</a></h1>
+<h3 id="什么是ioc">什么是IOC<a hidden class="anchor" aria-hidden="true" href="#什么是ioc">#</a></h3>
+<p>首先看看IOC的作用，我们可以试着写一个从service层到dao层的用例，会发现如果是一层一
+层实现了这个用例，将来要修改就要一层层改，这样耦合度极高，而把控制权交给第三方（Test中
+new一个serviceImpl来set一个userDao），能达到解耦目的。此时，主动去new一个dao对象叫正向获取，而等着serviceImpl来set是等着别人给我这个对象，是反向获取。就像自己找对象（正向）和婚介公司分配对象（反向）。</p>
+<h3 id="ioc的两种容器及异同">IOC的两种容器及异同<a hidden class="anchor" aria-hidden="true" href="#ioc的两种容器及异同">#</a></h3>
+<p>对于IOC最重要的是容器，容器管理着Bean的生命周期，控制着Bean的DI（依赖注入），那Spring是怎么设计的容器？<br>
+Spring提供两个接口用以表示容器，一个是BeanFactory，一个是ApplicationContext，咱们就聊聊异同吧。</p>
+<ol>
+<li>BeanFactory粗暴简单，可以理解为一个HashMap，key是BeanName，value是Bean实例，通常只提供注册（put），获取（get）功能，我们称为低级容器。BeanFactory是 Spring 底层 IoC 容器，ApplicationContext 是 BeanFactory 的子接口。在该接口中利用反射创建对象。</li>
+<li>ApplicationContext称为高级容器，因为他比BeanFactory多了更多功能，他继承了多个接口。因此具备更多功能，例如资源的获取、支持多种消息（例如jsp tag的支持）、对比BeanFactory多了工具级别的支持等等。所以名字也不是BeanFactory之类的工厂了，而是“应用上下文”，代表整个大容器的所有功能，该接口定义了一个refresh方法（刷新整个容器，即重新加载所有的bean）。</li>
+<li>隶属 ApplicationContext 的 “高级容器”，依赖着 “低级容器”，这里说的是依赖，不是继承哦。他依赖着 “低级容器” 的 getBean 功能。而高级容器有更多的功能：支持不同的信息源头，可以访问文件资源，支持应用事件（Observer模式），而低级容器只负责加载Bean、获取Bean。值得一提的还有两个容器之间的区别。了解区别之前必须明白IOC在启动过程做了些什么操作，IOC启动过程分为两个阶段：<br>
+1. 容器的启动：加载配置信息，分析配置信息。<br>
+2. Bean的实例：实例化对象，装配依赖，生命周期回调。</li>
+<li>两者的区别：BeanFactory延时加载，只有在使用某个bean时（即调用getBean()方法时），才会对bean进行实例化，而ApplicationContext
+在容器启动的时候，一次性完成两个阶段，因此BeanFactory在启动过程不能在容器启动阶段发现配置问题，而ApplicationContext可以，但是由于一次性实例化所有的Bean，启动花费的时间也长。</li>
+</ol>
+<h3 id="bean的生命周期">Bean的生命周期<a hidden class="anchor" aria-hidden="true" href="#bean的生命周期">#</a></h3>
+<p>其实吧，上面的IOC启动过程都与Bean的生命周期有关，聊到这里就避不开这个话题了。Bean的生命周期：</p>
+<ol>
+<li>Bean的定义：beanDefinitionReader（抽象接口约束）加载配置文件（xml、properties、注解、yaml）读取bean的定义信息并包装成BeanDefinition。</li>
+<li>执行BeanFactoryPostProcessor准备BeanPostProcessor、广播器、监听器。（注：beanfactorypostprocessor完成对beanfactory相关信息的修改和拓展(容器运行需要的对象)。beanpostprocessor完成对bean的修改或拓展（用户自定义对象））。</li>
+<li>Bean的实例化：在ioc中利用反射实例化所有的非懒加载的单例bean。</li>
+<li>Bean的初始化：<br>
+1. Bean的属性赋值：实例化后的对象还是一个空对象，根据 Bean 的元信息对该对象的所有属性进行赋值。即PopulateBean方法。<br>
+2. 执行Aware接口的方法。Bean分为两种，一种是用户bean对象，一种容器对象bean（environment、applicationContext、beanFactory），aware接口是为了使某些用户bean对象能够方便的获取容器bean对象。<br>
+3. 执行BeanPostProcessor（增强器）的before方法。“增强Bean（AOP）”。<br>
+4. 执行init-method方法。<br>
+5. 执行BeanPostProcessor（增强器）的after方法。  对应过程before，这样就获得了完整对象。如果一个对象需要生成代理对象来增强bean，会进行反射的普通创建一个实例化的对象，所以叫拓展。不是所有的bean都会增强，所以一定是会创建新的（代理）对象。</li>
+<li>Bean的调用：有三种方式可以得到Bean并进行调用：
+<ol>
+<li>使用BeanWrapper。</li>
+<li>使用BeanFactory 。</li>
+<li>使用ApplicationContext。</li>
+</ol>
+</li>
+<li>Bean的销毁：
+<ol>
+<li>使用配置文件中的 destory-method 属性。</li>
+<li>实现 <em>org.springframwork.bean.factory.DisposebleBean</em>接口。</li>
+</ol>
+</li>
+</ol>
+<h3 id="ioc常见的实现方式">IOC常见的实现方式<a hidden class="anchor" aria-hidden="true" href="#ioc常见的实现方式">#</a></h3>
+<p>IOC是个原理（基于工厂模式+反射机制），是把以前在工厂方法中写死的对象生成代码，改由配置文件来定义，真正的实现方式常见的有两种：
+1、依赖注入。
+2、依赖查找。</p>
+<p>两者都是调用相关接口获取bean对象，区别在于DI（依赖注入）是IoC容器启动时由容器帮你实现，DL（依赖查找）要手动。目前用到DL（依赖查找）的非常少了，所以来聊聊DI（依赖注入），依赖注入从XML配置上来说就是ref标签，对应的是Spring中的RuntimeBeanReference对象，实现方法如下。</p>
+<h3 id="di依赖注入的实现方式">DI（依赖注入）的实现方式<a hidden class="anchor" aria-hidden="true" href="#di依赖注入的实现方式">#</a></h3>
+<ol>
+<li>构造器注入：构造器依赖注入通过容器触发一个类的构造器来实现的，通过构造器的参数注入相关依赖对象。用xml文件配置就是property中通过construct-arg来指定构造器的参数，用注解配置就是在<strong>构造方法</strong>上加上@Autowire注解。这种方式好比学渣从一开始就赖上了一个学霸，并且和这个学霸建立了长期合作关系。</li>
+<li>setter注入：通过 setter 方法注入依赖对象，也可以理解为字段注入。通过Xml配置就是property中指定name=”age”或Age；ref=”&hellip;..”。因为Spring会自动的将首字母大写再在前面加上set，这里也可以看到，有关的是set方法后的名称，而与属性（成员变量无关）。用注解来写就是在<strong>setter方法</strong>上加上@Autowire注解。这种方式学霸和学渣只是暂时的合作关系，如果学渣赖上了另一个学霸（调用set()方法传入了另一个对象），那么学渣和上一学霸的合作关系就结束了。</li>
+<li>属性注入（方法参数注入）：定义<strong>成员变量</strong>来添加@Autowire注入。这种方式不建议使用，但是工作中用的最多，因为真的方便。这么方便为什么不推荐？如果是IOC以外的环境，除了使用反射来提供他需要的依赖，无法复用该实现类。</li>
+</ol>
+<p>那setter注入和构造器注入用哪个？看上面我的描述，构造器不是有点强买强卖的意思？所以构造器参数实现强制依赖，setter方法实现可选依赖。构造器注入可以保证有序的被注入，而setter方法注入是通过反射机制注入，无法保证注入顺序。构造器注入不允许出现循环依赖，因此被注入的对象需要保证能实例化，构造器依赖初始化时对象才注入依赖对象，保证了bean初始化后就是不变的对象。setter方法的循环依赖Spring已经解决了，先聊聊循环依赖吧。</p>
+<p>这里多嘴提一句Autowired：@Autowired默认是byType，类型一样时会根据id查找，默认的id为类名（自动改为首字母小写）。找到了直接注入，找不到报错。如果指定id（别名）就是用@Qualifier。如果@Autowired添加在方法上时，此方法在创建对象的时候会默认调用，同时方法中的参数会自动进行装配。@Autowired也能用在方法的参数上指定当前属性的别名。Jdk提供了@Resource和@Autowired一样的功能。Resource可以在其他框架中用，是按照id进行装配的，id找不到就用type。Autowired通过反射来注入。</p>
+<h3 id="循环依赖">循环依赖<a hidden class="anchor" aria-hidden="true" href="#循环依赖">#</a></h3>
+<p>（只有单例Bean才会出现循环依赖）</p>
+<p>如果一段依赖关系为beanA&ndash;&gt;beanB&ndash;&gt;beanC&ndash;&gt;beanA，这就是循环依赖。如果没有最后一个beanA而是beanA&ndash;&gt;beanB&ndash;&gt;beanC，此时Spring将创建beanC，然后创建beanB（并将beanC注入beanB）然后创建beanA（并将beanB注入beanA），但是在有两次beanA时，Spring无法决定应该首先创建哪个bean（注意：这里是创建，不是初始化，初始化在上文Bean的生命周期有记载，是根据用户xml中对bean定义的顺序来加载，若有依赖，先用占位符_代替，那为什么不在加载Bean的时候直接注入呢？因为我们并不能要求用户按照顺序定义Bean，这样是不人道的！可能A依赖于B，但是B还没有加载好），因为他们彼此依赖，这个情况下Spring将在加载上下文时引发BeanCurrentlyInCreationException。使用构造方法注入时，他可能在Spring中发生，其他类型应该无此问题（setter注入的循环依赖已经被Spring解决）。</p>
+ <hr>
+  那在构造器注入中如何解决循环依赖呢?其实方法很多，当然我们只讲流行的，况且最好的方法就是重新设计或者用setter注入，简单了解一下吧。
+<ol>
+<li>
+<p>使用@Lazy放在构造方法参数列表的参数前，意思就是懒洋洋的初始化其中一个bean。它不是完全初始化bean，而是创建一个代理将它注入到另一个bean。注入的bean只有第一次需要时才会完全创建。用人话来讲就是第一次被需要才创建，之后在需要这个bean就是创建它的代理对象。</p>
+</li>
+<li>
+<p>在其中一个bean上加@AutoWired，其他依赖项上使用@PostConstruct。</p>
+<p>那我们肯定还是要了解一下setter注入中Spring是怎么解决循环依赖的吧！</p>
+</li>
+</ol>
+ <hr>
+ 		先透个实底：Spring通过提前暴露对象的方式解决循环依赖问题，即
+ 对“半成品对象”（实例化后、初始化前的对象叫做“半成品对象”）设置缓存来预存对象，等后续再根据A对象的引用来完成赋值操作，实例化后、初始化前的对象叫做“半成品对象”。这里缓存有三级。了解三级缓存前，先了解spring常用的6个方法：	
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"> getBean--&gt;doGetBean--&gt;createBean--&gt;doCreateBean--&gt;createInstance--&gt;populateBean 
+</code></pre></td></tr></table>
+</div>
+</div><pre><code>	  那三层分别什么作用?   
+一级缓存singletonObjects：存放成品对象。             
+二级缓存earlySingletonObjects：存放半成品对象。
+三级缓存singletonFactories：存放lamdb表达式。
+</code></pre>
+<p><strong>为何要有三级？只用第一级行不行？只用一、二级行不行? 	 别着急，小任细细道来。</strong></p>
+<p>如果只有一级缓存：那么意味着半成品对象和成品对象都要放到一级缓存，那就有可能获取到对象的非完整状态，此时不可以使用。</p>
+<p>如果只有一二级缓存：没有AOP的时候就可以，三级缓存是解决代理过程中的循环依赖。</p>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>总结</strong>一下以上：每次我们在获取对象的时候，是通过对象的name来获取bean的，如果原始对象和代理对象同时存在的话，那么我通过名字再进行获取的时候应该选择哪个？无法选择的，其实还有最核心的点，你怎么能够确认对象什么时候需要被引用呢？使用lambda表达式其实代表了一种回调机制，当需要使用当前对象的时候，通过lamdba表达式来最终返回一个确定的最终版本对象，而不需要判断几个对象，因为是替换的过程，所以只能有一个。接下来给IOC留个结尾干巴的面试题吧，干就完了！</li>
+</ul>
+<h3 id="spring核心类">Spring核心类<a hidden class="anchor" aria-hidden="true" href="#spring核心类">#</a></h3>
+<ol>
+<li>BeanFactory：产生一个新的实例，可以实现单例模式。</li>
+<li>BeanWrapper：提供统一的get及set方法。</li>
+<li>ApplicationContext:提供框架的实现，包括BeanFactory的所有功能。</li>
+</ol>
+<h3 id="spring中的设计模式">Spring中的设计模式<a hidden class="anchor" aria-hidden="true" href="#spring中的设计模式">#</a></h3>
+<ol>
+<li>工厂模式：Spring使用工厂模式，通过BeanFactory和ApplicationContext来创建对象。</li>
+<li>单例模式：Bean默认为单例模式。</li>
+<li>代理模式：Spring的AOP功能用到了JDK的动态代理和CGLIB字节码生成技术。</li>
+<li>模板方法：可以将相同部分的代码放在父类中，而将不同的代码放入不同的子类中，用来解决代码重复的问题。比如RestTemplate, JmsTemplate, JpaTemplate。</li>
+<li>适配器模式：Spring AOP的增强或通知（Advice）使用到了适配器模式，Spring MVC中也是用到了适配器模式适配Controller。</li>
+<li>策略模式：例如Resource的实现类，针对不同的资源文件，实现了不同方式的资源获取策略。</li>
+<li>观察者模式：Spring事件驱动模型就是观察者模式的一个经典应用。</li>
+<li>桥接模式：可以根据客户的需求能够动态切换不同的数据源。比如我们的项目需要连接多个数据库，客户在每次访问中根据需要会去访问不同的数据库。</li>
+</ol>
+<h3 id="bean的作用域">Bean的作用域<a hidden class="anchor" aria-hidden="true" href="#bean的作用域">#</a></h3>
+<ol>
+<li>singleton：这种bean范围是默认的，这种范围确保不管接受到多少个请求，每个容器中只有一个bean的实例，单例的模式由BeanFactory自身来维护。</li>
+<li>prototype：原型范围与单例范围相反，为每一个bean请求提供一个实例。</li>
+<li>request：在请求Bean范围内会对每一个来自客户端的网络请求创建一个实例，在请求完成以后，Bean会失效并被垃圾回收器回收。</li>
+<li>session：与请求范围类似，确保每个session中有一个bean的实例，在session过期后，bean会随之失效。</li>
+<li>globalsession：每个全局的HTTP Session，使用session定义的Bean都将产生一个新实例。典型情况下，仅在使用portlet context的时候有效。（不知所云）</li>
+</ol>
+<h3 id="applicationcontext-通常的实现">ApplicationContext 通常的实现<a hidden class="anchor" aria-hidden="true" href="#applicationcontext-通常的实现">#</a></h3>
+<ol>
+<li>FileSystemXmlApplicationContext：此容器从一个 XML 文件中加载beans 的定义，XML Bean 配置文件的全路径名必须提供给它的构造函数。</li>
+<li>ClassPathXmlApplicationContext：此容器也从一个 XML 文件中加载beans 的定义，这里，你需要正确设置 classpath 因为这个容器将在 classpath 里找 bean 配置。</li>
+<li>WebXmlApplicationContext：此容器加载一个 XML 文件，此文件定义了一个 Web 应用的所有 bean。</li>
+</ol>
+<h1 id="aop">AOP<a hidden class="anchor" aria-hidden="true" href="#aop">#</a></h1>
+<p>温馨提示：上面IOC没捋顺就别往下看AOP了</p>
+<h3 id="通知">通知<a hidden class="anchor" aria-hidden="true" href="#通知">#</a></h3>
+<p>大家都是怎么描述AOP和其中各种名词呢? 听听小任的见解。<br>
+想象一下：方法是纵向的，而各种打印的日志信息就都是横向的，横纵向的交汇点就是<strong>连接点</strong>，通俗来讲一个方法中可以填入额外的代码的地方都叫做<strong>连接点</strong>，而实际填充了代码的叫做<strong>切入点</strong>，<strong>切入点</strong>是<strong>连接点</strong>的子集。<strong>切面类</strong>就是存放打印日志方法的logUtil类，每一个<strong>切面类</strong>对应的方法都是<strong>横切面</strong>，使用AOP的话就在切面类上加@Aspect。
+通知注解的几种类型：</p>
+<ol>
+<li>@Before前置通知：方法执行前执行。</li>
+<li>@After后置通知：方法执行后执行。</li>
+<li>@AfterReturing返回通知：结果返回后运行。</li>
+<li>@AfterThrowing异常通知：出现异常时使用。</li>
+<li>@Around环绕通知：其他四个注解都是方法被调用就会根据情景来执行的，比如异常了就执行@AfterThrowing，其他四个注解都是被方法绑死，而环绕通知比较特殊，他能决定一个类是否需要返回对象，能决定该方法是否被调用。它是spring框架为我们提供的一种可以在代码中手动控制增强方法何时执行的方式。</li>
+</ol>
+<p>执行顺序：环绕前置通知&ndash;&gt;before&ndash;&gt;环绕后置通知&ndash;&gt;after&ndash;&gt;afterReturing或者：环绕前置通知&ndash;&gt;before&ndash;&gt;环绕后置通知&ndash;&gt;after&ndash;&gt;afterThrowing。</p>
+<p>这些通知都需要指定方法的权限修饰符、方法的返回值类型、方法的全限定名。在方法的参数的列表中不要随便添加参数值，会异常，如果需要参数就在参数列表加上joinpoint来getArgs（获取参数列表），返回值在注解中指定（returning=”result”）之后才能从在方法的参数列表指定。execution精确匹配的方式其实并不友好，一般用的是通配符（*和.）的方式也可以多个execution来进行逻辑运算（与或非）。</p>
+<h3 id="代理">代理<a hidden class="anchor" aria-hidden="true" href="#代理">#</a></h3>
+<p>讲到AOP一定逃不掉的一个东西：动态代理的实现<br>
+有动态，那静态呢？ 动态代理的代理类是动态生成的 ，静态代理的代理类是我们提前写好的。 那为什么要有动态代理呢？且先看看静态代理的优劣：<br>
+<strong>静态代理的好处</strong>是：我们的真实角色更加纯粹 . 不再去关注一些公共的事情 ，公共的业务由代理来完成，
+实现了业务的分工，公共业务发生扩展时变得更加集中和方便。说白了就是（动态、静态）代理类的好处。<br>
+<strong>静态代理的缺点</strong>是：类多了 , 多了代理类 , 工作量变大了 . 开发效率降低 。
+我们想要静态代理的好处，又不想要静态代理的缺点，所以 , 就有了动态代理 !</p>
+<p>动态代理的核心：一个动态代理 , 一般代理某一类业务 , 一个动态代理可以代理多个类，代理的是接口！</p>
+<p>动态代理分为两类 : 一类是基于接口动态代理 , 一类是基于类的动态代理。 两种实现方式：</p>
+<ul>
+<li>JDK代理：基于接口的动态代理。</li>
+<li>CGlib代理：基于类的动态代理。</li>
+<li>二者区别是：JDK代理只能对实现接口的类生成代理，利用反射机制生成一个匿名类，CGlib是针对类实现代理，对指定的类生成一个子类，并覆盖其中的方法，但是这种通过继承类的实现方式不能代理final修饰的类。</li>
+</ul>
+<p>如何实现JDK动态代理？		 （JDK 动态代理最核心的一个接口和方法如下）</p>
+<ul>
+<li>InvocationHandler 接口：使用方法首先是需要实现该接口，并且我们可以在 invoke方法中调用被代理类的方法并获得返回值，自然也可以在调用该方法的前后去做一些额外的事情，从而实现动态代理。传入的参数如下：<br>
+1.  proxy：被代理的类的实例；<br>
+2. method：调用被代理的类的方法；<br>
+3. args：该方法需要的参数；</li>
+<li>Proxy 类中的 newProxyInstance 方法：该方法会返回一个被修改过的类的实例，从而可以自由的调用该实例的方法。传入参数如下：<br>
+1. loader：被代理的类的类加载器；<br>
+2. interfaces：被代理类的接口数组；<br>
+3. invocationHandler：调用处理器类的对象实例；</li>
+</ul>
+<h3 id="spring的事务">Spring的事务<a hidden class="anchor" aria-hidden="true" href="#spring的事务">#</a></h3>
+<p>事务分为两种：声明式事务、编程式事务。一一介绍一下，先来精简的。</p>
+<ul>
+<li>编程式事务：在代码中直接加入处理逻辑，可能需要在代码中显式调用beginTransaction、commit、rollback方法。</li>
+<li>声明式事务：方法外部添加@Transational注解或在配置文件中直接定义，将事务代码和业务方法分离，以声明的方式实现事务管理。AOP恰好能完成，通过AOP方法模块化，进而实现声明式事务。其中，声明式事务用法值得一提其中的属性：<br>
+1. isolation：隔离级别。（大写不方便本人认读，所以还是小写）事务应该不会陌生吧?跟着MySQL/Oracle走，如果是MySQL，那隔离级别默认为RR（可重复读Read
+Repeated）Oracle则是默认RC（读已提交Read Commited)。<br>
+2. timeout：超过时间。<br>
+3. readonly：设置为只读事务。<br>
+4. noRollBackfor：设置为发生该异常也不回滚（指定异常类的类名.class）只对特定异常类起作用。<br>
+5. rollBackfor发生指定异常回滚（指定异常类的类名.class）只对特定异常类起作用。</li>
+</ul>
+<blockquote>
+<p>持续更新中&hellip;&hellip;..    敬请期待</p>
+</blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://coderrenxy.github.io/tags/spring/">Spring</a></li>
+      <li><a href="https://coderrenxy.github.io/tags/%E6%A1%86%E6%9E%B6/">框架</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/">
+    <span class="title">« 上一篇</span>
+    <br>
+    <span>Spring MVC小结</span>
+  </a>
+  <a class="next" href="https://coderrenxy.github.io/posts/blog/%E6%88%91%E5%AF%B9mysql%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%E5%BF%B5%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0...%E6%80%92%E8%82%9D16k%E5%AD%97-%E5%89%AF%E6%9C%AC/">
+    <span class="title">下一篇 »</span>
+    <br>
+    <span>我对MySQL的碎碎念念（持续更新...）怒肝12k字</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<script src="https://utteranc.es/client.js"
+repo="coderRenxy/coderrenxy.github.io"
+issue-term="title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+	<span id="busuanzi_container_site_pv">
+    访问量：<span id="busuanzi_value_site_pv"></span>次
+</span>
+&nbsp;
+<span id="busuanzi_container_site_uv">
+    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+</span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+ <div>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+
+</body>
+
+</html>

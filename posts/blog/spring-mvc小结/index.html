@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Spring MVC小结 | 小任同学&#39;s Blog</title>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta name="keywords" content="Spring MVC, 框架" />
+<meta name="description" content="正文开始。">
+<meta name="author" content="
+作者:&nbsp;小任同学">
+<link rel="canonical" href="https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link rel="preload" href="img/icon-32.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="apple-touch-icon" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.92.1" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Spring MVC小结" />
+<meta property="og:description" content="正文开始。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-02T02:45:59&#43;08:00" />
+<meta property="article:modified_time" content="2022-05-13T21:55:37&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spring MVC小结"/>
+<meta name="twitter:description" content="正文开始。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "📚 文章",
+      "item": "https://coderrenxy.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📋 技术",
+      "item": "https://coderrenxy.github.io/posts/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Spring MVC小结",
+      "item": "https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Spring MVC小结",
+  "name": "Spring MVC小结",
+  "description": "正文开始。",
+  "keywords": [
+    "Spring MVC", "框架"
+  ],
+  "articleBody": "Spring MVC的优点有哪些？   可以支持各种视图技术,而不仅仅局限于JSP；\n  与Spring框架集成（如IOC容器、AOP等）；\n  清晰的角色分配：\n 前端控制器(dispatcherServlet) ； 请求到处理器映射（handlerMapping)； 处理器适配器（HandlerAdapter)； 视图解析器（ViewResolver）；    支持各种请求资源的映射策略；\n  DispatcherServlet处理流程 Spring MVC框架的控制器（Controller）解析用户输入并将其转换为一个由视图呈现给用户的模型。\n控制器的核心DispatcherServlet处理请求和响应，处理流程如下：\n DispatcherServlet向处理器映射器（HandlerMapping）请求获取Handler。 返回Handler给DispatcherServlet。 DispatcherServlet向处理器适配器（HandlerAdapter）请求执行Handler并返回视图ModelAndView给DispatcherServlet。 向视图解析器（ViewResolver）通过视图名称查找视图并返回给DispatcherServlet真正的视图对象。 进行视图的渲染并返回给DispatcherServlet渲染后的视图。相当于给了controller控制器。以上png为转载，如有侵权，请联系本人。  常见注解 @PathVariable 和 @RequestMapping 和 @RequestParam：\n@PathVariable和@RequestParam不要混淆，\n区别是用法上不同：\n@PathVariable在 @RequestMapping请求路径后接”/{参数名}“，多个参数就再接多个“/{路径中的参数名}”，在对应的参数列表的参数前加上 @PathVariable 注解。该请求路径中参数名和参数列表 @PathVariable 注解的 value，再在网页路径上传入参数。\n而@RequestParam取参读取 /路径？后的name=”参数“，@RequestParam注解有三个参数，\n1、value：参数名。\n2、required：表示当前属性值是否必须存在（默认是true）。\n3、defaultValue：如果value传递参数了，使用参数，如果没有，使用默认值。\n@RequestHeader、@CookieValue也是一样的这三个参数。\n@RequestBody： 注解实现接收http请求的json数据，将json转换为java对象。\n注：@ResponseBody ＋ @Controller == @RestController\n例如：前台Ajax传递到controller的json格式数据绑定到后台方法的参数列表的某个参数上。\n1 2 3 4 5 6 7 8 9  $.ajax({ url:\"/login\", type:\"POST\", data:'{\"userName\":\"admin\",\"pwd\",\"admin123\"}', content-type:\"application/json charset=utf-8\", success:function(data){ alert(\"request success ! \"); } });   1 2 3 4 5 6  @requestMapping(\"/login\") public void login(@requestBody String userName,@requestBody String pwd){ //也可换做是user对象来绑定，会根据属性名赋值， //但是必须属性名和json的key对应上，否则请求不过去。 　System.out.println(userName+\" ：\"+pwd); }   @ResponseBody： 该注解实现将controller方法返回的java对象转化为json对象响应给客户。 换句话说：表示当前请求的内容直接作为响应体，用于接收。\n注意：在使用 @RequestMapping后，返回值通常解析为跳转路径，但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如前台异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。\n使用：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  @RequestMapping(\"/login\") @ResponseBody public User login(User user){ return user; } User字段：userName pwd; 那么在前台接收到的数据为：'{\"userName\":\"xxx\",\"pwd\":\"xxx\"}' 效果等同于如下代码： @RequestMapping(\"/login\") public void login(User user, HttpServletResponse response){ //通过response对象输出指定格式的数据 　response.getWriter.write(JSONObject.fromObject(user).toString()); }   @ModelAttribute：\n@ModelAttribute最主要的作用是将数据添加到模型对象中，用于视图页面展示时使用。说白了就是数据回显。 但远远不仅于此…..\n在方法参数上使用 @ModelAttribute 注解:\n可以描述为数据绑定，注解在方法参数上说明了该方法的该参数将由 model 中取得，如果model找不到，那么该参数会被优先实例化，然后被添加进model，再把请求中所有名称与之匹配的参数填充到该参数中。\n对方法使用 @ModelAttribute ：\n添加该注解的方法会率先其他方法执行。\n如果方法无返回值，就在添加该注解的方法中 model.addAttribute ，在该控制器的其他方法返回的页面可以拿到这个 model。\n有无返回值的 @ModelAttribute 方法区别是，无返回值的是 model.addAttribute(String key,Object value)来向model增加参数，而有返回值的直接将需要增加的参数返回。过程说出来就是赘述，联想一下。\n以上都是在 @ModelAttribute 中不加 value ，这样如果是有返回值的 @ModelAttribute 方法，就会默认返回名称为“返回值类型的小驼峰化的对象名称”，如果指定 value，那就是返回指定的，比如返回值类型是User，那默认名称则为user，指定名称为 pp，那返回参数名称就是pp。\nrest中的get、post、delete、put请求 get是获取资源、post新建资源、put更新资源、delete删除资源。\n在选择method只能发送post和get请求，因此可以用过滤器filter将post请求转化为put、delete请求以达到put、delete的效果。\n编码问题详解 编码问题无外乎两种情况：\n post： 在 web.xml 配置一个 CharacterEncodingFilter 过滤器，设置为 utf-8。 get：在tomcat的 server.xml 文件中，添加 URLEncoding=utf-8。或者对 request、response 参数重新编码。 注意：过滤器顺序：一个应用程序中可能会包含N个过滤器，这N个过滤器一般是没有顺序要求的，但是如果设置了编码过滤器，那么一定要把它放到最上面，保证过滤器的运行。不论是Spring MVC自带的编码器还是自定义的，都要这样。  后端向前端传值的方式 前面都是前端往后端传数据，现在看后端往前端传数据\n前面都是前端往后端传数据，现在看后端往前端传数据\n1、map.put(”msg”,”hello data”)，在参数列表加Map。return 的是页面路径。\n2、model.addAttribute(”mac”,”hello mac”)，在参数列表中加Model 对象名。return 的是页面路径。\n1 2 3 4 5 6 7  @RequestMapping(\"/testModel\") public String testModel(Model model){ model.addAttribute(\"name\",\"赵六\"); model.addAttribute(\"age\",12); model.addAttribute(\"address\",\"上海\"); return \"user\"; }   3、modelMap.addAttribute(”mac”,”hello mac”)，在参数列表中加ModelMap 对象名。return 的是页面路径。\n4、也可以用ModelAndView传递数据，方法内new一个modelAndView对象并且“该对象”.setViewName(”页面路径”)，再addObject(”mac”,”hello mac”);return的是“该对象”，上述三种返回的是页面路径。\n1 2 3 4 5 6 7 8 9 10 11  @RequestMapping(\"testModelAndView\") public ModelAndView testModelAndView(){ ModelAndView modelAndView = new ModelAndView(); //设置跳转页面名称 \tmodelAndView.setViewName(\"user\"); //设置携带的参数 \tmodelAndView.addObject(\"name\",\"赵六\"); modelAndView.addObject(\"age\",12); modelAndView.addObject(\"address\",\"上海\"); return modelAndView; }   以上都可以用于数据回显，前3种方式的回显数据保存在哪个作用域？\n1、page：当前页面\n2、request ：当前请求 （保存在这）\n3、session：当前会话\n4、application：当前应用\n当使用上述（map、model、modelMap）参数传递数据时会把数据都放置到Request作用域。\n如果要存在session中：在类名上+@SessionAttributes(”msg”);该注解表示每次向request中设置属性值时顺带向session中保存一份。\n转发、重定向 转发：在返回值前面加\"forward:\"，譬如\"forward:user.do?name=method4”\n重定向：在返回值前面加\"redirect:\"，譬如\"redirect:http://www.baidu.com\"\n处理静态资源 在处理静态资源时（例如图片），不做处理的话所有请求都会交由dispatcherServlet来处理，但是dispatcherServlet中没有处理静态资源的逻辑，所以访问不到，添加mvc默认配置后就可以了，由\n1  default-servlet-hanlder/   SpringMVC和struct2的区别  SpringMVC的入口是一个servlet即前端控制器（DispatchServlet），而struts2入口是一个filter过虑器（StrutsPrepareAndExecuteFilter） SpringMVC是基于方法开发（一个url对应一个方法），请求参数传递到方法的形参，可以设计为单例、多例。struct2是基于类开发，传递参数通过类的属性，只能设计为多例。  SpringMVC异常处理  可以抛给Spring框架来处理。 可以配置简单的异常处理器，在异常处理器中添加视图页面即可。  SpringMVC的控制器是不是单例模式？如果是，有什么问题？怎么解决？ 是单例模式。 在多线程访问的时候有线程安全问题。 解决方案是在控制器里面不能写可变状态量，如果需要使用这些可变状态，可以使用ThreadLocal机制解决，为每个线程单独生成一份变量副本，独立操作，互不影响。\nSpringMVC 里面拦截器是怎么写  实现 HandlerInterceptor 接口； 继承适配器类，接着在接口方法当中，实现处理逻辑，然后在 SpringMVC 的配置文件中配置拦截器即可。  注意 自定义类型转化器的时候一定要注意对应的属性值 跟 方法中的参数的值要对应起来。\n",
+  "wordCount" : "3968",
+  "inLanguage": "en",
+  "datePublished": "2022-02-02T02:45:59+08:00",
+  "dateModified": "2022-05-13T21:55:37+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "小任同学"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "小任同学's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://coderrenxy.github.io/img/icon-512.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://coderrenxy.github.io/" accesskey="h" title="小任同学&#39;s Blog (Alt + H)">
+                <img src="https://coderrenxy.github.io/img/icon-32.png" alt="logo" aria-label="logo"
+                    height=" 30px">小任同学&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://coderrenxy.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/search/" title="🔍搜索">
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/links" title="🤝友链">
+                    <span>🤝友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://coderrenxy.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/">📚 文章</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/blog/">📋 技术</a></div>
+    <h1 class="post-title">
+      Spring MVC小结
+    </h1>
+    <div class="post-description">
+      正文开始。
+    </div>
+    <div class="post-meta">
+			<p id="wc" style="font-size: 12px;">本文总阅读量<span id="busuanzi_value_page_pv"></span>次&nbsp;&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-02-02 02:45:59 +0800 CST'>2022-02-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-13&nbsp;|&nbsp;字数:&nbsp;3968字&nbsp;|&nbsp;时长: 8分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/blog/Spring%20MVC%e5%b0%8f%e7%bb%93.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                
+				<span class="details">文章目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#spring-mvc%e7%9a%84%e4%bc%98%e7%82%b9%e6%9c%89%e5%93%aa%e4%ba%9b" aria-label="Spring MVC的优点有哪些？">Spring MVC的优点有哪些？</a></li>
+                    <li>
+                        <a href="#dispatcherservlet%e5%a4%84%e7%90%86%e6%b5%81%e7%a8%8b" aria-label="DispatcherServlet处理流程">DispatcherServlet处理流程</a></li>
+                    <li>
+                        <a href="#%e5%b8%b8%e8%a7%81%e6%b3%a8%e8%a7%a3" aria-label="常见注解">常见注解</a></li>
+                    <li>
+                        <a href="#rest%e4%b8%ad%e7%9a%84getpostdeleteput%e8%af%b7%e6%b1%82" aria-label="rest中的get、post、delete、put请求">rest中的get、post、delete、put请求</a></li>
+                    <li>
+                        <a href="#%e7%bc%96%e7%a0%81%e9%97%ae%e9%a2%98%e8%af%a6%e8%a7%a3" aria-label="编码问题详解">编码问题详解</a></li>
+                    <li>
+                        <a href="#%e5%90%8e%e7%ab%af%e5%90%91%e5%89%8d%e7%ab%af%e4%bc%a0%e5%80%bc%e7%9a%84%e6%96%b9%e5%bc%8f" aria-label="后端向前端传值的方式">后端向前端传值的方式</a></li>
+                    <li>
+                        <a href="#%e8%bd%ac%e5%8f%91%e9%87%8d%e5%ae%9a%e5%90%91" aria-label="转发、重定向">转发、重定向</a></li>
+                    <li>
+                        <a href="#%e5%a4%84%e7%90%86%e9%9d%99%e6%80%81%e8%b5%84%e6%ba%90" aria-label="处理静态资源">处理静态资源</a></li>
+                    <li>
+                        <a href="#springmvc%e5%92%8cstruct2%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="SpringMVC和struct2的区别">SpringMVC和struct2的区别</a></li>
+                    <li>
+                        <a href="#springmvc%e5%bc%82%e5%b8%b8%e5%a4%84%e7%90%86" aria-label="SpringMVC异常处理">SpringMVC异常处理</a></li>
+                    <li>
+                        <a href="#springmvc%e7%9a%84%e6%8e%a7%e5%88%b6%e5%99%a8%e6%98%af%e4%b8%8d%e6%98%af%e5%8d%95%e4%be%8b%e6%a8%a1%e5%bc%8f%e5%a6%82%e6%9e%9c%e6%98%af%e6%9c%89%e4%bb%80%e4%b9%88%e9%97%ae%e9%a2%98%e6%80%8e%e4%b9%88%e8%a7%a3%e5%86%b3" aria-label="SpringMVC的控制器是不是单例模式？如果是，有什么问题？怎么解决？">SpringMVC的控制器是不是单例模式？如果是，有什么问题？怎么解决？</a></li>
+                    <li>
+                        <a href="#springmvc-%e9%87%8c%e9%9d%a2%e6%8b%a6%e6%88%aa%e5%99%a8%e6%98%af%e6%80%8e%e4%b9%88%e5%86%99" aria-label="SpringMVC 里面拦截器是怎么写">SpringMVC 里面拦截器是怎么写</a></li>
+                    <li>
+                        <a href="#%e6%b3%a8%e6%84%8f" aria-label="注意">注意</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+  <div class="post-content"><h3 id="spring-mvc的优点有哪些">Spring MVC的优点有哪些？<a hidden class="anchor" aria-hidden="true" href="#spring-mvc的优点有哪些">#</a></h3>
+<ol>
+<li>
+<p>可以支持各种视图技术,而不仅仅局限于JSP；</p>
+</li>
+<li>
+<p>与Spring框架集成（如IOC容器、AOP等）；</p>
+</li>
+<li>
+<p>清晰的角色分配：</p>
+<ol>
+<li>前端控制器(dispatcherServlet) ；</li>
+<li>请求到处理器映射（handlerMapping)；</li>
+<li>处理器适配器（HandlerAdapter)；</li>
+<li>视图解析器（ViewResolver）；</li>
+</ol>
+</li>
+<li>
+<p>支持各种请求资源的映射策略；</p>
+</li>
+</ol>
+<h3 id="dispatcherservlet处理流程">DispatcherServlet处理流程<a hidden class="anchor" aria-hidden="true" href="#dispatcherservlet处理流程">#</a></h3>
+<p>Spring MVC框架的控制器（Controller）解析用户输入并将其转换为一个由视图呈现给用户的模型。</p>
+<p>控制器的核心DispatcherServlet处理请求和响应，处理流程如下：</p>
+<ol>
+<li>DispatcherServlet向处理器映射器（HandlerMapping）请求获取Handler。</li>
+<li>返回Handler给DispatcherServlet。</li>
+<li>DispatcherServlet向处理器适配器（HandlerAdapter）请求执行Handler并返回视图ModelAndView给DispatcherServlet。</li>
+<li>向视图解析器（ViewResolver）通过视图名称查找视图并返回给DispatcherServlet真正的视图对象。</li>
+<li>进行视图的渲染并返回给DispatcherServlet渲染后的视图。相当于给了controller控制器。<img loading="lazy" src="https://img-blog.csdnimg.cn/4db704ad54004a7f81659dbaf7e85dc5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAcnh5X25vdF9maXZl,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"  />
+
+<em>以上png为转载，如有侵权，请联系本人。</em></li>
+</ol>
+<h3 id="常见注解">常见注解<a hidden class="anchor" aria-hidden="true" href="#常见注解">#</a></h3>
+<p><strong>@PathVariable</strong> 和 <strong>@RequestMapping</strong> 和 <strong>@RequestParam</strong>：<br>
+@PathVariable和@RequestParam不要混淆，<br>
+区别是用法上不同：<br>
+@PathVariable在 @RequestMapping请求路径后接”/{参数名}“，多个参数就再接多个“/{路径中的参数名}”，在对应的参数列表的参数前加上 @PathVariable 注解。该请求路径中参数名和参数列表 @PathVariable 注解的 value，再在网页路径上传入参数。<br>
+而@RequestParam取参读取 /路径？后的name=”参数“，@RequestParam注解有三个参数，</p>
+<p>1、value：参数名。</p>
+<p>2、required：表示当前属性值是否必须存在（默认是true）。</p>
+<p>3、defaultValue：如果value传递参数了，使用参数，如果没有，使用默认值。</p>
+<p>@RequestHeader、@CookieValue也是一样的这三个参数。</p>
+<p><strong>@RequestBody</strong>：
+注解实现接收http请求的json数据，将json转换为java对象。<br>
+注：@ResponseBody ＋ @Controller == @RestController<br>
+例如：前台Ajax传递到controller的json格式数据绑定到后台方法的参数列表的某个参数上。</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">9
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js">       $.ajax({
+　　　　　　　　url:<span style="color:#00afaf">&#34;/login&#34;</span>,
+　　　　　　　　type:<span style="color:#00afaf">&#34;POST&#34;</span>,
+　　　　　　　　data:<span style="color:#00afaf">&#39;{&#34;userName&#34;:&#34;admin&#34;,&#34;pwd&#34;,&#34;admin123&#34;}&#39;</span>,
+　　　　　　　　content-type:<span style="color:#00afaf">&#34;application/json charset=utf-8&#34;</span>,
+　　　　　　　　success:<span style="color:#0087ff">function</span>(data){
+　　　　　　　　　　alert(<span style="color:#00afaf">&#34;request success ! &#34;</span>);
+　　　　　　　　}
+　　　　});
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">6
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">　　　　<span style="color:#0087ff">@requestMapping</span>(<span style="color:#00afaf">&#34;/login&#34;</span>)
+　　　　<span style="color:#0087ff">public</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">login</span>(<span style="color:#0087ff">@requestBody</span> String userName,<span style="color:#0087ff">@requestBody</span> String pwd){   
+<span style="color:#4e4e4e">//也可换做是user对象来绑定，会根据属性名赋值，  
+</span><span style="color:#4e4e4e">//但是必须属性名和json的key对应上，否则请求不过去。
+</span><span style="color:#4e4e4e"></span>　　　　　　System.out.println(userName+<span style="color:#00afaf">&#34; ：&#34;</span>+pwd);
+　　　　}
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>@ResponseBody</strong>：
+该注解实现将controller方法返回的java对象转化为json对象响应给客户。
+换句话说：表示当前请求的内容直接作为响应体，用于接收。</p>
+<p>注意：在使用 @RequestMapping后，返回值通常解析为跳转路径，但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如前台异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。<br>
+使用：</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">　　<span style="color:#0087ff">@RequestMapping</span>(<span style="color:#00afaf">&#34;/login&#34;</span>)
+　　<span style="color:#0087ff">@ResponseBody</span>
+　　<span style="color:#0087ff">public</span> User <span style="color:#0087ff">login</span>(User user){
+　　　　<span style="color:#5f8700">return</span> user;
+　　}
+　　User字段：userName pwd;
+　　那么在前台接收到的数据为：&#39;{<span style="color:#00afaf">&#34;userName&#34;</span>:<span style="color:#00afaf">&#34;xxx&#34;</span>,<span style="color:#00afaf">&#34;pwd&#34;</span>:<span style="color:#00afaf">&#34;xxx&#34;</span>}&#39;
+
+　　效果等同于如下代码：
+　　<span style="color:#0087ff">@RequestMapping</span>(<span style="color:#00afaf">&#34;/login&#34;</span>)
+　　<span style="color:#0087ff">public</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">login</span>(User user, HttpServletResponse response){
+
+              <span style="color:#4e4e4e">//通过response对象输出指定格式的数据
+</span><span style="color:#4e4e4e"></span>　　　　response.getWriter.write(JSONObject.fromObject(user).toString());
+　　}
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>@ModelAttribute</strong>：<br>
+@ModelAttribute最主要的作用是将数据添加到模型对象中，用于视图页面展示时使用。说白了就是数据回显。  但远远不仅于此&hellip;..<br>
+<br>
+在方法<strong>参数</strong>上使用 @ModelAttribute 注解:<br>
+可以描述为<strong>数据绑定</strong>，注解在方法参数上说明了该方法的该参数将由 model 中取得，如果model找不到，那么该参数会被优先实例化，然后被添加进model，再把请求中所有名称与之匹配的参数填充到该参数中。<br>
+<br>
+对<strong>方法</strong>使用 @ModelAttribute ：<br>
+添加该注解的方法会率先其他方法执行。<br>
+如果方法无返回值，就在添加该注解的方法中 model.addAttribute ，在该控制器的其他方法返回的页面可以拿到这个 model。<br>
+有无返回值的 @ModelAttribute 方法区别是，无返回值的是 model.addAttribute(String key,Object value)来向model增加参数，而有返回值的直接将需要增加的参数返回。过程说出来就是赘述，联想一下。<br>
+以上都是在 @ModelAttribute 中不加 value ，这样如果是有返回值的 @ModelAttribute 方法，就会默认返回名称为“返回值类型的小驼峰化的对象名称”，如果指定 value，那就是返回指定的，比如返回值类型是User，那默认名称则为user，指定名称为 pp，那返回参数名称就是pp。</p>
+<h3 id="rest中的getpostdeleteput请求">rest中的get、post、delete、put请求<a hidden class="anchor" aria-hidden="true" href="#rest中的getpostdeleteput请求">#</a></h3>
+<p>get是获取资源、post新建资源、put更新资源、delete删除资源。<br>
+在选择method只能发送post和get请求，因此可以用过滤器filter将post请求转化为put、delete请求以达到put、delete的效果。</p>
+<h3 id="编码问题详解">编码问题详解<a hidden class="anchor" aria-hidden="true" href="#编码问题详解">#</a></h3>
+<p>编码问题无外乎两种情况：</p>
+<ol>
+<li>post： 在 web.xml 配置一个 CharacterEncodingFilter 过滤器，设置为 utf-8。</li>
+<li>get：在tomcat的 server.xml 文件中，添加 URLEncoding=utf-8。或者对 request、response 参数重新编码。</li>
+<li>注意：过滤器顺序：一个应用程序中可能会包含N个过滤器，这N个过滤器一般是没有顺序要求的，但是如果设置了编码过滤器，那么一定要把它放到最上面，保证过滤器的运行。不论是Spring MVC自带的编码器还是自定义的，都要这样。</li>
+</ol>
+<h3 id="后端向前端传值的方式">后端向前端传值的方式<a hidden class="anchor" aria-hidden="true" href="#后端向前端传值的方式">#</a></h3>
+<p>前面都是前端往后端传数据，现在看后端往前端传数据</p>
+<p>前面都是前端往后端传数据，现在看后端往前端传数据</p>
+<p>1、map.put(”msg”,”hello data”)，在参数列表加Map。return 的是页面路径。</p>
+<p>2、model.addAttribute(”mac”,”hello mac”)，在参数列表中加Model 对象名。return 的是页面路径。</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">7
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0087ff">@RequestMapping</span>(<span style="color:#00afaf">&#34;/testModel&#34;</span>)
+<span style="color:#0087ff">public</span> String <span style="color:#0087ff">testModel</span>(Model model){
+    model.addAttribute(<span style="color:#00afaf">&#34;name&#34;</span>,<span style="color:#00afaf">&#34;赵六&#34;</span>);
+    model.addAttribute(<span style="color:#00afaf">&#34;age&#34;</span>,12);
+    model.addAttribute(<span style="color:#00afaf">&#34;address&#34;</span>,<span style="color:#00afaf">&#34;上海&#34;</span>);
+    <span style="color:#5f8700">return</span> <span style="color:#00afaf">&#34;user&#34;</span>;
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>3、modelMap.addAttribute(”mac”,”hello mac”)，在参数列表中加ModelMap 对象名。return 的是页面路径。</p>
+<p>4、也可以用ModelAndView传递数据，方法内new一个modelAndView对象并且“该对象”.setViewName(”页面路径”)，再addObject(”mac”,”hello mac”);return的是“该对象”，上述三种返回的是页面路径。</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0087ff">@RequestMapping</span>(<span style="color:#00afaf">&#34;testModelAndView&#34;</span>)
+<span style="color:#0087ff">public</span> ModelAndView <span style="color:#0087ff">testModelAndView</span>(){
+	ModelAndView modelAndView = <span style="color:#5f8700">new</span> ModelAndView();
+	<span style="color:#4e4e4e">//设置跳转页面名称
+</span><span style="color:#4e4e4e"></span>	modelAndView.setViewName(<span style="color:#00afaf">&#34;user&#34;</span>);
+	<span style="color:#4e4e4e">//设置携带的参数
+</span><span style="color:#4e4e4e"></span>	modelAndView.addObject(<span style="color:#00afaf">&#34;name&#34;</span>,<span style="color:#00afaf">&#34;赵六&#34;</span>);
+	modelAndView.addObject(<span style="color:#00afaf">&#34;age&#34;</span>,12);
+	modelAndView.addObject(<span style="color:#00afaf">&#34;address&#34;</span>,<span style="color:#00afaf">&#34;上海&#34;</span>);
+	<span style="color:#5f8700">return</span> modelAndView;
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>以上都可以用于数据回显，前3种方式的回显数据保存在哪个作用域？</p>
+<p>1、page：当前页面</p>
+<p>2、request ：当前请求        （保存在这）</p>
+<p>3、session：当前会话</p>
+<p>4、application：当前应用</p>
+<p>当使用上述（map、model、modelMap）参数传递数据时会把数据都放置到Request作用域。</p>
+<p>如果要存在session中：在类名上+@SessionAttributes(”msg”);该注解表示每次向request中设置属性值时顺带向session中保存一份。</p>
+<h3 id="转发重定向">转发、重定向<a hidden class="anchor" aria-hidden="true" href="#转发重定向">#</a></h3>
+<p><strong>转发</strong>：在返回值前面加&quot;forward:&quot;，譬如&quot;forward:user.do?name=method4”</p>
+<p><strong>重定向</strong>：在返回值前面加&quot;redirect:&quot;，譬如&quot;redirect:<a href="http://www.baidu.com/">http://www.baidu.com</a>&quot;</p>
+<h3 id="处理静态资源">处理静态资源<a hidden class="anchor" aria-hidden="true" href="#处理静态资源">#</a></h3>
+<p>在处理静态资源时（例如图片），不做处理的话所有请求都会交由dispatcherServlet来处理，但是dispatcherServlet中没有处理静态资源的逻辑，所以访问不到，添加mvc默认配置后就可以了，由</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">&lt;mvc:<span style="color:#5f8700">default</span>-servlet-hanlder/&gt;&lt;mvc:annotation-driven&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="springmvc和struct2的区别">SpringMVC和struct2的区别<a hidden class="anchor" aria-hidden="true" href="#springmvc和struct2的区别">#</a></h3>
+<ol>
+<li>SpringMVC的入口是一个servlet即前端控制器（DispatchServlet），而struts2入口是一个filter过虑器（StrutsPrepareAndExecuteFilter）</li>
+<li>SpringMVC是基于方法开发（一个url对应一个方法），请求参数传递到方法的形参，可以设计为单例、多例。struct2是基于类开发，传递参数通过类的属性，只能设计为多例。</li>
+</ol>
+<h3 id="springmvc异常处理">SpringMVC异常处理<a hidden class="anchor" aria-hidden="true" href="#springmvc异常处理">#</a></h3>
+<ol>
+<li>可以抛给Spring框架来处理。</li>
+<li>可以配置简单的异常处理器，在异常处理器中添加视图页面即可。</li>
+</ol>
+<h3 id="springmvc的控制器是不是单例模式如果是有什么问题怎么解决">SpringMVC的控制器是不是单例模式？如果是，有什么问题？怎么解决？<a hidden class="anchor" aria-hidden="true" href="#springmvc的控制器是不是单例模式如果是有什么问题怎么解决">#</a></h3>
+<p>是单例模式。
+在多线程访问的时候有线程安全问题。
+解决方案是在控制器里面不能写可变状态量，如果需要使用这些可变状态，可以使用ThreadLocal机制解决，为每个线程单独生成一份变量副本，独立操作，互不影响。</p>
+<h3 id="springmvc-里面拦截器是怎么写">SpringMVC 里面拦截器是怎么写<a hidden class="anchor" aria-hidden="true" href="#springmvc-里面拦截器是怎么写">#</a></h3>
+<ol>
+<li>实现 HandlerInterceptor 接口；</li>
+<li>继承适配器类，接着在接口方法当中，实现处理逻辑，然后在 SpringMVC 的配置文件中配置拦截器即可。</li>
+</ol>
+<h3 id="注意">注意<a hidden class="anchor" aria-hidden="true" href="#注意">#</a></h3>
+<p>自定义类型转化器的时候一定要注意对应的属性值 跟 方法中的参数的值要对应起来。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://coderrenxy.github.io/tags/spring-mvc/">Spring MVC</a></li>
+      <li><a href="https://coderrenxy.github.io/tags/%E6%A1%86%E6%9E%B6/">框架</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/">
+    <span class="title">« 上一篇</span>
+    <br>
+    <span>LeetCode 一周小记 No.1</span>
+  </a>
+  <a class="next" href="https://coderrenxy.github.io/posts/blog/spring%E6%9D%82%E8%AE%B0/">
+    <span class="title">下一篇 »</span>
+    <br>
+    <span>Spring杂记（顺着链条自上往下看）</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<script src="https://utteranc.es/client.js"
+repo="coderRenxy/coderrenxy.github.io"
+issue-term="title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+	<span id="busuanzi_container_site_pv">
+    访问量：<span id="busuanzi_value_site_pv"></span>次
+</span>
+&nbsp;
+<span id="busuanzi_container_site_uv">
+    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+</span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+ <div>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+
+</body>
+
+</html>

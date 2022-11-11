@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>集合浅原理篇 | 小任同学&#39;s Blog</title>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta name="keywords" content="集合, Java" />
+<meta name="description" content="对集合的一些理解。">
+<meta name="author" content="
+作者:&nbsp;小任同学">
+<link rel="canonical" href="https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link rel="preload" href="img/icon-32.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="apple-touch-icon" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.92.1" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="集合浅原理篇" />
+<meta property="og:description" content="对集合的一些理解。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-07T05:52:59&#43;08:00" />
+<meta property="article:modified_time" content="2022-05-05T23:33:37&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="集合浅原理篇"/>
+<meta name="twitter:description" content="对集合的一些理解。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "📚 文章",
+      "item": "https://coderrenxy.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📋 技术",
+      "item": "https://coderrenxy.github.io/posts/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "集合浅原理篇",
+      "item": "https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "集合浅原理篇",
+  "name": "集合浅原理篇",
+  "description": "对集合的一些理解。",
+  "keywords": [
+    "集合", "Java"
+  ],
+  "articleBody": "​ 集合的概念：对象的容器，定义了对多个对象进行操作的常用方法。可实现数组的功能。\n和数组的区别：\n 数组长度固定，集合长度不固定。 数组可以存储基本数据类型、引用数据类型，集合只能存储引用数据类型。所以看到的 Map都是 Map，而不是 Map 。 相比于集合，数组没有删除方法，开辟连续空间。   Collection体系下两个接口 List接口 List 特点：有序、有下标、元素可重复。\nList 实现类： ArrayList、LinkedList、Vector。\n ArrayList：容量是动态的、但是牺牲效率，DEFAULT_CAPACITY = 10; 默认容量为10；若未添加元素，容量 0；扩容每次是原来的1.5倍，下文详解。ArrayList.add() 不带索引则默认从 0 开始。 Vector、ArrayList：都是数组结构实现，但是 Vector 是线程安全的，ArrayList 线程不安全，而 LinkedList 是链表结构实现。笼统来说，ArrayList 查询快、插入慢， LinkedList 查询慢、插入快，因为 ArrayList 要把插入位后面的值全都后移一位，但是有特殊情况，下文详解。 LinkedList ：存储结构为双向链表。 无需开辟连续空间，查询慢，增删快。具体下文再比较效率 。  ArrayList、LinkedList 比较  ArrayList 底层基于数组实现，LinkedList 底层基于链表实现，确切的说是循环双向链表（JDK 1.7 之前是双向循环链表、JDK 1.7 开始取消了循环），LinkedList 链表由一系列表项连接而成， 一个表项包含 3 个部分：元素内容、前驱表、后驱表。LinkedList 链表内部还有一个 header 表项，既是链表的开始也是链表的结尾。header 的后继表项是链表中的第一个元素，header 的前驱表项是链表中的最后一个元素。\nArrayList 的增删未必比 LinkedList 慢：\n1. 如果增删都是在末尾来操作【每次调用的都是 remove() 和 add()】，此时 ArrayList 就不需要移动和复制数组来进行操作了。 数据量达到百万级的时，速度是会比 LinkedList 要快的。\n2. 删除操作的位置是在中间。由于 LinkedList 的消耗主要是在遍历上， ArrayList 的消耗主要是在移动和复制上（底层调用的是 arrayCopy() 方法，是本地方法）。LinkedList 的遍历速度是要慢于 ArrayList 的复制移动速度， 数据量达到百万级的时，还是 ArrayList 要快。\nArrayList 扩容 起初 empty ArrayList with elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA，当使用 add 方法的时候首先调用 ensureCapacityInternal 方法， 源码中的 Capacity 是容量，size 是当前the number of elements it contains（当前包含的元素数）， 传入 size+1 进去，检查是否需要扩充 elementData 数组的大小，再传入值；具体扩容过程如下（不拿 add（） 的重载举例）：\n1 2 3 4 5  public boolean add(E e) { ensureCapacityInternal(size + 1); // Increments modCount!!  elementData[size++] = e; return true; }   若 add() 第一个元素，则传入 DEFAULT_CAPACITY = 10，默认容量为10，注意很多博主讲到扩容，minCapacity 、newCapacity、oldCapacity、size 名词组合拳就把人整晕了，其实传入的 size+1 就是 ensureCapacityInternal 方法中的 minCapacity。\n1 2 3  private void ensureCapacityInternal(int minCapacity) { ensureExplicitCapacity(calculateCapacity(elementData, minCapacity)); }   可以看到判断扩容的方法里调用了ensureExplicitCapacity和 calculateCapacity ，方法体如下：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14  private static int calculateCapacity(Object[] elementData, int minCapacity) { if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) { return Math.max(DEFAULT_CAPACITY, minCapacity); } return minCapacity; } private void ensureExplicitCapacity(int minCapacity) { modCount++; // overflow-conscious code  if (minCapacity - elementData.length  0) grow(minCapacity); }   calculateCapacity 方法传入 elementData （即当前存 “元素数据引用” 的地址）, minCapacity（即size+1），意思当第一次调用add(E e)方法的时候， 判断是不是无参构造函数创建的对象，如果是， 将 DEFAULT_CAPACITY 即 10 作为 ArrayList 的容量，此时 minCapacity = 1。返回的容量作为ensureExplicitCapacity的参数传入， 此时 modCount++；是fail-fast iterators 相关，先不用管，而 DataElement 是现在用于存储的数组，当 size+1 大于这个值，意味着要扩容了，然后调用grow（）方法扩容 ：\n1 2 3 4 5 6 7 8 9 10 11  private void grow(int minCapacity) { // overflow-conscious code  int oldCapacity = elementData.length; int newCapacity = oldCapacity + (oldCapacity  1); if (newCapacity - minCapacity if (newCapacity - MAX_ARRAY_SIZE  0) newCapacity = hugeCapacity(minCapacity); // minCapacity is usually close to size, so this is a win:  elementData = Arrays.copyOf(elementData, newCapacity); }   其中 oldCapacity 是原来的容量大小，oldCapacity » 1 为位运算的右移操作，右移一位相当于除以 2，所以这句代码就等于 int newCapacity = oldCapacity + oldCapacity / 2；\nnewCapacity = 扩充数组为原来的 1.5 倍(不能自定义)，然后判断 minCapacity 是否大于MAX_ARRAY_SIZE(Integer.MAX_VALUE – 8) ，如果大于数组最大容量，就取 Integer.MAX_VALUE；后回到 grow（）方法，调用 Arrays.copyof 方法， 即复制原数组内容到一个新容量的大数组里。这里Arrays.copyof 方法实际是调用 System.arraycopy方法。\n与 Vector 不同的是，Vector 每次扩容容量是翻倍，即为原来的 2倍，而 ArrayList 是 1.5倍。看似 1.5倍增长的很慢，那经常增加大量元素会不会导致经常扩容，数组重新分配导致效率低下呢？ 其实不然，每次增长为原来的 1.5倍实际增长的量会越来越大的。当然，如果一开始知道数据量很大的话，可以在初始化时预先指定容量。\n为什么扩容因子是 1.5\n因为1.5 可以充分利用移位操作，减少浮点数或者运算时间和运算次数。\n为什么不取固定长度\n扩容固定容量，很难决定到底取多少值合适，取任何具体值都不太合适，因为所需数据量往往由数组的客户端在具体应用场景决定。\n Set接口 Set 特点：无序、无下标、元素不能重复\nSet 实现类：HashSet、SortedSet 接口（TreeSet 实现类）\n TreeSet：基于排列顺序实现元素不重复。实现了 SortedSet 接口，对集合元素自动排序。元素对象的类型必须实现 Comparable 接口，指定排序规则方法的返回值为 0，则认为是重复元素。 HashSet：储存结构为哈希表（数组+链表+红黑树）。  HashSet 存储过程：\n 根据 hashcode 计算保存的位置，如果此位置为空，则直接保存，如果不为空执行第二步。 再执行 equals 方法，如果 equals 方法为 true ，则认为是重复，否则，形成链表。  HashSet、TreeSet的实现原理: HashSet 的实现是依赖于 HashMap 的，HashSet 的值都是存储在 HashMap 中的。在 HashSet 的构造法中会初始化一个 HashMap 对象，HashSet 不允许值重复。因此，HashSet 的值是作为 HashMap 的 key 存储在 HashMap 中的，当存储的值已经存在时返回 false。\nTreeSet 的实现基于 TreeMap。\n Map 集合体系 Map 父接口特点：存储一对一数据，无序、无下标，键不可重复，值可以重复。\n HashMap ：存储结构（哈希表：数组+链表+红黑树）允许 null key、value。\nHashTable：不允许 null key、value。线程安全。\nTreeMap：实现了 SortedMap 接口（Map 的子接口），可以对 key 自动排序。\nHashMap底层原理 jdk 1.7 的数据结构是 “ Entry数组+链表 ”，jdk 1.8 的数据结构是 ” Node 数组+链表/红黑树 “。当链表的深度达到 8 并且数组长度 = 64 时自动转化成红黑树，节点变成树节点，\t以提高搜索效率和插入效率到 O(logN)。Entry 和 Node 都包含 key、value、hash、next 属性。\nHashMap 默认容量为 16（数组长度），通过 hashcode 查询的时候是要先 ” hashcode % 数组长度 “ 进行运算才能找到数组对应位置下的链表。该数组只存引用的地址，其对象存在堆里。\n在 jdk 1.7 时插入元素是头插法，jdk 1.8 时是尾插法，头插法的插入很快（插完要移动一下，让该结点在原来头节点在数组中的槽位），尾插法要遍历再插入（jdk1.8）。\nput 时先会判断是否空数组，是空就会先初始化，put 一对 key-value 时，系统会根据 key 的hashcode\t来确认其在 “数组” 的存储位置，若没有元素则直接插入，否则会遍历该处的链表并依次比较其 key 的 hashcode，如果两个 key 的 hashcode 相同且 key 值相同，新的 value 会覆盖旧的 value 并返回旧的 value（不覆盖返回的是 NULLl）。如果 hashcode 相同但 key 值不同，则会进行插入操作，并且该链表的 size++。\n那么 key 值如何比较呢？ equals 方法。这里涉及 哈希碰撞：\n输入数据长度不固定，而输出的哈希值却是固定长度的，这意味着哈希值是一个有限集合，而输入数据则可以是无穷多个，那么建立一对一关系明显是不现实的。所以“碰撞”是必然会发生的。 HashMap 解决 hash冲突用的是拉链法，就是在对应的数组元素存链表头节点。还有开放寻址法、再哈希法，开放寻址是往数组索引++找空位置，再hash法就是再次用其他hash方法得到hashcode。 那既然 equals 方法这么有效，为什么还要用 hashcode ？\n因为 hashcode 快！\n如果现在有大量的对象需要比较，每个都用 equals() 效率是很低的，但 hashCode() 效率很高。\n所以有这种设计：先用 hashCode() 判断，如果 hashCode() 不同，则对象不等，如果 hashCode() 相同，再比较 equals() ，大大提高了效率。\nkey 可以等于 null，源码对 Entry 的两个约束：\n 数组每个槽位下都不为空。 所有结点平均分布在每一个槽位下的链表。  也正因如此，HashMap 的长度必须为 2 的次幂。讲到长度，就跑不掉 HashMap扩容了：\nHashMap 扩容条件 HashMap 扩容的加载因子默认为 0.75 ，阈值为 ” 0.75 * 数组长度 “，意思是每当 ”HashMap当前元素数“ 到达 ”当前容量 * 0.75“ 时 且 “插入位置不为 NULL” 就判断是否符合 “ 数组长度是否最大 ”。最大就不扩容，否则就是扩容到原容量的 2倍。\n0.75的负载因子的意义\n通常，默认负载因子（0.75）在时间和空间成本之间提供了一个很好的折中方案，负载因子控制存放数据的疏密程度。\n较高的值会减少空间开销，但会增加查找成本（在HashMap类的大多数操作中都得到体现，包括get和put），而且容易引发哈希冲突。\n16 * 0.75 = 12 除0.5与1以外唯一一个能得到整数的负载因子就是0.75。\n负载因子的大小决定了HashMap的数据密度，因子越大，越容易发生发生哈希碰撞，数组中的链表越容易长，造成查询或插入时比较次数增多，性能会下降。\n越小就越容易触发扩容，既影响性能又浪费空间。\nHashMap 扩容原理 new 一个两倍长度的 Entry/Node 数组，然后内容转移新的数组，扩容后链表会倒序。因此，多线程同时 put（）时，如果同时触发了 rehash（） 操作会导致 HashMap 中的链表中出现循环节点，进而使得后面 get（） 的时候，会死循环。\n另外，扩容之后链表可能减短，提高 get（） 时的效率。\n为什么HashMap扩容每次是2倍\n 找到 hash索引的方式是hashcode%（length-1）取模操作，但设计得到 hash索引的 hash函数是：hashcode无符号右移16位再异或hashcode再按位与（length-1），为什么这么做?\n因为2进制操作远远快于取模，length 为 2次幂时，又恰好 (length - 1) \u0026 hash ≈ hash % length。而且我们可以看到它求hash的过程，将32位的hashCode值向右移动16位，高位补0，也就是只要了高16位，这是为什么呢？\n因为hashcode的计算方法导致哈希值的差异主要在高位，而 (n - 1) \u0026 hash是忽略了容量以上的高位的，所以 使用h »16就是为了避免类似情况的哈希冲突 在扩容迁移的时候不需要再重新通过哈希定位新的位置了。扩容后，元素新的位置，要么在原脚标位，要么在原脚标位+扩容长度这么一个位置.是否移位，由扩容后表示的最高位是否1为所决定，由于移动的方向只有一个，即向高位移动。 因此，可以根据对最高位进行检测的结果来决定是否移位，从而可以优化性能，不用每一个元素都进行移位，因为为0说明刚好在移位完之后的位置，为1说明需要移动 oldCap.  哈希表底层怎样计算hash值  Object的hashcode方法算出h1。 h1无符号右移16位得到h2。 h1与h2异或运算得到最终的hash值h3。 h3与（length-1）按位与（\u0026）运算得到hash表索引。  HashMap死循环、ConcurrentHashMap HashMap\n在 JDK1.7 是采用的头插法，所以扩容过程转移到新的 HashMap 会逆置链表顺序，而当在并发环境下两个线程同时插入会导致死循环，原因就是顺序 A-B-C 变成了 C-B-A ，一个线程扩容完了之后另一个线程并不知道，因为此时两个线程都指向该槽位第一个节点， next 都是指向 B，而非扩容的线程的 B.next 还是 C，没有察觉到变化。在 JDK1.8 HashMap 采用的尾插法很好的规避了这个问题。\nConcurrentHashMap\n在 JDK1.7 下，ConcurrentHashMap 采用的是 segment 锁分段解决的并发问题，相比较 HashTable 降低了锁粒度。\n在 JDK1.8 下，ConcurrentHashMap 采用的是 CAS + synchronized + LockSupport 等阻塞手段实现的高效并发，和 JDK1.7 最大的区别在于 JDK1.8 的锁粒度更细，理想情况下 table 数组元素的大小就是其支持并发的最大个数，在 JDK7 里面最大并发 个数就是Segment的个数，默认值是16，可以通过构造函数改变一经创建不可更改，这个值就是并发的粒度，每一个segment下面管理一个table数组，加锁的时候其实锁住的是整个segment，这样设计的好处在于数组的扩容是不会影响其他的segment的， 简化了并发设计，不足之处在于并发的粒度稍粗，所以在 JDK1.8 里面，去掉了分段锁，将锁的级别控制在了更细粒度的table元素级别，也就是说只需要锁住这个链表的head节点，并不会影响其他的 table 元素的读写，好处在于并发的粒度更细， 影响更小，从而并发效率更好，但不足之处在于并发扩容的时候，由于操作的table都是同一个，不像 JDK1.7 中分段控制，所以这里需要等扩容完之后，所有的读写操作才能进行，所以扩容的效率就成为了整个并发的一个瓶颈点，好在Doug lea大神对扩容 做了优化，本来在一个线程扩容的时候，如果影响了其他线程的数据，那么其他的线程的读写操作都应该阻塞，但Doug lea说你们闲着也是闲着，不如来一起参与扩容任务，这样人多力量大，办完事你们该干啥干啥，别浪费时间，于是在 JDK1.8 的源码 里面就引入了一个 ForwardingNode 类，在一个线程发起扩容的时候，就会改变 sizeCtl 这个值。\n  对于get读操作，如果当前节点有数据，还没迁移完成，此时不影响读，能够正常进行。\n如果当前链表已经迁移完成，那么头节点会被设置成fwd节点，此时get线程会帮助扩容。\n  对于put/remove写操作，如果当前链表已经迁移完成，那么头节点会被设置成fwd节点，此时写线程会帮助扩容，如果扩容没有完成，当前链表的头节点会被锁住，所以写线程会被阻塞，直到扩容完成。\n  HashTable 和 HashMap 的区别  HashTable 不允许 key 和 value 为 null；HashMap 遇到 key 为 null 的时候，调用 putForNullKey（）进行处理，而对 value 没有处理；Hashtable 遇到 null，直接返回 NullPointerException。 HashTable 线程安全，但是 HashTable 线程安全的策略实现代价却太大了，简单粗暴，get/put 所有相关操作都是 synchronized 的，这相当于给整个哈希表加了一把大锁，多线程访问时候，只要有一个线程访问或操作该对象，那其他线程只 能阻塞，相当于将所有的操作串行化，在竞争激烈的并发场景中性能就会非常差。  ConcurrentHashMap 实现原理 JDK 1.7 中的实现：\n就是对HashMap加上个分段式锁，put和HashMap类似，先通过hashCode找到位置如果该处为null就new一个segment对象，segment 对象中有个 hashEntry 构成的链表，而每个 HashEntry 元素都是一个链表结构的节点，HashEntry 和 HashMap 非常类似，唯一的区别就是其中的核心数据 value 以及 next 都被 volatile 修饰，以此保证了多线程读写过程中对应变量的可见性。\nHashMap 不是线程安全的，而 ConcurrentHashMap 是线程安全的。ConcurrentHashMap 采用锁分段技术，将整个Hash桶进行了分段segment ，也就是将这个大的数组分成了几个小的片段 segment，而且每个小的片段 segment 上面都有锁存在，那么在插入元素的时候就需要先找到应该插入到哪一个片段 segment，然后再在这个片段上面进行插入，而且这里还需要获取 segment 锁，这样做明显减小了锁的粒度.比HashTable效率高。 put过程：先根据 key 找到 segment 中对应的 HashEntry，遍历该 HashEntry ，如果不为空则判断传入的 key 和当前遍历的 key 是否相等，相等就覆盖旧的 value，为空则需要新建一个 HashEntry 并加入到 segment 中，在加入之前会先判断是否需要扩容，最后解除 segment 锁。\nJDK 1.8 中的实现：\n将 JDK 1.7 中存放数据的 HashEntry 改为了 Node JDK 1.8 的 ConcurrentHashMap 取消了 Segment 分段锁，采取 CAS 和 synchronized 来保证并发的安全性。synchronized 只锁定当前链表或红黑二叉树的首节点，这样只要 hash 不冲突，就不会产生并发问题。\nLinkedHashMap实现原理：\nLinkedHashMap 也是基于 HashMap 实现的，不同的是它定义了一个 Entry header，这个 header 不是放在 Table 里，它是额外独立出来的。LinkedHashMap 通过继承 hashMap 中的 Entry，并添加两个属性 Entry before，Entry after 和 header 结合起来组成一个双向链表，来实现按插入顺序或访问顺序排序。\n 迭代 Iterator 可用来遍历 Set 和 List 集合，但是 ListIterator 只能用来遍历 List。Iterator 对集合只能是前向遍历，ListIterator 可以双向遍历。ListIterator 实现了 Iterator 接口，并包含其他的功能，比如：增加元素，替换元素，获取前一个和后一个元素的索引等等。\n与 Enumeration 相比，Iterator 更加安全，因为当一个集合正在被遍历的时候，它会阻止其它线程去修改集合。否则会抛出\tConcurrentModificationException 异常。这其实就是 fail-fast 机制。具体区别有三点：\n Iterator 的方法名比 Enumeration 更科学； Iterator 有 fail-fast 机制，比 Enumeration 更安全； Iterator 能够删除元素，Enumeration 并不能删除元素。  持续更新中…… 如有错误，敬请斧正…..\n",
+  "wordCount" : "6822",
+  "inLanguage": "en",
+  "datePublished": "2022-03-07T05:52:59+08:00",
+  "dateModified": "2022-05-05T23:33:37+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "小任同学"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "小任同学's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://coderrenxy.github.io/img/icon-512.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://coderrenxy.github.io/" accesskey="h" title="小任同学&#39;s Blog (Alt + H)">
+                <img src="https://coderrenxy.github.io/img/icon-32.png" alt="logo" aria-label="logo"
+                    height=" 30px">小任同学&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://coderrenxy.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/search/" title="🔍搜索">
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/links" title="🤝友链">
+                    <span>🤝友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://coderrenxy.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/">📚 文章</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/blog/">📋 技术</a></div>
+    <h1 class="post-title">
+      集合浅原理篇
+    </h1>
+    <div class="post-description">
+      对集合的一些理解。
+    </div>
+    <div class="post-meta">
+			<p id="wc" style="font-size: 12px;">本文总阅读量<span id="busuanzi_value_page_pv"></span>次&nbsp;&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-03-07 05:52:59 +0800 CST'>2022-03-07</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-05&nbsp;|&nbsp;字数:&nbsp;6822字&nbsp;|&nbsp;时长: 14分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/blog/%e9%9b%86%e5%90%88%e6%b5%85%e5%8e%9f%e7%90%86%e7%af%87.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                
+				<span class="details">文章目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#collection%e4%bd%93%e7%b3%bb%e4%b8%8b%e4%b8%a4%e4%b8%aa%e6%8e%a5%e5%8f%a3" aria-label="Collection体系下两个接口">Collection体系下两个接口</a><ul>
+                            <ul>
+                            
+                    <li>
+                        <a href="#list%e6%8e%a5%e5%8f%a3" aria-label="List接口">List接口</a></li>
+                    <li>
+                        <a href="#arraylistlinkedlist-%e6%af%94%e8%be%83" aria-label="ArrayList、LinkedList 比较">ArrayList、LinkedList 比较</a></li>
+                    <li>
+                        <a href="#arraylist-%e6%89%a9%e5%ae%b9" aria-label="ArrayList 扩容">ArrayList 扩容</a></li>
+                    <li>
+                        <a href="#set%e6%8e%a5%e5%8f%a3" aria-label="Set接口">Set接口</a></li>
+                    <li>
+                        <a href="#hashsettreeset%e7%9a%84%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86" aria-label="HashSet、TreeSet的实现原理:">HashSet、TreeSet的实现原理:</a></li></ul>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#map-%e9%9b%86%e5%90%88%e4%bd%93%e7%b3%bb" aria-label="Map 集合体系">Map 集合体系</a><ul>
+                            <ul>
+                            
+                    <li>
+                        <a href="#hashmap%e5%ba%95%e5%b1%82%e5%8e%9f%e7%90%86" aria-label="HashMap底层原理">HashMap底层原理</a></li>
+                    <li>
+                        <a href="#hashmap-%e6%89%a9%e5%ae%b9%e6%9d%a1%e4%bb%b6" aria-label="HashMap 扩容条件">HashMap 扩容条件</a></li>
+                    <li>
+                        <a href="#hashmap-%e6%89%a9%e5%ae%b9%e5%8e%9f%e7%90%86" aria-label="HashMap 扩容原理">HashMap 扩容原理</a></li>
+                    <li>
+                        <a href="#%e5%93%88%e5%b8%8c%e8%a1%a8%e5%ba%95%e5%b1%82%e6%80%8e%e6%a0%b7%e8%ae%a1%e7%ae%97hash%e5%80%bc" aria-label="哈希表底层怎样计算hash值">哈希表底层怎样计算hash值</a></li>
+                    <li>
+                        <a href="#hashmap%e6%ad%bb%e5%be%aa%e7%8e%afconcurrenthashmap" aria-label="HashMap死循环、ConcurrentHashMap">HashMap死循环、ConcurrentHashMap</a></li>
+                    <li>
+                        <a href="#hashtable-%e5%92%8c-hashmap-%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="HashTable 和 HashMap 的区别">HashTable 和 HashMap 的区别</a></li>
+                    <li>
+                        <a href="#concurrenthashmap-%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86" aria-label="ConcurrentHashMap 实现原理">ConcurrentHashMap 实现原理</a></li>
+                    <li>
+                        <a href="#%e8%bf%ad%e4%bb%a3" aria-label="迭代">迭代</a>
+                    </li>
+                </ul>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+  <div class="post-content"><p>​
+集合的概念：对象的容器，定义了对多个对象进行操作的常用方法。可实现数组的功能。<br>
+和数组的区别：</p>
+<ol>
+<li>数组长度固定，集合长度不固定。</li>
+<li>数组可以存储基本数据类型、引用数据类型，集合只能存储引用数据类型。所以看到的 Map都是 Map&lt;Integer,Integer&gt;，而不是 Map&lt;int,int&gt; 。</li>
+<li>相比于集合，数组没有删除方法，开辟连续空间。</li>
+</ol>
+<hr>  
+<h2 id="collection体系下两个接口">Collection体系下两个接口<a hidden class="anchor" aria-hidden="true" href="#collection体系下两个接口">#</a></h2>
+<h4 id="list接口">List接口<a hidden class="anchor" aria-hidden="true" href="#list接口">#</a></h4>
+<p><strong>List</strong> 特点：有序、有下标、元素可重复。<br>
+<strong>List</strong> 实现类： <code>ArrayList</code>、<code>LinkedList</code>、<code>Vector</code>。</p>
+<ol>
+<li><strong>ArrayList</strong>：容量是动态的、但是牺牲效率，<code>DEFAULT_CAPACITY = 10;</code> 默认容量为10；若未添加元素，容量 0；扩容每次是原来的1.5倍，下文详解。<code>ArrayList.add()</code> 不带索引则默认从 0 开始。</li>
+<li><strong>Vector</strong>、ArrayList：都是数组结构实现，但是 <code>Vector</code> 是线程安全的，<code>ArrayList</code> 线程不安全，而 <code>LinkedList</code> 是链表结构实现。笼统来说，<code>ArrayList</code> 查询快、插入慢，
+<code>LinkedList</code> 查询慢、插入快，因为 <code>ArrayList</code> 要把插入位后面的值全都后移一位，但是有特殊情况，下文详解。</li>
+<li><strong>LinkedList</strong> ：存储结构为双向链表。 无需开辟连续空间，查询慢，增删快。具体下文再比较效率 。</li>
+</ol>
+<h4 id="arraylistlinkedlist-比较">ArrayList、LinkedList 比较<a hidden class="anchor" aria-hidden="true" href="#arraylistlinkedlist-比较">#</a></h4>
+<p><code> ArrayList</code> 底层基于数组实现，<code>LinkedList</code> 底层基于链表实现，确切的说是循环双向链表（JDK 1.7 之前是双向循环链表、JDK 1.7 开始取消了循环），<code>LinkedList</code> 链表由一系列表项连接而成，
+一个表项包含 3 个部分：元素内容、前驱表、后驱表。<code>LinkedList</code> 链表内部还有一个 <code>header</code> 表项，既是链表的开始也是链表的结尾。<code>header</code> 的后继表项是链表中的第一个元素，<code>header</code>
+的前驱表项是链表中的最后一个元素。<br>
+<code>ArrayList</code> 的增删未必比 <code>LinkedList</code> 慢：<br>
+1. 如果增删都是在末尾来操作【每次调用的都是 <code>remove()</code> 和 <code>add()</code>】，此时 <code>ArrayList</code> 就不需要移动和复制数组来进行操作了。 数据量达到百万级的时，速度是会比 <code>LinkedList</code> 要快的。<br>
+2. 删除操作的位置是在中间。由于 <code>LinkedList</code> 的消耗主要是在遍历上，
+<code>ArrayList</code> 的消耗主要是在移动和复制上（底层调用的是 <code>arrayCopy()</code> 方法，是本地方法）。<strong><code>LinkedList</code> 的遍历速度是要慢于 <code>ArrayList</code> 的复制移动速度</strong>，
+数据量达到百万级的时，还是 <code>ArrayList</code> 要快。</p>
+<h4 id="arraylist-扩容">ArrayList 扩容<a hidden class="anchor" aria-hidden="true" href="#arraylist-扩容">#</a></h4>
+<p>起初 <code>empty ArrayList with elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA</code>，当使用 <code>add</code> 方法的时候首先调用 <code>ensureCapacityInternal</code> 方法，
+源码中的 <code>Capacity</code> 是容量，<code>size</code> 是当前<code>the number of elements it contains</code>（当前包含的元素数），
+传入 <code>size+1</code> 进去，检查是否需要扩充 <code>elementData</code> 数组的大小，再传入值；具体扩容过程如下（不拿 <code>add（）</code> 的重载举例）：</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">5
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0087ff">public</span> <span style="color:#af0000">boolean</span> <span style="color:#0087ff">add</span>(E e) {
+        ensureCapacityInternal(size + 1);  <span style="color:#4e4e4e">// Increments modCount!!
+</span><span style="color:#4e4e4e"></span>        elementData[size++] = e;
+        <span style="color:#5f8700">return</span> <span style="color:#d75f00">true</span>;
+    }
+</code></pre></td></tr></table>
+</div>
+</div><p>若 <code>add()</code> 第一个元素，则传入 <code>DEFAULT_CAPACITY = 10</code>，默认容量为10，注意很多博主讲到扩容，<code>minCapacity</code> 、<code>newCapacity</code>、<code>oldCapacity</code>、<code>size</code>
+名词组合拳就把人整晕了，其实传入的 <code>size+1</code> 就是 <code>ensureCapacityInternal</code> 方法中的 <code>minCapacity</code>。</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0087ff">private</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">ensureCapacityInternal</span>(<span style="color:#af0000">int</span> minCapacity) {
+        ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));
+    }
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到判断扩容的方法里调用了<code>ensureExplicitCapacity</code>和 <code>calculateCapacity</code>  ，方法体如下：</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0087ff">private</span> <span style="color:#0087ff">static</span> <span style="color:#af0000">int</span> <span style="color:#0087ff">calculateCapacity</span>(Object[] elementData, <span style="color:#af0000">int</span> minCapacity) {
+        <span style="color:#5f8700">if</span> (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
+            <span style="color:#5f8700">return</span> Math.max(DEFAULT_CAPACITY, minCapacity);
+        }
+        <span style="color:#5f8700">return</span> minCapacity;
+    }
+
+<span style="color:#0087ff">private</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">ensureExplicitCapacity</span>(<span style="color:#af0000">int</span> minCapacity) {
+        modCount++;
+
+        <span style="color:#4e4e4e">// overflow-conscious code
+</span><span style="color:#4e4e4e"></span>        <span style="color:#5f8700">if</span> (minCapacity - elementData.length &gt; 0)
+            grow(minCapacity);
+    }
+</code></pre></td></tr></table>
+</div>
+</div><p><code>calculateCapacity</code> 方法传入 </code>elementData</code> （即当前存 “元素数据引用” 的地址）, <code>minCapacity（即size+1）</code>，意思当第一次调用<code>add(E e)</code>方法的时候，
+判断是不是无参构造函数创建的对象，如果是， 将 <code>DEFAULT_CAPACITY</code> 即 10 作为 <code>ArrayList</code> 的容量，此时 <code>minCapacity = 1</code>。返回的容量作为<code>ensureExplicitCapacity</code>的参数传入，
+此时 <code>modCount++</code>；是<code>fail-fast iterators </code>相关，先不用管，而 <code>DataElement</code> 是现在用于存储的数组，当 <code>size+1</code> 大于这个值，意味着要扩容了，然后调用<code>grow（）</code>方法扩容 ：</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0087ff">private</span> <span style="color:#af0000">void</span> <span style="color:#0087ff">grow</span>(<span style="color:#af0000">int</span> minCapacity) {
+        <span style="color:#4e4e4e">// overflow-conscious code
+</span><span style="color:#4e4e4e"></span>        <span style="color:#af0000">int</span> oldCapacity = elementData.length;
+        <span style="color:#af0000">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);
+        <span style="color:#5f8700">if</span> (newCapacity - minCapacity &lt; 0)
+            newCapacity = minCapacity;
+        <span style="color:#5f8700">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; 0)
+            newCapacity = hugeCapacity(minCapacity);
+        <span style="color:#4e4e4e">// minCapacity is usually close to size, so this is a win:
+</span><span style="color:#4e4e4e"></span>        elementData = Arrays.copyOf(elementData, newCapacity);
+    }
+</code></pre></td></tr></table>
+</div>
+</div><p>其中 oldCapacity 是原来的容量大小，oldCapacity &raquo; 1 为位运算的右移操作，右移一位相当于除以 2，所以这句代码就等于 int newCapacity = oldCapacity + oldCapacity / 2；<br>
+newCapacity = 扩充数组为原来的 1.5 倍(不能自定义)，然后判断 minCapacity 是否大于MAX_ARRAY_SIZE(Integer.MAX_VALUE – 8) ，如果大于数组最大容量，就取 Integer.MAX_VALUE；后回到 grow（）方法，调用 Arrays.copyof 方法，
+即复制原数组内容到一个新容量的大数组里。这里Arrays.copyof 方法实际是调用 System.arraycopy方法。<br>
+与 <strong>Vector</strong> 不同的是，Vector 每次扩容容量是翻倍，即为原来的 2倍，而 ArrayList 是 1.5倍。看似 1.5倍增长的很慢，那经常增加大量元素会不会导致经常扩容，数组重新分配导致效率低下呢？
+其实不然，每次增长为原来的 1.5倍实际增长的量会越来越大的。当然，如果一开始知道数据量很大的话，可以在初始化时预先指定容量。<br>
+<br>
+<strong>为什么扩容因子是 1.5</strong><br>
+因为1.5 可以充分利用移位操作，减少浮点数或者运算时间和运算次数。<br>
+<strong>为什么不取固定长度</strong><br>
+扩容固定容量，很难决定到底取多少值合适，取任何具体值都不太合适，因为所需数据量往往由数组的客户端在具体应用场景决定。</p>
+<hr>
+<h4 id="set接口">Set接口<a hidden class="anchor" aria-hidden="true" href="#set接口">#</a></h4>
+<p>Set <strong>特点</strong>：无序、无下标、元素不能重复<br>
+Set <strong>实现类</strong>：HashSet、SortedSet 接口（TreeSet 实现类）</p>
+<ol>
+<li><strong>TreeSet</strong>：基于排列顺序实现元素不重复。实现了 SortedSet 接口，对集合元素自动排序。元素对象的类型必须实现 Comparable 接口，指定排序规则方法的返回值为 0，则认为是重复元素。</li>
+<li><strong>HashSet</strong>：储存结构为哈希表（数组+链表+红黑树）。</li>
+</ol>
+<p>HashSet 存储过程：</p>
+<ol>
+<li>根据 hashcode 计算保存的位置，如果此位置为空，则直接保存，如果不为空执行第二步。</li>
+<li>再执行 equals 方法，如果 equals 方法为 true ，则认为是重复，否则，形成链表。</li>
+</ol>
+<h4 id="hashsettreeset的实现原理">HashSet、TreeSet的实现原理:<a hidden class="anchor" aria-hidden="true" href="#hashsettreeset的实现原理">#</a></h4>
+<p>HashSet 的实现是依赖于 HashMap 的，HashSet 的值都是存储在 HashMap 中的。在 HashSet 的构造法中会初始化一个 HashMap 对象，HashSet 不允许值重复。因此，HashSet 的值是作为 HashMap 的 key 存储在 HashMap 中的，当存储的值已经存在时返回 false。</p>
+<p>TreeSet 的实现基于 TreeMap。</p>
+<hr><hr>
+<h2 id="map-集合体系">Map 集合体系<a hidden class="anchor" aria-hidden="true" href="#map-集合体系">#</a></h2>
+<p><strong>Map 父接口</strong>特点：存储一对一数据，无序、无下标，键不可重复，值可以重复。</p>
+<hr>
+<p><strong>HashMap</strong> ：存储结构（哈希表：数组+链表+红黑树）允许 null key、value。<br>
+<strong>HashTable</strong>：不允许 null key、value。线程安全。<br>
+<strong>TreeMap</strong>：实现了 SortedMap 接口（Map 的子接口），可以对 key 自动排序。</p>
+<h4 id="hashmap底层原理">HashMap底层原理<a hidden class="anchor" aria-hidden="true" href="#hashmap底层原理">#</a></h4>
+<p><strong>jdk 1.7</strong> 的数据结构是 “ Entry数组+链表 ”，<strong>jdk 1.8</strong> 的数据结构是 ” Node 数组+链表/红黑树 “。当链表的深度达到 8 并且数组长度 &gt;= 64 时自动转化成红黑树，节点变成树节点，	以提高搜索效率和插入效率到 O(logN)。Entry 和 Node 都包含 key、value、hash、next 属性。<br>
+HashMap 默认容量为 16（数组长度），通过 hashcode 查询的时候是要先 ” hashcode % 数组长度 “ 进行运算才能找到数组对应位置下的链表。该数组只存引用的地址，其对象存在堆里。<br>
+在 <strong>jdk 1.7</strong> 时插入元素是头插法，<strong>jdk 1.8</strong> 时是尾插法，头插法的插入很快（插完要移动一下，让该结点在原来头节点在数组中的槽位），尾插法要遍历再插入（jdk1.8）。<br>
+put 时先会判断是否空数组，是空就会先初始化，put 一对 key-value 时，系统会根据 key 的hashcode	 来确认其在 “<strong>数组</strong>” 的存储位置，若没有元素则直接插入，否则会遍历该处的链表并依次比较其 key 的 hashcode，如果两个 key 的 hashcode 相同且 key 值相同，新的 value 会覆盖旧的 value 并返回旧的 value（不覆盖返回的是 NULLl）。如果 hashcode 相同但 key 值不同，则会进行插入操作，并且该链表的 size++。<br>
+那么 key 值如何比较呢？ equals 方法。这里涉及 <strong>哈希碰撞</strong>：<br>
+输入数据长度不固定，而输出的哈希值却是固定长度的，这意味着哈希值是一个有限集合，而输入数据则可以是无穷多个，那么建立一对一关系明显是不现实的。所以“<strong>碰撞</strong>”是必然会发生的。 <br>
+HashMap 解决 hash冲突用的是<strong>拉链法</strong>，就是在对应的数组元素存链表头节点。还有<strong>开放寻址法</strong>、<strong>再哈希法</strong>，开放寻址是往数组索引++找空位置，再hash法就是再次用其他hash方法得到hashcode。
+那既然 <strong>equals</strong> 方法这么<strong>有效</strong>，<strong>为什么</strong>还要<strong>用 hashcode</strong> ？<br>
+因为 hashcode 快！<br>
+如果现在有大量的对象需要比较，每个都用 equals() 效率是很低的，但 hashCode() 效率很高。<br>
+所以有这种设计：先用 hashCode() 判断，如果 hashCode() 不同，则对象不等，如果 hashCode() 相同，再比较 equals() ，大大提高了效率。</p>
+<p>key 可以等于 null，源码对 Entry 的两个约束：</p>
+<ol>
+<li>数组每个槽位下都不为空。</li>
+<li>所有结点平均分布在每一个槽位下的链表。</li>
+</ol>
+<p>也正因如此，HashMap 的长度必须为 2 的次幂。讲到长度，就跑不掉 HashMap扩容了：</p>
+<h4 id="hashmap-扩容条件">HashMap 扩容条件<a hidden class="anchor" aria-hidden="true" href="#hashmap-扩容条件">#</a></h4>
+<p>HashMap 扩容的加载因子默认为 0.75 ，阈值为 ” 0.75 * 数组长度 “，意思是每当 ”HashMap当前元素数“ 到达 ”当前容量 * 0.75“ 时 且 “插入位置不为 NULL”  就判断是否符合 “ 数组长度是否最大 ”。最大就不扩容，否则就是扩容到原容量的 2倍。</p>
+<p><strong>0.75的负载因子的意义</strong><br>
+通常，默认负载因子（0.75）在时间和空间成本之间提供了一个很好的折中方案，负载因子控制存放数据的疏密程度。<br>
+较高的值会减少空间开销，但会增加查找成本（在HashMap类的大多数操作中都得到体现，包括get和put），而且容易引发哈希冲突。<br>
+16 * 0.75 = 12 除0.5与1以外唯一一个能得到整数的负载因子就是0.75。<br>
+负载因子的大小决定了HashMap的数据密度，因子越大，越容易发生发生哈希碰撞，数组中的链表越容易长，造成查询或插入时比较次数增多，性能会下降。<br>
+越小就越容易触发扩容，既影响性能又浪费空间。</p>
+<h4 id="hashmap-扩容原理">HashMap 扩容原理<a hidden class="anchor" aria-hidden="true" href="#hashmap-扩容原理">#</a></h4>
+<p>new 一个两倍长度的 Entry/Node 数组，然后内容转移新的数组，扩容后链表会倒序。因此，多线程同时 put（）时，如果同时触发了 rehash（） 操作会导致 HashMap 中的链表中出现循环节点，进而使得后面 get（） 的时候，会死循环。<br>
+另外，扩容之后链表可能减短，提高 get（） 时的效率。</p>
+<p><strong>为什么HashMap扩容每次是2倍</strong></p>
+<ol>
+<li>找到 hash索引的方式是hashcode%（length-1）取模操作，但设计得到 hash索引的 hash函数是：hashcode无符号右移16位再异或hashcode再按位与（length-1），为什么这么做?<br>
+因为2进制操作远远快于取模，length 为 2次幂时，又恰好 (length - 1) &amp; hash ≈ hash % length。而且我们可以看到它求hash的过程，将32位的hashCode值向右移动16位，高位补0，也就是只要了高16位，这是为什么呢？<br>
+因为hashcode的计算方法导致哈希值的差异主要在高位，而 (n - 1) &amp; hash是忽略了容量以上的高位的，所以 使用h &raquo;&gt;16就是为了避免类似情况的哈希冲突</li>
+<li>在扩容迁移的时候不需要再重新通过哈希定位新的位置了。扩容后，元素新的位置，要么在原脚标位，要么在原脚标位+扩容长度这么一个位置.是否移位，由扩容后表示的最高位是否1为所决定，由于移动的方向只有一个，即向高位移动。
+因此，可以根据对最高位进行检测的结果来决定是否移位，从而可以优化性能，不用每一个元素都进行移位，因为为0说明刚好在移位完之后的位置，为1说明需要移动 oldCap.</li>
+</ol>
+<h4 id="哈希表底层怎样计算hash值">哈希表底层怎样计算hash值<a hidden class="anchor" aria-hidden="true" href="#哈希表底层怎样计算hash值">#</a></h4>
+<ol>
+<li>Object的hashcode方法算出h1。</li>
+<li>h1无符号右移16位得到h2。</li>
+<li>h1与h2异或运算得到最终的hash值h3。</li>
+<li>h3与（length-1）按位与（&amp;）运算得到hash表索引。</li>
+</ol>
+<h4 id="hashmap死循环concurrenthashmap">HashMap死循环、ConcurrentHashMap<a hidden class="anchor" aria-hidden="true" href="#hashmap死循环concurrenthashmap">#</a></h4>
+<p><strong>HashMap</strong><br>
+在 JDK1.7 是采用的头插法，所以扩容过程转移到新的 HashMap 会逆置链表顺序，而当在并发环境下两个线程同时插入会导致死循环，原因就是顺序 A-B-C 变成了 C-B-A ，一个线程扩容完了之后另一个线程并不知道，因为此时两个线程都指向该槽位第一个节点，
+next 都是指向 B，而非扩容的线程的 B.next 还是 C，没有察觉到变化。在 JDK1.8 HashMap 采用的尾插法很好的规避了这个问题。<br>
+<br>
+<strong>ConcurrentHashMap</strong><br>
+在 JDK1.7 下，ConcurrentHashMap 采用的是 segment 锁分段解决的并发问题，相比较 HashTable 降低了锁粒度。<br>
+在 JDK1.8 下，ConcurrentHashMap 采用的是 CAS + synchronized + LockSupport 等阻塞手段实现的高效并发，和 JDK1.7 最大的区别在于 JDK1.8 的锁粒度更细，理想情况下 table 数组元素的大小就是其支持并发的最大个数，在 JDK7 里面最大并发
+个数就是Segment的个数，默认值是16，可以通过构造函数改变一经创建不可更改，这个值就是并发的粒度，每一个segment下面管理一个table数组，加锁的时候其实锁住的是整个segment，这样设计的好处在于数组的扩容是不会影响其他的segment的，
+简化了并发设计，不足之处在于并发的粒度稍粗，所以在 JDK1.8 里面，去掉了分段锁，将锁的级别控制在了更细粒度的table元素级别，也就是说只需要锁住这个链表的head节点，并不会影响其他的 table 元素的读写，好处在于并发的粒度更细，
+影响更小，从而并发效率更好，但不足之处在于并发扩容的时候，由于操作的table都是同一个，不像 JDK1.7 中分段控制，所以这里需要等扩容完之后，所有的读写操作才能进行，所以扩容的效率就成为了整个并发的一个瓶颈点，好在Doug lea大神对扩容
+做了优化，本来在一个线程扩容的时候，如果影响了其他线程的数据，那么其他的线程的读写操作都应该阻塞，但Doug lea说你们闲着也是闲着，不如来一起参与扩容任务，这样人多力量大，办完事你们该干啥干啥，别浪费时间，于是在 JDK1.8 的源码
+里面就引入了一个 ForwardingNode 类，在一个线程发起扩容的时候，就会改变 sizeCtl 这个值。<br>
+<br></p>
+<ol>
+<li>
+<p>对于get读操作，如果当前节点有数据，还没迁移完成，此时不影响读，能够正常进行。<br>
+如果当前链表已经迁移完成，那么头节点会被设置成fwd节点，此时get线程会帮助扩容。</p>
+</li>
+<li>
+<p>对于put/remove写操作，如果当前链表已经迁移完成，那么头节点会被设置成fwd节点，此时写线程会帮助扩容，如果扩容没有完成，当前链表的头节点会被锁住，所以写线程会被阻塞，直到扩容完成。</p>
+</li>
+</ol>
+<h4 id="hashtable-和-hashmap-的区别">HashTable 和 HashMap 的区别<a hidden class="anchor" aria-hidden="true" href="#hashtable-和-hashmap-的区别">#</a></h4>
+<ol>
+<li>HashTable 不允许 key 和 value 为 null；HashMap 遇到 key 为 null 的时候，调用 putForNullKey（）进行处理，而对 value 没有处理；Hashtable 遇到 null，直接返回 NullPointerException。</li>
+<li>HashTable 线程安全，但是 HashTable 线程安全的策略实现代价却太大了，简单粗暴，get/put 所有相关操作都是 synchronized 的，这相当于给整个哈希表加了一把大锁，多线程访问时候，只要有一个线程访问或操作该对象，那其他线程只 能阻塞，相当于将所有的操作串行化，在竞争激烈的并发场景中性能就会非常差。</li>
+</ol>
+<h4 id="concurrenthashmap-实现原理">ConcurrentHashMap 实现原理<a hidden class="anchor" aria-hidden="true" href="#concurrenthashmap-实现原理">#</a></h4>
+<p>JDK 1.7 中的实现：<br>
+就是对HashMap加上个分段式锁，put和HashMap类似，先通过hashCode找到位置如果该处为null就new一个segment对象，segment 对象中有个 hashEntry 构成的链表，而每个 HashEntry 元素都是一个链表结构的节点，HashEntry 和 HashMap 非常类似，唯一的区别就是其中的核心数据 value 以及 next 都被 volatile 修饰，以此保证了多线程读写过程中对应变量的可见性。<br>
+HashMap 不是线程安全的，而 ConcurrentHashMap 是线程安全的。ConcurrentHashMap 采用锁分段技术，将整个Hash桶进行了分段segment ，也就是将这个大的数组分成了几个小的片段 segment，而且每个小的片段 segment 上面都有锁存在，那么在插入元素的时候就需要先找到应该插入到哪一个片段 segment，然后再在这个片段上面进行插入，而且这里还需要获取 segment 锁，这样做明显减小了锁的粒度.比HashTable效率高。 <br>
+put过程：先根据 key 找到 segment 中对应的 HashEntry，遍历该 HashEntry ，如果不为空则判断传入的 key 和当前遍历的 key 是否相等，相等就覆盖旧的 value，为空则需要新建一个 HashEntry 并加入到 segment 中，在加入之前会先判断是否需要扩容，最后解除 segment 锁。</p>
+<p>JDK 1.8 中的实现：<br>
+将 JDK 1.7 中存放数据的 HashEntry 改为了 Node
+JDK 1.8 的 ConcurrentHashMap 取消了 Segment 分段锁，采取 CAS 和 synchronized 来保证并发的安全性。synchronized 只锁定当前链表或红黑二叉树的首节点，这样只要 hash 不冲突，就不会产生并发问题。</p>
+<p><strong>LinkedHashMap实现原理：</strong><br>
+LinkedHashMap 也是基于 HashMap 实现的，不同的是它定义了一个 Entry header，这个 header 不是放在 Table 里，它是额外独立出来的。LinkedHashMap 通过继承 hashMap 中的 Entry，并添加两个属性 Entry&lt;K,V&gt;  before，Entry&lt;K,V&gt; after 和 header 结合起来组成一个双向链表，来实现按插入顺序或访问顺序排序。</p>
+<hr>
+<h4 id="迭代">迭代<a hidden class="anchor" aria-hidden="true" href="#迭代">#</a></h4>
+<p>Iterator 可用来遍历 Set 和 List 集合，但是 ListIterator 只能用来遍历 List。Iterator 对集合只能是前向遍历，ListIterator 可以双向遍历。ListIterator 实现了 Iterator 接口，并包含其他的功能，比如：增加元素，替换元素，获取前一个和后一个元素的索引等等。<br>
+与 Enumeration 相比，Iterator 更加安全，因为当一个集合正在被遍历的时候，它会阻止其它线程去修改集合。否则会抛出	ConcurrentModificationException 异常。这其实就是 fail-fast 机制。具体区别有三点：</p>
+<ol>
+<li>Iterator 的方法名比 Enumeration 更科学；</li>
+<li>Iterator 有 fail-fast 机制，比 Enumeration 更安全；</li>
+<li>Iterator 能够删除元素，Enumeration 并不能删除元素。</li>
+</ol>
+<p>持续更新中&hellip;&hellip;
+如有错误，敬请斧正&hellip;..</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://coderrenxy.github.io/tags/%E9%9B%86%E5%90%88/">集合</a></li>
+      <li><a href="https://coderrenxy.github.io/tags/java/">Java</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.3/">
+    <span class="title">« 上一篇</span>
+    <br>
+    <span>LeetCode 一周小记 No.3</span>
+  </a>
+  <a class="next" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.2/">
+    <span class="title">下一篇 »</span>
+    <br>
+    <span>LeetCode 一周小记 No.2</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<script src="https://utteranc.es/client.js"
+repo="coderRenxy/coderrenxy.github.io"
+issue-term="title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+	<span id="busuanzi_container_site_pv">
+    访问量：<span id="busuanzi_value_site_pv"></span>次
+</span>
+&nbsp;
+<span id="busuanzi_container_site_uv">
+    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+</span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+ <div>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+
+</body>
+
+</html>

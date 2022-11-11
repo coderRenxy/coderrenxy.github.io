@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Mybatis | 小任同学&#39;s Blog</title>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta name="keywords" content="Mybatis, 框架" />
+<meta name="description" content="关于Mybatis的学习笔记。">
+<meta name="author" content="
+作者:&nbsp;小任同学">
+<link rel="canonical" href="https://coderrenxy.github.io/posts/blog/mybatis/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link rel="preload" href="img/icon-32.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="apple-touch-icon" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.92.1" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Mybatis" />
+<meta property="og:description" content="关于Mybatis的学习笔记。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://coderrenxy.github.io/posts/blog/mybatis/" />
+<meta property="og:image" content="https://coderrenxy.github.io/img/Mybatis.webp" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-10T13:18:37&#43;08:00" />
+<meta property="article:modified_time" content="2022-05-10T13:18:37&#43;08:00" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://coderrenxy.github.io/img/Mybatis.webp" />
+<meta name="twitter:title" content="Mybatis"/>
+<meta name="twitter:description" content="关于Mybatis的学习笔记。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "📚 文章",
+      "item": "https://coderrenxy.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📋 技术",
+      "item": "https://coderrenxy.github.io/posts/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Mybatis",
+      "item": "https://coderrenxy.github.io/posts/blog/mybatis/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Mybatis",
+  "name": "Mybatis",
+  "description": "关于Mybatis的学习笔记。",
+  "keywords": [
+    "Mybatis", "框架"
+  ],
+  "articleBody": "\nMybatis是什么 Mybatis是一个半ORM（对象关系映射）框架，内部封装了JDBC、加载驱动、创建连接、创建statement等一系列与数据库交互的繁杂步骤。\n Mybatis优缺点 优点\n 灵活，sql写在xml中与程序代码解耦，便于统一管理，支持动态sql，并可重用。 与JDBC相比，减少了至少50%的代码量，消除了JDBC大量冗余代码，不需要手动开关连接。 与各种数据库兼容。（因为内部封装了JDBC，所以JDBC支持的所有数据库都和Mybatis兼容） 与Spring能够很好的集成。  缺点\n SQL语句编写工作量大，尤其字段多，关联表多时对开发人员编写SQL功底有一定要求。 SQL语句依赖数据库，导致数据库可移植性差，不能随意更换数据库。   JDBC：是一个用于执行SQL的Java API，可为多种关系型数据库提供统一访问。\n Hibernate特点 是一个ORM（Object Relation Mapping：对象关系映射）框架，只需要操作对象，处理好了映射关系后不怎么需要操作数据库。但是缺点有：\n Hibernate的完全封装导致无法使用数据的一些功能。 对代码的耦合度高。 找bug难，因为封装完美。 批量操作数据需要大量内存空间而且执行过程对象太多。   Mybatis的使用 mybatis-config略过，写一个dao接口但是不用实现，在对应的xml文件写sql，创建一个实体类对应xml中的字段，在mapper.xml中namespace就是对应dao的路径，mapper文件里面写sql语句、resultType、id等参数。 在mapper.xml中sql里面 #{name}的字段是由上层（service层）对实体类对象调用setName方法传进来的，实体类做一个中转站。\n在使用Mybatis时，时常实体类属性名和表字段名不匹配，那我们就封装一个结果集，如果能一一对应，系统就相当于自动封装了一个结果集。也可以as取别名。\n 动态 sql 小问题 动态sql在本人工作过程中使用出现的问题：内一直把and或or写在句尾，但是最后一个为null时，上一个 if 末尾的 and 或 or 会导致报错。\n解决方法：在整体 if 外嵌套一个 where 标签会自动去除所有 if 语句的整体的开头的 and 或 or，但是注意必须写在开头而不是像未使用 where 标签时一样写在末尾。\n sqlSession：与数据库的会话\n 一些属性 flushCache：用来表示当前sql语句的结果是否进入二级缓存;\nstatementType：用于选择执行sql语句的方式\n statement：最基本的jdbc操作，用来表示一个sql语句，不能防止sql注入。 prepared：采用预编译方式，能防止sql注入，设置参数的时候需要该对象来进行设置。 callback：调用存储过程。  resultType：用的不多，因为只能返回一个实体类的类型，多数使用reslutMap自定义结果集\n 预编译 预编译定义：SQL预编译指的是数据库驱动在发送SQL语句和参数给DBMS之前对SQL语句进行编译，这样DBMS执行SQL时，就不需要重新编译。\n为什么需要预编译：预编译阶段可以优化SQL的执行。预编译之后的SQL多数情况下可以直接执行，DBMS不需要再次编译，越复杂的SQL，编译的复杂度将越大，预编译阶段可以合并多次操作为一个操作。同时预编译语句对象可以重复利用。\n #{}与${}的区别   #{}的处理方式使用了参数预编译，被解析为一个参数占位符 。\n获取数据：使用 #{} 获取必须用对象的属性名，多个参数时用arg0、arg1…..原因是mybatis在传入多个参数时，会将这些参数的结果封装到map结构中，在map中key就是{arg0，arg1….}。如果想使用参数别名，可以用@param(“别名”) Integer empAge在dao的interface中。\n  ${}是直接拼接 sql语句得到对应的 sql语句，仅仅为一个纯碎的 string 替换，会有 sql注入的危险，所以推荐 #{}的方式。\n${}的使用场景：动态传入表名，order by ${列名}。注意：这是动态传值，所以必须用 @param。\n注意：sql注入：传入的参数始终为true，密码验证就无效了。\n   Mybatis缓存机制  一级缓存：表示sqlSession级别的缓存，每次查询的时候会开启一个会话，此会话相当于一次连接，该连接关闭之后对应的一级缓存自动失效。 二级缓存：全局范围内的缓存，sqlSession关闭之后才会生效。 第三方缓存：继承第三方的组件，来充当缓存的作用。    一级缓存：表示将数据存储在sqlSession中，关闭之后自动失效，默认情况下是开启的。在同一个会话之内，如果执行了多个相同的sql语句，那么除了第一个之外，所有的数据都是从缓存中进行查询的。在某些情况下一级缓存可能失效？\n 在同一个方法中，可能开启多个会话，此时注意，会话和方法没有关系，不是一个方法就只有一个会话，所以严格记住，缓存的数据是保存在sqlSession中的 。 当传递同一个对象但是对象属性值不同也不会走缓存。 在同一个连接中，如果修改了数据，那么缓存会失效，不同连接不受影响。 在一个会话过程，手动清除缓存，也会失效。    二级缓存：全局缓存，必须等到sqlSession关闭之后才会生效。默认不开启，如果开启需要如下设置。\n 修改全局配置文件，在setting中添加  指定在哪个映射文件中使用缓存的配置：加上 。 对应的Java实体类必须实现序列化接口。    二级缓存属性：\n eviction：缓存淘汰机制：  LRU（默认）：最近最少使用。 FIFO：先进先出，按照添加缓存的顺序执行。 SOFT：软引用：基于垃圾回收器状态和软引用规则移除对象。 WEAK：弱引用：更积极地基于垃圾收集器状态和弱引用规则移除对象。   flushInterval：设置多长时间进行缓存刷新 size：引用的条数，是一个正整数，缓存中可以存储多少个对象，一般不设置，如果设置的话不要太大，会导致内存溢出。 readonly：只读属性  true：只读缓存，会给所有的调用方法返回该对象的实例，不安全。 false：读写缓存，只是返回缓存对象的拷贝，比较安全。    一二级缓存会不会同时存在数据?\n不会，一级缓存存在sqlSession，二级缓存是全局缓存，必须等到sqlSession关闭之后才会生效。 查询数据时，先查询一级缓存，还是二级缓存？\n二级缓存 – 一级缓存 – 数据库\n   Mybatis工作原理 工作原理如下： Mybatis分页方式 逻辑分页：使用Mybatis自带的RowBounds进行分页，他会一次性的查出多条数据，然后检索分页中的数据，具体一次查出多少条数据，由封装的JDBC的fetch-size决定。\n物理分页：大家都在用的分页方式，一般用的是pagerHelper实现的就是物理分页。\n Mybatis的Executor执行器 Mybatis有三种基本的Executor执行器，都作用在SqlSession生命周期范围内。\n SimpleExecutor：每执行一次update或select，就开启一个Statement对象，用完立刻关闭Statement对象。 ReuseExecutor：执行update或select，以sql作为key查找Statement对象，存在就使用，不存在就创建，用完后，不关闭Statement对象，而是放置于Map内，供下一次使用。简言之，就是重复使用Statement对象。 BatchExecutor：执行update（没有select，JDBC批处理不支持select），将所有sql都添加到批处理中（addBatch()），等待统一执行（executeBatch()），它缓存了多个Statement对象，每个Statement对象都是addBatch()完毕后，等待逐一执行executeBatch()批处理。与JDBC批处理相同。    持续更新中…….. 敬请期待\n ",
+  "wordCount" : "3296",
+  "inLanguage": "en",
+  "image":"https://coderrenxy.github.io/img/Mybatis.webp","datePublished": "2022-05-10T13:18:37+08:00",
+  "dateModified": "2022-05-10T13:18:37+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "小任同学"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://coderrenxy.github.io/posts/blog/mybatis/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "小任同学's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://coderrenxy.github.io/img/icon-512.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://coderrenxy.github.io/" accesskey="h" title="小任同学&#39;s Blog (Alt + H)">
+                <img src="https://coderrenxy.github.io/img/icon-32.png" alt="logo" aria-label="logo"
+                    height=" 30px">小任同学&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://coderrenxy.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/search/" title="🔍搜索">
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/links" title="🤝友链">
+                    <span>🤝友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://coderrenxy.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/">📚 文章</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/blog/">📋 技术</a></div>
+    <h1 class="post-title">
+      Mybatis
+    </h1>
+    <div class="post-description">
+      关于Mybatis的学习笔记。
+    </div>
+    <div class="post-meta">
+			<p id="wc" style="font-size: 12px;">本文总阅读量<span id="busuanzi_value_page_pv"></span>次&nbsp;&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-05-10 13:18:37 +0800 CST'>2022-05-10</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-10&nbsp;|&nbsp;字数:&nbsp;3296字&nbsp;|&nbsp;时长: 7分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/blog/Mybatis.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+
+</div>
+  </header> 
+<figure class="entry-cover1"><img loading="lazy" src="https://coderrenxy.github.io/img/Mybatis.webp" alt="">
+        
+</figure><aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                
+				<span class="details">文章目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#mybatis%e6%98%af%e4%bb%80%e4%b9%88" aria-label="Mybatis是什么">Mybatis是什么</a></li>
+                    <li>
+                        <a href="#mybatis%e4%bc%98%e7%bc%ba%e7%82%b9" aria-label="Mybatis优缺点">Mybatis优缺点</a></li>
+                    <li>
+                        <a href="#hibernate%e7%89%b9%e7%82%b9" aria-label="Hibernate特点">Hibernate特点</a></li>
+                    <li>
+                        <a href="#mybatis%e7%9a%84%e4%bd%bf%e7%94%a8" aria-label="Mybatis的使用">Mybatis的使用</a></li>
+                    <li>
+                        <a href="#%e5%8a%a8%e6%80%81-sql-%e5%b0%8f%e9%97%ae%e9%a2%98" aria-label="动态 sql 小问题">动态 sql 小问题</a></li>
+                    <li>
+                        <a href="#%e4%b8%80%e4%ba%9b%e5%b1%9e%e6%80%a7" aria-label="一些属性">一些属性</a></li>
+                    <li>
+                        <a href="#%e9%a2%84%e7%bc%96%e8%af%91" aria-label="预编译">预编译</a></li>
+                    <li>
+                        <a href="#%e4%b8%8e%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="#{}与${}的区别">#{}与${}的区别</a></li>
+                    <li>
+                        <a href="#mybatis%e7%bc%93%e5%ad%98%e6%9c%ba%e5%88%b6" aria-label="Mybatis缓存机制">Mybatis缓存机制</a></li>
+                    <li>
+                        <a href="#mybatis%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="Mybatis工作原理">Mybatis工作原理</a></li>
+                    <li>
+                        <a href="#mybatis%e5%88%86%e9%a1%b5%e6%96%b9%e5%bc%8f" aria-label="Mybatis分页方式">Mybatis分页方式</a></li>
+                    <li>
+                        <a href="#mybatis%e7%9a%84executor%e6%89%a7%e8%a1%8c%e5%99%a8" aria-label="Mybatis的Executor执行器">Mybatis的Executor执行器</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+  <div class="post-content"><br>  
+<h3 id="mybatis是什么">Mybatis是什么<a hidden class="anchor" aria-hidden="true" href="#mybatis是什么">#</a></h3>
+<p>Mybatis是一个半ORM（对象关系映射）框架，内部封装了JDBC、加载驱动、创建连接、创建statement等一系列与数据库交互的繁杂步骤。</p>
+<hr> 
+<h3 id="mybatis优缺点">Mybatis优缺点<a hidden class="anchor" aria-hidden="true" href="#mybatis优缺点">#</a></h3>
+<p><strong>优点</strong></p>
+<ol>
+<li>灵活，sql写在xml中与程序代码解耦，便于统一管理，支持动态sql，并可重用。</li>
+<li>与JDBC相比，减少了至少50%的代码量，消除了JDBC大量冗余代码，不需要手动开关连接。</li>
+<li>与各种数据库兼容。（因为内部封装了JDBC，所以JDBC支持的所有数据库都和Mybatis兼容）</li>
+<li>与Spring能够很好的集成。</li>
+</ol>
+<p><strong>缺点</strong></p>
+<ol>
+<li>SQL语句编写工作量大，尤其字段多，关联表多时对开发人员编写SQL功底有一定要求。</li>
+<li>SQL语句依赖数据库，导致数据库可移植性差，不能随意更换数据库。</li>
+</ol>
+<hr>  
+<p><strong>JDBC</strong>：是一个用于执行SQL的Java API，可为多种关系型数据库提供统一访问。</p>
+<hr>  
+<h3 id="hibernate特点">Hibernate特点<a hidden class="anchor" aria-hidden="true" href="#hibernate特点">#</a></h3>
+<p>是一个ORM（Object Relation Mapping：对象关系映射）框架，只需要操作对象，处理好了映射关系后不怎么需要操作数据库。但是缺点有：</p>
+<ol>
+<li>Hibernate的完全封装导致无法使用数据的一些功能。</li>
+<li>对代码的耦合度高。</li>
+<li>找bug难，因为封装完美。</li>
+<li>批量操作数据需要大量内存空间而且执行过程对象太多。</li>
+</ol>
+<hr> 
+<h3 id="mybatis的使用">Mybatis的使用<a hidden class="anchor" aria-hidden="true" href="#mybatis的使用">#</a></h3>
+<p>mybatis-config略过，写一个dao接口但是不用实现，在对应的xml文件写sql，创建一个实体类对应xml中的字段，在mapper.xml中namespace就是对应dao的路径，mapper文件里面写sql语句、resultType、id等参数。 在mapper.xml中sql里面 #{name}的字段是由上层（service层）对实体类对象调用setName方法传进来的，实体类做一个中转站。</p>
+<p>在使用Mybatis时，时常实体类属性名和表字段名不匹配，那我们就封装一个结果集，如果能一一对应，系统就相当于自动封装了一个结果集。也可以as取别名。</p>
+<hr>
+<h3 id="动态-sql-小问题">动态 sql 小问题<a hidden class="anchor" aria-hidden="true" href="#动态-sql-小问题">#</a></h3>
+<p><strong>动态sql</strong>在本人工作过程中<strong>使用</strong>出现的<strong>问题</strong>：&lt;if xx != null&gt;内一直把and或or写在句尾，但是最后一个为null时，上一个 if 末尾的 and 或 or 会导致报错。</p>
+<p><strong>解决方法</strong>：在整体 if 外嵌套一个 where 标签会自动去除所有 if 语句的整体的开头的 and 或 or，但是注意必须写在开头而不是像未使用 where 标签时一样写在末尾。</p>
+<hr>
+<p>sqlSession：与数据库的会话</p>
+<hr>
+<h3 id="一些属性">一些属性<a hidden class="anchor" aria-hidden="true" href="#一些属性">#</a></h3>
+<p>flushCache：用来表示当前sql语句的结果是否进入二级缓存;<br>
+<strong>statementType</strong>：用于选择执行sql语句的方式</p>
+<ol>
+<li>statement：最基本的jdbc操作，用来表示一个sql语句，不能防止sql注入。</li>
+<li>prepared：采用预编译方式，能防止sql注入，设置参数的时候需要该对象来进行设置。</li>
+<li>callback：调用存储过程。</li>
+</ol>
+<p><strong>resultType</strong>：用的不多，因为只能返回一个实体类的类型，多数使用reslutMap自定义结果集</p>
+<hr> 
+<h3 id="预编译">预编译<a hidden class="anchor" aria-hidden="true" href="#预编译">#</a></h3>
+<p><strong>预编译定义</strong>：SQL预编译指的是数据库驱动在发送SQL语句和参数给DBMS之前对SQL语句进行编译，这样DBMS执行SQL时，就不需要重新编译。</p>
+<p><strong>为什么需要预编译</strong>：预编译阶段可以优化SQL的执行。预编译之后的SQL多数情况下可以直接执行，DBMS不需要再次编译，越复杂的SQL，编译的复杂度将越大，预编译阶段可以合并多次操作为一个操作。同时预编译语句对象可以重复利用。</p>
+<hr>
+<h3 id="与的区别">#{}与${}的区别<a hidden class="anchor" aria-hidden="true" href="#与的区别">#</a></h3>
+<ol>
+<li>
+<p>#{}的处理方式使用了参数预编译，被解析为一个参数占位符 。<br>
+获取数据：使用 #{} 获取必须用对象的属性名，多个参数时用arg0、arg1&hellip;..原因是mybatis在传入多个参数时，会将这些参数的结果封装到map结构中，在map中key就是{arg0，arg1&hellip;.}。如果想使用参数别名，可以用@param(&ldquo;别名&rdquo;) Integer empAge在dao的interface中。</p>
+</li>
+<li>
+<p>${}是直接拼接 sql语句得到对应的 sql语句，仅仅为一个纯碎的 string 替换，会有 sql注入的危险，所以推荐 #{}的方式。<br>
+${}的使用场景：动态传入表名，order by ${列名}。注意：这是动态传值，所以必须用 @param。</p>
+<p>注意：sql注入：传入的参数始终为true，密码验证就无效了。</p>
+</li>
+</ol>
+<hr>
+<h3 id="mybatis缓存机制">Mybatis缓存机制<a hidden class="anchor" aria-hidden="true" href="#mybatis缓存机制">#</a></h3>
+<ol>
+<li>一级缓存：表示sqlSession级别的缓存，每次查询的时候会开启一个会话，此会话相当于一次连接，该连接关闭之后对应的一级缓存自动失效。</li>
+<li>二级缓存：全局范围内的缓存，sqlSession关闭之后才会生效。</li>
+<li>第三方缓存：继承第三方的组件，来充当缓存的作用。</li>
+</ol>
+<ul>
+<li>
+<p>一级缓存：表示将数据存储在sqlSession中，关闭之后自动失效，默认情况下是开启的。在同一个会话之内，如果执行了多个相同的sql语句，那么除了第一个之外，所有的数据都是从缓存中进行查询的。在某些情况下一级缓存可能失效？</p>
+<ol>
+<li>在同一个方法中，可能开启多个会话，此时注意，会话和方法没有关系，不是一个方法就只有一个会话，所以严格记住，缓存的数据是保存在sqlSession中的  。</li>
+<li>当传递同一个对象但是对象属性值不同也不会走缓存。</li>
+<li>在同一个连接中，如果修改了数据，那么缓存会失效，不同连接不受影响。</li>
+<li>在一个会话过程，手动清除缓存，也会失效。</li>
+</ol>
+</li>
+<li>
+<p>二级缓存：全局缓存，<strong>必须等到sqlSession关闭之后才会生效</strong>。默认不开启，如果开启需要如下设置。</p>
+<ol>
+<li>修改全局配置文件，在setting中添加 <code>&lt;setting name=&quot;cacheEnabled&quot; value=&quot;true&quot;/&gt;</code></li>
+<li>指定在哪个映射文件中使用缓存的配置：加上 <code>&lt;cache&gt;&lt;/cache&gt;</code>。</li>
+<li>对应的Java实体类必须实现序列化接口。</li>
+</ol>
+</li>
+<li>
+<p>二级缓存属性：</p>
+<ol>
+<li>eviction：缓存淘汰机制：
+<ol>
+<li>LRU（默认）：最近最少使用。</li>
+<li>FIFO：先进先出，按照添加缓存的顺序执行。</li>
+<li>SOFT：软引用：基于垃圾回收器状态和软引用规则移除对象。</li>
+<li>WEAK：弱引用：更积极地基于垃圾收集器状态和弱引用规则移除对象。</li>
+</ol>
+</li>
+<li>flushInterval：设置多长时间进行缓存刷新</li>
+<li>size：引用的条数，是一个正整数，缓存中可以存储多少个对象，一般不设置，如果设置的话不要太大，会导致内存溢出。</li>
+<li>readonly：只读属性
+<ul>
+<li>true：只读缓存，会给所有的调用方法返回该对象的实例，不安全。</li>
+<li>false：读写缓存，只是返回缓存对象的拷贝，比较安全。</li>
+</ul>
+</li>
+</ol>
+<p>一二级缓存会不会同时存在数据?<br>
+不会，一级缓存存在sqlSession，二级缓存是全局缓存，必须等到sqlSession关闭之后才会生效。
+<br><br>
+<br>
+查询数据时，先查询一级缓存，还是二级缓存？<br>
+二级缓存     &ndash;&gt;    一级缓存     &ndash;&gt;     数据库</p>
+<p><img loading="lazy" src="/img/Mybatis_%e7%bc%93%e5%ad%98%e6%9c%ba%e5%88%b6.jpg" alt=""  />
+</p>
+</li>
+</ul>
+<hr>
+<h3 id="mybatis工作原理">Mybatis工作原理<a hidden class="anchor" aria-hidden="true" href="#mybatis工作原理">#</a></h3>
+<p>工作原理如下：
+<img loading="lazy" src="/img/Mybatis_%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86.webp" alt=""  />
+</p>
+<h3 id="mybatis分页方式">Mybatis分页方式<a hidden class="anchor" aria-hidden="true" href="#mybatis分页方式">#</a></h3>
+<p>逻辑分页：使用Mybatis自带的RowBounds进行分页，他会一次性的查出多条数据，然后检索分页中的数据，具体一次查出多少条数据，由封装的JDBC的fetch-size决定。</p>
+<p>物理分页：大家都在用的分页方式，一般用的是pagerHelper实现的就是物理分页。</p>
+<hr>
+<h3 id="mybatis的executor执行器">Mybatis的Executor执行器<a hidden class="anchor" aria-hidden="true" href="#mybatis的executor执行器">#</a></h3>
+<p>Mybatis有三种基本的Executor执行器，都作用在SqlSession生命周期范围内。</p>
+<ol>
+<li>SimpleExecutor：每执行一次update或select，就开启一个Statement对象，用完立刻关闭Statement对象。</li>
+<li>ReuseExecutor：执行update或select，以sql作为key查找Statement对象，存在就使用，不存在就创建，用完后，不关闭Statement对象，而是放置于Map&lt;String, Statement&gt;内，供下一次使用。简言之，就是重复使用Statement对象。</li>
+<li>BatchExecutor：执行update（没有select，JDBC批处理不支持select），将所有sql都添加到批处理中（addBatch()），等待统一执行（executeBatch()），它缓存了多个Statement对象，每个Statement对象都是addBatch()完毕后，等待逐一执行executeBatch()批处理。与JDBC批处理相同。</li>
+</ol>
+<hr>
+<blockquote>
+<p>持续更新中&hellip;&hellip;..    敬请期待</p>
+</blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://coderrenxy.github.io/tags/mybatis/">Mybatis</a></li>
+      <li><a href="https://coderrenxy.github.io/tags/%E6%A1%86%E6%9E%B6/">框架</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://coderrenxy.github.io/posts/life/%E4%BD%9C%E6%81%AF%E6%90%AD%E9%85%8D/">
+    <span class="title">« 上一篇</span>
+    <br>
+    <span>作息搭配</span>
+  </a>
+  <a class="next" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.5/">
+    <span class="title">下一篇 »</span>
+    <br>
+    <span>LeetCode 一周小记 No.5</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+	<h2>分享至: &nbsp &nbsp</h>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Mybatis on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https://coderrenxy.github.io/posts/">
+        <svg t="1651680695552" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3017" width="81" height="81"><path d="M985.742 749.936c0 130.864-106.178 236.964-237.17 236.964H274.298c-130.954 0-237.092-106.102-237.092-236.964V276.018c0-130.902 106.138-236.966 237.092-236.966h474.274c130.992 0 237.17 106.064 237.17 236.966v473.918z" fill="#235B9E" p-id="3018"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3019"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3020"></path><path d="M556.712 216.778l91.59 0.384v101.512H581.76c-10.808 0-26.208 5.362-26.208 28.464v47.362h94.252l-10.808 118.482H551v296.192h-118.568V512.982H373.14V394.5h58.792v-53.534c0-48.478 23.118-124.188 124.78-124.188m0-19.754c-64.452 0-98.87 28.234-116.394 51.92-24.486 33.094-28.142 71.862-28.142 92.024v33.78H373.14c-10.91 0-19.754 8.844-19.754 19.754v118.482c0 10.91 8.844 19.754 19.754 19.754h39.54v276.438c0 10.91 8.844 19.754 19.754 19.754h118.568c10.91 0 19.754-8.844 19.754-19.754V532.738h68.242a19.756 19.756 0 0 0 19.672-17.96l10.808-118.482a19.76 19.76 0 0 0-19.672-21.55h-74.498v-27.608c0-4.532 0.948-6.908 1.758-7.568 0.7-0.568 2.422-1.142 4.696-1.142h66.542c10.91 0 19.754-8.844 19.754-19.754v-101.512a19.752 19.752 0 0 0-19.67-19.754l-91.59-0.384h-0.086z" fill="#1A4477" p-id="3021"></path><path d="M728.078 956.122H294.83c-124.896 0-226.506-101.636-226.506-226.566V296.358c0-124.908 101.61-226.526 226.506-226.526h433.248c124.918 0 226.544 101.62 226.544 226.526v433.198c0.002 124.928-101.626 226.566-226.544 226.566zM294.83 89.636c-113.976 0-206.702 92.734-206.702 206.72v433.198c0 114.008 92.726 206.762 206.702 206.762h433.248c113.996 0 206.74-92.754 206.74-206.762V296.358c0-113.986-92.744-206.72-206.74-206.72H294.83z" fill="#1A4477" p-id="3022"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Mybatis on whatsapp"
+        href="https://api.whatsapp.com/send?text=Mybatis%20-%20https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fmybatis%2f">
+        <svg t="1651681184624" class="icon" viewBox="0 0 1586 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9888" width="81" height="81"><path d="M160.587294 1019.542588h1261.327059a145.568627 145.568627 0 0 0 145.548549-145.52847V146.291451A145.528471 145.528471 0 0 0 1421.914353 0.803137H160.587294A145.568627 145.568627 0 0 0 15.058824 146.311529V874.014118a145.588706 145.588706 0 0 0 145.52847 145.548549z" fill="#F4B459" p-id="9889"></path><path d="M63.849412 981.955765l607.091451-467.184941L65.174588 37.205333C34.695529 63.909647 15.058824 102.600784 15.058824 146.311529V874.014118c0 43.028078 19.07451 81.317647 48.790588 107.961725zM1518.371137 38.048627l-629.539137 478.067451 628.956863 466.56251c30.278275-26.644078 49.694118-65.254902 49.694117-108.684549V146.331608c0-43.208784-19.215059-81.598745-49.091764-108.282981z" fill="#E8AB54" p-id="9890"></path><path d="M1548.247843 944.971294L1018.096941 520.774275l536.495686-433.894902a145.66902 145.66902 0 0 0-55.737725-63.688785L813.578039 571.371922 109.748706 10.380549A145.608784 145.608784 0 0 0 40.357647 64.471843l566.673569 454.515451L47.666196 964.668235A144.946196 144.946196 0 0 0 122.88 1013.960784l554.164706-438.312157 33.812078 27.26651a142.436392 142.436392 0 0 0 205.603138 0l31.48298-25.459451 538.423216 426.36549a145.086745 145.086745 0 0 0 61.861647-58.829803z" fill="#FADAAC" p-id="9891"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Mybatis on telegram"
+        href="https://telegram.me/share/url?text=Mybatis&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fmybatis%2f">
+        <svg t="1651680820373" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3832" width="81" height="81"><path d="M679.424 746.862l84.005-395.996c7.424-34.852-12.581-48.567-35.438-40.009L234.277 501.138c-33.72 13.13-33.134 32-5.706 40.558l126.282 39.424 293.156-184.576c13.714-9.143 26.295-3.986 16.018 5.157L426.898 615.973l-9.143 130.304c13.13 0 18.871-5.706 25.71-12.581l61.696-59.429 128 94.282c23.442 13.129 40.01 6.29 46.3-21.724zM1024 512c0 282.843-229.157 512-512 512S0 794.843 0 512 229.157 0 512 0s512 229.157 512 512z" fill="#1296DB" p-id="3833"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Mybatis on reddit"
+        href="https://twitter.com/intent/tweet/?text=Mybatis&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fblog%2fmybatis%2f&amp;hashtags=Mybatis%2c%e6%a1%86%e6%9e%b6">
+        <svg t="1651764155941" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1736" width="81" height="81"><path d="M295.2 338c120.2 61 221.7 57.4 221.7 57.4s-38.5-134.8 80.5-194.6 200.9 41 200.9 41 20.8-5.7 36.2-11.4c15.5-5.7 37.8-15.9 37.8-15.9l-36.7 65.8 56.5-6s-7 10.2-29.6 31-31.9 31.6-31.9 31.6 8.1 162.3-77 287.2C668.5 749 558.6 824 398.9 839.8c-159.7 15.8-263.7-49.2-263.7-49.2s69.8-4 114.3-21.1S358 707.4 358 707.4s-91-28.1-123.7-59.8c-32.7-31.6-40.8-50.4-40.8-50.4l89.8-1.2s-94.5-50.4-121.3-90.3-30.3-78.5-30.3-78.5l69.1 28s-57.4-78.4-65.6-139.4c-8.2-61 10.5-93.8 10.5-93.8s29.3 55 149.5 116z" fill="#5DD7FC" p-id="1737"></path></svg>
+    </a>
+	
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<script src="https://utteranc.es/client.js"
+repo="coderRenxy/coderrenxy.github.io"
+issue-term="title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+	<span id="busuanzi_container_site_pv">
+    访问量：<span id="busuanzi_value_site_pv"></span>次
+</span>
+&nbsp;
+<span id="busuanzi_container_site_uv">
+    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+</span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+ <div>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+
+</body>
+
+</html>

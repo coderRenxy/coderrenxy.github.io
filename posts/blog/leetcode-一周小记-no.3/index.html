@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>LeetCode 一周小记 No.3 | 小任同学&#39;s Blog</title>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta name="keywords" content="算法" />
+<meta name="description" content="其实每个周都不止一周好吧，只是规则性收缩了。避免二刷速度快要反复切换文章来编辑。">
+<meta name="author" content="
+作者:&nbsp;小任同学">
+<link rel="canonical" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.3/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link rel="preload" href="img/icon-32.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="apple-touch-icon" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.92.1" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="LeetCode 一周小记 No.3" />
+<meta property="og:description" content="其实每个周都不止一周好吧，只是规则性收缩了。避免二刷速度快要反复切换文章来编辑。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.3/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-10T02:56:12&#43;08:00" />
+<meta property="article:modified_time" content="2022-05-05T23:33:37&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="LeetCode 一周小记 No.3"/>
+<meta name="twitter:description" content="其实每个周都不止一周好吧，只是规则性收缩了。避免二刷速度快要反复切换文章来编辑。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "📚 文章",
+      "item": "https://coderrenxy.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📋 技术",
+      "item": "https://coderrenxy.github.io/posts/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "LeetCode 一周小记 No.3",
+      "item": "https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.3/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LeetCode 一周小记 No.3",
+  "name": "LeetCode 一周小记 No.3",
+  "description": "其实每个周都不止一周好吧，只是规则性收缩了。避免二刷速度快要反复切换文章来编辑。",
+  "keywords": [
+    "算法"
+  ],
+  "articleBody": "Monday 18.四数之和 思路 ：就是昨天三数之和多了一个 for 循环。 注意 ：if(j  i + 1 \u0026\u0026 nums[j] == nums[j-1]){continue;}\n 这个条件是 j  i+1 ,而不是 j  0 。 还有就是  target  344. 反转字符串 双指针做法\n541. 反转字符串 II 字符串切割从第 i 位置到 k + i - 1 才是切下 k 个字符 。\n判断条件没有很复杂,就是拿到的个数  k 就操作反转前 k 个, 就是 ≥2k 和 2k ≥ len ≥ k ,两个区间都是用一操作,融合了。\n剑指Offer 05.替换空格 注意 : 只有 String 转换为了 StringBuffer or StringBuilder 才能用 append \u0026\u0026 toString 方法。\n151. 翻转字符串里的单词 大体思路：先全部反转、再依次反转各个 word。\n记住几个 API ： charAt、setChatAt，操作 String 先转换成 StringBuilder or StringBuffer 再操作。\n注意要移除开头结尾的 space、word 间连续的 space。\n其中去除连续的 space 注意判断条件 当前 char != space || sb最后一个 char 不为 space（上一个 char 不为 space），两个判断条件反了会短路。\nTuesday 剑指Offer58-II.左旋转字符串 思路：把 n 后面的先 append 到 new 的 sb 上，再把 n 之前的 append 到 sb 。\n28. 实现 strStr() KMP原理：通过前缀表记录每个对应字符串下的每个相同前后缀的长度（即：免匹配的子串的下一位置 index ），当模式串和原文匹配中断时直接跳到上一字符的前缀表位置对应前缀表内容对应的模式串位置。so，实现分为两块：匹配、更新前缀表。\nKMP实现：目前还只能通过印象 + 实践调 bug得出，并不能很好的理解代码，等刷完动态规划回来二刷再看。\n459. 重复的子字符串 KMP卒，二刷见……….\nWednesday day 13 232.用栈实现队列 思路：一个出栈的栈，一个入栈的栈实现一个队列，运用栈的四个 API ，在 pop 、peek 是要判断出栈的栈是否为空，为空就把入栈的栈内元素全 pop 到出栈的栈中。\n225. 用队列实现栈 思路：一个队列用于暂存、一个用于操作，和两个栈实现一个队列不大相同。\n注意：API ：poll 相当于 pop、offer 相当于 push、其他不变。\n20. 有效的括号 思路：遇见左括号就 push 右括号，否则就看栈是否提前空了、栈顶元素匹配当前括号，否则就 pop。\n栈提前空了会导致后面就算有没匹配上的括号，最后 return 的依然是 true 。\n注意：在匹配栈顶元素时，切记不要用 pop，而是用 peek，否则比较一次 少一个栈顶元素就导致空栈异常。\n1047. 删除字符串中的所有相邻重复项 思路：栈为空 or 匹配栈顶元素为 flase 就 stack.push( )，sb.append( )，否则就是匹配成功 就直接 stack.pop( )，sb.deleteCharAt( sb.length( )-1 )\n150. 逆波兰表达式求值 150. 逆波兰表达式求值 Tips：与本题无关 ：数字（int）转字符（char）要强转( char ) ( 0 + ’ 0 ’ )，字符转数字隐式就可以了不用声明出来 ‘ 2 ’ - ’ 0 ’ ，但是为了书写统一，还是都强转一下。\nAPI：Integer.valueOf( str );\n思路：拿到每一个数组索引下的字符串去比较，是运算就 pop 出两个元素运算并 push 结果，否则直接 push。\nThursday 239. 滑动窗口最大值 思路：自己用双端队列实现一个队列，add 方法来保证单调（队头始终为最大值），poll 方法保证窗口的滑动。每次取队头给记录窗口最大值的数组赋值就行了。如何设计 add 、poll ？\nadd：一直比较队尾，如果小于要 add 的 val，就杀掉这个队尾，直到上一个元素大于 val，此时 add 这个 val。\npoll：拿到窗口最后一个值与队头（最大值）去比较，如果相等，就杀死队头，因为这个本该从滑动窗口走出的元素影响最大值的判断了。否则就不操作。\n注意： Deque 双端队列才可以取队尾（getLast（ ）、removeLast（ ）），Queue 单端队列不可以。\nDeque 双端队列中，add（）才是在队尾添加元素。\npeek、poll 必须保证队列不为空。\n347.前 K 个高频元素 大小顶堆：卒……\nFriday 二叉树的深度优先遍历 (知识填充) 前置知识填充：\n满二叉树：深度为 k 的满二叉树在深度为 k 层也都有左右子树。\n完全二叉树：深度为 k 的完全二叉树除了第 k 层节点可能没填满外，其余每层节点数都达到最大值，并且第 k 层的节点都集中在该层最左边的若干位置。\n二叉搜索树：有序树，左孩子不为空的情况下，结点的左孩子比结点数值小，右孩子不为空的情况下，右节点比节点数值大。\n平衡二叉搜索树（AVL）：是一棵空树 或者 它的左右子树高度值绝对值不超过1 且左右子树都是平衡树。\n二叉树的存储：\n二叉树可以链式存储，也可以顺序存储。\n链式存储就是用指针串起来，内存不连续，顺序存储用数组，内存连续。\n如果父节点的数组下标是 i，那么它的左孩子就是 i × 2 + 1，右孩子就是 i × 2 + 2。\n二叉树的遍历：\n 深度优先遍历：先往深处走，遇到叶子节点在往回走。分为《前中后序遍历》，这个前中后其实是中间结点的顺序，前序：中左右，中序：左中右，后序：左右中。 广度优先遍历：一层一层的遍历。《层次遍历》（迭代法）  144.二叉树的前序遍历 \u0026 145.二叉树的后序遍历 \u0026 94.二叉树的中序遍历 递归做法：三个遍历一个方法代码挪一下位置。\n迭代做法：先把图画出来标号顺序，再模拟过程。前后序差不多，中序 while 条件不一样。后序在得不到结果的时候想一下逆序再反转（Collection.reverse(result)）。\n 持续更新中…….. 敬请期待\n ",
+  "wordCount" : "2109",
+  "inLanguage": "en",
+  "datePublished": "2022-03-10T02:56:12+08:00",
+  "dateModified": "2022-05-05T23:33:37+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "小任同学"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.3/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "小任同学's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://coderrenxy.github.io/img/icon-512.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://coderrenxy.github.io/" accesskey="h" title="小任同学&#39;s Blog (Alt + H)">
+                <img src="https://coderrenxy.github.io/img/icon-32.png" alt="logo" aria-label="logo"
+                    height=" 30px">小任同学&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://coderrenxy.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/search/" title="🔍搜索">
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/links" title="🤝友链">
+                    <span>🤝友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://coderrenxy.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/">📚 文章</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/blog/">📋 技术</a></div>
+    <h1 class="post-title">
+      LeetCode 一周小记 No.3
+    </h1>
+    <div class="post-description">
+      其实每个周都不止一周好吧，只是规则性收缩了。避免二刷速度快要反复切换文章来编辑。
+    </div>
+    <div class="post-meta">
+			<p id="wc" style="font-size: 12px;">本文总阅读量<span id="busuanzi_value_page_pv"></span>次&nbsp;&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-03-10 02:56:12 +0800 CST'>2022-03-10</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-05&nbsp;|&nbsp;字数:&nbsp;2109字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/blog/LeetCode%20%e4%b8%80%e5%91%a8%e5%b0%8f%e8%ae%b0%20No.3.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                
+				<span class="details">文章目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#monday" aria-label="Monday">Monday</a><ul>
+                            
+                    <li>
+                        <a href="#18%e5%9b%9b%e6%95%b0%e4%b9%8b%e5%92%8c" aria-label="18.四数之和">18.四数之和</a></li>
+                    <li>
+                        <a href="#344-%e5%8f%8d%e8%bd%ac%e5%ad%97%e7%ac%a6%e4%b8%b2" aria-label="344. 反转字符串">344. 反转字符串</a></li>
+                    <li>
+                        <a href="#541-%e5%8f%8d%e8%bd%ac%e5%ad%97%e7%ac%a6%e4%b8%b2-ii" aria-label="541. 反转字符串 II">541. 反转字符串 II</a></li>
+                    <li>
+                        <a href="#%e5%89%91%e6%8c%87offer-05%e6%9b%bf%e6%8d%a2%e7%a9%ba%e6%a0%bc" aria-label="剑指Offer 05.替换空格">剑指Offer 05.替换空格</a></li>
+                    <li>
+                        <a href="#151-%e7%bf%bb%e8%bd%ac%e5%ad%97%e7%ac%a6%e4%b8%b2%e9%87%8c%e7%9a%84%e5%8d%95%e8%af%8d" aria-label="151. 翻转字符串里的单词">151. 翻转字符串里的单词</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#tuesday" aria-label="Tuesday">Tuesday</a><ul>
+                            
+                    <li>
+                        <a href="#%e5%89%91%e6%8c%87offer58-ii%e5%b7%a6%e6%97%8b%e8%bd%ac%e5%ad%97%e7%ac%a6%e4%b8%b2" aria-label="剑指Offer58-II.左旋转字符串">剑指Offer58-II.左旋转字符串</a></li>
+                    <li>
+                        <a href="#28-%e5%ae%9e%e7%8e%b0-strstr" aria-label="28. 实现 strStr()">28. 实现 strStr()</a></li>
+                    <li>
+                        <a href="#459-%e9%87%8d%e5%a4%8d%e7%9a%84%e5%ad%90%e5%ad%97%e7%ac%a6%e4%b8%b2" aria-label="459. 重复的子字符串">459. 重复的子字符串</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#wednesday" aria-label="Wednesday">Wednesday</a><ul>
+                            
+                    <li>
+                        <a href="#day-13---232%e7%94%a8%e6%a0%88%e5%ae%9e%e7%8e%b0%e9%98%9f%e5%88%97" aria-label="day 13   232.用栈实现队列">day 13   232.用栈实现队列</a></li>
+                    <li>
+                        <a href="#225-%e7%94%a8%e9%98%9f%e5%88%97%e5%ae%9e%e7%8e%b0%e6%a0%88" aria-label="225. 用队列实现栈">225. 用队列实现栈</a></li>
+                    <li>
+                        <a href="#20-%e6%9c%89%e6%95%88%e7%9a%84%e6%8b%ac%e5%8f%b7" aria-label="20. 有效的括号">20. 有效的括号</a></li>
+                    <li>
+                        <a href="#1047-%e5%88%a0%e9%99%a4%e5%ad%97%e7%ac%a6%e4%b8%b2%e4%b8%ad%e7%9a%84%e6%89%80%e6%9c%89%e7%9b%b8%e9%82%bb%e9%87%8d%e5%a4%8d%e9%a1%b9" aria-label="1047. 删除字符串中的所有相邻重复项">1047. 删除字符串中的所有相邻重复项</a></li>
+                    <li>
+                        <a href="#150-%e9%80%86%e6%b3%a2%e5%85%b0%e8%a1%a8%e8%be%be%e5%bc%8f%e6%b1%82%e5%80%bc" aria-label="150. 逆波兰表达式求值">150. 逆波兰表达式求值</a></li>
+                    <li>
+                        <a href="#150-%e9%80%86%e6%b3%a2%e5%85%b0%e8%a1%a8%e8%be%be%e5%bc%8f%e6%b1%82%e5%80%bc-1" aria-label="150. 逆波兰表达式求值">150. 逆波兰表达式求值</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#thursday" aria-label="Thursday">Thursday</a><ul>
+                            
+                    <li>
+                        <a href="#239-%e6%bb%91%e5%8a%a8%e7%aa%97%e5%8f%a3%e6%9c%80%e5%a4%a7%e5%80%bc" aria-label="239. 滑动窗口最大值">239. 滑动窗口最大值</a></li>
+                    <li>
+                        <a href="#347%e5%89%8d-k-%e4%b8%aa%e9%ab%98%e9%a2%91%e5%85%83%e7%b4%a0" aria-label="347.前 K 个高频元素">347.前 K 个高频元素</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#friday" aria-label="Friday">Friday</a><ul>
+                            
+                    <li>
+                        <a href="#%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%b7%b1%e5%ba%a6%e4%bc%98%e5%85%88%e9%81%8d%e5%8e%86-%e7%9f%a5%e8%af%86%e5%a1%ab%e5%85%85" aria-label="二叉树的深度优先遍历 (知识填充)">二叉树的深度优先遍历 (知识填充)</a></li>
+                    <li>
+                        <a href="#144%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%89%8d%e5%ba%8f%e9%81%8d%e5%8e%86--145%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e5%90%8e%e5%ba%8f%e9%81%8d%e5%8e%86---94%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e4%b8%ad%e5%ba%8f%e9%81%8d%e5%8e%86" aria-label="144.二叉树的前序遍历 &amp;amp; 145.二叉树的后序遍历 &amp;amp;  94.二叉树的中序遍历">144.二叉树的前序遍历 &amp; 145.二叉树的后序遍历 &amp;  94.二叉树的中序遍历</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+  <div class="post-content"><h2 id="monday">Monday<a hidden class="anchor" aria-hidden="true" href="#monday">#</a></h2>
+<h3 id="18四数之和">18.四数之和<a hidden class="anchor" aria-hidden="true" href="#18四数之和">#</a></h3>
+<p><strong>思路</strong> ：就是昨天三数之和多了一个 for 循环。
+<strong>注意</strong> ：<code>if(j &gt; i + 1  &amp;&amp;  nums[j] == nums[j-1]){continue;}</code></p>
+<ol>
+<li>这个条件是 j &gt; i+1 ,而不是 j &gt; 0  。</li>
+<li>还有就是 &gt; target &lt; target == target 绝对 if&hellip;else 而不是单独的多个 if 。</li>
+</ol>
+<h3 id="344-反转字符串">344. 反转字符串<a hidden class="anchor" aria-hidden="true" href="#344-反转字符串">#</a></h3>
+<p>双指针做法</p>
+<h3 id="541-反转字符串-ii">541. 反转字符串 II<a hidden class="anchor" aria-hidden="true" href="#541-反转字符串-ii">#</a></h3>
+<p>字符串切割从第 i 位置到 k + i - 1 才是切下 k 个字符 。</p>
+<p>判断条件没有很复杂,就是拿到的个数 &gt; k 就操作反转前 k 个, &lt; k 直接全反转。</p>
+<p>就是 ≥2k 和 2k ≥ len ≥ k  ,两个区间都是用一操作,融合了。</p>
+<h3 id="剑指offer-05替换空格">剑指Offer 05.替换空格<a hidden class="anchor" aria-hidden="true" href="#剑指offer-05替换空格">#</a></h3>
+<p><strong>注意</strong> : 只有 String 转换为了 StringBuffer or StringBuilder 才能用 append &amp;&amp; toString 方法。</p>
+<h3 id="151-翻转字符串里的单词">151. 翻转字符串里的单词<a hidden class="anchor" aria-hidden="true" href="#151-翻转字符串里的单词">#</a></h3>
+<p>大体<strong>思路</strong>：先全部反转、再依次反转各个 word。</p>
+<p>记住几个 API ： charAt、setChatAt，操作 String 先转换成 StringBuilder or StringBuffer 再操作。</p>
+<p>注意要移除开头结尾的 space、word 间连续的 space。</p>
+<p>其中去除连续的 space 注意判断条件 当前 char != space || sb最后一个 char 不为 space（上一个 char 不为 space），两个判断条件反了会短路。</p>
+<h2 id="tuesday">Tuesday<a hidden class="anchor" aria-hidden="true" href="#tuesday">#</a></h2>
+<h3 id="剑指offer58-ii左旋转字符串">剑指Offer58-II.左旋转字符串<a hidden class="anchor" aria-hidden="true" href="#剑指offer58-ii左旋转字符串">#</a></h3>
+<p><strong>思路</strong>：把 n 后面的先 append 到 new 的 sb 上，再把 n 之前的 append 到 sb 。</p>
+<h3 id="28-实现-strstr">28. 实现 strStr()<a hidden class="anchor" aria-hidden="true" href="#28-实现-strstr">#</a></h3>
+<p><strong>KMP原理</strong>：通过前缀表记录每个对应字符串下的每个相同前后缀的长度（即：免匹配的子串的下一位置 index ），当模式串和原文匹配中断时直接跳到上一字符的前缀表位置对应前缀表内容对应的模式串位置。so，实现分为两块：匹配、更新前缀表。<br>
+<strong>KMP实现</strong>：目前还只能通过印象 + 实践调 bug得出，并不能很好的理解代码，等刷完动态规划回来二刷再看。</p>
+<h3 id="459-重复的子字符串">459. 重复的子字符串<a hidden class="anchor" aria-hidden="true" href="#459-重复的子字符串">#</a></h3>
+<p>KMP卒，二刷见&hellip;&hellip;&hellip;.</p>
+<h2 id="wednesday">Wednesday<a hidden class="anchor" aria-hidden="true" href="#wednesday">#</a></h2>
+<h3 id="day-13---232用栈实现队列">day 13   232.用栈实现队列<a hidden class="anchor" aria-hidden="true" href="#day-13---232用栈实现队列">#</a></h3>
+<p><strong>思路</strong>：一个出栈的栈，一个入栈的栈实现一个队列，运用栈的四个 API ，在 pop 、peek 是要判断出栈的栈是否为空，为空就把入栈的栈内元素全 pop 到出栈的栈中。</p>
+<h3 id="225-用队列实现栈">225. 用队列实现栈<a hidden class="anchor" aria-hidden="true" href="#225-用队列实现栈">#</a></h3>
+<p><strong>思路</strong>：一个队列用于暂存、一个用于操作，和两个栈实现一个队列不大相同。</p>
+<p><strong>注意</strong>：API ：poll 相当于 pop、offer 相当于 push、其他不变。</p>
+<h3 id="20-有效的括号">20. 有效的括号<a hidden class="anchor" aria-hidden="true" href="#20-有效的括号">#</a></h3>
+<p><strong>思路</strong>：遇见左括号就 push 右括号，否则就看栈是否提前空了、栈顶元素匹配当前括号，否则就 pop。</p>
+<p>栈提前空了会导致后面就算有没匹配上的括号，最后 return 的依然是 true 。</p>
+<p><strong>注意</strong>：在匹配栈顶元素时，切记不要用 pop，而是用 peek，否则比较一次 少一个栈顶元素就导致空栈异常。</p>
+<h3 id="1047-删除字符串中的所有相邻重复项">1047. 删除字符串中的所有相邻重复项<a hidden class="anchor" aria-hidden="true" href="#1047-删除字符串中的所有相邻重复项">#</a></h3>
+<p><strong>思路</strong>：栈为空 or 匹配栈顶元素为 flase 就 stack.push( )，sb.append( )，否则就是匹配成功 就直接 stack.pop( )，sb.deleteCharAt( sb.length( )-1 )</p>
+<h3 id="150-逆波兰表达式求值">150. 逆波兰表达式求值<a hidden class="anchor" aria-hidden="true" href="#150-逆波兰表达式求值">#</a></h3>
+<h3 id="150-逆波兰表达式求值-1">150. 逆波兰表达式求值<a hidden class="anchor" aria-hidden="true" href="#150-逆波兰表达式求值-1">#</a></h3>
+<p>Tips：<del>与本题无关</del> ：数字（int）转字符（char）要强转( char ) ( 0 + ’ 0 ’ )，字符转数字隐式就可以了不用声明出来   ‘ 2 ’ - ’ 0 ’ ，但是为了书写统一，还是都强转一下。</p>
+<p>API：Integer.valueOf( str );</p>
+<p><strong>思路</strong>：拿到每一个数组索引下的字符串去比较，是运算就 pop 出两个元素运算并 push 结果，否则直接 push。</p>
+<h2 id="thursday">Thursday<a hidden class="anchor" aria-hidden="true" href="#thursday">#</a></h2>
+<h3 id="239-滑动窗口最大值">239. 滑动窗口最大值<a hidden class="anchor" aria-hidden="true" href="#239-滑动窗口最大值">#</a></h3>
+<p><strong>思路</strong>：自己用双端队列实现一个队列，add 方法来保证单调（队头始终为最大值），poll 方法保证窗口的滑动。每次取队头给记录窗口最大值的数组赋值就行了。如何设计 add 、poll ？</p>
+<p>add：一直比较队尾，如果小于要 add 的 val，就杀掉这个队尾，直到上一个元素大于 val，此时 add  这个 val。</p>
+<p>poll：拿到窗口最后一个值与队头（最大值）去比较，如果相等，就杀死队头，因为这个本该从滑动窗口走出的元素影响最大值的判断了。否则就不操作。</p>
+<p><strong>注意</strong>：
+Deque 双端队列才可以取队尾（getLast（ ）、removeLast（ ）），Queue 单端队列不可以。</p>
+<p>Deque 双端队列中，add（）才是在队尾添加元素。</p>
+<p>peek、poll 必须保证队列不为空。</p>
+<h3 id="347前-k-个高频元素">347.前 K 个高频元素<a hidden class="anchor" aria-hidden="true" href="#347前-k-个高频元素">#</a></h3>
+<p>大小顶堆：卒&hellip;&hellip;</p>
+<h2 id="friday">Friday<a hidden class="anchor" aria-hidden="true" href="#friday">#</a></h2>
+<h3 id="二叉树的深度优先遍历-知识填充">二叉树的深度优先遍历 (知识填充)<a hidden class="anchor" aria-hidden="true" href="#二叉树的深度优先遍历-知识填充">#</a></h3>
+<p><strong>前置知识</strong>填充：<br>
+<strong>满二叉树</strong>：深度为 k 的满二叉树在深度为 k 层也都有左右子树。</p>
+<p><strong>完全二叉树</strong>：深度为 k 的完全二叉树除了第 k 层节点<strong>可能</strong>没填满外，其余每层节点数都达到最大值，并且第 k 层的节点都集中在该层最左边的若干位置。</p>
+<p><strong>二叉搜索树</strong>：有序树，左孩子不为空的情况下，结点的左孩子比结点数值小，右孩子不为空的情况下，右节点比节点数值大。</p>
+<p><strong>平衡二叉搜索树（AVL）</strong>：是一棵空树 或者 它的左右子树高度值绝对值不超过1 且左右子树都是平衡树。</p>
+<p><strong>二叉树的存储</strong>：</p>
+<p>二叉树可以链式存储，也可以顺序存储。</p>
+<p>链式存储就是用指针串起来，内存不连续，顺序存储用数组，内存连续。</p>
+<p>如果父节点的数组下标是 i，那么它的左孩子就是 i × 2 + 1，右孩子就是 i × 2 + 2。</p>
+<p><strong>二叉树的遍历</strong>：</p>
+<ol>
+<li>深度优先遍历：先往深处走，遇到叶子节点在往回走。分为《前中后序遍历》，这个前中后其实是中间结点的顺序，前序：中左右，中序：左中右，后序：左右中。</li>
+<li>广度优先遍历：一层一层的遍历。《层次遍历》（迭代法）</li>
+</ol>
+<h3 id="144二叉树的前序遍历--145二叉树的后序遍历---94二叉树的中序遍历">144.二叉树的前序遍历 &amp; 145.二叉树的后序遍历 &amp;  94.二叉树的中序遍历<a hidden class="anchor" aria-hidden="true" href="#144二叉树的前序遍历--145二叉树的后序遍历---94二叉树的中序遍历">#</a></h3>
+<p>递归做法：三个遍历一个方法代码挪一下位置。</p>
+<p>迭代做法：先把图画出来标号顺序，再模拟过程。前后序差不多，中序 while 条件不一样。后序在得不到结果的时候想一下逆序再反转（Collection.reverse(result)）。</p>
+<blockquote>
+<p>持续更新中&hellip;&hellip;..    敬请期待</p>
+</blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://coderrenxy.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.4/">
+    <span class="title">« 上一篇</span>
+    <br>
+    <span>LeetCode 一周小记 No.4</span>
+  </a>
+  <a class="next" href="https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/">
+    <span class="title">下一篇 »</span>
+    <br>
+    <span>集合浅原理篇</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<script src="https://utteranc.es/client.js"
+repo="coderRenxy/coderrenxy.github.io"
+issue-term="title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+	<span id="busuanzi_container_site_pv">
+    访问量：<span id="busuanzi_value_site_pv"></span>次
+</span>
+&nbsp;
+<span id="busuanzi_container_site_uv">
+    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+</span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+ <div>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+
+</body>
+
+</html>

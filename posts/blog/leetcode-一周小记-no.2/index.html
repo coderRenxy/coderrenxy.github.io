@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>LeetCode 一周小记 No.2 | 小任同学&#39;s Blog</title>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta name="keywords" content="算法" />
+<meta name="description" content="有点感觉了，一直持续刷下去！各位看官跟我一起成长啊！ Monday 面试题 02.07. 链表相交 注意：暴力循环一定要注意边界条件：A or B 链子为空，只有这一个边界！！！">
+<meta name="author" content="
+作者:&nbsp;小任同学">
+<link rel="canonical" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.2/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link rel="preload" href="img/icon-32.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="apple-touch-icon" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.92.1" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="LeetCode 一周小记 No.2" />
+<meta property="og:description" content="有点感觉了，一直持续刷下去！各位看官跟我一起成长啊！ Monday 面试题 02.07. 链表相交 注意：暴力循环一定要注意边界条件：A or B 链子为空，只有这一个边界！！！" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.2/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-03-02T02:45:59&#43;08:00" />
+<meta property="article:modified_time" content="2022-05-05T23:33:37&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="LeetCode 一周小记 No.2"/>
+<meta name="twitter:description" content="有点感觉了，一直持续刷下去！各位看官跟我一起成长啊！ Monday 面试题 02.07. 链表相交 注意：暴力循环一定要注意边界条件：A or B 链子为空，只有这一个边界！！！"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "📚 文章",
+      "item": "https://coderrenxy.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📋 技术",
+      "item": "https://coderrenxy.github.io/posts/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "LeetCode 一周小记 No.2",
+      "item": "https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.2/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LeetCode 一周小记 No.2",
+  "name": "LeetCode 一周小记 No.2",
+  "description": "有点感觉了，一直持续刷下去！各位看官跟我一起成长啊！ Monday 面试题 02.07. 链表相交 注意：暴力循环一定要注意边界条件：A or B 链子为空，只有这一个边界！！！",
+  "keywords": [
+    "算法"
+  ],
+  "articleBody": "有点感觉了，一直持续刷下去！各位看官跟我一起成长啊！\nMonday 面试题 02.07. 链表相交 注意：暴力循环一定要注意边界条件：A or B 链子为空，只有这一个边界！！！边界只有《0 - 1》，没有《1 - 2》。\nTuesday 142.环形链表II 两个重要切入点 :\n 从头结点出发一个指针，从相遇节点 也出发一个指针，这两个指针每次只走一个节点， 那么当这两个指针相遇的时候就是 环形入口的节点。 快指针永远走的是慢指针的两倍长度。  解释 ：\n 先判断有没有环，while 下 快指针走 2 步，慢指针走 1 步，如果两个结点 位置一致，即为有环，否则无环则一定会 fast.next || fast.next.next == null。 从头节点到环入口结点距离为 A，环入口节点到相遇结点正向距离为 B，相遇节点正向到入口节点距离为 C。一定是在环内相遇，且 A == C。  Wednesday 242.有效的字母异位词 大体思路：定义一个 26 长度的数组，遍历第一个字符串，每次 -’a’ ，得到了在数组中的索引，把该处自增就好了，再遍历另一个字符串自减操作。再 foreach 一下数组 if( 1≠0 ) 就 return flase;\n注意：foreach 用法：for( int arr[i] ： 数组名)。\nThursday 349. 两个数组的交集 注意：不能重复、无序：HashSet，记住几个常见 API 例如 set.contains(??)、set.size() 。\n202. 快乐数 解题思路：\n 不是快乐数的数称为不快乐数（unhappy number），所有不快乐数的数位平方和计算，最後都会进入 4 → 16 → 37 → 58 → 89 → 145 → 42 → 20 → 4 的循环中。 所以进主函数的循环条件为 ≠1 \u0026\u0026 !set.contains(?); 只要能进这个循环就进去拿到 nextNumber ，进到该方法里再进行拿到 各数上的平方和。  注意：res += n % 10 * n % 10; 一定要写成 res += (n % 10) * (n % 10); 因为四则运算的优先级会先 n%10 再 *n 。\n1. 两数之和 暴力冒泡只要注意初始化： j=i+1即可。\n进阶版本：主要熟悉几个常用 API：map.containsKey(key)、map.get(key)。 思路：这个思路就是先挨个 map.put() ，然后 target-nums[i] 这个数字在 map 中查找是否有符合项，有就 break;\n注意：第二次循环（寻找符合项时）循环 n-1 次，因为第 n 次循环就是反转的第 n-1 次循环。再次操作同一循环会导致顺序倒转，一定要注意顺序，然后就是 当 target-nums[i] == temp 时，两者相等导致输出的数组两个内容相同。所以在进第二次循环后要把这种情况单独 if 判断并 continue;\nFriday 454. 四数相加 思路：先把前两个数组之和（key），该和出现的次数value 存入map，再遍历后两个数组拿到 0-（c+d）去查map是否存在，存在 count+=value。 注意：可能有数组传入为 null，计算值的时候默认为 0 就行，如果两个普通的 for循环嵌套，有空数组会被判断条件拦截下来，但如果用的是 foreach 就没问题。\n383.赎金信 类似242.有效的字母异位词的傻瓜式操作，但是要注意这里是可不可构成，字母可以多，不能少，而242是必须不多不少刚刚好。\n15.三数之和 先记住两个 API：Arrays.sort(nums)、Arrays.asList(nums[i], nums[left], nums[right])。\n思路：先排个序，方便很多，测试用例里也是排序号的！再用双指针 left、right 来定位。SUM0 就right—，反之 left++。 注意：如果多个相同数值，直接跳过该段！在哪个判断条件的循环就要注意哪个的“雷同跳转”：如果多个相同数值，直接跳过该段！在哪个判断条件的循环就要注意哪个的“雷同跳转”。\n 持续更新中…….. 敬请期待\n ",
+  "wordCount" : "1366",
+  "inLanguage": "en",
+  "datePublished": "2022-03-02T02:45:59+08:00",
+  "dateModified": "2022-05-05T23:33:37+08:00",
+  "author":[{
+    "@type": "Person",
+    "name": "小任同学"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.2/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "小任同学's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://coderrenxy.github.io/img/icon-512.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://coderrenxy.github.io/" accesskey="h" title="小任同学&#39;s Blog (Alt + H)">
+                <img src="https://coderrenxy.github.io/img/icon-32.png" alt="logo" aria-label="logo"
+                    height=" 30px">小任同学&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://coderrenxy.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/search/" title="🔍搜索">
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/links" title="🤝友链">
+                    <span>🤝友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://coderrenxy.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/">📚 文章</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/blog/">📋 技术</a></div>
+    <h1 class="post-title">
+      LeetCode 一周小记 No.2
+    </h1>
+    <div class="post-meta">
+			<p id="wc" style="font-size: 12px;">本文总阅读量<span id="busuanzi_value_page_pv"></span>次&nbsp;&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-03-02 02:45:59 +0800 CST'>2022-03-02</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-05&nbsp;|&nbsp;字数:&nbsp;1366字&nbsp;|&nbsp;时长: 3分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/blog/LeetCode%20%e4%b8%80%e5%91%a8%e5%b0%8f%e8%ae%b0%20No.2.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                
+				<span class="details">文章目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#monday" aria-label="Monday">Monday</a><ul>
+                            
+                    <li>
+                        <a href="#%e9%9d%a2%e8%af%95%e9%a2%98-0207-%e9%93%be%e8%a1%a8%e7%9b%b8%e4%ba%a4" aria-label="面试题 02.07. 链表相交">面试题 02.07. 链表相交</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#tuesday" aria-label="Tuesday">Tuesday</a><ul>
+                            
+                    <li>
+                        <a href="#142%e7%8e%af%e5%bd%a2%e9%93%be%e8%a1%a8ii" aria-label="142.环形链表II">142.环形链表II</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#wednesday" aria-label="Wednesday">Wednesday</a><ul>
+                            
+                    <li>
+                        <a href="#242%e6%9c%89%e6%95%88%e7%9a%84%e5%ad%97%e6%af%8d%e5%bc%82%e4%bd%8d%e8%af%8d" aria-label="242.有效的字母异位词">242.有效的字母异位词</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#thursday" aria-label="Thursday">Thursday</a><ul>
+                            
+                    <li>
+                        <a href="#349-%e4%b8%a4%e4%b8%aa%e6%95%b0%e7%bb%84%e7%9a%84%e4%ba%a4%e9%9b%86" aria-label="349. 两个数组的交集">349. 两个数组的交集</a></li>
+                    <li>
+                        <a href="#202-%e5%bf%ab%e4%b9%90%e6%95%b0" aria-label="202. 快乐数">202. 快乐数</a></li>
+                    <li>
+                        <a href="#1-%e4%b8%a4%e6%95%b0%e4%b9%8b%e5%92%8c" aria-label="1. 两数之和">1. 两数之和</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#friday" aria-label="Friday">Friday</a><ul>
+                            
+                    <li>
+                        <a href="#454-%e5%9b%9b%e6%95%b0%e7%9b%b8%e5%8a%a0" aria-label="454. 四数相加">454. 四数相加</a></li>
+                    <li>
+                        <a href="#383%e8%b5%8e%e9%87%91%e4%bf%a1" aria-label="383.赎金信">383.赎金信</a></li>
+                    <li>
+                        <a href="#15%e4%b8%89%e6%95%b0%e4%b9%8b%e5%92%8c" aria-label="15.三数之和">15.三数之和</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+  <div class="post-content"><p>有点感觉了，一直持续刷下去！各位看官跟我一起成长啊！</p>
+<h2 id="monday">Monday<a hidden class="anchor" aria-hidden="true" href="#monday">#</a></h2>
+<h3 id="面试题-0207-链表相交">面试题 02.07. 链表相交<a hidden class="anchor" aria-hidden="true" href="#面试题-0207-链表相交">#</a></h3>
+<p><strong>注意</strong>：暴力循环一定要注意边界条件：A or B 链子为空，只有这一个边界！！！边界只有《0 - 1》，没有《1 - 2》。</p>
+<h2 id="tuesday">Tuesday<a hidden class="anchor" aria-hidden="true" href="#tuesday">#</a></h2>
+<h3 id="142环形链表ii">142.环形链表II<a hidden class="anchor" aria-hidden="true" href="#142环形链表ii">#</a></h3>
+<p>两个重要<strong>切入点</strong> :</p>
+<ol>
+<li>从头结点出发一个指针，从相遇节点 也出发一个指针，这两个指针每次只走一个节点， 那么当这两个指针相遇的时候就是 环形入口的节点。</li>
+<li>快指针永远走的是慢指针的两倍长度。</li>
+</ol>
+<p><strong>解释</strong> ：</p>
+<ol>
+<li>先判断有没有环，while 下 快指针走 2 步，慢指针走 1 步，如果两个结点 位置一致，即为有环，否则无环则一定会 fast.next  || fast.next.next == null。</li>
+<li>从头节点到环入口结点距离为 A，环入口节点到相遇结点正向距离为 B，相遇节点正向到入口节点距离为 C。一定是在环内相遇，且 A == C。</li>
+</ol>
+<h2 id="wednesday">Wednesday<a hidden class="anchor" aria-hidden="true" href="#wednesday">#</a></h2>
+<h3 id="242有效的字母异位词">242.有效的字母异位词<a hidden class="anchor" aria-hidden="true" href="#242有效的字母异位词">#</a></h3>
+<p>大体<strong>思路</strong>：定义一个 26 长度的数组，遍历第一个字符串，每次 -’a’ ，得到了在数组中的索引，把该处自增就好了，再遍历另一个字符串自减操作。再 foreach 一下数组 if( 1≠0 ) 就 return flase;<br>
+<strong>注意</strong>：foreach 用法：for( int arr[i] ： 数组名)。</p>
+<h2 id="thursday">Thursday<a hidden class="anchor" aria-hidden="true" href="#thursday">#</a></h2>
+<h3 id="349-两个数组的交集">349. 两个数组的交集<a hidden class="anchor" aria-hidden="true" href="#349-两个数组的交集">#</a></h3>
+<p><strong>注意</strong>：不能重复、无序：HashSet，记住几个常见 API 例如 set.contains(??)、set.size() 。</p>
+<h3 id="202-快乐数">202. 快乐数<a hidden class="anchor" aria-hidden="true" href="#202-快乐数">#</a></h3>
+<p>解题<strong>思路</strong>：</p>
+<ol>
+<li>不是快乐数的数称为不快乐数（unhappy number），所有不快乐数的数位平方和计算，最後都会进入 4 → 16 → 37 → 58 → 89 → 145 → 42 → 20 → 4 的循环中。</li>
+<li>所以进主函数的循环条件为 ≠1 &amp;&amp; !set.contains(?); 只要能进这个循环就进去拿到 nextNumber ，进到该方法里再进行拿到 各数上的平方和。</li>
+</ol>
+<p><strong>注意</strong>：res += n % 10 * n % 10; 一定要写成 res += (n % 10) * (n % 10); 因为四则运算的优先级会先  n%10 再 *n 。</p>
+<h3 id="1-两数之和">1. 两数之和<a hidden class="anchor" aria-hidden="true" href="#1-两数之和">#</a></h3>
+<p>暴力冒泡只要注意初始化： j=i+1即可。<br>
+<strong>进阶</strong>版本：主要熟悉几个常用 API：map.containsKey(key)、map.get(key)。
+<strong>思路</strong>：这个思路就是先挨个 map.put() ，然后 target-nums[i] 这个数字在 map 中查找是否有符合项，有就 break;<br>
+<strong>注意</strong>：第二次循环（寻找符合项时）循环 n-1 次，因为第 n 次循环就是反转的第 n-1 次循环。再次操作同一循环会导致顺序倒转，一定要注意顺序，然后就是 当 target-nums[i] == temp 时，两者相等导致输出的数组两个内容相同。所以在进第二次循环后要把这种情况单独 if 判断并 continue;</p>
+<h2 id="friday">Friday<a hidden class="anchor" aria-hidden="true" href="#friday">#</a></h2>
+<h3 id="454-四数相加">454. 四数相加<a hidden class="anchor" aria-hidden="true" href="#454-四数相加">#</a></h3>
+<p><strong>思路</strong>：先把前两个数组之和（key），该和出现的次数value 存入map，再遍历后两个数组拿到 0-（c+d）去查map是否存在，存在 count+=value。
+<strong>注意</strong>：可能有数组传入为 null，计算值的时候默认为 0 就行，如果两个普通的 for循环嵌套，有空数组会被判断条件拦截下来，但如果用的是 foreach 就没问题。</p>
+<h3 id="383赎金信">383.赎金信<a hidden class="anchor" aria-hidden="true" href="#383赎金信">#</a></h3>
+<p>类似242.有效的字母异位词的傻瓜式操作，但是要注意这里是可不可构成，字母可以多，不能少，而242是必须不多不少刚刚好。</p>
+<h3 id="15三数之和">15.三数之和<a hidden class="anchor" aria-hidden="true" href="#15三数之和">#</a></h3>
+<p>先记住两个 API：<code>Arrays.sort(nums)、Arrays.asList(nums[i], nums[left], nums[right])</code>。<br>
+<strong>思路</strong>：先排个序，方便很多，测试用例里也是排序号的！再用双指针 left、right 来定位。SUM&gt;0 就right—，反之 left++。
+注意：如果多个相同数值，直接跳过该段！在哪个判断条件的循环就要注意哪个的“雷同跳转”：如果多个相同数值，直接跳过该段！在哪个判断条件的循环就要注意哪个的“<strong>雷同跳转</strong>”。</p>
+<blockquote>
+<p>持续更新中&hellip;&hellip;..    敬请期待</p>
+</blockquote>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://coderrenxy.github.io/tags/%E7%AE%97%E6%B3%95/">算法</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/">
+    <span class="title">« 上一篇</span>
+    <br>
+    <span>集合浅原理篇</span>
+  </a>
+  <a class="next" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/">
+    <span class="title">下一篇 »</span>
+    <br>
+    <span>LeetCode 一周小记 No.1</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<script src="https://utteranc.es/client.js"
+repo="coderRenxy/coderrenxy.github.io"
+issue-term="title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+	<span id="busuanzi_container_site_pv">
+    访问量：<span id="busuanzi_value_site_pv"></span>次
+</span>
+&nbsp;
+<span id="busuanzi_container_site_uv">
+    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+</span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+ <div>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+
+</body>
+
+</html>

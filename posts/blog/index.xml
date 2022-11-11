@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>📋 技术 on 小任同学&#39;s Blog</title>
+    <link>https://coderrenxy.github.io/posts/blog/</link>
+    <description>Recent content in 📋 技术 on 小任同学&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 01 Sep 2022 09:29:42 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/posts/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LeetCode 二叉树(二)</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%BA%8C/</link>
+      <pubDate>Thu, 01 Sep 2022 09:29:42 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%BA%8C/</guid>
+      <description>二叉树模块二刷。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 栈、队列(二)</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E6%A0%88%E9%98%9F%E5%88%97%E4%BA%8C/</link>
+      <pubDate>Thu, 01 Sep 2022 09:23:42 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E6%A0%88%E9%98%9F%E5%88%97%E4%BA%8C/</guid>
+      <description>栈、队列模块二刷。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 字符串(二)</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BA%8C/</link>
+      <pubDate>Thu, 01 Sep 2022 07:23:42 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BA%8C/</guid>
+      <description>字符串模块二刷。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 哈希表(二)</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%BA%8C/</link>
+      <pubDate>Thu, 01 Sep 2022 05:23:42 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%BA%8C/</guid>
+      <description>哈希表模块二刷。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 链表（二）</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E9%93%BE%E8%A1%A8%E4%BA%8C/</link>
+      <pubDate>Thu, 01 Sep 2022 05:23:42 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E9%93%BE%E8%A1%A8%E4%BA%8C/</guid>
+      <description>二刷链表。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 数组(二)</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E6%95%B0%E7%BB%84%E4%BA%8C/</link>
+      <pubDate>Wed, 27 Jul 2022 05:23:42 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E6%95%B0%E7%BB%84%E4%BA%8C/</guid>
+      <description>数组模块二刷。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 动态规划</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</link>
+      <pubDate>Tue, 26 Jul 2022 05:23:42 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</guid>
+      <description>只包含 01背包、完全背包。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 贪心</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E8%B4%AA%E5%BF%83/</link>
+      <pubDate>Tue, 26 Jul 2022 05:23:42 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E8%B4%AA%E5%BF%83/</guid>
+      <description>贪心算法：局部最优推出全局最优。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 回溯</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E5%9B%9E%E6%BA%AF/</link>
+      <pubDate>Sat, 25 Jun 2022 05:23:42 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E5%9B%9E%E6%BA%AF/</guid>
+      <description>由此正式浸润回溯，其实之前也用到过回溯，现在系统刷一遍题目。</description>
+    </item>
+    
+    <item>
+      <title>接口和抽象的区别</title>
+      <link>https://coderrenxy.github.io/posts/blog/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Wed, 25 May 2022 14:13:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
+      <description>记我第一次面大公司坐牢的面试题</description>
+    </item>
+    
+    <item>
+      <title>Mybatis</title>
+      <link>https://coderrenxy.github.io/posts/blog/mybatis/</link>
+      <pubDate>Tue, 10 May 2022 13:18:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/mybatis/</guid>
+      <description>关于Mybatis的学习笔记。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 一周小记 No.5</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.5/</link>
+      <pubDate>Thu, 31 Mar 2022 05:13:32 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.5/</guid>
+      <description>Monday 106.从中序与后序遍历序列构造二叉树 key1：中后序的第一个元素一定是左下角那个，因为中序是：左中右，后序是：左右中。都是先递归左。、后</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 一周小记 No.4</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.4/</link>
+      <pubDate>Tue, 15 Mar 2022 05:13:45 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.4/</guid>
+      <description>Monday 102.二叉树的层序遍历 递归思路：仍然是先深度到顶确定好 deep 把每一深度的 ArrayList new 出来，再往里依次添值。 是否创建 ArrayList 用 if 判断，进了递归的方法 deep 就要 +</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 一周小记 No.3</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.3/</link>
+      <pubDate>Thu, 10 Mar 2022 02:56:12 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.3/</guid>
+      <description>其实每个周都不止一周好吧，只是规则性收缩了。避免二刷速度快要反复切换文章来编辑。</description>
+    </item>
+    
+    <item>
+      <title>集合浅原理篇</title>
+      <link>https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/</link>
+      <pubDate>Mon, 07 Mar 2022 05:52:59 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/</guid>
+      <description>对集合的一些理解。</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 一周小记 No.2</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.2/</link>
+      <pubDate>Wed, 02 Mar 2022 02:45:59 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.2/</guid>
+      <description>有点感觉了，一直持续刷下去！各位看官跟我一起成长啊！ Monday 面试题 02.07. 链表相交 注意：暴力循环一定要注意边界条件：A or B 链子为空，只有这一个边界！！！</description>
+    </item>
+    
+    <item>
+      <title>LeetCode 一周小记 No.1</title>
+      <link>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/</link>
+      <pubDate>Thu, 24 Feb 2022 02:45:59 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/</guid>
+      <description>刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy 题都也被卡，目前进度为 2-3 medium / day。 Monday （科普知识） 反码、补码 二进制的第一位是符号位，0是+，1是-，</description>
+    </item>
+    
+    <item>
+      <title>Spring MVC小结</title>
+      <link>https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/</link>
+      <pubDate>Wed, 02 Feb 2022 02:45:59 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/</guid>
+      <description>正文开始。</description>
+    </item>
+    
+    <item>
+      <title>Spring杂记（顺着链条自上往下看）</title>
+      <link>https://coderrenxy.github.io/posts/blog/spring%E6%9D%82%E8%AE%B0/</link>
+      <pubDate>Wed, 02 Feb 2022 02:45:59 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/spring%E6%9D%82%E8%AE%B0/</guid>
+      <description>本篇文章都是本人的理解，看不懂可以评论，会回复评论。</description>
+    </item>
+    
+    <item>
+      <title>我对MySQL的碎碎念念（持续更新...）怒肝12k字</title>
+      <link>https://coderrenxy.github.io/posts/blog/%E6%88%91%E5%AF%B9mysql%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%E5%BF%B5%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0...%E6%80%92%E8%82%9D16k%E5%AD%97-%E5%89%AF%E6%9C%AC/</link>
+      <pubDate>Wed, 02 Feb 2022 02:45:59 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/%E6%88%91%E5%AF%B9mysql%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%E5%BF%B5%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0...%E6%80%92%E8%82%9D16k%E5%AD%97-%E5%89%AF%E6%9C%AC/</guid>
+      <description>一点理解</description>
+    </item>
+    
+    <item>
+      <title>二叉树遍历小结</title>
+      <link>https://coderrenxy.github.io/posts/blog/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</link>
+      <pubDate>Sat, 08 Jan 2022 23:33:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</guid>
+      <description>首先二叉树的遍历分为，深度优先遍历（dfs）、广度优先遍历（bfs）。 注意：但凡遍历都要注意根节点为 null； 深度优先遍历又分为前中后序遍历</description>
+    </item>
+    
+    <item>
+      <title>异常</title>
+      <link>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</link>
+      <pubDate>Sat, 08 Jan 2022 23:33:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</guid>
+      <description>description：面试可能问到的异常相关八股文。 （一）finally 块中的代码什么时候会执行？ 在 Java 语言的异常处理中，finally 块的</description>
+    </item>
+    
+  </channel>
+</rss>

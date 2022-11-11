@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>📋 技术 | 小任同学&#39;s Blog</title>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta name="keywords" content="" />
+<meta name="description" content="本博客的笔记都在这...">
+<meta name="author" content="
+作者:&nbsp;小任同学">
+<link rel="canonical" href="https://coderrenxy.github.io/posts/blog/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link rel="preload" href="img/icon-32.png" as="image">
+<link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="apple-touch-icon" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.92.1" />
+<link rel="alternate" type="application/rss+xml" href="https://coderrenxy.github.io/posts/blog/index.xml">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="📋 技术" />
+<meta property="og:description" content="本博客的笔记都在这..." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://coderrenxy.github.io/posts/blog/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="📋 技术"/>
+<meta name="twitter:description" content="本博客的笔记都在这..."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "📚 文章",
+      "item": "https://coderrenxy.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📋 技术",
+      "item": "https://coderrenxy.github.io/posts/blog/"
+    }
+  ]
+}
+</script>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://coderrenxy.github.io/" accesskey="h" title="小任同学&#39;s Blog (Alt + H)">
+                <img src="https://coderrenxy.github.io/img/icon-32.png" alt="logo" aria-label="logo"
+                    height=" 30px">小任同学&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://coderrenxy.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/search/" title="🔍搜索">
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/links" title="🤝友链">
+                    <span>🤝友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://coderrenxy.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/">📚 文章</a></div>
+  <h1>📋 技术</h1>
+  <div class="post-description">
+    本博客的笔记都在这&hellip;
+  </div>
+</header>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>LeetCode 二叉树(二)
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>前置知识填充篇： 满二叉树：深度为 k 的满二叉树在深度为 k 层也都有左右子树。 完全二叉树：深度为 k 的完全二叉树除了第 k 层节点可能没填满外，其余每层...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-09-01 09:29:42 +0800 CST'>2022-09-01</span>&nbsp;|&nbsp;更新:&nbsp;2022-09-01&nbsp;|&nbsp;字数:&nbsp;6974字&nbsp;|&nbsp;时长: 14分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to LeetCode 二叉树(二)" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%BA%8C/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>LeetCode 栈、队列(二)
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>232.用栈实现队列 思路：一个出栈的栈，一个入栈的栈实现一个队列，运用栈的四个 API ，在 pop 、peek 是要判断出栈的栈是否为空，为空就把入栈的栈内...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-09-01 09:23:42 +0800 CST'>2022-09-01</span>&nbsp;|&nbsp;更新:&nbsp;2022-09-01&nbsp;|&nbsp;字数:&nbsp;1549字&nbsp;|&nbsp;时长: 4分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to LeetCode 栈、队列(二)" href="https://coderrenxy.github.io/posts/blog/leetcode-%E6%A0%88%E9%98%9F%E5%88%97%E4%BA%8C/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>LeetCode 字符串(二)
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>344. 反转字符串 1 2 3 4 5 6 7 8 9 10 class Solution { public void reverseString(char[] s) { char temp; for(int i=0;i&lt;s.length/2;i&#43;&#43;){ temp = s[i]; s[i] = s[s.length-1-i]; s[s.length-1-i] = temp; } } } 541. 反转字符串 II 字符串切割从第 i 位置到 k &#43; i - 1 才是切下 k 个字...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-09-01 07:23:42 +0800 CST'>2022-09-01</span>&nbsp;|&nbsp;更新:&nbsp;2022-09-01&nbsp;|&nbsp;字数:&nbsp;822字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to LeetCode 字符串(二)" href="https://coderrenxy.github.io/posts/blog/leetcode-%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BA%8C/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>LeetCode 哈希表(二)
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>242.有效的字母异位词 暴力哈希：map1.put(ch,&#43;&#43;map1.get(ch))会报错，&#43;1就不会。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-09-01 05:23:42 +0800 CST'>2022-09-01</span>&nbsp;|&nbsp;更新:&nbsp;2022-09-01&nbsp;|&nbsp;字数:&nbsp;1608字&nbsp;|&nbsp;时长: 4分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to LeetCode 哈希表(二)" href="https://coderrenxy.github.io/posts/blog/leetcode-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%BA%8C/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>LeetCode 链表（二）
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>203. 移除链表元素 思路：先处理头结点 null 或者 val ，再去处理移除节点。 注意：返回值返回 head。 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 class Solution { public ListNode removeElements(ListNode head,...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-09-01 05:23:42 +0800 CST'>2022-09-01</span>&nbsp;|&nbsp;更新:&nbsp;2022-09-01&nbsp;|&nbsp;字数:&nbsp;2155字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to LeetCode 链表（二）" href="https://coderrenxy.github.io/posts/blog/leetcode-%E9%93%BE%E8%A1%A8%E4%BA%8C/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>LeetCode 数组(二)
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>704. 二分查找 思路：首先把 left 、mid 、 right 都定义出来。mid 的赋值，左右指针的跳转都在循环内完成，注意要 left=mid&#43;1，right = mid-...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-07-27 05:23:42 +0800 CST'>2022-07-27</span>&nbsp;|&nbsp;更新:&nbsp;2022-07-27&nbsp;|&nbsp;字数:&nbsp;1329字&nbsp;|&nbsp;时长: 3分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to LeetCode 数组(二)" href="https://coderrenxy.github.io/posts/blog/leetcode-%E6%95%B0%E7%BB%84%E4%BA%8C/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>LeetCode 动态规划
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>01背包 509. 斐波那契数 1 2 3 4 5 6 7 8 9 10 11 class Solution { public int fib(int n) { if(n&lt;2) return n; int[] dp = new int [n&#43;1]; dp[0] = 0; dp[1] = 1; for(int i=2;i&lt;=n;i&#43;&#43;) dp[i]=dp[i-1]&#43;dp[i-2]; return dp[n]; } } 70.爬楼梯 思路：走第i层时，从i-1...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-07-26 05:23:42 +0800 CST'>2022-07-26</span>&nbsp;|&nbsp;更新:&nbsp;2022-07-26&nbsp;|&nbsp;字数:&nbsp;4052字&nbsp;|&nbsp;时长: 9分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to LeetCode 动态规划" href="https://coderrenxy.github.io/posts/blog/leetcode-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>LeetCode 贪心
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>455.分发饼干 1 2 3 4 5 6 7 8 9 10 11 12 13 14 class Solution { public int findContentChildren(int[] g, int[] s) { Arrays.sort(g); Arrays.sort(s); int count=0; for(int i=0,j=0;i&lt;s.length &amp;&amp; j&lt;g.length;i&#43;&#43;){ if(s[i] &gt;= g[j]){ count&#43;&#43;; j&#43;&#43;; } } return count; } } 376. 摆动序列 我的思路：直接改变数组比如4...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-07-26 05:23:42 +0800 CST'>2022-07-26</span>&nbsp;|&nbsp;更新:&nbsp;2022-07-26&nbsp;|&nbsp;字数:&nbsp;3800字&nbsp;|&nbsp;时长: 8分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to LeetCode 贪心" href="https://coderrenxy.github.io/posts/blog/leetcode-%E8%B4%AA%E5%BF%83/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>LeetCode 回溯
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>77. 组合 思路：分为终止条件、单层逻辑两层。 终止条件：当长度为 k 就 new 这个 List 并 add 进去并 return。 单层逻辑：for 嵌套 add、递归、remove...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-06-25 05:23:42 +0800 CST'>2022-06-25</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-02&nbsp;|&nbsp;字数:&nbsp;2527字&nbsp;|&nbsp;时长: 6分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to LeetCode 回溯" href="https://coderrenxy.github.io/posts/blog/leetcode-%E5%9B%9E%E6%BA%AF/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>接口和抽象的区别
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>抽象类 抽象类是特殊的类，只是不能被实例化，天生就是要被继承的；除此以外，具有类的其他特性；重要的是抽象类可以包括抽象方法，这是普通类所不能的...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-05-25 14:13:37 +0800 CST'>2022-05-25</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-25&nbsp;|&nbsp;字数:&nbsp;718字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to 接口和抽象的区别" href="https://coderrenxy.github.io/posts/blog/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%9A%84%E5%8C%BA%E5%88%AB/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>Mybatis
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Mybatis是什么 Mybatis是一个半ORM（对象关系映射）框架，内部封装了JDBC、加载驱动、创建连接、创建statement等一系列...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-05-10 13:18:37 +0800 CST'>2022-05-10</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-10&nbsp;|&nbsp;字数:&nbsp;3296字&nbsp;|&nbsp;时长: 7分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+<figure class="entry-cover"><img loading="lazy" src="https://coderrenxy.github.io/img/Mybatis.webp" alt="">
+</figure>
+  <a class="entry-link" aria-label="post link to Mybatis" href="https://coderrenxy.github.io/posts/blog/mybatis/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>LeetCode 一周小记 No.5
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Monday 106.从中序与后序遍历序列构造二叉树 key1：中后序的第一个元素一定是左下角那个，因为中序是：左中右，后序是：左右中。都是先递归左。、后...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-03-31 05:13:32 +0800 CST'>2022-03-31</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-02&nbsp;|&nbsp;字数:&nbsp;2739字&nbsp;|&nbsp;时长: 6分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to LeetCode 一周小记 No.5" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.5/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>LeetCode 一周小记 No.4
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Monday 102.二叉树的层序遍历 递归思路：仍然是先深度到顶确定好 deep 把每一深度的 ArrayList new 出来，再往里依次添值。 是否创建 ArrayList 用 if 判断，进了递归的方法 deep 就要 &#43;...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-03-15 05:13:45 +0800 CST'>2022-03-15</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-05&nbsp;|&nbsp;字数:&nbsp;2147字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to LeetCode 一周小记 No.4" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.4/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>LeetCode 一周小记 No.3
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>Monday 18.四数之和 思路 ：就是昨天三数之和多了一个 for 循环。 注意 ：if(j &gt; i &#43; 1 &amp;&amp; nums[j] == nums[j-1]){continue;} 这个条件是 j &gt; i&#43;1 ,而不是 j &gt; 0 。 还有就是 &gt; target &lt; target == target 绝对...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-03-10 02:56:12 +0800 CST'>2022-03-10</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-05&nbsp;|&nbsp;字数:&nbsp;2109字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to LeetCode 一周小记 No.3" href="https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.3/"></a>
+</article>
+
+<article class="post-entry">
+  
+ <div class="post-info">  
+  <header class="entry-header">
+    <h2>集合浅原理篇
+    </h2>
+  </header>
+  <section class="entry-content">
+    <p>​ 集合的概念：对象的容器，定义了对多个对象进行操作的常用方法。可实现数组的功能。 和数组的区别： 数组长度固定，集合长度不固定。 数组可以存储基本...</p>
+  </section>
+  <footer class="entry-footer">
+
+
+
+
+
+
+
+
+
+
+
+创建:&nbsp;<span title='2022-03-07 05:52:59 +0800 CST'>2022-03-07</span>&nbsp;|&nbsp;更新:&nbsp;2022-05-05&nbsp;|&nbsp;字数:&nbsp;6822字&nbsp;|&nbsp;时长: 14分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学</footer>
+ </div>   
+  <a class="entry-link" aria-label="post link to 集合浅原理篇" href="https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="next" href="https://coderrenxy.github.io/posts/blog/page/2/">Next Page »</a>
+  </nav>
+</footer>
+    </main>
+    
+<script src="https://utteranc.es/client.js"
+repo="coderRenxy/coderrenxy.github.io"
+issue-term="title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+	<span id="busuanzi_container_site_pv">
+    访问量：<span id="busuanzi_value_site_pv"></span>次
+</span>
+&nbsp;
+<span id="busuanzi_container_site_uv">
+    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+</span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+ <div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>MySQL on 小任同学&#39;s Blog</title>
+    <link>https://coderrenxy.github.io/tags/mysql/</link>
+    <description>Recent content in MySQL on 小任同学&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 02 Feb 2022 02:45:59 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/tags/mysql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我对MySQL的碎碎念念（持续更新...）怒肝12k字</title>
+      <link>https://coderrenxy.github.io/posts/blog/%E6%88%91%E5%AF%B9mysql%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%E5%BF%B5%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0...%E6%80%92%E8%82%9D16k%E5%AD%97-%E5%89%AF%E6%9C%AC/</link>
+      <pubDate>Wed, 02 Feb 2022 02:45:59 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/%E6%88%91%E5%AF%B9mysql%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%E5%BF%B5%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0...%E6%80%92%E8%82%9D16k%E5%AD%97-%E5%89%AF%E6%9C%AC/</guid>
+      <description>一点理解</description>
+    </item>
+    
+  </channel>
+</rss>
