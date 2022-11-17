@@ -178,14 +178,5 @@
       <description>第一篇生活专题下的blog</description>
     </item>
     
-    <item>
-      <title>给张雅婷的一封信</title>
-      <link>https://coderrenxy.github.io/posts/life/%E5%A5%B9/</link>
-      <pubDate>Sun, 29 Oct 2000 23:33:37 +0800</pubDate>
-      
-      <guid>https://coderrenxy.github.io/posts/life/%E5%A5%B9/</guid>
-      <description>关于我和张大小姐的故事</description>
-    </item>
-    
   </channel>
 </rss>
