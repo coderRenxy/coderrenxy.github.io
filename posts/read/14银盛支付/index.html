@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>小任同学&#39;s Blog</title>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta name="keywords" content="" />
+<meta name="description" content="银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成： Eureka：各个服务启动时，Eur">
+<meta name="author" content="
+作者:&nbsp;小任同学">
+<link rel="canonical" href="https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link rel="preload" href="img/icon-32.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="apple-touch-icon" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.92.1" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="" />
+<meta property="og:description" content="银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成： Eureka：各个服务启动时，Eur" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/" /><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成： Eureka：各个服务启动时，Eur"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "📚 文章",
+      "item": "https://coderrenxy.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📕 阅读",
+      "item": "https://coderrenxy.github.io/posts/read/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "",
+      "item": "https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成： Eureka：各个服务启动时，Eur",
+  "keywords": [
+    
+  ],
+  "articleBody": "银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成：\nEureka：各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉\n取注册表，从⽽知道其他服务在哪⾥\nRibbon：服务间发起请求的时候，基于Ribbon做负载均衡，从⼀个服务的多台机器中选择⼀台\nFeign：基于Feign的动态代理机制，根据注解和选择的机器，拼接请求URL地址，发起请求\nHystrix：发起请求是通过Hystrix的线程池来⾛的，不同的服务⾛不同的线程池，实现了不同服务调⽤的隔离，避免了服务雪崩\n的问题\nZuul：如果前端、移动端要调⽤后端系统，统⼀从Zuul⽹关进⼊，由Zuul⽹关转发请求给对应的服务\n2. ⽤什么组件发请求 在Spring Cloud中使⽤Feign, 我们可以做到使⽤HTTP请求远程服务时能与调⽤本地⽅法⼀样的编码体验，开发者完全感知不到\n这是远程⽅法，更感知不到这是个HTTP请求。\n3. 注册中心心跳是几秒 1、Eureka的客户端默认每隔30s会向eureka服务端更新实例，注册中⼼也会定时进⾏检查，发现某个实例默认90s内没有再收到\n⼼跳，会注销此实例，这些时间间隔是可配置的。\n2、不过注册中⼼还有⼀个保护模式（服务端在短时间内丢失过多客户端的时候，就会进⼊保护模式），在这个保护模式下，他\n会认为是⽹络问题，不会注销任何过期的实例。\n4. 消费者是如何发现服务提供者的 a. 当⼀个服务实例启动，会将它的ip地址等信息注册到eureka；\nb. 当a服务调⽤b服务，a服务会通过Ribbon检查本地是否有b服务实例信息的缓存；\nc. Ribbon会定期从eureka刷新本地缓存。\n5. 多个消费者调用同⼀接⼝，eruka默认的分配方式是什么 a. RoundRobinRule:轮询策略，Ribbon以轮询的⽅式选择服务器，这个是默认值。所以示例中所启动的两个服务会被循环访问;\nb. RandomRule:随机选择，也就是说Ribbon会随机从服务器列表中选择⼀个进⾏访问;\nc. BestAvailableRule:最⼤可⽤策略，即先过滤出故障服务器后，选择⼀个当前并发请求数最⼩的;\nd. WeightedResponseTimeRule:带有加权的轮询策略，对各个服务器响应时间进⾏加权处理，然后在采⽤轮询的⽅式来获取相\n应的服务器;\ne. AvailabilityFilteringRule:可⽤过滤策略，先过滤出故障的或并发请求⼤于阈值⼀部分服务实例，然后再以线性轮询的⽅式从\n过滤后的实例清单中选出⼀个;\nf. ZoneAvoidanceRule:区域感知策略，先使⽤主过滤条件（区域负载器，选择最优区域）对所有实例过滤并返回过滤后的实例\n清单，依次使⽤次过滤条件列表中的过滤条件对主过滤条件的结果进⾏过滤，判断最⼩过滤数（默认1）和最⼩过滤百分⽐（默\n认0），最后对满⾜条件的服务器则使⽤RoundRobinRule(轮询⽅式)选择⼀个服务器实例。\n6. 说说常⽤的springboot注解，及其实现？\na. @Bean：注册Bean\ni. 默认使⽤⽅法名作为id，可以在后⾯定义id如@Bean(“xx”)；\nii. 默认为单例。\niii. 可以指定init⽅法和destroy⽅法：\n  对象创建和赋值完成，调⽤初始化⽅法；\n  单实例bean在容器销毁的时候执⾏destroy⽅法；\n  多实例bean，容器关闭是不会调⽤destroy⽅法。\n  b. @Scope：Bean作⽤域\ni. 默认为singleton；\nii. 类型：\n singleton单实例（默认值）：ioc容器启动时会调⽤⽅法创建对象放到ioc容器中，以后每次获取就是直接从容器中拿  实例；\n prototype多实例：ioc容器启动不会创建对象，每次获取时才会调⽤⽅法创建实例；\n  request同⼀次请求创建⼀个实例；\n  session同⼀个session创建⼀个实例。\n  c. @Value：给变量赋值\ni. 代码：\n1 2 3 4 5 6 7 8 9 10 11  import org.springframework.beans.factory.annotation.Value; public class Person extends BaseEntity{ @Value(\"xuan\") private String name; @Value(\"27\") private int age; @Value(\"#{20-7}\") private int count; @Value(\"$person.nickName}\") private String nickName; }   i. ⽅式：\n  基本数字\n  可以写SpEL（Spring EL表达式）：#{}\n  可以写${}，取出配置⽂件中的值（在运⾏环境变量⾥⾯的值）\n  d. @Autowired：⾃动装配\ni. 默认优先按照类型去容器中找对应的组件：BookService bookService = applicationContext.getBean(BookService.class);\nii. 默认⼀定要找到，如果没有找到则报错。可以使⽤@Autowired(required = false)标记bean为⾮必须的。\niii. 如果找到多个相同类型的组件，再根据属性名称去容器中查找。\niv. @Qualifier(“bookDao2”)明确的指定要装配的bean。\nv. @Primary：让spring默认装配⾸选的bean，也可以使⽤@Qualifier()指定要装配的bean。\ne. @Profile：环境标识\ni. Spring为我们提供的可以根据当前环境，动态的激活和切换⼀系列组件的功能；\nii. @Profile指定组件在哪个环境才能被注册到容器中，默认为\"default\"@Profile(“default”)。\niii. 激活⽅式：\n  运⾏时添加虚拟机参数：-Dspring.profiles.active=test\n  代码⽅式：\n  7. spring的事务注解是什么？什么情况下事物才会回滚 a. spring事务实现机制：\nb. 事务注解@transactional；\nc. 默认情况下，如果在事务中抛出了未检查异常（继承⾃ RuntimeException 的异常）或者 Error，则 Spring 将回滚事务。\nd. @Transactional 只能应⽤到 public ⽅法才有效：只有@Transactional 注解应⽤到 public ⽅法，才能进⾏事务管理。这是因为\n在使⽤ Spring AOP 代理时，Spring 在调⽤在图 1 中的 TransactionInterceptor 在⽬标⽅法执⾏前后进⾏拦截之前，\nDynamicAdvisedInterceptor（CglibAopProxy 的内部类）的的 intercept ⽅法或 JdkDynamicAopProxy 的 invoke ⽅法会间接调\n⽤ AbstractFallbackTransactionAttributeSource（Spring 通过这个类获取表 1. @Transactional 注解的事务属性配置属性信息）\n的 computeTransactionAttribute ⽅法。\n8. 说说spring事物的传播性和隔离级别 a. 七个事传播属性：\n  PROPAGATION_REQUIRED – ⽀持当前事务，如果当前没有事务，就新建⼀个事务。这是最常⻅的选择。\n  PROPAGATION_SUPPORTS – ⽀持当前事务，如果当前没有事务，就以⾮事务⽅式执⾏。\n  PROPAGATION_MANDATORY – ⽀持当前事务，如果当前没有事务，就抛出异常。\n  PROPAGATIONREQUIRESNEW – 新建事务，如果当前存在事务，把当前事务挂起\n  PROPAGATIONNOTSUPPORTED – 以⾮事务⽅式执⾏操作，如果当前存在事务，就把当前事务挂起。\n  PROPAGATION_NEVER – 以⾮事务⽅式执⾏，如果当前存在事务，则抛出异常。\n  PROPAGATIONNESTED – 如果当前存在事务，则在嵌套事务内执⾏。如果当前没有事务，则进⾏与 PROPAGATIONREQUIRED类似的操作。\n  b. 五个隔离级别：\n  ISOLATION_DEFAULT 这是⼀个PlatfromTransactionManager默认的隔离级别，使⽤数据库默认的事务隔离级别.\n  另外四个与JDBC的隔离级别相对应：\n  ISOLATIONREADUNCOMMITTED 这是事务最低的隔离级别，它充许别外⼀个事务可以看到这个事务未提交的数据。这种\n  隔离级别会产⽣脏读，不可重复读和幻读。\n ISOLATIONREADCOMMITTED 保证⼀个事务修改的数据提交后才能被另外⼀个事务读取。另外⼀个事务不能读取该事务未提交的数据。这种事务隔离级别可以避免脏读出现，但是可能会出现不可重复读和幻读。\n  ISOLATIONREPEATABLEREAD 这种事务隔离级别可以防⽌脏读，不可重复读。但是可能出现幻读。它除了保证⼀个事务不能读取另⼀个事务未提交的数据外，还保证了避免不可重复读。\n  ISOLATION_SERIALIZABLE 这是花费最⾼代价但是最可靠的事务隔离级别。事务被处理为顺序执⾏。除了防⽌脏读，不可重复读外，还避免了幻读。\n  c. 关键词：\n1、脏读（新增或删除）：脏读就是指当⼀个事务正在访问数据，并且对数据进⾏了修改，⽽这种修改还没有提交到数据库 中，这时，另外⼀个事务也访问这个数据，然后使⽤了这个数据；\n Mary的原工资为1000，财务人员将Mary的工资改为了8000（但未提交事务） Mary读取自己的工资，发现自己的工资变为了8000，欢天喜地！ 而财务发现操作有误，回滚了事务，May的工资又变为了1000像这样，Mary记取的工资数8000是一个脏数据。  2、不可重复读（修改）：是指在⼀个事务内，多次读同⼀数据。在这个事务还没有结束时，另外⼀个事务也访问该同⼀数据。那么，在第⼀个事务中的两次读数据之间，由于第⼆个事务的修改，那么第⼀个事务两次读到的的数据可能是不⼀样的。这样在⼀个事务内两次读到的数据是不⼀样的，因此称为是不可重复读。（解决：只有在修改事务完全提交之后才可以读取数据，则可以避免该问题）；\n 在事务1中，May读取了自己的工资为1000，操作并没有完成 在事务2中，这时财务人员修改了Mary的工资为2000，并提交了事务. 在事务1中，Mary再次读取自己的工资时，工资变为了2000  3、幻读（新增或删除）：是指当事务不是独⽴执⾏时发⽣的⼀种现象，例如第⼀个事务对⼀个表中的数据进⾏了修改，这种修改涉及到表中的全部数据⾏。同时，第⼆个事务也修改这个表中的数据，这种修改是向表中插⼊⼀⾏新数据。那么，以后就会发⽣操作第⼀个事务的⽤户发现表中还有没有修改的数据⾏，就好象发⽣了幻觉⼀样（解决：如果在操作事务完成数据处理之前，任何其他事务都不可以添加新数据，则可避免该问题）。\n目前工资为1000的员工有10人。\n 事务1，读取所有工资为1000的员工。 这时事务2向employee表插入了一条员工记录，工资也为1000 事务1再次读取所有工资为1000的员工共读取到了11条记录。  9. mysql的引擎有什么？他们的区别 a. InnoDB：\n  ⽀持事务处理\n  ⽀持外键\n  ⽀持⾏锁\n  不⽀持FULLTEXT类型的索引（在Mysql5.6已引⼊）\n  不保存表的具体⾏数，扫描表来计算有多少行\n  对于AUTO_INCREMENT类型的字段，必须包含只有该字段的索引\n  DELETE 表时，是一行一行的删除\n  InnoDB 把数据和索引存放在表空间⾥⾯\n  跨平台可直接拷⻉使⽤\n  表格很难被压缩\n  b. MyISAM：\n  不⽀持事务，回滚将造成不完全回滚，不具有原⼦性\n  不⽀持外键\n  ⽀持全⽂搜索\n  保存表的具体⾏数,不带where时，直接返回保存的⾏数\n  DELETE 表时，先drop表，然后重建表\n  MyISAM 表被存放在三个⽂件 。frm ⽂件存放表格定义。 数据⽂件是MYD (MYData) 。 索引⽂件是MYI (MYIndex)引伸\n  跨平台很难直接拷⻉\n  AUTO_INCREMENT类型字段可以和其他字段⼀起建⽴联合索引\n  表格可以被压缩\n  c. 选择：因为MyISAM相对简单所以在效率上要优于InnoDB.如果系统读多，写少。对原⼦性要求低。那么MyISAM最好的选择。且MyISAM恢复速度快。可直接⽤备份覆盖恢复。如果系统读少，写多的时候，尤其是并发写⼊⾼的时候。InnoDB就是⾸选了。两种类型都有⾃⼰优缺点，选择那个完全要看⾃⼰的实际类弄。\n10. innodb如何实现mysql的事务 事务进行过程中，每次sql语句执⾏，都会记录undo log和redo log，然后更新数据形成脏⻚，然后redo log按照时间或者空间等条件进⾏落盘，undo log和脏⻚按照checkpoint进⾏落盘，落盘后相应的redo log就可以删除了。此时，事务还未COMMIT，如果发⽣崩溃，则⾸先检查checkpoint记录，使⽤相应的redo log进⾏数据和undo log的恢复，然后查看undo log的状态发现事务尚未提交，然后就使⽤undo log进⾏事务回滚。事务执⾏COMMIT操作时，会将本事务相关的所有redo log都进行落盘，只有所有redo log落盘成功，才算COMMIT成功。然后内存中的数据脏⻚继续按照checkpoint进⾏落盘。如果此时发生了崩溃，则只使⽤redo log恢复数据。\n11.mysql索引谈⼀谈 12.说说b+树的原理 a. B-tree：\nB-tree 利⽤了磁盘块的特性进⾏构建的树。每个磁盘块⼀个节点，每个节点包含了很关键字。把树的节点关键字增多后树的层级⽐原来的⼆叉树少了，减少数据查找的次数和复杂度。\nB-tree巧妙利⽤了磁盘预读原理，将⼀个节点的⼤⼩设为等于⼀个⻚（每⻚为4K），这样每个节点只需要⼀次I/O就可以完全载入。\nB-tree 的数据可以存在任何节点中。\n B+tree：  B+tree 是 B-tree 的变种，B+tree 数据只存储在叶⼦节点中。这样在B树的基础上每个节点存储的关键字数更多，树的层级更少\n所以查询数据更快，所有指关键字指针都存在叶⼦节点，所以每次查找的次数都相同所以查询速度更稳定;\n13. 让你设计⼀个索引，你会怎么设计 a. mysql默认存储引擎innodb只显式⽀持B树索引，对于频繁访问的表，innodb会透明建⽴⾃适应hash索引，即在B树索引基础上建⽴hash索引，可以显著提⾼查找效率，对于客户端是透明的，不可控制的，隐式的。\n14. 还问了git和svn的区别 1、Git是分布式的，⽽Svn不是；\n2、GIT把内容按元数据⽅式存储，⽽SVN是按⽂件\n3、分⽀不同：git分⽀切换很⽅便；svn分⽀就是版本库的另外⼀个⽬录；\n4、GIT没有⼀个全局的版本号，⽽svn有，SVN的版本号实际是任何⼀个相应时间的源代码快照。\n5、GIT的内容完整性要优于SVN(GIT的内容存储使⽤的是SHA-1哈希算法。这能确保代码内容的完整性，确保在遇到磁盘故障和⽹络问题\n时降低对版本库的破坏。)\n15. git命令的⼀些底层原理以及流程 https://www.jianshu.com/p/2b47a3078a46\na. git init：使⽤git init初始化⼀个新的⽬录时，会⽣成⼀个.git的⽬录，该⽬录即为本地仓库。⼀个新初始化的本地仓库是这样的：\n1 2 3 4 5 6 7 8 9 10 11  - HEAD - branches - config - description - hook - objects - - info - - pack - refs - - heads - - tags    description⽤于GitWeb程序 config配置特定于该仓库的设置（还记得git config的三个配置级别么） hooks放置客户端或服务端的hook脚本 HEAD传说中的HEAD指针，指明当前处于哪个分⽀ objectsGit对象存储⽬录 refsGit引⽤存储⽬录 branches放置分⽀引⽤的⽬录 其中description、config和hooks这些不在讨论中，后⽂会直接忽略。  b. git add：Git commit之前先要通过git add添加⽂件：\n可以看到，多了⼀个index⽂件。并且在objects⽬录下多了⼀个9f的⽬录，其中多了⼀个\n4d96d5b00d98959ea9960f069585ce42b1349a⽂件。\n其实9f4d96d5b00d98959ea9960f069585ce42b1349a就是⼀个Git对象，称为blob对象。\nc. git commit：\n",
+  "wordCount" : "5898",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "小任同学"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "小任同学's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://coderrenxy.github.io/img/icon-512.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://coderrenxy.github.io/" accesskey="h" title="小任同学&#39;s Blog (Alt + H)">
+                <img src="https://coderrenxy.github.io/img/icon-32.png" alt="logo" aria-label="logo"
+                    height=" 30px">小任同学&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://coderrenxy.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/search/" title="🔍搜索">
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/links" title="🤝友链">
+                    <span>🤝友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://coderrenxy.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/">📚 文章</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/read/">📕 阅读</a></div>
+    <h1 class="post-title">
+      
+    </h1>
+    <div class="post-meta">
+			<p id="wc" style="font-size: 12px;">本文总阅读量<span id="busuanzi_value_page_pv"></span>次&nbsp;&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;0001-01-01&nbsp;|&nbsp;字数:&nbsp;5898字&nbsp;|&nbsp;时长: 12分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/14%e3%80%81%e9%93%b6%e7%9b%9b%e6%94%af%e4%bb%98.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                
+				<span class="details">文章目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e9%93%b6%e7%9b%9b%e6%94%af%e4%bb%98java%e4%b8%ad%e7%ba%a7" aria-label="银盛支付Java中级">银盛支付Java中级</a><ul>
+                            
+                    <li>
+                        <a href="#1-%e8%af%b4%e8%af%b4springcloud%e7%9a%84%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="1. 说说springcloud的⼯作原理">1. 说说springcloud的⼯作原理</a></li>
+                    <li>
+                        <a href="#2-%e4%bb%80%e4%b9%88%e7%bb%84%e4%bb%b6%e5%8f%91%e8%af%b7%e6%b1%82" aria-label="2. ⽤什么组件发请求">2. ⽤什么组件发请求</a></li>
+                    <li>
+                        <a href="#3-%e6%b3%a8%e5%86%8c%e4%b8%ad%e5%bf%83%e5%bf%83%e8%b7%b3%e6%98%af%e5%87%a0%e7%a7%92" aria-label="3. 注册中心心跳是几秒">3. 注册中心心跳是几秒</a></li>
+                    <li>
+                        <a href="#4-%e6%b6%88%e8%b4%b9%e8%80%85%e6%98%af%e5%a6%82%e4%bd%95%e5%8f%91%e7%8e%b0%e6%9c%8d%e5%8a%a1%e6%8f%90%e4%be%9b%e8%80%85%e7%9a%84" aria-label="4. 消费者是如何发现服务提供者的">4. 消费者是如何发现服务提供者的</a></li>
+                    <li>
+                        <a href="#5-%e5%a4%9a%e4%b8%aa%e6%b6%88%e8%b4%b9%e8%80%85%e8%b0%83%e7%94%a8%e5%90%8c%e6%8e%a5eruka%e9%bb%98%e8%ae%a4%e7%9a%84%e5%88%86%e9%85%8d%e6%96%b9%e5%bc%8f%e6%98%af%e4%bb%80%e4%b9%88" aria-label="5. 多个消费者调用同⼀接⼝，eruka默认的分配方式是什么">5. 多个消费者调用同⼀接⼝，eruka默认的分配方式是什么</a></li>
+                    <li>
+                        <a href="#7-spring%e7%9a%84%e4%ba%8b%e5%8a%a1%e6%b3%a8%e8%a7%a3%e6%98%af%e4%bb%80%e4%b9%88%e4%bb%80%e4%b9%88%e6%83%85%e5%86%b5%e4%b8%8b%e4%ba%8b%e7%89%a9%e6%89%8d%e4%bc%9a%e5%9b%9e%e6%bb%9a" aria-label="7. spring的事务注解是什么？什么情况下事物才会回滚">7. spring的事务注解是什么？什么情况下事物才会回滚</a></li>
+                    <li>
+                        <a href="#8-%e8%af%b4%e8%af%b4spring%e4%ba%8b%e7%89%a9%e7%9a%84%e4%bc%a0%e6%92%ad%e6%80%a7%e5%92%8c%e9%9a%94%e7%a6%bb%e7%ba%a7%e5%88%ab" aria-label="8. 说说spring事物的传播性和隔离级别">8. 说说spring事物的传播性和隔离级别</a></li>
+                    <li>
+                        <a href="#9-mysql%e7%9a%84%e5%bc%95%e6%93%8e%e6%9c%89%e4%bb%80%e4%b9%88%e4%bb%96%e4%bb%ac%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="9. mysql的引擎有什么？他们的区别">9. mysql的引擎有什么？他们的区别</a></li>
+                    <li>
+                        <a href="#10-innodb%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0mysql%e7%9a%84%e4%ba%8b%e5%8a%a1" aria-label="10. innodb如何实现mysql的事务">10. innodb如何实现mysql的事务</a></li>
+                    <li>
+                        <a href="#11mysql%e7%b4%a2%e5%bc%95%e8%b0%88%e8%b0%88" aria-label="11.mysql索引谈⼀谈">11.mysql索引谈⼀谈</a></li>
+                    <li>
+                        <a href="#12%e8%af%b4%e8%af%b4b%e6%a0%91%e7%9a%84%e5%8e%9f%e7%90%86" aria-label="12.说说b&#43;树的原理">12.说说b+树的原理</a></li>
+                    <li>
+                        <a href="#13-%e8%ae%a9%e4%bd%a0%e8%ae%be%e8%ae%a1%e4%b8%aa%e7%b4%a2%e5%bc%95%e4%bd%a0%e4%bc%9a%e6%80%8e%e4%b9%88%e8%ae%be%e8%ae%a1" aria-label="13. 让你设计⼀个索引，你会怎么设计">13. 让你设计⼀个索引，你会怎么设计</a></li>
+                    <li>
+                        <a href="#14-%e8%bf%98%e9%97%ae%e4%ba%86git%e5%92%8csvn%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="14. 还问了git和svn的区别">14. 还问了git和svn的区别</a></li>
+                    <li>
+                        <a href="#15-git%e5%91%bd%e4%bb%a4%e7%9a%84%e4%ba%9b%e5%ba%95%e5%b1%82%e5%8e%9f%e7%90%86%e4%bb%a5%e5%8f%8a%e6%b5%81%e7%a8%8b" aria-label="15. git命令的⼀些底层原理以及流程">15. git命令的⼀些底层原理以及流程</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+  <div class="post-content"><h1 id="银盛支付java中级">银盛支付Java中级<a hidden class="anchor" aria-hidden="true" href="#银盛支付java中级">#</a></h1>
+<h2 id="1-说说springcloud的作原理">1. 说说springcloud的⼯作原理<a hidden class="anchor" aria-hidden="true" href="#1-说说springcloud的作原理">#</a></h2>
+<p><img loading="lazy" src="D:%5c%e5%9b%be%e7%89%87%5ctypora%e5%9b%be%e7%89%87%5c1655976037341.png" alt="1655976037341"  />
+</p>
+<p>springcloud由以下⼏个核⼼组件构成：</p>
+<p>Eureka：各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉</p>
+<p>取注册表，从⽽知道其他服务在哪⾥</p>
+<p>Ribbon：服务间发起请求的时候，基于Ribbon做负载均衡，从⼀个服务的多台机器中选择⼀台</p>
+<p>Feign：基于Feign的动态代理机制，根据注解和选择的机器，拼接请求URL地址，发起请求</p>
+<p>Hystrix：发起请求是通过Hystrix的线程池来⾛的，不同的服务⾛不同的线程池，实现了不同服务调⽤的隔离，避免了服务雪崩</p>
+<p>的问题</p>
+<p>Zuul：如果前端、移动端要调⽤后端系统，统⼀从Zuul⽹关进⼊，由Zuul⽹关转发请求给对应的服务</p>
+<h2 id="2-什么组件发请求">2. ⽤什么组件发请求<a hidden class="anchor" aria-hidden="true" href="#2-什么组件发请求">#</a></h2>
+<p>在Spring Cloud中使⽤Feign, 我们可以做到使⽤HTTP请求远程服务时能与调⽤本地⽅法⼀样的编码体验，开发者完全感知不到</p>
+<p>这是远程⽅法，更感知不到这是个HTTP请求。</p>
+<h2 id="3-注册中心心跳是几秒">3. 注册中心心跳是几秒<a hidden class="anchor" aria-hidden="true" href="#3-注册中心心跳是几秒">#</a></h2>
+<p>1、Eureka的客户端默认每隔30s会向eureka服务端更新实例，注册中⼼也会定时进⾏检查，发现某个实例默认90s内没有再收到</p>
+<p>⼼跳，会注销此实例，这些时间间隔是可配置的。</p>
+<p>2、不过注册中⼼还有⼀个保护模式（服务端在短时间内丢失过多客户端的时候，就会进⼊保护模式），在这个保护模式下，他</p>
+<p>会认为是⽹络问题，不会注销任何过期的实例。</p>
+<h2 id="4-消费者是如何发现服务提供者的">4. 消费者是如何发现服务提供者的<a hidden class="anchor" aria-hidden="true" href="#4-消费者是如何发现服务提供者的">#</a></h2>
+<p><img loading="lazy" src="D:%5c%e5%9b%be%e7%89%87%5ctypora%e5%9b%be%e7%89%87%5c1655976084493.png" alt="1655976084493"  />
+</p>
+<p>a. 当⼀个服务实例启动，会将它的ip地址等信息注册到eureka；</p>
+<p>b. 当a服务调⽤b服务，a服务会通过Ribbon检查本地是否有b服务实例信息的缓存；</p>
+<p>c. Ribbon会定期从eureka刷新本地缓存。</p>
+<h2 id="5-多个消费者调用同接eruka默认的分配方式是什么">5. 多个消费者调用同⼀接⼝，eruka默认的分配方式是什么<a hidden class="anchor" aria-hidden="true" href="#5-多个消费者调用同接eruka默认的分配方式是什么">#</a></h2>
+<p><strong>a.</strong> RoundRobinRule:轮询策略，Ribbon以轮询的⽅式选择服务器，这个是默认值。所以示例中所启动的两个服务会被循环访问;</p>
+<p><strong>b.</strong> RandomRule:随机选择，也就是说Ribbon会随机从服务器列表中选择⼀个进⾏访问;</p>
+<p><strong>c.</strong> BestAvailableRule:最⼤可⽤策略，即先过滤出故障服务器后，选择⼀个当前并发请求数最⼩的;</p>
+<p><strong>d.</strong> WeightedResponseTimeRule:带有加权的轮询策略，对各个服务器响应时间进⾏加权处理，然后在采⽤轮询的⽅式来获取相</p>
+<p>应的服务器;</p>
+<p><strong>e.</strong> AvailabilityFilteringRule:可⽤过滤策略，先过滤出故障的或并发请求⼤于阈值⼀部分服务实例，然后再以线性轮询的⽅式从</p>
+<p>过滤后的实例清单中选出⼀个;</p>
+<p><strong>f.</strong> ZoneAvoidanceRule:区域感知策略，先使⽤主过滤条件（区域负载器，选择最优区域）对所有实例过滤并返回过滤后的实例</p>
+<p>清单，依次使⽤次过滤条件列表中的过滤条件对主过滤条件的结果进⾏过滤，判断最⼩过滤数（默认1）和最⼩过滤百分⽐（默</p>
+<p>认0），最后对满⾜条件的服务器则使⽤RoundRobinRule(轮询⽅式)选择⼀个服务器实例。</p>
+<p><strong>6.</strong> 说说常⽤的springboot注解，及其实现？</p>
+<p>a. @Bean：注册Bean</p>
+<p>i. 默认使⽤⽅法名作为id，可以在后⾯定义id如@Bean(&ldquo;xx&rdquo;)；</p>
+<p>ii. 默认为单例。</p>
+<p>iii. 可以指定init⽅法和destroy⽅法：</p>
+<ol>
+<li>
+<p>对象创建和赋值完成，调⽤初始化⽅法；</p>
+</li>
+<li>
+<p>单实例bean在容器销毁的时候执⾏destroy⽅法；</p>
+</li>
+<li>
+<p>多实例bean，容器关闭是不会调⽤destroy⽅法。</p>
+</li>
+</ol>
+<p>b. @Scope：Bean作⽤域</p>
+<p>i. 默认为singleton；</p>
+<p>ii. 类型：</p>
+<ol>
+<li>singleton单实例（默认值）：ioc容器启动时会调⽤⽅法创建对象放到ioc容器中，以后每次获取就是直接从容器中拿</li>
+</ol>
+<p>实例；</p>
+<ol start="2">
+<li>
+<p>prototype多实例：ioc容器启动不会创建对象，每次获取时才会调⽤⽅法创建实例；</p>
+</li>
+<li>
+<p>request同⼀次请求创建⼀个实例；</p>
+</li>
+<li>
+<p>session同⼀个session创建⼀个实例。</p>
+</li>
+</ol>
+<p>c. @Value：给变量赋值</p>
+<p>i. 代码：</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#d75f00">import</span> org.springframework.beans.factory.annotation.Value; 
+<span style="color:#0087ff">public</span> <span style="color:#0087ff">class</span> <span style="color:#0087ff">Person</span> <span style="color:#0087ff">extends</span> BaseEntity{ 
+     <span style="color:#0087ff">@Value</span>(<span style="color:#00afaf">&#34;xuan&#34;</span>)
+    <span style="color:#0087ff">private</span> String name;
+    <span style="color:#0087ff">@Value</span>(<span style="color:#00afaf">&#34;27&#34;</span>)
+    <span style="color:#0087ff">private</span> <span style="color:#af0000">int</span> age;
+    <span style="color:#0087ff">@Value</span>(<span style="color:#00afaf">&#34;#{20-7}&#34;</span>)
+    <span style="color:#0087ff">private</span> <span style="color:#af0000">int</span> count;
+    <span style="color:#0087ff">@Value</span>(<span style="color:#00afaf">&#34;$person.nickName}&#34;</span>)
+	<span style="color:#0087ff">private</span> String nickName;
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>i. ⽅式：</p>
+<ol>
+<li>
+<p>基本数字</p>
+</li>
+<li>
+<p>可以写SpEL（Spring EL表达式）：#{}</p>
+</li>
+<li>
+<p>可以写${}，取出配置⽂件中的值（在运⾏环境变量⾥⾯的值）</p>
+</li>
+</ol>
+<p>d. @Autowired：⾃动装配</p>
+<p>i. 默认优先按照类型去容器中找对应的组件：BookService bookService = applicationContext.getBean(BookService.class);</p>
+<p>ii. 默认⼀定要找到，如果没有找到则报错。可以使⽤@Autowired(required = false)标记bean为⾮必须的。</p>
+<p>iii. 如果找到多个相同类型的组件，再根据属性名称去容器中查找。</p>
+<p>iv. @Qualifier(&ldquo;bookDao2&rdquo;)明确的指定要装配的bean。</p>
+<p>v. @Primary：让spring默认装配⾸选的bean，也可以使⽤@Qualifier()指定要装配的bean。</p>
+<p>e. @Profile：环境标识</p>
+<p>i. Spring为我们提供的可以根据当前环境，动态的激活和切换⼀系列组件的功能；</p>
+<p>ii. @Profile指定组件在哪个环境才能被注册到容器中，默认为&quot;default&quot;@Profile(&ldquo;default&rdquo;)。</p>
+<p>iii. 激活⽅式：</p>
+<ol>
+<li>
+<p>运⾏时添加虚拟机参数：-Dspring.profiles.active=test</p>
+</li>
+<li>
+<p>代码⽅式：</p>
+</li>
+</ol>
+<h2 id="7-spring的事务注解是什么什么情况下事物才会回滚">7. spring的事务注解是什么？什么情况下事物才会回滚<a hidden class="anchor" aria-hidden="true" href="#7-spring的事务注解是什么什么情况下事物才会回滚">#</a></h2>
+<p>a. spring事务实现机制：</p>
+<p><img loading="lazy" src="D:%5c%e5%9b%be%e7%89%87%5ctypora%e5%9b%be%e7%89%87%5c1655976217403.png" alt="1655976217403"  />
+</p>
+<p>b. 事务注解@transactional；</p>
+<p>c. 默认情况下，如果在事务中抛出了未检查异常（继承⾃ RuntimeException 的异常）或者 Error，则 Spring 将回滚事务。</p>
+<p>d. @Transactional 只能应⽤到 public ⽅法才有效：只有@Transactional 注解应⽤到 public ⽅法，才能进⾏事务管理。这是因为</p>
+<p>在使⽤ Spring AOP 代理时，Spring 在调⽤在图 1 中的 TransactionInterceptor 在⽬标⽅法执⾏前后进⾏拦截之前，</p>
+<p>DynamicAdvisedInterceptor（CglibAopProxy 的内部类）的的 intercept ⽅法或 JdkDynamicAopProxy 的 invoke ⽅法会间接调</p>
+<p>⽤ AbstractFallbackTransactionAttributeSource（Spring 通过这个类获取表 1. @Transactional 注解的事务属性配置属性信息）</p>
+<p>的 computeTransactionAttribute ⽅法。</p>
+<h2 id="8-说说spring事物的传播性和隔离级别">8. 说说spring事物的传播性和隔离级别<a hidden class="anchor" aria-hidden="true" href="#8-说说spring事物的传播性和隔离级别">#</a></h2>
+<p>a. 七个事传播属性：</p>
+<ol>
+<li>
+<p>PROPAGATION_REQUIRED &ndash; ⽀持当前事务，如果当前没有事务，就新建⼀个事务。这是最常⻅的选择。</p>
+</li>
+<li>
+<p>PROPAGATION_SUPPORTS &ndash; ⽀持当前事务，如果当前没有事务，就以⾮事务⽅式执⾏。</p>
+</li>
+<li>
+<p>PROPAGATION_MANDATORY &ndash; ⽀持当前事务，如果当前没有事务，就抛出异常。</p>
+</li>
+<li>
+<p>PROPAGATIONREQUIRESNEW &ndash; 新建事务，如果当前存在事务，把当前事务挂起</p>
+</li>
+<li>
+<p>PROPAGATIONNOTSUPPORTED &ndash; 以⾮事务⽅式执⾏操作，如果当前存在事务，就把当前事务挂起。</p>
+</li>
+<li>
+<p>PROPAGATION_NEVER &ndash; 以⾮事务⽅式执⾏，如果当前存在事务，则抛出异常。</p>
+</li>
+<li>
+<p>PROPAGATIONNESTED &ndash; 如果当前存在事务，则在嵌套事务内执⾏。如果当前没有事务，则进⾏与 PROPAGATIONREQUIRED类似的操作。</p>
+</li>
+</ol>
+<p>b. 五个隔离级别：</p>
+<ol>
+<li>
+<p>ISOLATION_DEFAULT 这是⼀个PlatfromTransactionManager默认的隔离级别，使⽤数据库默认的事务隔离级别.</p>
+</li>
+<li>
+<p>另外四个与JDBC的隔离级别相对应：</p>
+</li>
+<li>
+<p>ISOLATIONREADUNCOMMITTED 这是事务最低的隔离级别，它充许别外⼀个事务可以看到这个事务未提交的数据。这种</p>
+</li>
+</ol>
+<p>隔离级别会产⽣脏读，不可重复读和幻读。</p>
+<ol start="4">
+<li>
+<p>ISOLATIONREADCOMMITTED 保证⼀个事务修改的数据提交后才能被另外⼀个事务读取。另外⼀个事务不能读取该事务未提交的数据。这种事务隔离级别可以避免脏读出现，但是可能会出现不可重复读和幻读。</p>
+</li>
+<li>
+<p>ISOLATIONREPEATABLEREAD 这种事务隔离级别可以防⽌脏读，不可重复读。但是可能出现幻读。它除了保证⼀个事务不能读取另⼀个事务未提交的数据外，还保证了避免不可重复读。</p>
+</li>
+<li>
+<p>ISOLATION_SERIALIZABLE 这是花费最⾼代价但是最可靠的事务隔离级别。事务被处理为顺序执⾏。除了防⽌脏读，不可重复读外，还避免了幻读。</p>
+</li>
+</ol>
+<p>c. 关键词：</p>
+<p><img loading="lazy" src="D:%5c%e5%9b%be%e7%89%87%5ctypora%e5%9b%be%e7%89%87%5c1655976292097.png" alt="1655976292097"  />
+</p>
+<p>1、脏读（新增或删除）：脏读就是指当⼀个事务正在访问数据，并且对数据进⾏了修改，⽽这种修改还没有提交到数据库 中，这时，另外⼀个事务也访问这个数据，然后使⽤了这个数据；</p>
+<ul>
+<li>Mary的原工资为1000，财务人员将Mary的工资改为了8000（但未提交事务）</li>
+<li>Mary读取自己的工资，发现自己的工资变为了8000，欢天喜地！</li>
+<li>而财务发现操作有误，回滚了事务，May的工资又变为了1000像这样，Mary记取的工资数8000是一个脏数据。</li>
+</ul>
+<p>2、不可重复读（修改）：是指在⼀个事务内，多次读同⼀数据。在这个事务还没有结束时，另外⼀个事务也访问该同⼀数据。那么，在第⼀个事务中的两次读数据之间，由于第⼆个事务的修改，那么第⼀个事务两次读到的的数据可能是不⼀样的。这样在⼀个事务内两次读到的数据是不⼀样的，因此称为是不可重复读。（解决：只有在修改事务完全提交之后才可以读取数据，则可以避免该问题）；</p>
+<ul>
+<li>在事务1中，May读取了自己的工资为1000，操作并没有完成</li>
+<li>在事务2中，这时财务人员修改了Mary的工资为2000，并提交了事务.</li>
+<li>在事务1中，Mary再次读取自己的工资时，工资变为了2000</li>
+</ul>
+<p>3、幻读（新增或删除）：是指当事务不是独⽴执⾏时发⽣的⼀种现象，例如第⼀个事务对⼀个表中的数据进⾏了修改，这种修改涉及到表中的全部数据⾏。同时，第⼆个事务也修改这个表中的数据，这种修改是向表中插⼊⼀⾏新数据。那么，以后就会发⽣操作第⼀个事务的⽤户发现表中还有没有修改的数据⾏，就好象发⽣了幻觉⼀样（解决：如果在操作事务完成数据处理之前，任何其他事务都不可以添加新数据，则可避免该问题）。</p>
+<p>目前工资为1000的员工有10人。</p>
+<ul>
+<li>事务1，读取所有工资为1000的员工。</li>
+<li>这时事务2向employee表插入了一条员工记录，工资也为1000</li>
+<li>事务1再次读取所有工资为1000的员工共读取到了11条记录。</li>
+</ul>
+<h2 id="9-mysql的引擎有什么他们的区别">9. mysql的引擎有什么？他们的区别<a hidden class="anchor" aria-hidden="true" href="#9-mysql的引擎有什么他们的区别">#</a></h2>
+<p>a. InnoDB：</p>
+<ol>
+<li>
+<p>⽀持事务处理</p>
+</li>
+<li>
+<p>⽀持外键</p>
+</li>
+<li>
+<p>⽀持⾏锁</p>
+</li>
+<li>
+<p>不⽀持FULLTEXT类型的索引（在Mysql5.6已引⼊）</p>
+</li>
+<li>
+<p>不保存表的具体⾏数，扫描表来计算有多少行</p>
+</li>
+<li>
+<p>对于AUTO_INCREMENT类型的字段，必须包含只有该字段的索引</p>
+</li>
+<li>
+<p>DELETE 表时，是一行一行的删除</p>
+</li>
+<li>
+<p>InnoDB 把数据和索引存放在表空间⾥⾯</p>
+</li>
+<li>
+<p>跨平台可直接拷⻉使⽤</p>
+</li>
+<li>
+<p>表格很难被压缩</p>
+</li>
+</ol>
+<p>b. MyISAM：</p>
+<ol>
+<li>
+<p>不⽀持事务，回滚将造成不完全回滚，不具有原⼦性</p>
+</li>
+<li>
+<p>不⽀持外键</p>
+</li>
+<li>
+<p>⽀持全⽂搜索</p>
+</li>
+<li>
+<p>保存表的具体⾏数,不带where时，直接返回保存的⾏数</p>
+</li>
+<li>
+<p>DELETE 表时，先drop表，然后重建表</p>
+</li>
+<li>
+<p>MyISAM 表被存放在三个⽂件 。frm ⽂件存放表格定义。 数据⽂件是MYD (MYData) 。 索引⽂件是MYI (MYIndex)引伸</p>
+</li>
+<li>
+<p>跨平台很难直接拷⻉</p>
+</li>
+<li>
+<p>AUTO_INCREMENT类型字段可以和其他字段⼀起建⽴联合索引</p>
+</li>
+<li>
+<p>表格可以被压缩</p>
+</li>
+</ol>
+<p>c. 选择：因为MyISAM相对简单所以在效率上要优于InnoDB.如果系统读多，写少。对原⼦性要求低。那么MyISAM最好的选择。且MyISAM恢复速度快。可直接⽤备份覆盖恢复。如果系统读少，写多的时候，尤其是并发写⼊⾼的时候。InnoDB就是⾸选了。两种类型都有⾃⼰优缺点，选择那个完全要看⾃⼰的实际类弄。</p>
+<h2 id="10-innodb如何实现mysql的事务">10. innodb如何实现mysql的事务<a hidden class="anchor" aria-hidden="true" href="#10-innodb如何实现mysql的事务">#</a></h2>
+<p><img loading="lazy" src="D:%5c%e5%9b%be%e7%89%87%5ctypora%e5%9b%be%e7%89%87%5c1655976478758.png" alt="1655976478758"  />
+</p>
+<p>事务进行过程中，每次sql语句执⾏，都会记录undo log和redo log，然后更新数据形成脏⻚，然后redo log按照时间或者空间等条件进⾏落盘，undo log和脏⻚按照checkpoint进⾏落盘，落盘后相应的redo log就可以删除了。此时，事务还未COMMIT，如果发⽣崩溃，则⾸先检查checkpoint记录，使⽤相应的redo log进⾏数据和undo log的恢复，然后查看undo log的状态发现事务尚未提交，然后就使⽤undo log进⾏事务回滚。事务执⾏COMMIT操作时，会将本事务相关的所有redo log都进行落盘，只有所有redo log落盘成功，才算COMMIT成功。然后内存中的数据脏⻚继续按照checkpoint进⾏落盘。如果此时发生了崩溃，则只使⽤redo log恢复数据。</p>
+<h2 id="11mysql索引谈谈">11.mysql索引谈⼀谈<a hidden class="anchor" aria-hidden="true" href="#11mysql索引谈谈">#</a></h2>
+<h2 id="12说说b树的原理">12.说说b+树的原理<a hidden class="anchor" aria-hidden="true" href="#12说说b树的原理">#</a></h2>
+<p>a. B-tree：</p>
+<p><img loading="lazy" src="D:%5c%e5%9b%be%e7%89%87%5ctypora%e5%9b%be%e7%89%87%5c1655976533760.png" alt="1655976533760"  />
+</p>
+<p>B-tree 利⽤了磁盘块的特性进⾏构建的树。每个磁盘块⼀个节点，每个节点包含了很关键字。把树的节点关键字增多后树的层级⽐原来的⼆叉树少了，减少数据查找的次数和复杂度。</p>
+<p>B-tree巧妙利⽤了磁盘预读原理，将⼀个节点的⼤⼩设为等于⼀个⻚（每⻚为4K），这样每个节点只需要⼀次I/O就可以完全载入。</p>
+<p>B-tree 的数据可以存在任何节点中。</p>
+<ol>
+<li>B+tree：</li>
+</ol>
+<p><img loading="lazy" src="D:%5c%e5%9b%be%e7%89%87%5ctypora%e5%9b%be%e7%89%87%5c1655976558697.png" alt="1655976558697"  />
+</p>
+<p>B+tree 是 B-tree 的变种，B+tree 数据只存储在叶⼦节点中。这样在B树的基础上每个节点存储的关键字数更多，树的层级更少</p>
+<p>所以查询数据更快，所有指关键字指针都存在叶⼦节点，所以每次查找的次数都相同所以查询速度更稳定;</p>
+<h2 id="13-让你设计个索引你会怎么设计">13. 让你设计⼀个索引，你会怎么设计<a hidden class="anchor" aria-hidden="true" href="#13-让你设计个索引你会怎么设计">#</a></h2>
+<p>a. mysql默认存储引擎innodb只显式⽀持B树索引，对于频繁访问的表，innodb会透明建⽴⾃适应hash索引，即在B树索引基础上建⽴hash索引，可以显著提⾼查找效率，对于客户端是透明的，不可控制的，隐式的。</p>
+<h2 id="14-还问了git和svn的区别">14. 还问了git和svn的区别<a hidden class="anchor" aria-hidden="true" href="#14-还问了git和svn的区别">#</a></h2>
+<p>1、Git是分布式的，⽽Svn不是；</p>
+<p>2、GIT把内容按元数据⽅式存储，⽽SVN是按⽂件</p>
+<p>3、分⽀不同：git分⽀切换很⽅便；svn分⽀就是版本库的另外⼀个⽬录；</p>
+<p>4、GIT没有⼀个全局的版本号，⽽svn有，SVN的版本号实际是任何⼀个相应时间的源代码快照。</p>
+<p>5、GIT的内容完整性要优于SVN(GIT的内容存储使⽤的是SHA-1哈希算法。这能确保代码内容的完整性，确保在遇到磁盘故障和⽹络问题</p>
+<p>时降低对版本库的破坏。)</p>
+<h2 id="15-git命令的些底层原理以及流程">15. git命令的⼀些底层原理以及流程<a hidden class="anchor" aria-hidden="true" href="#15-git命令的些底层原理以及流程">#</a></h2>
+<p><a href="https://www.jianshu.com/p/2b47a3078a46">https://www.jianshu.com/p/2b47a3078a46</a></p>
+<p>a. git init：使⽤git init初始化⼀个新的⽬录时，会⽣成⼀个.git的⽬录，该⽬录即为本地仓库。⼀个新初始化的本地仓库是这样的：</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">- HEAD
+- branches
+- config
+- description
+- hook
+- objects
+- - info
+- - pack
+- refs
+- - heads
+- - tags
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>description⽤于GitWeb程序</li>
+<li>config配置特定于该仓库的设置（还记得git config的三个配置级别么）</li>
+<li>hooks放置客户端或服务端的hook脚本</li>
+<li>HEAD传说中的HEAD指针，指明当前处于哪个分⽀</li>
+<li>objectsGit对象存储⽬录</li>
+<li>refsGit引⽤存储⽬录</li>
+<li>branches放置分⽀引⽤的⽬录</li>
+<li>其中description、config和hooks这些不在讨论中，后⽂会直接忽略。</li>
+</ul>
+<p>b. git add：Git commit之前先要通过git add添加⽂件：</p>
+<p><img loading="lazy" src="D:%5c%e5%9b%be%e7%89%87%5ctypora%e5%9b%be%e7%89%87%5c1655976714924.png" alt="1655976714924"  />
+</p>
+<p>可以看到，多了⼀个index⽂件。并且在objects⽬录下多了⼀个9f的⽬录，其中多了⼀个</p>
+<p>4d96d5b00d98959ea9960f069585ce42b1349a⽂件。</p>
+<p>其实9f4d96d5b00d98959ea9960f069585ce42b1349a就是⼀个Git对象，称为blob对象。</p>
+<p>c. git commit：</p>
+<p><img loading="lazy" src="D:%5c%e5%9b%be%e7%89%87%5ctypora%e5%9b%be%e7%89%87%5c1655976729455.png" alt="1655976729455"  />
+</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://coderrenxy.github.io/posts/read/13%E8%BD%AF%E9%80%9A%E5%8A%A8%E5%8A%9B/">
+    <span class="title">« 上一篇</span>
+    <br>
+    <span></span>
+  </a>
+  <a class="next" href="https://coderrenxy.github.io/posts/read/15%E4%B8%AD%E8%BD%AF%E5%9B%BD%E9%99%85/">
+    <span class="title">下一篇 »</span>
+    <br>
+    <span></span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+	<h2>分享至: &nbsp &nbsp</h>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https://coderrenxy.github.io/posts/">
+        <svg t="1651680695552" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3017" width="81" height="81"><path d="M985.742 749.936c0 130.864-106.178 236.964-237.17 236.964H274.298c-130.954 0-237.092-106.102-237.092-236.964V276.018c0-130.902 106.138-236.966 237.092-236.966h474.274c130.992 0 237.17 106.064 237.17 236.966v473.918z" fill="#235B9E" p-id="3018"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3019"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3020"></path><path d="M556.712 216.778l91.59 0.384v101.512H581.76c-10.808 0-26.208 5.362-26.208 28.464v47.362h94.252l-10.808 118.482H551v296.192h-118.568V512.982H373.14V394.5h58.792v-53.534c0-48.478 23.118-124.188 124.78-124.188m0-19.754c-64.452 0-98.87 28.234-116.394 51.92-24.486 33.094-28.142 71.862-28.142 92.024v33.78H373.14c-10.91 0-19.754 8.844-19.754 19.754v118.482c0 10.91 8.844 19.754 19.754 19.754h39.54v276.438c0 10.91 8.844 19.754 19.754 19.754h118.568c10.91 0 19.754-8.844 19.754-19.754V532.738h68.242a19.756 19.756 0 0 0 19.672-17.96l10.808-118.482a19.76 19.76 0 0 0-19.672-21.55h-74.498v-27.608c0-4.532 0.948-6.908 1.758-7.568 0.7-0.568 2.422-1.142 4.696-1.142h66.542c10.91 0 19.754-8.844 19.754-19.754v-101.512a19.752 19.752 0 0 0-19.67-19.754l-91.59-0.384h-0.086z" fill="#1A4477" p-id="3021"></path><path d="M728.078 956.122H294.83c-124.896 0-226.506-101.636-226.506-226.566V296.358c0-124.908 101.61-226.526 226.506-226.526h433.248c124.918 0 226.544 101.62 226.544 226.526v433.198c0.002 124.928-101.626 226.566-226.544 226.566zM294.83 89.636c-113.976 0-206.702 92.734-206.702 206.72v433.198c0 114.008 92.726 206.762 206.702 206.762h433.248c113.996 0 206.74-92.754 206.74-206.762V296.358c0-113.986-92.744-206.72-206.74-206.72H294.83z" fill="#1A4477" p-id="3022"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on whatsapp"
+        href="https://api.whatsapp.com/send?text=%20-%20https%3a%2f%2fcoderrenxy.github.io%2fposts%2fread%2f14%25E9%2593%25B6%25E7%259B%259B%25E6%2594%25AF%25E4%25BB%2598%2f">
+        <svg t="1651681184624" class="icon" viewBox="0 0 1586 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9888" width="81" height="81"><path d="M160.587294 1019.542588h1261.327059a145.568627 145.568627 0 0 0 145.548549-145.52847V146.291451A145.528471 145.528471 0 0 0 1421.914353 0.803137H160.587294A145.568627 145.568627 0 0 0 15.058824 146.311529V874.014118a145.588706 145.588706 0 0 0 145.52847 145.548549z" fill="#F4B459" p-id="9889"></path><path d="M63.849412 981.955765l607.091451-467.184941L65.174588 37.205333C34.695529 63.909647 15.058824 102.600784 15.058824 146.311529V874.014118c0 43.028078 19.07451 81.317647 48.790588 107.961725zM1518.371137 38.048627l-629.539137 478.067451 628.956863 466.56251c30.278275-26.644078 49.694118-65.254902 49.694117-108.684549V146.331608c0-43.208784-19.215059-81.598745-49.091764-108.282981z" fill="#E8AB54" p-id="9890"></path><path d="M1548.247843 944.971294L1018.096941 520.774275l536.495686-433.894902a145.66902 145.66902 0 0 0-55.737725-63.688785L813.578039 571.371922 109.748706 10.380549A145.608784 145.608784 0 0 0 40.357647 64.471843l566.673569 454.515451L47.666196 964.668235A144.946196 144.946196 0 0 0 122.88 1013.960784l554.164706-438.312157 33.812078 27.26651a142.436392 142.436392 0 0 0 205.603138 0l31.48298-25.459451 538.423216 426.36549a145.086745 145.086745 0 0 0 61.861647-58.829803z" fill="#FADAAC" p-id="9891"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on telegram"
+        href="https://telegram.me/share/url?text=&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fread%2f14%25E9%2593%25B6%25E7%259B%259B%25E6%2594%25AF%25E4%25BB%2598%2f">
+        <svg t="1651680820373" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3832" width="81" height="81"><path d="M679.424 746.862l84.005-395.996c7.424-34.852-12.581-48.567-35.438-40.009L234.277 501.138c-33.72 13.13-33.134 32-5.706 40.558l126.282 39.424 293.156-184.576c13.714-9.143 26.295-3.986 16.018 5.157L426.898 615.973l-9.143 130.304c13.13 0 18.871-5.706 25.71-12.581l61.696-59.429 128 94.282c23.442 13.129 40.01 6.29 46.3-21.724zM1024 512c0 282.843-229.157 512-512 512S0 794.843 0 512 229.157 0 512 0s512 229.157 512 512z" fill="#1296DB" p-id="3833"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on reddit"
+        href="https://twitter.com/intent/tweet/?text=&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fread%2f14%25E9%2593%25B6%25E7%259B%259B%25E6%2594%25AF%25E4%25BB%2598%2f&amp;hashtags=">
+        <svg t="1651764155941" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1736" width="81" height="81"><path d="M295.2 338c120.2 61 221.7 57.4 221.7 57.4s-38.5-134.8 80.5-194.6 200.9 41 200.9 41 20.8-5.7 36.2-11.4c15.5-5.7 37.8-15.9 37.8-15.9l-36.7 65.8 56.5-6s-7 10.2-29.6 31-31.9 31.6-31.9 31.6 8.1 162.3-77 287.2C668.5 749 558.6 824 398.9 839.8c-159.7 15.8-263.7-49.2-263.7-49.2s69.8-4 114.3-21.1S358 707.4 358 707.4s-91-28.1-123.7-59.8c-32.7-31.6-40.8-50.4-40.8-50.4l89.8-1.2s-94.5-50.4-121.3-90.3-30.3-78.5-30.3-78.5l69.1 28s-57.4-78.4-65.6-139.4c-8.2-61 10.5-93.8 10.5-93.8s29.3 55 149.5 116z" fill="#5DD7FC" p-id="1737"></path></svg>
+    </a>
+	
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<script src="https://utteranc.es/client.js"
+repo="coderRenxy/coderrenxy.github.io"
+issue-term="title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+	<span id="busuanzi_container_site_pv">
+    访问量：<span id="busuanzi_value_site_pv"></span>次
+</span>
+&nbsp;
+<span id="busuanzi_container_site_uv">
+    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+</span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+ <div>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+
+</body>
+
+</html>

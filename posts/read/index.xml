@@ -18,6 +18,141 @@
     
     <item>
       <title></title>
+      <link>https://coderrenxy.github.io/posts/read/01%E6%80%9D%E7%89%B9%E5%A5%87/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/01%E6%80%9D%E7%89%B9%E5%A5%87/</guid>
+      <description>思特奇 一面 1.自我介绍 和 项目介绍 &amp;hellip; 2.Java有多少种数据类型 各占多少个字节 6数字，1字符，1布尔 int4，short2，byte1，lon</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/02%E5%93%88%E7%BD%97/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/02%E5%93%88%E7%BD%97/</guid>
+      <description>哈罗 开始 1.自我介绍&amp;amp;项目介绍 我的是新闻门户网站,介绍了一下都用到了什么技术,几个人开发,怎么协作 2.先聊聊java基础,说说jav</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/03%E9%87%91%E8%9D%B6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/03%E9%87%91%E8%9D%B6/</guid>
+      <description>金蝶 一面 自我介绍 项目的架构图画一下 项目是怎么部署到服务器的 为什么要用 Docker 做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。 项目数据库表</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/04%E6%AD%A5%E6%AD%A5%E9%AB%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/04%E6%AD%A5%E6%AD%A5%E9%AB%98/</guid>
+      <description>步步高 一面（50分钟） 介绍一下项目 项目是视频还是通过什么途径学习的？ 你认为项目中复杂的点是什么？ Redis的使用场景？ Redis的高并发是依</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/05%E8%A1%8C%E4%BA%91%E9%9B%86%E5%9B%A2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/05%E8%A1%8C%E4%BA%91%E9%9B%86%E5%9B%A2/</guid>
+      <description>行云集团 自我介绍 实习用到的技术栈和编程语言是什么？ (实习是学校很水的5G通信实习，压根不沾边，随便就过了) Java是什么时候开始接触和学习的</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/06%E4%B8%AD%E7%A8%8E%E6%B1%87%E9%87%91/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/06%E4%B8%AD%E7%A8%8E%E6%B1%87%E9%87%91/</guid>
+      <description>中税汇金 1.你的redis怎么和mysql同步数据的？（我已经忘了我当时做的那个收藏功能同步没有同步，问下xdm这样的收藏功能一般是怎么做的</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/07%E5%AD%97%E8%8A%82%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E9%83%A8%E9%97%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/07%E5%AD%97%E8%8A%82%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E9%83%A8%E9%97%A8/</guid>
+      <description>字节大数据基础架构部门 字节面经 一面 2.17 自我介绍 接口和抽象类的区别 了解过啥设计模式 单例模式是啥 工厂模式的作用，为什么要用工厂模式？ 解耦, 把对象的</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/08%E7%BE%8E%E5%9B%A2%E5%8D%8E%E4%B8%BA%E5%AD%97%E8%8A%82/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/08%E7%BE%8E%E5%9B%A2%E5%8D%8E%E4%B8%BA%E5%AD%97%E8%8A%82/</guid>
+      <description>美团 一面 挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。 进程线程区别。 死锁，死锁条件。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/09%E5%BF%B5%E7%A5%9E%E9%9D%A2%E7%BB%8F/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/09%E5%BF%B5%E7%A5%9E%E9%9D%A2%E7%BB%8F/</guid>
+      <description>念神面经篇 Java基础篇 JDK &amp;amp; JVM &amp;amp; JRE的区别 包装类型的常量池技术 接口和抽象类的区别 String、StringBuffer、StringBui</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/10%E7%99%BE%E5%BA%A6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/10%E7%99%BE%E5%BA%A6/</guid>
+      <description>百度Java中级面试 Spring BeanFactory 和 ApplicationContext 有什么区别 1、BeanFactory 可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义， 以便在</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/11%E4%BA%AC%E4%B8%9C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/11%E4%BA%AC%E4%B8%9C/</guid>
+      <description>京东Java中级面试 1、哪些情况下的对象会被垃圾回收机制处理掉？ 利用可达性分析算法，虚拟机会将一些对象定义为 GC Roots，从 GC Roots 出发沿着引用</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/12%E8%9A%82%E8%9A%81/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/12%E8%9A%82%E8%9A%81/</guid>
+      <description>蚂蚁面试题总结 1. jdk1.7到jdk1.8 Map发生了什么变化(底层)? 1.8之后hashMap的数据结构发生了变化，从之前的单纯的数组+链</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/13%E8%BD%AF%E9%80%9A%E5%8A%A8%E5%8A%9B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/13%E8%BD%AF%E9%80%9A%E5%8A%A8%E5%8A%9B/</guid>
+      <description>软通动力Java中级 1、锁可以锁在哪里？ Java 为程序加锁的方式主要有两种：synchronized 与 Lock。 1、synchronized 可以修</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/</guid>
+      <description>银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成： Eureka：各个服务启动时，Eur</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/15%E4%B8%AD%E8%BD%AF%E5%9B%BD%E9%99%85/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/15%E4%B8%AD%E8%BD%AF%E5%9B%BD%E9%99%85/</guid>
+      <description>中软国际Java中级 1、java 中==和 equals 和 hashCode 的区别 1）==若是基本数据类型比较，是比较值，若是引用类型，则比较的是他们在内存中的存放地址。</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>https://coderrenxy.github.io/posts/read/beijing-01/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       

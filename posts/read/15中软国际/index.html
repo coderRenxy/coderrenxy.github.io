@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>小任同学&#39;s Blog</title>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta name="keywords" content="" />
+<meta name="description" content="中软国际Java中级 1、java 中==和 equals 和 hashCode 的区别 1）==若是基本数据类型比较，是比较值，若是引用类型，则比较的是他们在内存中的存放地址。">
+<meta name="author" content="
+作者:&nbsp;小任同学">
+<link rel="canonical" href="https://coderrenxy.github.io/posts/read/15%E4%B8%AD%E8%BD%AF%E5%9B%BD%E9%99%85/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link rel="preload" href="img/icon-32.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="apple-touch-icon" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.92.1" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="" />
+<meta property="og:description" content="中软国际Java中级 1、java 中==和 equals 和 hashCode 的区别 1）==若是基本数据类型比较，是比较值，若是引用类型，则比较的是他们在内存中的存放地址。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://coderrenxy.github.io/posts/read/15%E4%B8%AD%E8%BD%AF%E5%9B%BD%E9%99%85/" /><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="中软国际Java中级 1、java 中==和 equals 和 hashCode 的区别 1）==若是基本数据类型比较，是比较值，若是引用类型，则比较的是他们在内存中的存放地址。"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "📚 文章",
+      "item": "https://coderrenxy.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📕 阅读",
+      "item": "https://coderrenxy.github.io/posts/read/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "",
+      "item": "https://coderrenxy.github.io/posts/read/15%E4%B8%AD%E8%BD%AF%E5%9B%BD%E9%99%85/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "中软国际Java中级 1、java 中==和 equals 和 hashCode 的区别 1）==若是基本数据类型比较，是比较值，若是引用类型，则比较的是他们在内存中的存放地址。",
+  "keywords": [
+    
+  ],
+  "articleBody": "中软国际Java中级 1、java 中==和 equals 和 hashCode 的区别 1）==若是基本数据类型比较，是比较值，若是引用类型，则比较的是他们在内存中的存放地址。对象是存放在堆中，栈中存放的对象的引用，所以==是对栈中的值进行比较，若返回 true 代表变量的内存地址相等；\n2）equals 是 Object 类中的方法，Object 类的 equals 方法用于判断对象的内存地址引用是不是同一个地址（是不是同一个对象）。若是类中覆盖了 equals 方法，就要根据具体代码来确定，一般覆盖后都是通过对象的内容是否相等来判断对象是否相等。\n3）hashCode()计算出对象实例的哈希码，在对象进行散列时作为 key 存入。之所以有hashCode 方法，因为在批量的对象比较中，hashCode 比较要比 equals 快。在添加新元素时，先调用这个元素的 hashCode 方法，一下子能定位到它应该旋转的物理位置，若该位置没有元素，可直接存储；若该位置有元素，就调用它的 equals 方法与新元素进行比较，若相同则不存，不相同，就放到该位置的链表末端。\n4）equals 与 hashCode 方法关系：\nhashCode()是一个本地方法，实现是根据本地机器上关的。equals()相等的对象， hashCode()也一定相等；\nhashCode()不等，equals()一定也不等；\nhashCode()相等，equals() 可能相等，也可能不等。\n所 以 在 重 写 equals(Object obj) 方 法 ， 有 必 要 重 写 hashCode() 方 法 ， 确 保 通 过equals(Object obj)方法判断结果为 true 的两个对象具备相等的 hashCode()返回值。\n5）equals 与==的关系：\nInteger b1 = 127;在 java 编译时被编译成 Integer b1 = Integer.valueOf(127);对于-128到 127 之间的 Integer 值，用的是原生数据类型 int，会在内存里供重用，也就是这之间的Integer 值进行==比较时，只是进行 int 原生数据类型的数值进行比较。而超出-128〜127的范围，进行==比较时是进行地址及数值比较。\n2、int、char、long 各占多少字节数 int\\float 占用 4 个字节，short\\char 占用 2 个字节，\nlong 占用 8 个字节，byte/boolean 占用 1 个字节\n基本数据类型存放在栈里，包装类栈里存放的是对象的引用，即值的地址，而值存放在堆里。\n3、int 与 integer 的区别 Integer 是 int 的包装类，int 则是 java 的一种基本数据类型，Integer 变量必须实例化才能 使用，当 new 一个 Integer 时，实际是生成一个指向此对象的引用，而 int 是直接存储数据的值，\nInteger 默认值是 null，而 int 默认值是 0\n4、谈谈对 java 多态的理解 同一个消息可以根据发送对象的不同而采用多种不同的行为方式，在执行期间判断所引用的对象的实际类型，根据其实际的类型调用其相应的方法。\n作用：消除类型之间的耦合关系。实现多态的必要条件：继承、重写（因为必须调用父类中存在的方法）、父类引用指向子类对象\n5、String、StringBuffer、StringBuilder 区别 都是字符串类，String 类中使用字符数组保存字符串，因有 final 修饰符，String 对象是不可变的，每次对 String 操作都会生成新的 String 对象，这样效率低，且浪费内存空间。但线程安全。\nStringBuilder 和 StringBuffer 也是使用字符数组保存字符，但这两种对象都是可变的，即对字符串进行 append 操作，不会产生新的对象。它们的区别是：StringBuffer 对方法加了同步锁，是线程安全的，StringBuilder 非线程安全。\n6、什么是内部类？内部类的作用 内部类指在类的内部再定义另一个类。\n内部类的作用：\n1）实现多重继承，因为 java 中类的继承只能单继承，使用内部类可达到多重继承；\n2）内部类可以很好的实现隐藏，一般非内部类，不允许有 private 或 protected权限的，但内部类可以；\n3）减少了类文件编译后产生的字节码文件大小；内部类在编译完后也会产生.class 文件，但文件名称是：外部名称$内部类名称.class。\n分为以下几种：\n1）成员内部类，作为外部类的一个成员存在，与外部类的属性、方法并列，成员内部类持有外部类的引用，成员内部类不能定义 static 变量和方法。应用场合：每一个外部类都需要一个内部类实例，内部类离不开外部类存在。\n2）静态内部类，内部类以 static 声明，其他类可通过外部类.内部类来访问。特点：不会持有外部类的引用，可以访问外部类的静态变量，若要访问成员变量须通过外部类的实例访问。\n应用场合：内部类不需要外部类的实例，仅为外部类提供或逻辑上属于外部类，逻辑上可单独存在。设计的意义：加强了类的封装性（静态内部类是外部类的子行为或子属性，两者保持着一定关系），提高了代码的可读性（相关联的代码放在一起）。\n3）匿名内部类，在整个操作中只使用一次，没有名字，使用 new 创建，没有具体位置。\n4）局部内部类，在方法内或是代码块中定义类，\n7、抽象类和接口区别 抽象类在类前面须用 abstract 关键字修饰，一般至少包含一个抽象方法，抽象方法指只有声明，用关键字 abstract 修饰，没有具体的实现的方法。因抽象类中含有无具体实现的方法，固不能用抽象类创建对象。\n当然如果只是用 abstract 修饰类而无具体实现，也是抽象类。抽象类也可以有成员变量和普通的成员方法。抽象方法必须为 public 或 protected（若为 private，不能被子类继承，子类无法实现该方法）。\n若一个类继承一个抽象类，则必须实现父类中所有的抽象方法，若子类没有实现父类的抽象方法，则也应该定义为抽象类。\n接口用关键字 interface 修饰，接口也可以含有变量和方法，接口中的变量会被隐式指定为public static final 变量。方法会被隐式的指定为 public abstract，接口中的所有方法均不能有具体的实现，即接口中的方法都必须为抽象方法。若一个非抽象类实现某个接口，必须实现该接口中所有的方法。\n区别：\n1）抽象类可以提供成员方法实现的细节，而接口只能存在抽象方法；\n2）抽象类的成员变量可以是各种类型，而接口中成员变量只能是 public static final 类型；\n3）接口中不能含有静态方法及静态代码块，而抽象类可以有静态方法和静态代码块；\n4）一个类只能继承一个抽象类，用 extends 来继承，却可以实现多个接口，用 implements\n来实现接口。\n7.1、抽象类的意义 抽象类是用来提供子类的通用性，用来创建继承层级里子类的模板，减少代码编写，有利于\n代码规范化。\n7.2、抽象类与接口的应用场景 抽象类的应用场景：1）规范了一组公共的方法，与状态无关，可以共享的，无需子类分别\n实现；而另一些方法却需要各个子类根据自己特定状态来实现特定功能；\n2）定义一组接口，但不强迫每个实现类都必须实现所有的方法，可用抽象类定义一组方法\n体可以是空方法体，由子类选择自己感兴趣的方法来覆盖；\n7.3、抽象类是否可以没有方法和属性？ 可以\n7.4、接口的意义 1）有利于代码的规范，对于大型项目，对一些接口进行定义，可以给开发人员一个清晰的\n指示，防止开发人员随意命名和代码混乱，影响开发效率。\n2）有利于代码维护和扩展，当前类不能满足要求时，不需要重新设计类，只需要重新写了\n个类实现对应的方法。\n3）解耦作用，全局变量的定义，当发生需求变化时，只需改变接口中的值即可。\n4）直接看接口，就可以清楚知道具体实现类间的关系，代码交给别人看，别人也能立马明\n白。\n8、泛型中 extends 和 super 的区别 限定参数类型的上界，参数类型必须是 T 或 T 的子类型，但对于 List，不能通过 add()来加入元素，因为不知道是 T 的哪一种子类； 限定参数类型的下界，参数类型必须是 T 或 T 的父类型，不能能过 get()获取元素，因为不知道哪个超类； ## 9、父类的静态方法能否被子类重写？静态属性和静态方法是否可以被继承？ 父类的静态方法和属性不能被子类重写，但子类可以继承父类静态方法和属性，如父类和子类都有同名同参同返回值的静态方法 show()，声明的实例 Father father = new Son(); (Son extends Father)，会调用 father 对象的静态方法。静态是指在编译时就会分配内存且一直存在，跟对象实例无关。 ## 10、进程和线程的区别 进程：具有一定独立功能的程序，是系统进行资源分配和调度运行的基本单位。 线程：进程的一个实体，是 CPU 调度的苯单位，也是进程中执行运算的最小单位，即执行处理机调度的基本单位，如果把进程理解为逻辑上操作系统所完成的任务，线程则表示完成该任务的许多可能的子任务之一。 关系：一个进程可有多个线程，至少一个；一个线程只能属于一个进程。同一进程的所有线程共享该进程的所有资源。不同进程的线程间要利用消息通信方式实现同步。 区别：进程有独立的地址空间，而多个线程共享内存；进程具有一个独立功能的程序，线程不能独立运行，必须依存于应用程序中； ## 11、final，finally，finalize 的区别 final：变量、类、方法的修饰符，被 final 修饰的类不能被继承，变量或方法被 final 修饰则不能被修改和重写。 finally：异常处理时提供 finally 块来执行清除操作，不管有没有异常抛出，此处代码都会被执行。如果 try 语句块中包含 return 语句，finally 语句块是在 return 之后运行； finalize：Object 类中定义的方法，若子类覆盖了 finalize()方法，在在垃圾收集器将对象从内存中清除前，会执行该方法，确定对象是否会被回收。 ## 12、序列化 Serializable 和 Parcelable 的区别 **序列化**：将一个对象转换成可存储或可传输的状态，序列化后的对象可以在网络上传输，也可以存储到本地，或实现跨进程传输； **为什么要进行序列化**：开发过程中，我们需要将对象的引用传给其他 activity 或 fragment使用时，需要将这些对象放到一个 Intent 或 Bundle 中，再进行传递，而 Intent 或 Bundle只能识别基本数据类型和被序列化的类型。**Serializable**：表示将一个对象转换成可存储或可传输的状态。 **Parcelable**：与 Serializable 实现的效果相同，也是将一个对象转换成可传输的状态，但它的实现原理是将一个完整的对象进行分解，分解后的每一部分都是 Intent 所支持的数据类型，这样实现传递对象的功能。 **Parcelable 实现序列化的重要方法**：序列化功能是由 writeToParcel 完成，通过 Parcel 中的 write 方法来完成；反序列化由 CREATOR 完成，内部标明了如何创建序列化对象及数级， 通过 Parcel 的 read 方法完成；内容描述功能由 describeContents 方法完成，一般直接返回 0。 **区别**：Serializable 在序列化时会产生大量临时变量，引起频繁 GC。Serializable 本质上使用了反射，序列化过程慢。Parcelable 不能将数据存储在磁盘上，在外界变化时，它不能很好的保证数据的持续性。 **选择原则**：若仅在内存中使用，如 activity\\service 间传递对象，优先使用 Parcelable，它性能高。若是持久化操作，优先使用 Serializable **注意**：静态成员变量属于类，不属于对象，固不会参与序列化的过程；用 transient 关键字编辑的成员变量不会参与序列化过程；可以通过重写 writeObject()和 readObject()方法来重写系统默认的序列化和反序列化。\r## 13、谈谈对 kotlin 的理解 特点：\r1）代码量少且代码末尾没有分号；\r2）空类型安全（编译期处理了各种 null 情况，避免执行时异常）；\r3）函数式的，可使用 lambda 表达式；\r4）可扩展方法（可扩展任意类的的属性）；\r5）互操作性强，可以在一个项目中使用 kotlin 和 java 两种语言混合开发； ## 14、string 转换成 integer 的方式及原理 1）parseInt(String s)内部调用 parseInt(s, 10)默认为 10 进制 。 2）正常判断 null\\进制范围，length 等。 3）判断第一个字符是否是符号位。 4）循环遍历确定每个字符的十进制值。 5）通过*=和-=进行计算拼接。 6）判断是否为负值返回结果。",
+  "wordCount" : "4585",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "小任同学"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://coderrenxy.github.io/posts/read/15%E4%B8%AD%E8%BD%AF%E5%9B%BD%E9%99%85/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "小任同学's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://coderrenxy.github.io/img/icon-512.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://coderrenxy.github.io/" accesskey="h" title="小任同学&#39;s Blog (Alt + H)">
+                <img src="https://coderrenxy.github.io/img/icon-32.png" alt="logo" aria-label="logo"
+                    height=" 30px">小任同学&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://coderrenxy.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/search/" title="🔍搜索">
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/links" title="🤝友链">
+                    <span>🤝友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://coderrenxy.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/">📚 文章</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/read/">📕 阅读</a></div>
+    <h1 class="post-title">
+      
+    </h1>
+    <div class="post-meta">
+			<p id="wc" style="font-size: 12px;">本文总阅读量<span id="busuanzi_value_page_pv"></span>次&nbsp;&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;0001-01-01&nbsp;|&nbsp;字数:&nbsp;4585字&nbsp;|&nbsp;时长: 10分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/15%e3%80%81%e4%b8%ad%e8%bd%af%e5%9b%bd%e9%99%85.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                
+				<span class="details">文章目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e4%b8%ad%e8%bd%af%e5%9b%bd%e9%99%85java%e4%b8%ad%e7%ba%a7" aria-label="中软国际Java中级">中软国际Java中级</a><ul>
+                            
+                    <li>
+                        <a href="#1java-%e4%b8%ad%e5%92%8c-equals-%e5%92%8c-hashcode-%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="1、java 中==和 equals 和 hashCode 的区别">1、java 中==和 equals 和 hashCode 的区别</a></li>
+                    <li>
+                        <a href="#2intcharlong-%e5%90%84%e5%8d%a0%e5%a4%9a%e5%b0%91%e5%ad%97%e8%8a%82%e6%95%b0" aria-label="2、int、char、long 各占多少字节数">2、int、char、long 各占多少字节数</a></li>
+                    <li>
+                        <a href="#3int-%e4%b8%8e-integer-%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="3、int 与 integer 的区别">3、int 与 integer 的区别</a></li>
+                    <li>
+                        <a href="#4%e8%b0%88%e8%b0%88%e5%af%b9-java-%e5%a4%9a%e6%80%81%e7%9a%84%e7%90%86%e8%a7%a3" aria-label="4、谈谈对 java 多态的理解">4、谈谈对 java 多态的理解</a></li>
+                    <li>
+                        <a href="#5stringstringbufferstringbuilder-%e5%8c%ba%e5%88%ab" aria-label="5、String、StringBuffer、StringBuilder 区别">5、String、StringBuffer、StringBuilder 区别</a></li>
+                    <li>
+                        <a href="#6%e4%bb%80%e4%b9%88%e6%98%af%e5%86%85%e9%83%a8%e7%b1%bb%e5%86%85%e9%83%a8%e7%b1%bb%e7%9a%84%e4%bd%9c%e7%94%a8" aria-label="6、什么是内部类？内部类的作用">6、什么是内部类？内部类的作用</a></li>
+                    <li>
+                        <a href="#7%e6%8a%bd%e8%b1%a1%e7%b1%bb%e5%92%8c%e6%8e%a5%e5%8f%a3%e5%8c%ba%e5%88%ab" aria-label="7、抽象类和接口区别">7、抽象类和接口区别</a><ul>
+                            
+                    <li>
+                        <a href="#71%e6%8a%bd%e8%b1%a1%e7%b1%bb%e7%9a%84%e6%84%8f%e4%b9%89" aria-label="7.1、抽象类的意义">7.1、抽象类的意义</a></li>
+                    <li>
+                        <a href="#72%e6%8a%bd%e8%b1%a1%e7%b1%bb%e4%b8%8e%e6%8e%a5%e5%8f%a3%e7%9a%84%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" aria-label="7.2、抽象类与接口的应用场景">7.2、抽象类与接口的应用场景</a></li>
+                    <li>
+                        <a href="#73%e6%8a%bd%e8%b1%a1%e7%b1%bb%e6%98%af%e5%90%a6%e5%8f%af%e4%bb%a5%e6%b2%a1%e6%9c%89%e6%96%b9%e6%b3%95%e5%92%8c%e5%b1%9e%e6%80%a7" aria-label="7.3、抽象类是否可以没有方法和属性？">7.3、抽象类是否可以没有方法和属性？</a></li>
+                    <li>
+                        <a href="#74%e6%8e%a5%e5%8f%a3%e7%9a%84%e6%84%8f%e4%b9%89" aria-label="7.4、接口的意义">7.4、接口的意义</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#8%e6%b3%9b%e5%9e%8b%e4%b8%ad-extends-%e5%92%8c-super-%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="8、泛型中 extends 和 super 的区别">8、泛型中 extends 和 super 的区别</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+  <div class="post-content"><h1 id="中软国际java中级">中软国际Java中级<a hidden class="anchor" aria-hidden="true" href="#中软国际java中级">#</a></h1>
+<h2 id="1java-中和-equals-和-hashcode-的区别">1、java 中==和 equals 和 hashCode 的区别<a hidden class="anchor" aria-hidden="true" href="#1java-中和-equals-和-hashcode-的区别">#</a></h2>
+<p>1）==若是基本数据类型比较，是比较值，若是引用类型，则比较的是他们在内存中的存放地址。对象是存放在堆中，栈中存放的对象的引用，所以==是对栈中的值进行比较，若返回 true 代表变量的内存地址相等；</p>
+<p>2）equals 是 Object 类中的方法，Object 类的 equals 方法用于判断对象的内存地址引用是不是同一个地址（是不是同一个对象）。若是类中覆盖了 equals 方法，就要根据具体代码来确定，一般覆盖后都是通过对象的内容是否相等来判断对象是否相等。</p>
+<p>3）hashCode()计算出对象实例的哈希码，在对象进行散列时作为 key 存入。之所以有hashCode 方法，因为在批量的对象比较中，hashCode 比较要比 equals 快。在添加新元素时，先调用这个元素的 hashCode 方法，一下子能定位到它应该旋转的物理位置，若该位置没有元素，可直接存储；若该位置有元素，就调用它的 equals 方法与新元素进行比较，若相同则不存，不相同，就放到该位置的链表末端。</p>
+<p>4）equals 与 hashCode 方法关系：</p>
+<p>hashCode()是一个本地方法，实现是根据本地机器上关的。equals()相等的对象， hashCode()也一定相等；</p>
+<p>hashCode()不等，equals()一定也不等；</p>
+<p>hashCode()相等，equals() 可能相等，也可能不等。</p>
+<p>所 以 在 重 写 equals(Object obj) 方 法 ， 有 必 要 重 写 hashCode() 方 法 ， 确 保 通 过equals(Object obj)方法判断结果为 true 的两个对象具备相等的 hashCode()返回值。</p>
+<p>5）equals 与==的关系：</p>
+<p>Integer b1 = 127;在 java 编译时被编译成 Integer b1 = Integer.valueOf(127);对于-128到 127 之间的 Integer 值，用的是原生数据类型 int，会在内存里供重用，也就是这之间的Integer 值进行==比较时，只是进行 int 原生数据类型的数值进行比较。而超出-128〜127的范围，进行==比较时是进行地址及数值比较。</p>
+<h2 id="2intcharlong-各占多少字节数">2、int、char、long 各占多少字节数<a hidden class="anchor" aria-hidden="true" href="#2intcharlong-各占多少字节数">#</a></h2>
+<p>int\float 占用 4 个字节，short\char 占用 2 个字节，</p>
+<p>long 占用 8 个字节，byte/boolean 占用 1 个字节</p>
+<p>基本数据类型存放在栈里，包装类栈里存放的是对象的引用，即值的地址，而值存放在堆里。</p>
+<h2 id="3int-与-integer-的区别">3、int 与 integer 的区别<a hidden class="anchor" aria-hidden="true" href="#3int-与-integer-的区别">#</a></h2>
+<p>Integer 是 int 的包装类，int 则是 java 的一种基本数据类型，Integer 变量必须实例化才能 使用，当 new 一个 Integer 时，实际是生成一个指向此对象的引用，而 int 是直接存储数据的值，</p>
+<p>Integer 默认值是 null，而 int 默认值是 0</p>
+<h2 id="4谈谈对-java-多态的理解">4、谈谈对 java 多态的理解<a hidden class="anchor" aria-hidden="true" href="#4谈谈对-java-多态的理解">#</a></h2>
+<p>同一个消息可以根据发送对象的不同而采用多种不同的行为方式，在执行期间判断所引用的对象的实际类型，根据其实际的类型调用其相应的方法。</p>
+<p>作用：消除类型之间的耦合关系。实现多态的必要条件：继承、重写（因为必须调用父类中存在的方法）、父类引用指向子类对象</p>
+<h2 id="5stringstringbufferstringbuilder-区别">5、String、StringBuffer、StringBuilder 区别<a hidden class="anchor" aria-hidden="true" href="#5stringstringbufferstringbuilder-区别">#</a></h2>
+<p>都是字符串类，String 类中使用字符数组保存字符串，因有 final 修饰符，String 对象是不可变的，每次对 String 操作都会生成新的 String 对象，这样效率低，且浪费内存空间。但线程安全。</p>
+<p>StringBuilder 和 StringBuffer 也是使用字符数组保存字符，但这两种对象都是可变的，即对字符串进行 append 操作，不会产生新的对象。它们的区别是：StringBuffer 对方法加了同步锁，是线程安全的，StringBuilder 非线程安全。</p>
+<h2 id="6什么是内部类内部类的作用">6、什么是内部类？内部类的作用<a hidden class="anchor" aria-hidden="true" href="#6什么是内部类内部类的作用">#</a></h2>
+<p>内部类指在类的内部再定义另一个类。</p>
+<p>内部类的作用：</p>
+<p>1）实现多重继承，因为 java 中类的继承只能单继承，使用内部类可达到多重继承；</p>
+<p>2）内部类可以很好的实现隐藏，一般非内部类，不允许有 private 或 protected权限的，但内部类可以；</p>
+<p>3）减少了类文件编译后产生的字节码文件大小；内部类在编译完后也会产生.class 文件，但文件名称是：外部名称$内部类名称.class。</p>
+<p>分为以下几种：</p>
+<p>1）成员内部类，作为外部类的一个成员存在，与外部类的属性、方法并列，成员内部类持有外部类的引用，成员内部类不能定义 static 变量和方法。应用场合：每一个外部类都需要一个内部类实例，内部类离不开外部类存在。</p>
+<p>2）静态内部类，内部类以 static 声明，其他类可通过外部类.内部类来访问。特点：不会持有外部类的引用，可以访问外部类的静态变量，若要访问成员变量须通过外部类的实例访问。</p>
+<p>应用场合：内部类不需要外部类的实例，仅为外部类提供或逻辑上属于外部类，逻辑上可单独存在。设计的意义：加强了类的封装性（静态内部类是外部类的子行为或子属性，两者保持着一定关系），提高了代码的可读性（相关联的代码放在一起）。</p>
+<p>3）匿名内部类，在整个操作中只使用一次，没有名字，使用 new 创建，没有具体位置。</p>
+<p>4）局部内部类，在方法内或是代码块中定义类，</p>
+<h2 id="7抽象类和接口区别">7、抽象类和接口区别<a hidden class="anchor" aria-hidden="true" href="#7抽象类和接口区别">#</a></h2>
+<p>抽象类在类前面须用 abstract 关键字修饰，一般至少包含一个抽象方法，抽象方法指只有声明，用关键字 abstract 修饰，没有具体的实现的方法。因抽象类中含有无具体实现的方法，固不能用抽象类创建对象。</p>
+<p>当然如果只是用 abstract 修饰类而无具体实现，也是抽象类。抽象类也可以有成员变量和普通的成员方法。抽象方法必须为 public 或 protected（若为 private，不能被子类继承，子类无法实现该方法）。</p>
+<p>若一个类继承一个抽象类，则必须实现父类中所有的抽象方法，若子类没有实现父类的抽象方法，则也应该定义为抽象类。</p>
+<p>接口用关键字 interface 修饰，接口也可以含有变量和方法，接口中的变量会被隐式指定为public static final 变量。方法会被隐式的指定为 public abstract，接口中的所有方法均不能有具体的实现，即接口中的方法都必须为抽象方法。若一个非抽象类实现某个接口，必须实现该接口中所有的方法。</p>
+<p>区别：</p>
+<p>1）抽象类可以提供成员方法实现的细节，而接口只能存在抽象方法；</p>
+<p>2）抽象类的成员变量可以是各种类型，而接口中成员变量只能是 public static final 类型；</p>
+<p>3）接口中不能含有静态方法及静态代码块，而抽象类可以有静态方法和静态代码块；</p>
+<p>4）一个类只能继承一个抽象类，用 extends 来继承，却可以实现多个接口，用 implements</p>
+<p>来实现接口。</p>
+<h3 id="71抽象类的意义">7.1、抽象类的意义<a hidden class="anchor" aria-hidden="true" href="#71抽象类的意义">#</a></h3>
+<p>抽象类是用来提供子类的通用性，用来创建继承层级里子类的模板，减少代码编写，有利于</p>
+<p>代码规范化。</p>
+<h3 id="72抽象类与接口的应用场景">7.2、抽象类与接口的应用场景<a hidden class="anchor" aria-hidden="true" href="#72抽象类与接口的应用场景">#</a></h3>
+<p>抽象类的应用场景：1）规范了一组公共的方法，与状态无关，可以共享的，无需子类分别</p>
+<p>实现；而另一些方法却需要各个子类根据自己特定状态来实现特定功能；</p>
+<p>2）定义一组接口，但不强迫每个实现类都必须实现所有的方法，可用抽象类定义一组方法</p>
+<p>体可以是空方法体，由子类选择自己感兴趣的方法来覆盖；</p>
+<h3 id="73抽象类是否可以没有方法和属性">7.3、抽象类是否可以没有方法和属性？<a hidden class="anchor" aria-hidden="true" href="#73抽象类是否可以没有方法和属性">#</a></h3>
+<p>可以</p>
+<h3 id="74接口的意义">7.4、接口的意义<a hidden class="anchor" aria-hidden="true" href="#74接口的意义">#</a></h3>
+<p>1）有利于代码的规范，对于大型项目，对一些接口进行定义，可以给开发人员一个清晰的</p>
+<p>指示，防止开发人员随意命名和代码混乱，影响开发效率。</p>
+<p>2）有利于代码维护和扩展，当前类不能满足要求时，不需要重新设计类，只需要重新写了</p>
+<p>个类实现对应的方法。</p>
+<p>3）解耦作用，全局变量的定义，当发生需求变化时，只需改变接口中的值即可。</p>
+<p>4）直接看接口，就可以清楚知道具体实现类间的关系，代码交给别人看，别人也能立马明</p>
+<p>白。</p>
+<h2 id="8泛型中-extends-和-super-的区别">8、泛型中 extends 和 super 的区别<a hidden class="anchor" aria-hidden="true" href="#8泛型中-extends-和-super-的区别">#</a></h2>
+<? extends T>限定参数类型的上界，参数类型必须是 T 或 T 的子类型，但对于 List<?extends T>，不能通过 add()来加入元素，因为不知道<? extends T>是 T 的哪一种子类； 
+
+<? super T>限定参数类型的下界，参数类型必须是 T 或 T 的父类型，不能能过 get()获取元素，因为不知道哪个超类； 
+
+## 9、父类的静态方法能否被子类重写？静态属性和静态方法是否可以被继承？ 
+
+父类的静态方法和属性不能被子类重写，但子类可以继承父类静态方法和属性，如父类和子类都有同名同参同返回值的静态方法 show()，声明的实例 Father father = new Son(); 
+
+(Son extends Father)，会调用 father 对象的静态方法。静态是指在编译时就会分配内存且一直存在，跟对象实例无关。 
+
+## 10、进程和线程的区别 
+
+进程：具有一定独立功能的程序，是系统进行资源分配和调度运行的基本单位。 
+
+线程：进程的一个实体，是 CPU 调度的苯单位，也是进程中执行运算的最小单位，即执行处理机调度的基本单位，如果把进程理解为逻辑上操作系统所完成的任务，线程则表示完成该任务的许多可能的子任务之一。 
+
+关系：一个进程可有多个线程，至少一个；一个线程只能属于一个进程。同一进程的所有线程共享该进程的所有资源。不同进程的线程间要利用消息通信方式实现同步。 
+
+区别：进程有独立的地址空间，而多个线程共享内存；进程具有一个独立功能的程序，线程不能独立运行，必须依存于应用程序中； 
+
+## 11、final，finally，finalize 的区别 
+
+final：变量、类、方法的修饰符，被 final 修饰的类不能被继承，变量或方法被 final 修饰则不能被修改和重写。 
+
+finally：异常处理时提供 finally 块来执行清除操作，不管有没有异常抛出，此处代码都会被执行。如果 try 语句块中包含 return 语句，finally 语句块是在 return 之后运行； 
+
+finalize：Object 类中定义的方法，若子类覆盖了 finalize()方法，在在垃圾收集器将对象从内存中清除前，会执行该方法，确定对象是否会被回收。 
+
+## 12、序列化 Serializable 和 Parcelable 的区别 
+
+**序列化**：将一个对象转换成可存储或可传输的状态，序列化后的对象可以在网络上传输，也可以存储到本地，或实现跨进程传输； 
+
+**为什么要进行序列化**：开发过程中，我们需要将对象的引用传给其他 activity 或 fragment使用时，需要将这些对象放到一个 Intent 或 Bundle 中，再进行传递，而 Intent 或 Bundle只能识别基本数据类型和被序列化的类型。**Serializable**：表示将一个对象转换成可存储或可传输的状态。 
+
+**Parcelable**：与 Serializable 实现的效果相同，也是将一个对象转换成可传输的状态，但它的实现原理是将一个完整的对象进行分解，分解后的每一部分都是 Intent 所支持的数据类型，这样实现传递对象的功能。 
+
+**Parcelable 实现序列化的重要方法**：序列化功能是由 writeToParcel 完成，通过 Parcel 中的 write 方法来完成；反序列化由 CREATOR 完成，内部标明了如何创建序列化对象及数级， 通过 Parcel 的 read 方法完成；内容描述功能由 describeContents 方法完成，一般直接返回 0。 
+
+**区别**：Serializable 在序列化时会产生大量临时变量，引起频繁 GC。Serializable 本质上使用了反射，序列化过程慢。Parcelable 不能将数据存储在磁盘上，在外界变化时，它不能很好的保证数据的持续性。 
+
+**选择原则**：若仅在内存中使用，如 activity\service 间传递对象，优先使用 Parcelable，它性能高。若是持久化操作，优先使用 Serializable 
+
+**注意**：静态成员变量属于类，不属于对象，固不会参与序列化的过程；用 transient 关键字编辑的成员变量不会参与序列化过程；可以通过重写 writeObject()和 readObject()方法来重写系统默认的序列化和反序列化。
+
+## 13、谈谈对 kotlin 的理解 
+
+特点：
+
+1）代码量少且代码末尾没有分号；
+
+2）空类型安全（编译期处理了各种 null 情况，避免执行时异常）；
+
+3）函数式的，可使用 lambda 表达式；
+
+4）可扩展方法（可扩展任意类的的属性）；
+
+5）互操作性强，可以在一个项目中使用 kotlin 和 java 两种语言混合开发； 
+
+## 14、string 转换成 integer 的方式及原理 
+
+1）parseInt(String s)内部调用 parseInt(s, 10)默认为 10 进制 。 
+
+2）正常判断 null\进制范围，length 等。 
+
+3）判断第一个字符是否是符号位。 
+
+4）循环遍历确定每个字符的十进制值。 
+
+5）通过*=和-=进行计算拼接。 
+
+6）判断是否为负值返回结果。
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/">
+    <span class="title">« 上一篇</span>
+    <br>
+    <span></span>
+  </a>
+  <a class="next" href="https://coderrenxy.github.io/posts/read/beijing-01/">
+    <span class="title">下一篇 »</span>
+    <br>
+    <span></span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+	<h2>分享至: &nbsp &nbsp</h>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https://coderrenxy.github.io/posts/">
+        <svg t="1651680695552" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3017" width="81" height="81"><path d="M985.742 749.936c0 130.864-106.178 236.964-237.17 236.964H274.298c-130.954 0-237.092-106.102-237.092-236.964V276.018c0-130.902 106.138-236.966 237.092-236.966h474.274c130.992 0 237.17 106.064 237.17 236.966v473.918z" fill="#235B9E" p-id="3018"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3019"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3020"></path><path d="M556.712 216.778l91.59 0.384v101.512H581.76c-10.808 0-26.208 5.362-26.208 28.464v47.362h94.252l-10.808 118.482H551v296.192h-118.568V512.982H373.14V394.5h58.792v-53.534c0-48.478 23.118-124.188 124.78-124.188m0-19.754c-64.452 0-98.87 28.234-116.394 51.92-24.486 33.094-28.142 71.862-28.142 92.024v33.78H373.14c-10.91 0-19.754 8.844-19.754 19.754v118.482c0 10.91 8.844 19.754 19.754 19.754h39.54v276.438c0 10.91 8.844 19.754 19.754 19.754h118.568c10.91 0 19.754-8.844 19.754-19.754V532.738h68.242a19.756 19.756 0 0 0 19.672-17.96l10.808-118.482a19.76 19.76 0 0 0-19.672-21.55h-74.498v-27.608c0-4.532 0.948-6.908 1.758-7.568 0.7-0.568 2.422-1.142 4.696-1.142h66.542c10.91 0 19.754-8.844 19.754-19.754v-101.512a19.752 19.752 0 0 0-19.67-19.754l-91.59-0.384h-0.086z" fill="#1A4477" p-id="3021"></path><path d="M728.078 956.122H294.83c-124.896 0-226.506-101.636-226.506-226.566V296.358c0-124.908 101.61-226.526 226.506-226.526h433.248c124.918 0 226.544 101.62 226.544 226.526v433.198c0.002 124.928-101.626 226.566-226.544 226.566zM294.83 89.636c-113.976 0-206.702 92.734-206.702 206.72v433.198c0 114.008 92.726 206.762 206.702 206.762h433.248c113.996 0 206.74-92.754 206.74-206.762V296.358c0-113.986-92.744-206.72-206.74-206.72H294.83z" fill="#1A4477" p-id="3022"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on whatsapp"
+        href="https://api.whatsapp.com/send?text=%20-%20https%3a%2f%2fcoderrenxy.github.io%2fposts%2fread%2f15%25E4%25B8%25AD%25E8%25BD%25AF%25E5%259B%25BD%25E9%2599%2585%2f">
+        <svg t="1651681184624" class="icon" viewBox="0 0 1586 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9888" width="81" height="81"><path d="M160.587294 1019.542588h1261.327059a145.568627 145.568627 0 0 0 145.548549-145.52847V146.291451A145.528471 145.528471 0 0 0 1421.914353 0.803137H160.587294A145.568627 145.568627 0 0 0 15.058824 146.311529V874.014118a145.588706 145.588706 0 0 0 145.52847 145.548549z" fill="#F4B459" p-id="9889"></path><path d="M63.849412 981.955765l607.091451-467.184941L65.174588 37.205333C34.695529 63.909647 15.058824 102.600784 15.058824 146.311529V874.014118c0 43.028078 19.07451 81.317647 48.790588 107.961725zM1518.371137 38.048627l-629.539137 478.067451 628.956863 466.56251c30.278275-26.644078 49.694118-65.254902 49.694117-108.684549V146.331608c0-43.208784-19.215059-81.598745-49.091764-108.282981z" fill="#E8AB54" p-id="9890"></path><path d="M1548.247843 944.971294L1018.096941 520.774275l536.495686-433.894902a145.66902 145.66902 0 0 0-55.737725-63.688785L813.578039 571.371922 109.748706 10.380549A145.608784 145.608784 0 0 0 40.357647 64.471843l566.673569 454.515451L47.666196 964.668235A144.946196 144.946196 0 0 0 122.88 1013.960784l554.164706-438.312157 33.812078 27.26651a142.436392 142.436392 0 0 0 205.603138 0l31.48298-25.459451 538.423216 426.36549a145.086745 145.086745 0 0 0 61.861647-58.829803z" fill="#FADAAC" p-id="9891"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on telegram"
+        href="https://telegram.me/share/url?text=&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fread%2f15%25E4%25B8%25AD%25E8%25BD%25AF%25E5%259B%25BD%25E9%2599%2585%2f">
+        <svg t="1651680820373" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3832" width="81" height="81"><path d="M679.424 746.862l84.005-395.996c7.424-34.852-12.581-48.567-35.438-40.009L234.277 501.138c-33.72 13.13-33.134 32-5.706 40.558l126.282 39.424 293.156-184.576c13.714-9.143 26.295-3.986 16.018 5.157L426.898 615.973l-9.143 130.304c13.13 0 18.871-5.706 25.71-12.581l61.696-59.429 128 94.282c23.442 13.129 40.01 6.29 46.3-21.724zM1024 512c0 282.843-229.157 512-512 512S0 794.843 0 512 229.157 0 512 0s512 229.157 512 512z" fill="#1296DB" p-id="3833"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on reddit"
+        href="https://twitter.com/intent/tweet/?text=&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fread%2f15%25E4%25B8%25AD%25E8%25BD%25AF%25E5%259B%25BD%25E9%2599%2585%2f&amp;hashtags=">
+        <svg t="1651764155941" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1736" width="81" height="81"><path d="M295.2 338c120.2 61 221.7 57.4 221.7 57.4s-38.5-134.8 80.5-194.6 200.9 41 200.9 41 20.8-5.7 36.2-11.4c15.5-5.7 37.8-15.9 37.8-15.9l-36.7 65.8 56.5-6s-7 10.2-29.6 31-31.9 31.6-31.9 31.6 8.1 162.3-77 287.2C668.5 749 558.6 824 398.9 839.8c-159.7 15.8-263.7-49.2-263.7-49.2s69.8-4 114.3-21.1S358 707.4 358 707.4s-91-28.1-123.7-59.8c-32.7-31.6-40.8-50.4-40.8-50.4l89.8-1.2s-94.5-50.4-121.3-90.3-30.3-78.5-30.3-78.5l69.1 28s-57.4-78.4-65.6-139.4c-8.2-61 10.5-93.8 10.5-93.8s29.3 55 149.5 116z" fill="#5DD7FC" p-id="1737"></path></svg>
+    </a>
+	
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<script src="https://utteranc.es/client.js"
+repo="coderRenxy/coderrenxy.github.io"
+issue-term="title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+	<span id="busuanzi_container_site_pv">
+    访问量：<span id="busuanzi_value_site_pv"></span>次
+</span>
+&nbsp;
+<span id="busuanzi_container_site_uv">
+    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+</span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+ <div>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+
+</body>
+
+</html>

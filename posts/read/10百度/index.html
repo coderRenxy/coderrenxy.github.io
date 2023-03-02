@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>小任同学&#39;s Blog</title>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta name="keywords" content="" />
+<meta name="description" content="百度Java中级面试 Spring BeanFactory 和 ApplicationContext 有什么区别 1、BeanFactory 可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义， 以便在">
+<meta name="author" content="
+作者:&nbsp;小任同学">
+<link rel="canonical" href="https://coderrenxy.github.io/posts/read/10%E7%99%BE%E5%BA%A6/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link rel="preload" href="img/icon-32.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="apple-touch-icon" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.92.1" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="" />
+<meta property="og:description" content="百度Java中级面试 Spring BeanFactory 和 ApplicationContext 有什么区别 1、BeanFactory 可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义， 以便在" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://coderrenxy.github.io/posts/read/10%E7%99%BE%E5%BA%A6/" /><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="百度Java中级面试 Spring BeanFactory 和 ApplicationContext 有什么区别 1、BeanFactory 可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义， 以便在"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "📚 文章",
+      "item": "https://coderrenxy.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📕 阅读",
+      "item": "https://coderrenxy.github.io/posts/read/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "",
+      "item": "https://coderrenxy.github.io/posts/read/10%E7%99%BE%E5%BA%A6/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "百度Java中级面试 Spring BeanFactory 和 ApplicationContext 有什么区别 1、BeanFactory 可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义， 以便在",
+  "keywords": [
+    
+  ],
+  "articleBody": "百度Java中级面试 Spring BeanFactory 和 ApplicationContext 有什么区别 1、BeanFactory 可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义， 以便在接收到客户端请求时将对应的 bean 实例化。\n2、BeanFactory 还能在实例化对象的时生成协作类之间的关系。此举将 bean 自身与 bean 客户端的配置中解放出来。BeanFactory 还包含了 bean 生命周期的控制，调用客户端的初始 化方法（initialization methods）和销毁方法（destruction methods）。\n3、从表面上看，application context 如同 bean factory 一样具有 bean 定义、bean 关联关系的设置，根据请求分发 bean 的功能。但 application context 在此基础上还提供了其他的功能。\n 提供了支持国际化的文本消息 统一的资源文件读取方式 已在监听器中注册的 bean 的事件  Spring Bean 的生命周期 1、Spring Bean 的生命周期简单易懂。在一个 bean 实例被初始化时，需要执行一系列的初始化操作以达到可用的状态。同样的，当一个 bean 不在被调用时需要进行相关的析构操作，并从 bean 容器中移除。\n2、Spring bean factory 负责管理在 spring 容器中被创建的 bean 的生命周期。Bean 的生命周期由两组回调（call back）方法组成。\n 初始化之后调用的回调方法。 销毁之前调用的回调方法。  Spring 框架提供了以下四种方式来管理 bean 的生命周期事件：\n  InitializingBean 和 DisposableBean 回调接口\n  针对特殊行为的其他 Aware 接口\n  Bean 配置文件中的 Custom init()方法和 destroy()方法\n  @PostConstruct 和@PreDestroy 注解方式\n  Spring IOC 如何实现 1、Spring 中的 org.springframework.beans 包和 org.springframework.context 包构成了Spring 框架 IoC 容器的基础。\n2、BeanFactory 接口提供了一个先进的配置机制，使得任何类型的对象的配置成为可能。\nApplicationContex 接口对 BeanFactory（是一个子接口）进行了扩展，在 BeanFactory 的基础上添加了其他功能，比如与 Spring 的 AOP 更容易集成，也提供了处理 message resource 的机制（用于国际化）、事件传播以及应用层的特别配置，比如针对 Web 应用的 WebApplicationContext。\n3、org.springframework.beans.factory.BeanFactory 是 Spring IoC 容器的具体实现，用来包装和管理前面提到的各种 bean。BeanFactory 接口是 Spring IoC 容器的核心接口。\n说说 Spring AOP 1、面向切面编程，在我们的应用中，经常需要做一些事情，但是这些事情与核心业务无关，比如，要记录所有 update 方法的执行时间时间，操作人等等信息，记录到日志， 通过 spring 的 AOP 技术，就可以在不修改 update的代码的情况下完成该需求。\nSpring AOP 实现原理 1、Spring AOP 中的动态代理主要有两种方式，JDK 动态代理和 CGLIB 动态代理。JDK 动态代理通过反射来接收被代理的类，并且要求被代理的类必须实现一个接口。JDK 动态代理的核心是 InvocationHandler 接口和 Proxy 类。\n2、如果目标类没有实现接口，那么 Spring AOP 会选择使用 CGLIB 来动态代理目标类。CGLIB （Code Generation Library），是一个代码生成的类库，可以在运行时动态的生成某个类的子类，注意，CGLIB 是通过继承的方式做的动态代理，因此如果某个类被标记为 final， 那么它是无法使用 CGLIB 做动态代理的。\n动态代理（cglib 与 JDK） 1、JDK 动态代理类和委托类需要都实现同一个接口。也就是说只有实现了某个接口的类可以使用 Java 动态代理机制。但是，事实上使用中并不是遇到的所有类都会给你实现一个接口。因此，对于没有实现接口的类，就不能使用该机制。而 CGLIB 则可以实现对类的动态代理。\nSpring 事务实现方式 1、编码方式\n 所谓编程式事务指的是通过编码方式实现事务，即类似于 JDBC 编程实现事务管理。  2、声明式事务管理方式\n 声明式事务管理又有两种实现方式：基于 xml 配置文件的方式；另一个实在业务方法上进行@Transaction 注解，将事务规则应用到业务逻辑中  Spring 事务底层原理 a、划分处理单元——IOC\n由于 spring 解决的问题是对单个数据库进行局部事务处理的，具体的实现首相用 spring中的 IOC 划分了事务处理单元。并且将对事务的各种配置放到了 ioc 容器中（设置事务管理器，设置事务的传播特性及隔离机制）。\nb、AOP 拦截需要进行事务处理的类\nSpring 事务处理模块是通过 AOP 功能来实现声明式事务处理的，具体操作（比如事务实行的配置和读取，事务对象的抽象），用 TransactionProxyFactoryBean 接口来使用 AOP功能，生成 proxy 代理对象，通过 TransactionInterceptor 完成对代理方法的拦截，将事务处理的功能编织到拦截的方法中。读取 ioc 容器事务配置属性，转化为 spring 事务处理需要的内部数据结构（TransactionAttributeSourceAdvisor），转化为 TransactionAttribute 表示的数据对象。\nc、对事物处理实现（事务的生成、提交、回滚、挂起）\nspring 委托给具体的事务处理器实现。实现了一个抽象和适配。适配的具体事务处理器：DataSource 数据源支持、hibernate 数据源事务处理支持、JDO 数据源事务处理支持，JPA、JTA 数据源事务处理支持。这些支持都是通过设计PlatformTransactionManager、AbstractPlatforTransaction 一系列事务处理的支持。 为常用数据源支持提供了一系列的 TransactionManager。\nd、结合\nPlatformTransactionManager 实现了 TransactionInterception 接口，让其与TransactionProxyFactoryBean 结合起来，形成一个 Spring 声明式事务处理的设计体系。\n如何自定义注解实现功能 1、创建自定义注解和创建一个接口相似，但是注解的 interface 关键字需要以@符号开头。\n2、注解方法不能带有参数；\n3、注解方法返回值类型限定为：基本类型、String、Enums、Annotation 或者是这些类型的\n数组；\n1、注解方法可以有默认值；\n2、注解本身能够包含元注解，元注解被用来注解其它注解。\nSpring MVC 运行流程 1.spring mvc 将所有的请求都提交给 DispatcherServlet,它会委托应用系统的其他模块负责对请求 进行真正的处理工作。\n2.DispatcherServlet 查询一个或多个 HandlerMapping,找到处理请求的 Controller.\n3.DispatcherServlet 请请求提交到目标 Controller\n4.Controller 进行业务逻辑处理后，会返回一个 ModelAndView\n5.Dispathcher 查询一个或多个 ViewResolver 视图解析器,找到 ModelAndView 对象指定的视图对象\n6.视图对象负责渲染返回给客户端。\nSpring MVC 启动流程 在 web.xml 文件中给 Spring MVC 的 Servlet 配置了 load-on-startup,所以程序启动的时候会初始化 Spring MVC，在 HttpServletBean 中将配置的 contextConfigLocation属性设置到 Servlet 中，然后在 FrameworkServlet 中创建了 WebApplicationContext, DispatcherServlet 根据 contextConfigLocation 配置的 classpath 下的 xml 文件初始化了\nSpring MVC 总的组件。\nSpring 的单例实现原理 Spring 对 Bean 实例的创建是采用单例注册表的方式进行实现的，而这个注册表的缓存是\nConcurrentHashMap 对象。\nSpring 框架中用到了哪些设计模式 代理模式—在 AOP 和 remoting 中被用的比较多。\n单例模式—在 spring 配置文件中定义的 bean 默认为单例模式。\n模板方法—用来解决代码重复的问题。比如. RestTemplate, JmsTemplate, JpaTemplate。\n前端控制器—Spring 提供了 DispatcherServlet 来对请求进行分发。\n视图帮助(View Helper )—Spring 提供了一系列的 JSP 标签，高效宏来辅助将分散的代码整合在视图里。\n依赖注入—贯穿于 BeanFactory / ApplicationContext 接口的核心理念。\n工厂模式—BeanFactory 用来创建对象的实例。\nNetty 为什么选择 Netty   API 使用简单，开发门槛低；\n  功能强大，预置了多种编解码功能，支持多种主流协议；\n  定制能力强，可以通过 ChannelHandler 对通信框架进行灵活的扩展；\n  性能高，通过与其它业界主流的 NIO 框架对比，Netty 的综合性能最优；\n  成熟、稳定，Netty 修复了已经发现的所有 JDK NIO BUG，业务开发人员不需要再为NIO 的 BUG 而烦恼；\n  社区活跃，版本迭代周期短，发现的 BUG 可以被及时修复，同时，更多的新功能会被加入；\n  经历了大规模的商业应用考验，质量已经得到验证。在互联网、大数据、网络游戏、企业应用、电信软件等众多行业得到成功商用，证明了它可以完全满足不同行业的商业应用。\n  正是因为这些优点，Netty 逐渐成为 Java NIO 编程的首选框架。\n说说业务中，Netty 的使用场景 1、构建高性能、低时延的各种 Java 中间件，例如 MQ、分布式服务框架、ESB 消息总线等， Netty 主要作为基础通信框架提供高性能、低时延的通信服务；\n2、公有或者私有协议栈的基础通信框架，例如可以基于 Netty 构建异步、高性能的WebSocket 协议栈；\n3、各领域应用，例如大数据、游戏等，Netty 作为高性能的通信框架用于内部各模块的数据分发、传输和汇总等，实现模块之间高性能通信。\n4、原生的 NIO 在 JDK 1.7 版本存在 epoll bug ，它会导致 Selector 空轮询，最终导致 CPU 100%。官方声称在 JDK 1.6 版本的 update18 修复了该问题，但是直到 JDK 1.7 版本该问题仍旧存在，只不过该 BUG 发生概率降低了一些 而已，它并没有得到根本性解决。\n什么是 TCP 粘包/拆包 1、要发送的数据大于 TCP 发送缓冲区剩余空间大小，将会发生拆包。\n2、待发送数据大于 MSS（最大报文长度），TCP 在传输前将进行拆包。\n3、要发送的数据小于 TCP 发送缓冲区的大小，TCP 将多次写入缓冲区的数据一次发送出去，将会发生粘包。\n 4、接收数据端的应用层没有及时读取接收缓冲区中的数据，将发生粘包。\nTCP 粘包/拆包的解决办法 1、发送端给每个数据包添加包首部，首部中应该至少包含数据包的长度，这样接收端在接收到数据后，通过读取包首部的长度字段，便知道每一个数据包的实际长度了。\n2、发送端将每个数据包封装为固定长度（不够的可以通过补 0 填充），这样接收端每次从接收缓冲区中读取固定长度的数据就自然而然的把每个数据包拆分开来。\n3、可以在数据包之间设置边界，如添加特殊符号，这样，接收端通过这个边界就可以将 不同的数据包拆分开。\nNetty 线程模型 首先，Netty 使用 EventLoop 来处理连接上的读写事件，而一个连接上的所有请求都保证在一个 EventLoop 中被处理，一个 EventLoop 中只有一个 Thread，所以也就实现了一个连接上的所有事件只会在一个线程中被执行。一个 EventLoopGroup 包含多个 EventLoop，可以把一个 EventLoop 当做是 Reactor 线程模型中的一个线程，而一个 EventLoopGroup 类似于一个 ExecutorService\n说说 Netty 的零拷贝 “零拷贝”是指计算机操作的过程中，CPU 不需要为数据在内存之间的拷贝消耗资源。而它通常是指计算机在网络上发送文件时，不需要将文件内容拷贝到用户空间（User Space）而直接在内核空间（Kernel Space）中传输到网络的方式。\nNetty 内部执行流程 1、Netty 的接收和发送 ByteBuffer 采用 DIRECT BUFFERS，使用堆外直接内存进行Socket 读写，不需要进行字节缓冲区的二次拷贝。如果使用传统的堆内存（HEAP BUFFERS）进行 Socket 读写，JVM 会将堆内存 Buffer 拷贝一份到直接内存中，然后才写入Socket 中。相比于堆外直接内存，消息在发送过程中多了一次缓冲区的内存拷贝。\n2、Netty 提供了组合 Buffer 对象，可以聚合多个 ByteBuffer 对象，用户可以像操作一 个 Buffer 那样方便的对组合 Buffer 进行操作，避免了传统通过内存拷贝的方式将几个小 Buffer 合并成一个大的 Buffer\n",
+  "wordCount" : "4277",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "小任同学"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://coderrenxy.github.io/posts/read/10%E7%99%BE%E5%BA%A6/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "小任同学's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://coderrenxy.github.io/img/icon-512.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://coderrenxy.github.io/" accesskey="h" title="小任同学&#39;s Blog (Alt + H)">
+                <img src="https://coderrenxy.github.io/img/icon-32.png" alt="logo" aria-label="logo"
+                    height=" 30px">小任同学&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://coderrenxy.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/search/" title="🔍搜索">
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/links" title="🤝友链">
+                    <span>🤝友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://coderrenxy.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/">📚 文章</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/read/">📕 阅读</a></div>
+    <h1 class="post-title">
+      
+    </h1>
+    <div class="post-meta">
+			<p id="wc" style="font-size: 12px;">本文总阅读量<span id="busuanzi_value_page_pv"></span>次&nbsp;&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;0001-01-01&nbsp;|&nbsp;字数:&nbsp;4277字&nbsp;|&nbsp;时长: 9分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/10%e3%80%81%e7%99%be%e5%ba%a6.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                
+				<span class="details">文章目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e7%99%be%e5%ba%a6java%e4%b8%ad%e7%ba%a7%e9%9d%a2%e8%af%95" aria-label="百度Java中级面试">百度Java中级面试</a></li>
+                    <li>
+                        <a href="#spring" aria-label="Spring">Spring</a><ul>
+                            
+                    <li>
+                        <a href="#beanfactory-%e5%92%8c-applicationcontext-%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" aria-label="BeanFactory 和 ApplicationContext 有什么区别">BeanFactory 和 ApplicationContext 有什么区别</a></li>
+                    <li>
+                        <a href="#spring-bean-%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" aria-label="Spring Bean 的生命周期">Spring Bean 的生命周期</a></li>
+                    <li>
+                        <a href="#spring-ioc-%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0" aria-label="Spring IOC 如何实现">Spring IOC 如何实现</a></li>
+                    <li>
+                        <a href="#%e8%af%b4%e8%af%b4-spring-aop" aria-label="说说 Spring AOP">说说 Spring AOP</a></li>
+                    <li>
+                        <a href="#spring-aop-%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86" aria-label="Spring AOP 实现原理">Spring AOP 实现原理</a></li>
+                    <li>
+                        <a href="#%e5%8a%a8%e6%80%81%e4%bb%a3%e7%90%86cglib-%e4%b8%8e-jdk" aria-label="动态代理（cglib 与 JDK）">动态代理（cglib 与 JDK）</a></li>
+                    <li>
+                        <a href="#spring-%e4%ba%8b%e5%8a%a1%e5%ae%9e%e7%8e%b0%e6%96%b9%e5%bc%8f" aria-label="Spring 事务实现方式">Spring 事务实现方式</a></li>
+                    <li>
+                        <a href="#spring-%e4%ba%8b%e5%8a%a1%e5%ba%95%e5%b1%82%e5%8e%9f%e7%90%86" aria-label="Spring 事务底层原理">Spring 事务底层原理</a></li>
+                    <li>
+                        <a href="#%e5%a6%82%e4%bd%95%e8%87%aa%e5%ae%9a%e4%b9%89%e6%b3%a8%e8%a7%a3%e5%ae%9e%e7%8e%b0%e5%8a%9f%e8%83%bd" aria-label="如何自定义注解实现功能">如何自定义注解实现功能</a></li>
+                    <li>
+                        <a href="#spring-mvc-%e8%bf%90%e8%a1%8c%e6%b5%81%e7%a8%8b" aria-label="Spring MVC 运行流程">Spring MVC 运行流程</a></li>
+                    <li>
+                        <a href="#spring-mvc-%e5%90%af%e5%8a%a8%e6%b5%81%e7%a8%8b" aria-label="Spring MVC 启动流程">Spring MVC 启动流程</a></li>
+                    <li>
+                        <a href="#spring-%e7%9a%84%e5%8d%95%e4%be%8b%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86" aria-label="Spring 的单例实现原理">Spring 的单例实现原理</a></li>
+                    <li>
+                        <a href="#spring-%e6%a1%86%e6%9e%b6%e4%b8%ad%e7%94%a8%e5%88%b0%e4%ba%86%e5%93%aa%e4%ba%9b%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" aria-label="Spring 框架中用到了哪些设计模式">Spring 框架中用到了哪些设计模式</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#netty" aria-label="Netty">Netty</a><ul>
+                            
+                    <li>
+                        <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e9%80%89%e6%8b%a9-netty" aria-label="为什么选择 Netty">为什么选择 Netty</a></li>
+                    <li>
+                        <a href="#%e8%af%b4%e8%af%b4%e4%b8%9a%e5%8a%a1%e4%b8%adnetty-%e7%9a%84%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af" aria-label="说说业务中，Netty 的使用场景">说说业务中，Netty 的使用场景</a></li>
+                    <li>
+                        <a href="#%e4%bb%80%e4%b9%88%e6%98%af-tcp-%e7%b2%98%e5%8c%85%e6%8b%86%e5%8c%85" aria-label="什么是 TCP 粘包/拆包">什么是 TCP 粘包/拆包</a></li>
+                    <li>
+                        <a href="#tcp-%e7%b2%98%e5%8c%85%e6%8b%86%e5%8c%85%e7%9a%84%e8%a7%a3%e5%86%b3%e5%8a%9e%e6%b3%95" aria-label="TCP 粘包/拆包的解决办法">TCP 粘包/拆包的解决办法</a></li>
+                    <li>
+                        <a href="#netty-%e7%ba%bf%e7%a8%8b%e6%a8%a1%e5%9e%8b" aria-label="Netty 线程模型">Netty 线程模型</a></li>
+                    <li>
+                        <a href="#%e8%af%b4%e8%af%b4-netty-%e7%9a%84%e9%9b%b6%e6%8b%b7%e8%b4%9d" aria-label="说说 Netty 的零拷贝">说说 Netty 的零拷贝</a></li>
+                    <li>
+                        <a href="#netty-%e5%86%85%e9%83%a8%e6%89%a7%e8%a1%8c%e6%b5%81%e7%a8%8b" aria-label="Netty 内部执行流程">Netty 内部执行流程</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+  <div class="post-content"><h1 id="百度java中级面试">百度Java中级面试<a hidden class="anchor" aria-hidden="true" href="#百度java中级面试">#</a></h1>
+<h1 id="spring">Spring<a hidden class="anchor" aria-hidden="true" href="#spring">#</a></h1>
+<h2 id="beanfactory-和-applicationcontext-有什么区别">BeanFactory 和 ApplicationContext 有什么区别<a hidden class="anchor" aria-hidden="true" href="#beanfactory-和-applicationcontext-有什么区别">#</a></h2>
+<p>1、BeanFactory 可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义， 以便在接收到客户端请求时将对应的 bean 实例化。</p>
+<p>2、BeanFactory 还能在实例化对象的时生成协作类之间的关系。此举将 bean 自身与 bean 客户端的配置中解放出来。BeanFactory 还包含了 bean 生命周期的控制，调用客户端的初始 化方法（initialization methods）和销毁方法（destruction methods）。</p>
+<p>3、从表面上看，application context 如同 bean factory 一样具有 bean 定义、bean 关联关系的设置，根据请求分发 bean 的功能。但 application context 在此基础上还提供了其他的功能。</p>
+<ul>
+<li>提供了支持国际化的文本消息</li>
+<li>统一的资源文件读取方式</li>
+<li>已在监听器中注册的 bean 的事件</li>
+</ul>
+<h2 id="spring-bean-的生命周期">Spring Bean 的生命周期<a hidden class="anchor" aria-hidden="true" href="#spring-bean-的生命周期">#</a></h2>
+<p>1、Spring Bean 的生命周期简单易懂。在一个 bean 实例被初始化时，需要执行一系列的初始化操作以达到可用的状态。同样的，当一个 bean 不在被调用时需要进行相关的析构操作，并从 bean 容器中移除。</p>
+<p>2、Spring bean factory 负责管理在 spring 容器中被创建的 bean 的生命周期。Bean 的生命周期由两组回调（call back）方法组成。</p>
+<ul>
+<li>初始化之后调用的回调方法。</li>
+<li>销毁之前调用的回调方法。</li>
+</ul>
+<p>Spring 框架提供了以下四种方式来管理 bean 的生命周期事件：</p>
+<ul>
+<li>
+<p>InitializingBean 和 DisposableBean 回调接口</p>
+</li>
+<li>
+<p>针对特殊行为的其他 Aware 接口</p>
+</li>
+<li>
+<p>Bean 配置文件中的 Custom init()方法和 destroy()方法</p>
+</li>
+<li>
+<p>@PostConstruct 和@PreDestroy 注解方式</p>
+</li>
+</ul>
+<h2 id="spring-ioc-如何实现">Spring IOC 如何实现<a hidden class="anchor" aria-hidden="true" href="#spring-ioc-如何实现">#</a></h2>
+<p>1、Spring 中的 org.springframework.beans 包和 org.springframework.context 包构成了Spring 框架 IoC 容器的基础。</p>
+<p>2、BeanFactory 接口提供了一个先进的配置机制，使得任何类型的对象的配置成为可能。</p>
+<p>ApplicationContex 接口对 BeanFactory（是一个子接口）进行了扩展，在 BeanFactory 的基础上添加了其他功能，比如与 Spring 的 AOP 更容易集成，也提供了处理 message resource 的机制（用于国际化）、事件传播以及应用层的特别配置，比如针对 Web 应用的 WebApplicationContext。</p>
+<p>3、org.springframework.beans.factory.BeanFactory 是 Spring IoC 容器的具体实现，用来包装和管理前面提到的各种 bean。BeanFactory 接口是 Spring IoC 容器的核心接口。</p>
+<h2 id="说说-spring-aop">说说 Spring AOP<a hidden class="anchor" aria-hidden="true" href="#说说-spring-aop">#</a></h2>
+<p>1、面向切面编程，在我们的应用中，经常需要做一些事情，但是这些事情与核心业务无关，比如，要记录所有 update 方法的执行时间时间，操作人等等信息，记录到日志， 通过 spring 的 AOP 技术，就可以在不修改 update的代码的情况下完成该需求。</p>
+<h2 id="spring-aop-实现原理">Spring AOP 实现原理<a hidden class="anchor" aria-hidden="true" href="#spring-aop-实现原理">#</a></h2>
+<p>1、Spring AOP 中的动态代理主要有两种方式，JDK 动态代理和 CGLIB 动态代理。JDK 动态代理通过反射来接收被代理的类，并且要求被代理的类必须实现一个接口。JDK 动态代理的核心是 InvocationHandler 接口和 Proxy 类。</p>
+<p>2、如果目标类没有实现接口，那么 Spring AOP 会选择使用 CGLIB 来动态代理目标类。CGLIB （Code Generation Library），是一个代码生成的类库，可以在运行时动态的生成某个类的子类，注意，CGLIB 是通过继承的方式做的动态代理，因此如果某个类被标记为 final， 那么它是无法使用 CGLIB 做动态代理的。</p>
+<h2 id="动态代理cglib-与-jdk">动态代理（cglib 与 JDK）<a hidden class="anchor" aria-hidden="true" href="#动态代理cglib-与-jdk">#</a></h2>
+<p>1、JDK 动态代理类和委托类需要都实现同一个接口。也就是说只有实现了某个接口的类可以使用 Java 动态代理机制。但是，事实上使用中并不是遇到的所有类都会给你实现一个接口。因此，对于没有实现接口的类，就不能使用该机制。而 CGLIB 则可以实现对类的动态代理。</p>
+<h2 id="spring-事务实现方式">Spring 事务实现方式<a hidden class="anchor" aria-hidden="true" href="#spring-事务实现方式">#</a></h2>
+<p>1、编码方式</p>
+<ul>
+<li>所谓编程式事务指的是通过编码方式实现事务，即类似于 JDBC 编程实现事务管理。</li>
+</ul>
+<p>2、声明式事务管理方式</p>
+<ul>
+<li>声明式事务管理又有两种实现方式：基于 xml 配置文件的方式；另一个实在业务方法上进行@Transaction 注解，将事务规则应用到业务逻辑中</li>
+</ul>
+<h2 id="spring-事务底层原理">Spring 事务底层原理<a hidden class="anchor" aria-hidden="true" href="#spring-事务底层原理">#</a></h2>
+<p>a、划分处理单元——IOC</p>
+<p>由于 spring 解决的问题是对单个数据库进行局部事务处理的，具体的实现首相用 spring中的 IOC 划分了事务处理单元。并且将对事务的各种配置放到了 ioc 容器中（设置事务管理器，设置事务的传播特性及隔离机制）。</p>
+<p>b、AOP 拦截需要进行事务处理的类</p>
+<p>Spring 事务处理模块是通过 AOP 功能来实现声明式事务处理的，具体操作（比如事务实行的配置和读取，事务对象的抽象），用 TransactionProxyFactoryBean 接口来使用 AOP功能，生成 proxy 代理对象，通过 TransactionInterceptor 完成对代理方法的拦截，将事务处理的功能编织到拦截的方法中。读取 ioc 容器事务配置属性，转化为 spring 事务处理需要的内部数据结构（TransactionAttributeSourceAdvisor），转化为 TransactionAttribute 表示的数据对象。</p>
+<p>c、对事物处理实现（事务的生成、提交、回滚、挂起）</p>
+<p>spring 委托给具体的事务处理器实现。实现了一个抽象和适配。适配的具体事务处理器：DataSource 数据源支持、hibernate 数据源事务处理支持、JDO 数据源事务处理支持，JPA、JTA 数据源事务处理支持。这些支持都是通过设计PlatformTransactionManager、AbstractPlatforTransaction 一系列事务处理的支持。 为常用数据源支持提供了一系列的 TransactionManager。</p>
+<p>d、结合</p>
+<p>PlatformTransactionManager 实现了 TransactionInterception 接口，让其与TransactionProxyFactoryBean 结合起来，形成一个 Spring 声明式事务处理的设计体系。</p>
+<h2 id="如何自定义注解实现功能">如何自定义注解实现功能<a hidden class="anchor" aria-hidden="true" href="#如何自定义注解实现功能">#</a></h2>
+<p>1、创建自定义注解和创建一个接口相似，但是注解的 interface 关键字需要以@符号开头。</p>
+<p>2、注解方法不能带有参数；</p>
+<p>3、注解方法返回值类型限定为：基本类型、String、Enums、Annotation 或者是这些类型的</p>
+<p>数组；</p>
+<p>1、注解方法可以有默认值；</p>
+<p>2、注解本身能够包含元注解，元注解被用来注解其它注解。</p>
+<h2 id="spring-mvc-运行流程">Spring MVC 运行流程<a hidden class="anchor" aria-hidden="true" href="#spring-mvc-运行流程">#</a></h2>
+<p>1.spring mvc 将所有的请求都提交给 DispatcherServlet,它会委托应用系统的其他模块负责对请求 进行真正的处理工作。</p>
+<p>2.DispatcherServlet 查询一个或多个 HandlerMapping,找到处理请求的 Controller.</p>
+<p>3.DispatcherServlet 请请求提交到目标 Controller</p>
+<p>4.Controller 进行业务逻辑处理后，会返回一个 ModelAndView</p>
+<p>5.Dispathcher 查询一个或多个 ViewResolver 视图解析器,找到 ModelAndView 对象指定的视图对象</p>
+<p>6.视图对象负责渲染返回给客户端。</p>
+<h2 id="spring-mvc-启动流程">Spring MVC 启动流程<a hidden class="anchor" aria-hidden="true" href="#spring-mvc-启动流程">#</a></h2>
+<p>在 web.xml 文件中给 Spring MVC 的 Servlet 配置了 load-on-startup,所以程序启动的时候会初始化 Spring MVC，在 HttpServletBean 中将配置的 contextConfigLocation属性设置到 Servlet 中，然后在 FrameworkServlet 中创建了 WebApplicationContext, DispatcherServlet 根据 contextConfigLocation 配置的 classpath 下的 xml 文件初始化了</p>
+<p>Spring MVC 总的组件。</p>
+<h2 id="spring-的单例实现原理">Spring 的单例实现原理<a hidden class="anchor" aria-hidden="true" href="#spring-的单例实现原理">#</a></h2>
+<p>Spring 对 Bean 实例的创建是采用单例注册表的方式进行实现的，而这个注册表的缓存是</p>
+<p>ConcurrentHashMap 对象。</p>
+<h2 id="spring-框架中用到了哪些设计模式">Spring 框架中用到了哪些设计模式<a hidden class="anchor" aria-hidden="true" href="#spring-框架中用到了哪些设计模式">#</a></h2>
+<p>代理模式—在 AOP 和 remoting 中被用的比较多。</p>
+<p>单例模式—在 spring 配置文件中定义的 bean 默认为单例模式。</p>
+<p>模板方法—用来解决代码重复的问题。比如. RestTemplate, JmsTemplate, JpaTemplate。</p>
+<p>前端控制器—Spring 提供了 DispatcherServlet 来对请求进行分发。</p>
+<p>视图帮助(View Helper )—Spring 提供了一系列的 JSP 标签，高效宏来辅助将分散的代码整合在视图里。</p>
+<p>依赖注入—贯穿于 BeanFactory / ApplicationContext 接口的核心理念。</p>
+<p>工厂模式—BeanFactory 用来创建对象的实例。</p>
+<h1 id="netty">Netty<a hidden class="anchor" aria-hidden="true" href="#netty">#</a></h1>
+<h2 id="为什么选择-netty">为什么选择 Netty<a hidden class="anchor" aria-hidden="true" href="#为什么选择-netty">#</a></h2>
+<ol>
+<li>
+<p>API 使用简单，开发门槛低；</p>
+</li>
+<li>
+<p>功能强大，预置了多种编解码功能，支持多种主流协议；</p>
+</li>
+<li>
+<p>定制能力强，可以通过 ChannelHandler 对通信框架进行灵活的扩展；</p>
+</li>
+<li>
+<p>性能高，通过与其它业界主流的 NIO 框架对比，Netty 的综合性能最优；</p>
+</li>
+<li>
+<p>成熟、稳定，Netty 修复了已经发现的所有 JDK NIO BUG，业务开发人员不需要再为NIO 的 BUG 而烦恼；</p>
+</li>
+<li>
+<p>社区活跃，版本迭代周期短，发现的 BUG 可以被及时修复，同时，更多的新功能会被加入；</p>
+</li>
+<li>
+<p>经历了大规模的商业应用考验，质量已经得到验证。在互联网、大数据、网络游戏、企业应用、电信软件等众多行业得到成功商用，证明了它可以完全满足不同行业的商业应用。</p>
+</li>
+</ol>
+<p>正是因为这些优点，Netty 逐渐成为 Java NIO 编程的首选框架。</p>
+<h2 id="说说业务中netty-的使用场景">说说业务中，Netty 的使用场景<a hidden class="anchor" aria-hidden="true" href="#说说业务中netty-的使用场景">#</a></h2>
+<p>1、构建高性能、低时延的各种 Java 中间件，例如 MQ、分布式服务框架、ESB 消息总线等， Netty 主要作为基础通信框架提供高性能、低时延的通信服务；</p>
+<p>2、公有或者私有协议栈的基础通信框架，例如可以基于 Netty 构建异步、高性能的WebSocket 协议栈；</p>
+<p>3、各领域应用，例如大数据、游戏等，Netty 作为高性能的通信框架用于内部各模块的数据分发、传输和汇总等，实现模块之间高性能通信。</p>
+<p>4、原生的 NIO 在 JDK 1.7 版本存在 epoll bug ，它会导致 Selector 空轮询，最终导致 CPU 100%。官方声称在 JDK 1.6 版本的 update18 修复了该问题，但是直到 JDK 1.7 版本该问题仍旧存在，只不过该 BUG 发生概率降低了一些 而已，它并没有得到根本性解决。</p>
+<h2 id="什么是-tcp-粘包拆包">什么是 TCP 粘包/拆包<a hidden class="anchor" aria-hidden="true" href="#什么是-tcp-粘包拆包">#</a></h2>
+<p>1、要发送的数据大于 TCP 发送缓冲区剩余空间大小，将会发生拆包。</p>
+<p>2、待发送数据大于 MSS（最大报文长度），TCP 在传输前将进行拆包。</p>
+<p>3、要发送的数据小于 TCP 发送缓冲区的大小，TCP 将多次写入缓冲区的数据一次发送出去，将会发生粘包。</p>
+<p>&gt; 4、接收数据端的应用层没有及时读取接收缓冲区中的数据，将发生粘包。</p>
+<h2 id="tcp-粘包拆包的解决办法">TCP 粘包/拆包的解决办法<a hidden class="anchor" aria-hidden="true" href="#tcp-粘包拆包的解决办法">#</a></h2>
+<p>1、发送端给每个数据包添加包首部，首部中应该至少包含数据包的长度，这样接收端在接收到数据后，通过读取包首部的长度字段，便知道每一个数据包的实际长度了。</p>
+<p>2、发送端将每个数据包封装为固定长度（不够的可以通过补 0 填充），这样接收端每次从接收缓冲区中读取固定长度的数据就自然而然的把每个数据包拆分开来。</p>
+<p>3、可以在数据包之间设置边界，如添加特殊符号，这样，接收端通过这个边界就可以将 不同的数据包拆分开。</p>
+<h2 id="netty-线程模型">Netty 线程模型<a hidden class="anchor" aria-hidden="true" href="#netty-线程模型">#</a></h2>
+<p>首先，Netty 使用 EventLoop 来处理连接上的读写事件，而一个连接上的所有请求都保证在一个 EventLoop 中被处理，一个 EventLoop 中只有一个 Thread，所以也就实现了一个连接上的所有事件只会在一个线程中被执行。一个 EventLoopGroup 包含多个 EventLoop，可以把一个 EventLoop 当做是 Reactor 线程模型中的一个线程，而一个 EventLoopGroup 类似于一个 ExecutorService</p>
+<h2 id="说说-netty-的零拷贝">说说 Netty 的零拷贝<a hidden class="anchor" aria-hidden="true" href="#说说-netty-的零拷贝">#</a></h2>
+<p>“零拷贝”是指计算机操作的过程中，CPU 不需要为数据在内存之间的拷贝消耗资源。而它通常是指计算机在网络上发送文件时，不需要将文件内容拷贝到用户空间（User Space）而直接在内核空间（Kernel Space）中传输到网络的方式。</p>
+<h2 id="netty-内部执行流程">Netty 内部执行流程<a hidden class="anchor" aria-hidden="true" href="#netty-内部执行流程">#</a></h2>
+<p>1、Netty 的接收和发送 ByteBuffer 采用 DIRECT BUFFERS，使用堆外直接内存进行Socket 读写，不需要进行字节缓冲区的二次拷贝。如果使用传统的堆内存（HEAP BUFFERS）进行 Socket 读写，JVM 会将堆内存 Buffer 拷贝一份到直接内存中，然后才写入Socket 中。相比于堆外直接内存，消息在发送过程中多了一次缓冲区的内存拷贝。</p>
+<p>2、Netty 提供了组合 Buffer 对象，可以聚合多个 ByteBuffer 对象，用户可以像操作一 个 Buffer 那样方便的对组合 Buffer 进行操作，避免了传统通过内存拷贝的方式将几个小 Buffer 合并成一个大的 Buffer</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://coderrenxy.github.io/posts/read/09%E5%BF%B5%E7%A5%9E%E9%9D%A2%E7%BB%8F/">
+    <span class="title">« 上一篇</span>
+    <br>
+    <span></span>
+  </a>
+  <a class="next" href="https://coderrenxy.github.io/posts/read/11%E4%BA%AC%E4%B8%9C/">
+    <span class="title">下一篇 »</span>
+    <br>
+    <span></span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+	<h2>分享至: &nbsp &nbsp</h>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https://coderrenxy.github.io/posts/">
+        <svg t="1651680695552" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3017" width="81" height="81"><path d="M985.742 749.936c0 130.864-106.178 236.964-237.17 236.964H274.298c-130.954 0-237.092-106.102-237.092-236.964V276.018c0-130.902 106.138-236.966 237.092-236.966h474.274c130.992 0 237.17 106.064 237.17 236.966v473.918z" fill="#235B9E" p-id="3018"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3019"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3020"></path><path d="M556.712 216.778l91.59 0.384v101.512H581.76c-10.808 0-26.208 5.362-26.208 28.464v47.362h94.252l-10.808 118.482H551v296.192h-118.568V512.982H373.14V394.5h58.792v-53.534c0-48.478 23.118-124.188 124.78-124.188m0-19.754c-64.452 0-98.87 28.234-116.394 51.92-24.486 33.094-28.142 71.862-28.142 92.024v33.78H373.14c-10.91 0-19.754 8.844-19.754 19.754v118.482c0 10.91 8.844 19.754 19.754 19.754h39.54v276.438c0 10.91 8.844 19.754 19.754 19.754h118.568c10.91 0 19.754-8.844 19.754-19.754V532.738h68.242a19.756 19.756 0 0 0 19.672-17.96l10.808-118.482a19.76 19.76 0 0 0-19.672-21.55h-74.498v-27.608c0-4.532 0.948-6.908 1.758-7.568 0.7-0.568 2.422-1.142 4.696-1.142h66.542c10.91 0 19.754-8.844 19.754-19.754v-101.512a19.752 19.752 0 0 0-19.67-19.754l-91.59-0.384h-0.086z" fill="#1A4477" p-id="3021"></path><path d="M728.078 956.122H294.83c-124.896 0-226.506-101.636-226.506-226.566V296.358c0-124.908 101.61-226.526 226.506-226.526h433.248c124.918 0 226.544 101.62 226.544 226.526v433.198c0.002 124.928-101.626 226.566-226.544 226.566zM294.83 89.636c-113.976 0-206.702 92.734-206.702 206.72v433.198c0 114.008 92.726 206.762 206.702 206.762h433.248c113.996 0 206.74-92.754 206.74-206.762V296.358c0-113.986-92.744-206.72-206.74-206.72H294.83z" fill="#1A4477" p-id="3022"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on whatsapp"
+        href="https://api.whatsapp.com/send?text=%20-%20https%3a%2f%2fcoderrenxy.github.io%2fposts%2fread%2f10%25E7%2599%25BE%25E5%25BA%25A6%2f">
+        <svg t="1651681184624" class="icon" viewBox="0 0 1586 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9888" width="81" height="81"><path d="M160.587294 1019.542588h1261.327059a145.568627 145.568627 0 0 0 145.548549-145.52847V146.291451A145.528471 145.528471 0 0 0 1421.914353 0.803137H160.587294A145.568627 145.568627 0 0 0 15.058824 146.311529V874.014118a145.588706 145.588706 0 0 0 145.52847 145.548549z" fill="#F4B459" p-id="9889"></path><path d="M63.849412 981.955765l607.091451-467.184941L65.174588 37.205333C34.695529 63.909647 15.058824 102.600784 15.058824 146.311529V874.014118c0 43.028078 19.07451 81.317647 48.790588 107.961725zM1518.371137 38.048627l-629.539137 478.067451 628.956863 466.56251c30.278275-26.644078 49.694118-65.254902 49.694117-108.684549V146.331608c0-43.208784-19.215059-81.598745-49.091764-108.282981z" fill="#E8AB54" p-id="9890"></path><path d="M1548.247843 944.971294L1018.096941 520.774275l536.495686-433.894902a145.66902 145.66902 0 0 0-55.737725-63.688785L813.578039 571.371922 109.748706 10.380549A145.608784 145.608784 0 0 0 40.357647 64.471843l566.673569 454.515451L47.666196 964.668235A144.946196 144.946196 0 0 0 122.88 1013.960784l554.164706-438.312157 33.812078 27.26651a142.436392 142.436392 0 0 0 205.603138 0l31.48298-25.459451 538.423216 426.36549a145.086745 145.086745 0 0 0 61.861647-58.829803z" fill="#FADAAC" p-id="9891"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on telegram"
+        href="https://telegram.me/share/url?text=&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fread%2f10%25E7%2599%25BE%25E5%25BA%25A6%2f">
+        <svg t="1651680820373" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3832" width="81" height="81"><path d="M679.424 746.862l84.005-395.996c7.424-34.852-12.581-48.567-35.438-40.009L234.277 501.138c-33.72 13.13-33.134 32-5.706 40.558l126.282 39.424 293.156-184.576c13.714-9.143 26.295-3.986 16.018 5.157L426.898 615.973l-9.143 130.304c13.13 0 18.871-5.706 25.71-12.581l61.696-59.429 128 94.282c23.442 13.129 40.01 6.29 46.3-21.724zM1024 512c0 282.843-229.157 512-512 512S0 794.843 0 512 229.157 0 512 0s512 229.157 512 512z" fill="#1296DB" p-id="3833"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on reddit"
+        href="https://twitter.com/intent/tweet/?text=&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fread%2f10%25E7%2599%25BE%25E5%25BA%25A6%2f&amp;hashtags=">
+        <svg t="1651764155941" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1736" width="81" height="81"><path d="M295.2 338c120.2 61 221.7 57.4 221.7 57.4s-38.5-134.8 80.5-194.6 200.9 41 200.9 41 20.8-5.7 36.2-11.4c15.5-5.7 37.8-15.9 37.8-15.9l-36.7 65.8 56.5-6s-7 10.2-29.6 31-31.9 31.6-31.9 31.6 8.1 162.3-77 287.2C668.5 749 558.6 824 398.9 839.8c-159.7 15.8-263.7-49.2-263.7-49.2s69.8-4 114.3-21.1S358 707.4 358 707.4s-91-28.1-123.7-59.8c-32.7-31.6-40.8-50.4-40.8-50.4l89.8-1.2s-94.5-50.4-121.3-90.3-30.3-78.5-30.3-78.5l69.1 28s-57.4-78.4-65.6-139.4c-8.2-61 10.5-93.8 10.5-93.8s29.3 55 149.5 116z" fill="#5DD7FC" p-id="1737"></path></svg>
+    </a>
+	
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<script src="https://utteranc.es/client.js"
+repo="coderRenxy/coderrenxy.github.io"
+issue-term="title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+	<span id="busuanzi_container_site_pv">
+    访问量：<span id="busuanzi_value_site_pv"></span>次
+</span>
+&nbsp;
+<span id="busuanzi_container_site_uv">
+    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+</span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+ <div>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+
+</body>
+
+</html>
