@@ -6,7 +6,43 @@
     <description>Recent content in 📕 阅读 on 小任同学&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 08 Jan 2022 23:33:37 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/posts/read/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Jun 2023 00:15:37 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/posts/read/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CSS</title>
+      <link>https://coderrenxy.github.io/posts/read/4-css%E7%AF%87/</link>
+      <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/4-css%E7%AF%87/</guid>
+      <description>css</description>
+    </item>
+    
+    <item>
+      <title>HTML</title>
+      <link>https://coderrenxy.github.io/posts/read/3-html%E7%AF%87/</link>
+      <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/3-html%E7%AF%87/</guid>
+      <description>HTML</description>
+    </item>
+    
+    <item>
+      <title>JS</title>
+      <link>https://coderrenxy.github.io/posts/read/5-javascript%E7%AF%87/</link>
+      <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/5-javascript%E7%AF%87/</guid>
+      <description>JS</description>
+    </item>
+    
+    <item>
+      <title>vue</title>
+      <link>https://coderrenxy.github.io/posts/read/13-vue%E7%AF%87/</link>
+      <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/13-vue%E7%AF%87/</guid>
+      <description>vue</description>
+    </item>
+    
     <item>
       <title>以下暂为转载，作者《大白》</title>
       <link>https://coderrenxy.github.io/posts/read/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</link>
@@ -126,15 +162,6 @@
     
     <item>
       <title></title>
-      <link>https://coderrenxy.github.io/posts/read/13-vue%E7%AF%87/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://coderrenxy.github.io/posts/read/13-vue%E7%AF%87/</guid>
-      <description>Vue面试题推荐配合鲨鱼哥掘金文章-最全的Vue面试题 一起看 一、Vue 基础 1. Vue的基本原理 vue的基本原理主要包含两部分，第一是虚拟DOM</description>
-    </item>
-    
-    <item>
-      <title></title>
       <link>https://coderrenxy.github.io/posts/read/13%E8%BD%AF%E9%80%9A%E5%8A%A8%E5%8A%9B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -158,33 +185,6 @@
       
       <guid>https://coderrenxy.github.io/posts/read/15%E4%B8%AD%E8%BD%AF%E5%9B%BD%E9%99%85/</guid>
       <description>中软国际Java中级 1、java 中==和 equals 和 hashCode 的区别 1）==若是基本数据类型比较，是比较值，若是引用类型，则比较的是他们在内存中的存放地址。</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://coderrenxy.github.io/posts/read/3-html%E7%AF%87/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://coderrenxy.github.io/posts/read/3-html%E7%AF%87/</guid>
-      <description>1. src 和 href 的区别 src 和 href 都是用来引用外部的资源，它们的区别如下： src： 表示对资源的引用，它指向的内容会嵌入到当前标签所在的位置。src 会将其指</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://coderrenxy.github.io/posts/read/4-css%E7%AF%87/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://coderrenxy.github.io/posts/read/4-css%E7%AF%87/</guid>
-      <description>一、CSS 基础 1. CSS 选择器及其优先级 选择器 格式 优先级权重 id 选择器 #id 100 类选择器 #classname 10 属性选择器 a[ref=“eee”] 10 伪类选择器 li:last-child 10 标签选择器 div</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://coderrenxy.github.io/posts/read/5-javascript%E7%AF%87/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://coderrenxy.github.io/posts/read/5-javascript%E7%AF%87/</guid>
-      <description>一、数据类型 1. JavaScript有哪些数据类型，它们的区别？ JavaScript共有八种数据类型，分别是 Undefined、Null、Bo</description>
     </item>
     
     <item>
