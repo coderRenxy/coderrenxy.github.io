@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Spring MVC on 小任同学&#39;s Blog</title>
+    <link>https://coderrenxy.github.io/tags/spring-mvc/</link>
+    <description>Recent content in Spring MVC on 小任同学&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 02 Feb 2022 02:45:59 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/tags/spring-mvc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spring MVC小结</title>
+      <link>https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/</link>
+      <pubDate>Wed, 02 Feb 2022 02:45:59 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/</guid>
+      <description>正文开始。</description>
+    </item>
+    
+  </channel>
+</rss>

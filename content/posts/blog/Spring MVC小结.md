@@ -1,11 +1,19 @@
 ---
 title: "Spring MVC小结"
 date: 2022-02-02T02:45:59+08:00
-draft: false
+author: ["小任同学"]
+draft: false # 是否为草稿
+hidemeta: false # 是否隐藏文章的元信息，如发布日期、作者等
+disableShare: true # 底部不显示分享栏
+showbreadcrumbs: true #顶部显示当前路径
+lastmod: 2022-05-13T21:55:37+08:00	#更新文章的时候手动改一下时间就可以
+description: "正文开始。"
+tags: 
+- Spring MVC
+- 框架
 ---
-​
-> description：本打算直接干到Spring MVC源码的，中途发现了算法的重要性，于是学习过半而中道崩殂，今学习三分，先把整套数据结构知识恶补，再刷常见题。刷完常见题转leetcode每日一题 + other knowledge。以下是Spring MVC常见的知识，或者你可以把它理解为 “面试题”，本人并不喜欢这么称呼，emm...正文开始。
-
+  
+  
 ### Spring MVC的优点有哪些？
 1. 可以支持各种视图技术,而不仅仅局限于JSP；
 2. 与Spring框架集成（如IOC容器、AOP等）；
@@ -27,45 +35,91 @@ Spring MVC框架的控制器（Controller）解析用户输入并将其转换为
 5. 进行视图的渲染并返回给DispatcherServlet渲染后的视图。相当于给了controller控制器。![在这里插入图片描述](https://img-blog.csdnimg.cn/4db704ad54004a7f81659dbaf7e85dc5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAcnh5X25vdF9maXZl,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
 *以上png为转载，如有侵权，请联系本人。*
 ### 常见注解
-**@ModelAttribute**：
-该注解可以存一个对象，放在一个方法上存对象，依次set值，调用时只需要在方法的参数列表的参数前加上@ModelAttribute(”存放的对象名”)；有该注解的方法会率先执行。如果在方法上没有指定名称，则默认使用参数类型的首字母小写来获取，如果指定了名称，就根据指定名称来获取。  
-最近工作常用该注解，有了一个更全面的认知：  
-@ModelAttribute 的作用是把请求参数绑定到 model 对象上，一般用法是只加在方法体上，如果该方法返回某一类，那返回的 model 属性的名称则为类名（自动首字母小写）：隐含model.addAttribute("user","user")，例如返回值类型为 Person 自动转换为 person，如果不想要这个名称就在注解中加上 value 属性来指定 model 属性的名称，那返回的视图名就是 person ，那就意味着这个方法会优先于其他方法执行，譬如他会在里面 new 一个对象，然后往里面 set 值并把这个对象 addAttribute 到 model 了，在其他方法中是可以通过 model 拿到这个对象里的值的。如果是没有返回值，那就要在方法体内手动addAttribute 到 model 了。  
-另一种常见用法是在方法体上加上该注解并在其他方法中参数列表的某参数前加上该注解，就意味着从 model 中获取值，拿到的是返回的 “model 属性名称” 为 “方法体上@ModelAttribute注解 value 的值” 的 model 中对象的参数。  
-还有一种是一直困扰我的直接从 Form 表单或 URL 能拿到指定对象，这样只需要在参数前加注解而不用在方法体上。
+**@PathVariable** 和 **@RequestMapping** 和 **@RequestParam**：  
+@PathVariable和@RequestParam不要混淆，  
+区别是用法上不同：  
+@PathVariable在 @RequestMapping请求路径后接”/{参数名}“，多个参数就再接多个“/{路径中的参数名}”，在对应的参数列表的参数前加上 @PathVariable 注解。该请求路径中参数名和参数列表 @PathVariable 注解的 value，再在网页路径上传入参数。  
+而@RequestParam取参读取 /路径？后的name=”参数“，@RequestParam注解有三个参数，
 
-**@ResponseBody**：
-该注解实现将controller方法返回的java对象转化为json对象响应给客户。
-换句话说：表示当前请求的内容直接作为响应体，用于接收。
-
-注意：在使用 @RequestMapping后，返回值通常解析为跳转路径，但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。
-
-**@RequestBody**：
-注解实现接收http请求的json数据，将json转换为java对象。
-换句话说：拿到请求当前页面request请求的body并交由对应参数，放在方法的参数列表的某个参数前。
-
-eg：@RequestBody String body
-
-注：@ResponseBody ＋ @Controller == @RestController
-
-**@PathVariable**和**@RequestMapping**：
-url里是可以在路径传参的，在@RequestMaping的方法构造函数列表去拿到就行了。如果用@PathVariable注解就是在@requestMapping路径后接“/{参数名}”，方法名中加@PathVariable（”路径中的参数名”） 参数类型 方法内参数名，多个参数就再接多个“/{路径中的参数名}”。其实获取参数能直接在路径后？name=“xxx”，然后在@requestMapping里如果参数名称相同就能直接获取到，不能就要使用注解@RequestParam。@PathVariable和和@RequestParam不要混淆，有区别：1.用法上不同，@PathVariable在路径后接”/{参数名}“，@RequestParam读取？后的name=”参数“，这个@RequestParam有三个参数，
-
-1、value：获取的参数值（是人是鬼都知道）。
+1、value：参数名。
 
 2、required：表示当前属性值是否必须存在（默认是true）。
 
 3、defaultValue：如果value传递参数了，使用参数，如果没有，使用默认值。
 
 @RequestHeader、@CookieValue也是一样的这三个参数。
+ 
+**@RequestBody**：
+注解实现接收http请求的json数据，将json转换为java对象。  
+注：@ResponseBody ＋ @Controller == @RestController  
+例如：前台Ajax传递到controller的json格式数据绑定到后台方法的参数列表的某个参数上。  
+```js
+       $.ajax({
+　　　　　　　　url:"/login",
+　　　　　　　　type:"POST",
+　　　　　　　　data:'{"userName":"admin","pwd","admin123"}',
+　　　　　　　　content-type:"application/json charset=utf-8",
+　　　　　　　　success:function(data){
+　　　　　　　　　　alert("request success ! ");
+　　　　　　　　}
+　　　　});
+``` 
+ 
+ ```java
+　　　　@requestMapping("/login")
+　　　　public void login(@requestBody String userName,@requestBody String pwd){   
+//也可换做是user对象来绑定，会根据属性名赋值，  
+//但是必须属性名和json的key对应上，否则请求不过去。
+　　　　　　System.out.println(userName+" ："+pwd);
+　　　　}
+```
+
+**@ResponseBody**：
+该注解实现将controller方法返回的java对象转化为json对象响应给客户。
+换句话说：表示当前请求的内容直接作为响应体，用于接收。
+
+注意：在使用 @RequestMapping后，返回值通常解析为跳转路径，但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，而是直接写入 HTTP response body 中。 比如前台异步获取 json 数据，加上 @ResponseBody 后，会直接返回 json 数据。  
+使用：
+```java 
+　　@RequestMapping("/login")
+　　@ResponseBody
+　　public User login(User user){
+　　　　return user;
+　　}
+　　User字段：userName pwd;
+　　那么在前台接收到的数据为：'{"userName":"xxx","pwd":"xxx"}'
+
+　　效果等同于如下代码：
+　　@RequestMapping("/login")
+　　public void login(User user, HttpServletResponse response){
+
+              //通过response对象输出指定格式的数据
+　　　　response.getWriter.write(JSONObject.fromObject(user).toString());
+　　}
+```
+
+**@ModelAttribute**：  
+@ModelAttribute最主要的作用是将数据添加到模型对象中，用于视图页面展示时使用。说白了就是数据回显。  但远远不仅于此.....  
+<br>
+在方法**参数**上使用 @ModelAttribute 注解:  
+可以描述为**数据绑定**，注解在方法参数上说明了该方法的该参数将由 model 中取得，如果model找不到，那么该参数会被优先实例化，然后被添加进model，再把请求中所有名称与之匹配的参数填充到该参数中。  
+<br>
+对**方法**使用 @ModelAttribute ：  
+添加该注解的方法会率先其他方法执行。  
+如果方法无返回值，就在添加该注解的方法中 model.addAttribute ，在该控制器的其他方法返回的页面可以拿到这个 model。  
+有无返回值的 @ModelAttribute 方法区别是，无返回值的是 model.addAttribute(String key,Object value)来向model增加参数，而有返回值的直接将需要增加的参数返回。过程说出来就是赘述，联想一下。  
+以上都是在 @ModelAttribute 中不加 value ，这样如果是有返回值的 @ModelAttribute 方法，就会默认返回名称为“返回值类型的小驼峰化的对象名称”，如果指定 value，那就是返回指定的，比如返回值类型是User，那默认名称则为user，指定名称为 pp，那返回参数名称就是pp。
+
+
+
 
 ### rest中的get、post、delete、put请求
 get是获取资源、post新建资源、put更新资源、delete删除资源。  
 在选择method只能发送post和get请求，因此可以用过滤器filter将post请求转化为put、delete请求以达到put、delete的效果。
 ### 编码问题详解
 编码问题无外乎两种情况：
-1. post： 或者在web.xml配置一个CharacterEncodingFilter过滤器，设置为utf-8。
-2. get：在tomcat的server.xml文件中，添加URLEncoding=utf-8。或者对request、response参数重新编码。
+1. post： 在 web.xml 配置一个 CharacterEncodingFilter 过滤器，设置为 utf-8。
+2. get：在tomcat的 server.xml 文件中，添加 URLEncoding=utf-8。或者对 request、response 参数重新编码。
 3. 注意：过滤器顺序：一个应用程序中可能会包含N个过滤器，这N个过滤器一般是没有顺序要求的，但是如果设置了编码过滤器，那么一定要把它放到最上面，保证过滤器的运行。不论是Spring MVC自带的编码器还是自定义的，都要这样。
 ### 后端向前端传值的方式
 前面都是前端往后端传数据，现在看后端往前端传数据
@@ -73,14 +127,36 @@ get是获取资源、post新建资源、put更新资源、delete删除资源。
 
 前面都是前端往后端传数据，现在看后端往前端传数据
 
-1、map.put(”msg”,”hello data”)，在参数列表加Map。
+1、map.put(”msg”,”hello data”)，在参数列表加Map。return 的是页面路径。
 
-2、model.addAttribute(”mac”,”hello mac”)，在参数列表中加Model。
+2、model.addAttribute(”mac”,”hello mac”)，在参数列表中加Model 对象名。return 的是页面路径。
 
-3、modelMap.addAttribute(”mac”,”hello mac”)，在参数列表中加ModelMap。
+```java
+@RequestMapping("/testModel")
+public String testModel(Model model){
+    model.addAttribute("name","赵六");
+    model.addAttribute("age",12);
+    model.addAttribute("address","上海");
+    return "user";
+}
+```
 
-4、也可以用ModelAndView传递数据，方法内new一个modelAndView并且setViewName(”页面路径”)，再addObject(”mac”,”hello mac”);return的是modelAndView，上述三种返回的是页面路径。
+3、modelMap.addAttribute(”mac”,”hello mac”)，在参数列表中加ModelMap 对象名。return 的是页面路径。
 
+4、也可以用ModelAndView传递数据，方法内new一个modelAndView对象并且“该对象”.setViewName(”页面路径”)，再addObject(”mac”,”hello mac”);return的是“该对象”，上述三种返回的是页面路径。
+```java
+@RequestMapping("testModelAndView")
+public ModelAndView testModelAndView(){
+	ModelAndView modelAndView = new ModelAndView();
+	//设置跳转页面名称
+	modelAndView.setViewName("user");
+	//设置携带的参数
+	modelAndView.addObject("name","赵六");
+	modelAndView.addObject("age",12);
+	modelAndView.addObject("address","上海");
+	return modelAndView;
+}
+```
 以上都可以用于数据回显，前3种方式的回显数据保存在哪个作用域？
 
 1、page：当前页面

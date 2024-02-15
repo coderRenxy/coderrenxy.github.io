@@ -6,14 +6,329 @@
     <description>Recent content in 📕 阅读 on 小任同学&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 08 Jan 2022 23:33:37 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/posts/read/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Jun 2023 00:15:37 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/posts/read/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>阅读测试</title>
+      <title>CSS</title>
+      <link>https://coderrenxy.github.io/posts/read/4-css%E7%AF%87/</link>
+      <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/4-css%E7%AF%87/</guid>
+      <description>css</description>
+    </item>
+    
+    <item>
+      <title>HTML</title>
+      <link>https://coderrenxy.github.io/posts/read/3-html%E7%AF%87/</link>
+      <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/3-html%E7%AF%87/</guid>
+      <description>HTML</description>
+    </item>
+    
+    <item>
+      <title>JS</title>
+      <link>https://coderrenxy.github.io/posts/read/5-javascript%E7%AF%87/</link>
+      <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/5-javascript%E7%AF%87/</guid>
+      <description>JS</description>
+    </item>
+    
+    <item>
+      <title>vue</title>
+      <link>https://coderrenxy.github.io/posts/read/13-vue%E7%AF%87/</link>
+      <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/13-vue%E7%AF%87/</guid>
+      <description>vue</description>
+    </item>
+    
+    <item>
+      <title>以下暂为转载，作者《大白》</title>
       <link>https://coderrenxy.github.io/posts/read/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</link>
       <pubDate>Sat, 08 Jan 2022 23:33:37 +0800</pubDate>
       
       <guid>https://coderrenxy.github.io/posts/read/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</guid>
       <description>正文&amp;hellip;. test&amp;hellip;..</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/01%E6%80%9D%E7%89%B9%E5%A5%87/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/01%E6%80%9D%E7%89%B9%E5%A5%87/</guid>
+      <description>思特奇 一面 1.自我介绍 和 项目介绍 &amp;hellip; 2.Java有多少种数据类型 各占多少个字节 6数字，1字符，1布尔 int4，short2，byte1，lon</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/02%E5%93%88%E7%BD%97/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/02%E5%93%88%E7%BD%97/</guid>
+      <description>哈罗 开始 1.自我介绍&amp;amp;项目介绍 我的是新闻门户网站,介绍了一下都用到了什么技术,几个人开发,怎么协作 2.先聊聊java基础,说说jav</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/03%E9%87%91%E8%9D%B6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/03%E9%87%91%E8%9D%B6/</guid>
+      <description>金蝶 一面 自我介绍 项目的架构图画一下 项目是怎么部署到服务器的 为什么要用 Docker 做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。 项目数据库表</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/04%E6%AD%A5%E6%AD%A5%E9%AB%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/04%E6%AD%A5%E6%AD%A5%E9%AB%98/</guid>
+      <description>步步高 一面（50分钟） 介绍一下项目 项目是视频还是通过什么途径学习的？ 你认为项目中复杂的点是什么？ Redis的使用场景？ Redis的高并发是依</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/05%E8%A1%8C%E4%BA%91%E9%9B%86%E5%9B%A2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/05%E8%A1%8C%E4%BA%91%E9%9B%86%E5%9B%A2/</guid>
+      <description>行云集团 自我介绍 实习用到的技术栈和编程语言是什么？ (实习是学校很水的5G通信实习，压根不沾边，随便就过了) Java是什么时候开始接触和学习的</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/06%E4%B8%AD%E7%A8%8E%E6%B1%87%E9%87%91/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/06%E4%B8%AD%E7%A8%8E%E6%B1%87%E9%87%91/</guid>
+      <description>中税汇金 1.你的redis怎么和mysql同步数据的？（我已经忘了我当时做的那个收藏功能同步没有同步，问下xdm这样的收藏功能一般是怎么做的</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/07%E5%AD%97%E8%8A%82%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E9%83%A8%E9%97%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/07%E5%AD%97%E8%8A%82%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E9%83%A8%E9%97%A8/</guid>
+      <description>字节大数据基础架构部门 字节面经 一面 2.17 自我介绍 接口和抽象类的区别 了解过啥设计模式 单例模式是啥 工厂模式的作用，为什么要用工厂模式？ 解耦, 把对象的</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/08%E7%BE%8E%E5%9B%A2%E5%8D%8E%E4%B8%BA%E5%AD%97%E8%8A%82/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/08%E7%BE%8E%E5%9B%A2%E5%8D%8E%E4%B8%BA%E5%AD%97%E8%8A%82/</guid>
+      <description>美团 一面 挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。 进程线程区别。 死锁，死锁条件。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/09%E5%BF%B5%E7%A5%9E%E9%9D%A2%E7%BB%8F/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/09%E5%BF%B5%E7%A5%9E%E9%9D%A2%E7%BB%8F/</guid>
+      <description>念神面经篇 Java基础篇 JDK &amp;amp; JVM &amp;amp; JRE的区别 包装类型的常量池技术 接口和抽象类的区别 String、StringBuffer、StringBui</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/10%E7%99%BE%E5%BA%A6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/10%E7%99%BE%E5%BA%A6/</guid>
+      <description>百度Java中级面试 Spring BeanFactory 和 ApplicationContext 有什么区别 1、BeanFactory 可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义， 以便在</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/11%E4%BA%AC%E4%B8%9C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/11%E4%BA%AC%E4%B8%9C/</guid>
+      <description>京东Java中级面试 1、哪些情况下的对象会被垃圾回收机制处理掉？ 利用可达性分析算法，虚拟机会将一些对象定义为 GC Roots，从 GC Roots 出发沿着引用</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/12%E8%9A%82%E8%9A%81/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/12%E8%9A%82%E8%9A%81/</guid>
+      <description>蚂蚁面试题总结 1. jdk1.7到jdk1.8 Map发生了什么变化(底层)? 1.8之后hashMap的数据结构发生了变化，从之前的单纯的数组+链</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/13%E8%BD%AF%E9%80%9A%E5%8A%A8%E5%8A%9B/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/13%E8%BD%AF%E9%80%9A%E5%8A%A8%E5%8A%9B/</guid>
+      <description>软通动力Java中级 1、锁可以锁在哪里？ Java 为程序加锁的方式主要有两种：synchronized 与 Lock。 1、synchronized 可以修</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/</guid>
+      <description>银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成： Eureka：各个服务启动时，Eur</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/15%E4%B8%AD%E8%BD%AF%E5%9B%BD%E9%99%85/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/15%E4%B8%AD%E8%BD%AF%E5%9B%BD%E9%99%85/</guid>
+      <description>中软国际Java中级 1、java 中==和 equals 和 hashCode 的区别 1）==若是基本数据类型比较，是比较值，若是引用类型，则比较的是他们在内存中的存放地址。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/beijing-01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/beijing-01/</guid>
+      <description>北京(上) 大家好，我是大白，以程序员的视角看北京系列终于和大家见面了。因为北京适合程序员工作的企业实在太多了，所以怎样给大家介绍北京适合程序</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/beijing-02/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/beijing-02/</guid>
+      <description>北京(下) 大家好呀，我是大白。第一篇“程序员在北京可以选择哪些国企、央企以及研究所”发出后被一些读者和号主夸奖了，十分开心。没看过的朋友也可</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/changsha/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/changsha/</guid>
+      <description>长沙 大家好，我是大白。这篇文章首发在我的公众号【CS指南】上，发出后受到了很大读者的支持，也有许多读者对文章信息进行了补充。目前的信息已经越</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/chengdu/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/chengdu/</guid>
+      <description>成都 在一些读者的强烈要求后，我终于开始对成都下手了。成都近些年发展的速度极其的快，感觉西部地区的互联网环境能发展成这样实属不易。今天我们就以</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/dalian/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/dalian/</guid>
+      <description>大连 大家好呀，我是大白。今天我们来以程序员的视角看一下美丽的大连。话说我印象中大连是没有什么程序员的就业机会的。但是一直有读者想让我写，那我</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/guangzhou/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/guangzhou/</guid>
+      <description>广州 大家好呀，这篇文章首发在我的微信公众号CS指南上，发出来以后受到了许多读者的支持，也有大量读者对信息进行了补充，信息已经越来越全面了。我</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/hangzhou/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/hangzhou/</guid>
+      <description>杭州 一二线大厂 字节跳动 基本情况 ：字节总部在北京，在上海、深圳、杭州、广州、成都等地都有办公室。今年 6 月，抖音电商落户杭州。 业务方向 ：抖音电商</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/nanjing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/nanjing/</guid>
+      <description>南京 大家好呀，我是大白。被读者催了好久，我终于开始调研南京的互联网公司了。南京是很有吸引力的一座城市，我在西安读研时听我导师和其它老师闲聊，</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/qingdao/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/qingdao/</guid>
+      <description>青岛 最近我发现青岛的呼声很高，所以我就先把青岛安排了。我和青岛的缘分来自于我的山东舍友、同学以及师兄。在三年的研究生生活中，以及我山东舍友带</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/react%E7%AF%87/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/react%E7%AF%87/</guid>
+      <description>一、组件基础 1. React 事件机制 1 &amp;lt;div onClick={this.handleClick.bind(this)}&amp;gt;点我&amp;lt;/div&amp;gt; R</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/shanghai/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/shanghai/</guid>
+      <description>上海 大家中午好啊！我是大白。 程序员视角观城市系列已经更新有 6 期了，我们一起看了西安、长沙、天津、广州、青岛。除了广州之外，其余的都是二线城市</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/suzhou/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/suzhou/</guid>
+      <description>苏州 大家好呀，我是大白，许多读者想让我写一下苏州，我们今天就来看下苏州的互联网环境。 有句话叫做上有天堂，下有苏杭，不过有一说一，互联网环境方</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/tianjin/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/tianjin/</guid>
+      <description>天津 大家好，我是大白。这篇文章首发在我的公众号【CS指南】上，发出后受到了很大读者的支持，也有许多读者对文章信息进行了补充。目前的信息已经越</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/wuhan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/wuhan/</guid>
+      <description>武汉 国内一二线大厂 字节跳动 基本情况 ：字节总部在北京，在上海、深圳、杭州、广州、成都等地都有办公室。字节跳动 2018 年来到武汉，近几年的招聘规模非常</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/xian/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/xian/</guid>
+      <description>西安 大家好呀，这篇文章首发在我的微信公众号CS指南上，发出来以后受到了许多读者的支持，也有大量读者对信息进行了补充，信息已经越来越全面了。我</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://coderrenxy.github.io/posts/read/zhengzhou/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/zhengzhou/</guid>
+      <description>郑州 大家好，我是大白。这篇文章首发在我的公众号【CS指南】上，发出后受到了很大读者的支持，也有许多读者对文章信息进行了补充。 由于我本人对郑州</description>
     </item>
     
   </channel>

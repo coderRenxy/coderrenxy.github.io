@@ -24,6 +24,7 @@
 {{- $scratch.Add "meta" (slice .) }}
 {{- end }}
 
+
 <!-- 分隔方式 -->
 {{- with ($scratch.Get "meta") }}
 {{- delimit . "&nbsp;|&nbsp;" -}}

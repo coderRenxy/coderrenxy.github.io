@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>小任同学&#39;s Blog</title>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<meta name="keywords" content="" />
+<meta name="description" content="京东Java中级面试 1、哪些情况下的对象会被垃圾回收机制处理掉？ 利用可达性分析算法，虚拟机会将一些对象定义为 GC Roots，从 GC Roots 出发沿着引用">
+<meta name="author" content="
+作者:&nbsp;小任同学">
+<link rel="canonical" href="https://coderrenxy.github.io/posts/read/11%E4%BA%AC%E4%B8%9C/" />
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link rel="preload" href="img/icon-32.png" as="image">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="apple-touch-icon" href="https://coderrenxy.github.io/icon-512.png">
+<link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.92.1" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="" />
+<meta property="og:description" content="京东Java中级面试 1、哪些情况下的对象会被垃圾回收机制处理掉？ 利用可达性分析算法，虚拟机会将一些对象定义为 GC Roots，从 GC Roots 出发沿着引用" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://coderrenxy.github.io/posts/read/11%E4%BA%AC%E4%B8%9C/" /><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="京东Java中级面试 1、哪些情况下的对象会被垃圾回收机制处理掉？ 利用可达性分析算法，虚拟机会将一些对象定义为 GC Roots，从 GC Roots 出发沿着引用"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "📚 文章",
+      "item": "https://coderrenxy.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "📕 阅读",
+      "item": "https://coderrenxy.github.io/posts/read/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "",
+      "item": "https://coderrenxy.github.io/posts/read/11%E4%BA%AC%E4%B8%9C/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "京东Java中级面试 1、哪些情况下的对象会被垃圾回收机制处理掉？ 利用可达性分析算法，虚拟机会将一些对象定义为 GC Roots，从 GC Roots 出发沿着引用",
+  "keywords": [
+    
+  ],
+  "articleBody": "京东Java中级面试 1、哪些情况下的对象会被垃圾回收机制处理掉？ 利用可达性分析算法，虚拟机会将一些对象定义为 GC Roots，从 GC Roots 出发沿着引用链\n向下寻找，如果某个对象不能通过 GC Roots 寻找到，虚拟机就认为该对象可以被回收掉。\n1.1 哪些对象可以被看做是 GC Roots 呢？ 1）虚拟机栈（栈帧中的本地变量表）中引用的对象；\n2）方法区中的类静态属性引用的对象，常量引用的对象；\n3）本地方法栈中 JNI(Native 方法）引用的对象；\n1.2 对象不可达，一定会被垃圾收集器回收么？ 即使不可达，对象也不一定会被垃圾收集器回收，\n1）先判断对象是否有必要执行 finalize()方法，对象必须重写 finalize()方法且没有被运行过。\n2）若有必要执行，会把对象放到一个队列中，JVM 会开一个线程去回收它们，这是对象最后一次可以逃逸清理的机会。\n2、讲一下常见编码方式？ 编码的意义：计算机中存储的最小单元是一个字节即 8bit，所能表示的字符范围是 255 个， 而人类要表示的符号太多，无法用一个字节来完全表示，固需要将符号编码，将各种语言翻 译成计算机能懂的语言。\n1）\nASCII 码：总共 128 个，用一个字节的低 7 位表示，\n0〜31 控制字符如换回车删除等；\n32~126 是打印字符，可通过键盘输入并显示出来；\n2）ISO-8859-1,用来扩展 ASCII 编码，256 个字符，涵盖了大多数西欧语言字符。\n3）GB2312:双字节编码，总编码范围是 A1-A7,A1-A9 是符号区，包含 682 个字符，B0-B7 是\n汉字区，包含 6763 个汉字；\n4）GBK 为了扩展 GB2312,加入了更多的汉字，编码范围是 8140~FEFE，有 23940 个码位，能\n表示 21003 个汉字。\n5）UTF-16: ISO 试图想创建一个全新的超语言字典，世界上所有语言都可通过这本字典\nUnicode 来相互翻译，而 UTF-16 定义了 Unicode 字符在计算机中存取方法，用两个字节来表\n示 Unicode 转化格式。不论什么字符都可用两字节表示，即 16bit，固叫 UTF-16。\n6）UTF-8：UTF-16 统一采用两字节表示一个字符，但有些字符只用一个字节就可表示，浪\n费存储空间，而 UTF-8 采用一种变长技术，每个编码区域有不同的字码长度。 不同类型的字符可以由1~6个字节组成。\n3、utf-8 编码中的中文占几个字节 int 型几个字节？\nutf-8 是一种变长编码技术，utf-8 编码中的中文占用的字节不确定，可能 2 个、3 个、4 个，\nint 型占 4 个字节。\n4、静态代理和动态代理的区别，什么场景使用？ 代理是一种常用的设计模式，目的是：为其他对象提供一个代理以控制对某个对象的访问， 将两个类的关系解耦。代理类和委托类都要实现相同的接口，因为代理真正调用的是委托类的方法。\n区别：\n1）静态代理：由程序员创建或是由特定工具生成，在代码编译时就确定了被代理的类是哪一个是静态代理。静态代理通常只代理一个类；\n2）动态代理：在代码运行期间，运用反射机制动态创建生成。动态代理代理的是一个接口下的多个实现类；\n实现步骤：a.实现 InvocationHandler 接口创建自己的调用处理器；b.给 Proxy 类提供ClassLoader 和代理接口类型数组创建动态代理类；c.利用反射机制得到动态代理类的构造函数；d.利用动态代理类的构造函数创建动态代理类对象；\n使用场景：Retrofit 中直接调用接口的方法；Spring 的 AOP 机制；\n5、Java 的异常体系 Java 中 Throwable 是所有异常和错误的超类，两个直接子类是 Error（错误）和 Exception（异常）：\n1）Error 是程序无法处理的错误，由 JVM 产生和抛出，如 OOM、ThreadDeath 等。这些异常发生时，JVM 一般会选择终止程序。\n2）Exception 是程序本身可以处理的异常，又分为运行时异常(RuntimeException)(也叫 Checked Eception) 和 非 运 行 时 异 常 ( 不 检 查 异 常 Unchecked Exception) 。 运 行 时 异 常 有 NullPointerException\\IndexOutOfBoundsException 等，这些异常一般是由程序逻辑错误引起的，应尽可能避免。非运行时异常有 IOException\\SQLException\\FileNotFoundException 以及 由用户自定义的 Exception 异常等。\n6、谈谈你对解析与分派的认识。 解析指方法在运行前，即编译期间就可知的，有一个确定的版本，运行期间也不会改变。解析是静态的，在类加载的解析阶段就可将符号引用转变成直接引用。\n分派可分为静态分派和动态分派，重载属于静态分派，覆盖属于动态分派。静态分派是指在重载时通过参数的静态类型而非实际类型作为判断依据，在编译阶段，编译器可根据参数的静态类型决定使用哪一个重载版本。动态分派则需要根据实际类型来调用相应的方法。\n7、修改对象 A 的 equals 方法的签名，那么使用 HashMap 存放这个对象实例的时候，会调用哪个 equals 方法？ 会调用对象的 equals 方法，如果对象的 equals 方法没有被重写，equals 方法和==都是比较栈内局部变量表中指向堆内存地址值是否相等。\n8、Java 中实现多态的机制是什么？ 多态是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编译时不确定，在运行期间才确定，一个引用变量到底会指向哪个类的实例。这样就可以不用修改源程序，就可以让引用变量绑定到各种不同的类实现上。\nJava 实现多态有三个必要条件：\n继承、重定、向上转型，在多态中需要将子类的引用赋值给父类对象，只有这样该引用才能够具备调用父类方法和子类的方法。\n9、如何将一个 Java 对象序列化到文件里？ ObjectOutputStream.writeObject()负责将指定的流写入，ObjectInputStream.readObject()从指定流读取序列化数据。\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  //写入  try { ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(\"D:/student.txt\")); os.writeObject(studentList); os.close(); } catch(FileNotFoundException e) { e.printStackTrace(); } catch(IOException e) { e.printStackTrace(); }   10、说说你对 Java 反射的理解 在运行状态中，对任意一个类，都能知道这个类的所有属性和方法，对任意一个对象，都能调用它的任意一个方法和属性。这种能动态获取信息及动态调用对象方法的功能称为 java语言的反射机制。\n反射的作用：开发过程中，经常会遇到某个类的某个成员变量、方法或属性是私有的，或只对系统应用开放，这里就可以利用 java 的反射机制通过反射来获取所需的私有成员或是方法。\n  获取类的 Class 对象实例 Class clz = Class.forName(“com.zhenai.api.Apple”);\n  根 据 Class 对 象 实 例 获 取 Constructor 对 象\n  Constructor appConstructor = clz.getConstructor();\n 使 用 Constructor 对 象 的 newInstance 方 法 获 取 反 射 类 对 象 Object appleObj = appConstructor.newInstance();\n  获取方法的 Method 对象 Method setPriceMethod = clz.getMethod(“setPrice”, int.class);5) 利用 invoke 方法调用方法 setPriceMethod.invoke(appleObj, 14);\n  通过 getFields()可以获取 Class 类的属性，但无法获取私有属性，而 getDeclaredFields()可以获取到包括私有属性在内的所有属性。带有 Declared 修饰的方法可以反射到私有的方法，没有 Declared 修饰的只能用来反射公有的方法，其他如 Annotation\\Field\\Constructor 也是如此。\n  11、说说你对 Java 注解的理解 注解是通过@interface 关键字来进行定义的，形式和接口差不多，只是前面多了一个@\n1 2 3  public @interface TestAnnotation { }   使用时@TestAnnotation 来引用，要使注解能正常工作，还需要使用元注解，它是可以注解 到注解上的注解。元标签有@Retention @Documented @Target @Inherited @Repeatable 五种\n@Retention 说明注解的存活时间，取值有 RetentionPolicy.SOURCE 注解只在源码阶段保留， 在编译器进行编译时被丢弃；RetentionPolicy.CLASS 注解只保留到编译进行的时候，并不会被加载到 JVM 中。\nRetentionPolicy.RUNTIME 可以留到程序运行的时候，它会被加载进入到 JVM 中，所以在程序运行时可以获取到它们。\n@Documented 注解中的元素包含到 javadoc 中去\n@Target\n限 定 注 解 的 应 用 场 景 ， ElementType.FIELD 给 属 性 进 行 注 解 ；\nElementType.LOCAL_VARIABLE 可以给局部变量进行注解；ElementType.METHOD 可以给方法进行注解；ElementType.PACKAGE 可以给一个包进行注解 ElementType.TYPE 可以给一个类型进行注解，如类、接口、枚举\n@Inherited 若一个超类被@Inherited 注解过的注解进行注解，它的子类没有被任何注解应用的话，该子类就可继承超类的注解；\n注解的作用：\n1）提供信息给编译器：编译器可利用注解来探测错误和警告信息\n2）编译阶段：软件工具可以利用注解信息来生成代码、html 文档或做其它相应处理；\n3）运行阶段：程序运行时可利用注解提取代码\n注解是通过反射获取的，可以通过 Class 对象的 isAnnotationPresent()方法判断它是否应用了某个注解，再通过 getAnnotation()方法获取 Annotation 对象\n12、说一下泛型原理，并举例说明 泛型就是将类型变成参数传入，使得可以使用的类型多样化，从而实现解耦。Java 泛型是在Java1.5 以后出现的，为保持对以前版本的兼容，使用了擦除的方法实现泛型。擦除是指在一定程度无视类型参数 T，直接从 T 所在的类开始向上 T 的父类去擦除，如调用泛型方法，传入类型参数 T 进入方法内部，若没在声明时做类似 public T methodName(T extends Fathert){}，Java 就进行了向上类型的擦除，直接把参数 t 当做 Object 类来处理，而不是传进去的 T。\n即在有泛型的任何类和方法内部，它都无法知道自己的泛型参数，擦除和转型都是在边界上发生，即传进去的参在进入类或方法时被擦除掉，但传出来的时候又被转成了我们设置的 T。\n在泛型类或方法内，任何涉及到具体类型（即擦除后的类型的子类）操作都不能进行，如new T()，或者 T.play()（play 为某子类的方法而不是擦除后的类的方法）\n13、Java 中 String 的了解 1）String 类是 final 型，固 String 类不能被继承，它的成员方法也都默认为 final 方法。String对象一旦创建就固定不变了，对 String 对象的任何改变都不影响到原对象，相关的任何改变操作都会生成新的 String 对象。\n2）String 类是通过 char 数组来保存字符串的，String 对 equals 方法进行了重定，比较的是值相等。\n1 2 3  String a = \"test\"; String b = \"test\"; String c = new String(\"test\");   a、b 和字面上的 test 都是指向 JVM 字符串常量池中的\"test\"对象，他们指向同一个对象。而new 关键字一定会产生一个对象 test，该对象存储在堆中。所以 new String(“test”)产生了两个对象，保存在栈中的 c 和保存在堆中的 test。而在 java 中根本就不存在两个完全一模一样的字符串对象，故在堆中的 test 应该是引用字符串常量池中的 test。\n例：\nString str1 = “abc”; //栈中开辟一块空间存放引用 str1，str1 指向池中 String 常量\"abc\"\nString str2 = “def”; //栈中开辟一块空间存放引用 str2，str2指向池中 String 常量\"def\"\nString str3 = str1 + str2;//栈中开辟一块空间存放引用 str3\n//str1+str2 通过 StringBuilder 的最后一步 toString()方法返回一个新的 String 对象\"abcdef\"\n//会在堆中开辟一块空间存放此对象，引用str3指向堆中的(str1+str2)所返回的新String对象。\nSystem.out.println(str3 == “abcdef”);//返回 false\n因为 str3 指向堆中的\"abcdef\"对象，而\"abcdef\"是字符池中的对象，所以结果为 false。JVM对 String str=“abc\"对象放在常量池是在编译时做的，而 String str3=str1+str2 是在运行时才知道的，new 对象也是在运行时才做的。\n14、String 为什么要设计成不可变的？ 1）字符串常量池需要 String 不可变。因为 String 设计成不可变，当创建一个 String 对象时，若此字符串值已经存在于常量池中，则不会创建一个新的对象，而是引用已经存在的对象。\n如果字符串变量允许必变，会导致各种逻辑错误，如改变一个对象会影响到另一个独立对象。\n2）String 对象可以缓存 hashCode。字符串的不可变性保证了 hash 码的唯一性，因此可以缓存 String 的 hashCode，这样不用每次去重新计算哈希码。在进行字符串比较时，可以直接比较 hashCode，提高了比较性能；\n3）安全性。String 被许多 java 类用来当作参数，如 url 地址，文件 path 路径，反射机制所需的 Strign 参数等，若 String 可变，将会引起各种安全隐患。\n",
+  "wordCount" : "4600",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "小任同学"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://coderrenxy.github.io/posts/read/11%E4%BA%AC%E4%B8%9C/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "小任同学's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://coderrenxy.github.io/img/icon-512.png"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://coderrenxy.github.io/" accesskey="h" title="小任同学&#39;s Blog (Alt + H)">
+                <img src="https://coderrenxy.github.io/img/icon-32.png" alt="logo" aria-label="logo"
+                    height=" 30px">小任同学&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://coderrenxy.github.io/" title="🏠主页">
+                    <span>🏠主页</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/posts" title="📚文章">
+                    <span>📚文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/archives/" title="⏱时间轴">
+                    <span>⏱时间轴</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/search/" title="🔍搜索">
+                    <span>🔍搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/tags" title="🔖标签">
+                    <span>🔖标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/about" title="🙋🏻‍♂️关于">
+                    <span>🙋🏻‍♂️关于</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://coderrenxy.github.io/links" title="🤝友链">
+                    <span>🤝友链</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://coderrenxy.github.io/">主页</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/">📚 文章</a>&nbsp;»&nbsp;<a href="https://coderrenxy.github.io/posts/read/">📕 阅读</a></div>
+    <h1 class="post-title">
+      
+    </h1>
+    <div class="post-meta">
+			<p id="wc" style="font-size: 12px;">本文总阅读量<span id="busuanzi_value_page_pv"></span>次&nbsp;&nbsp;</p>
+
+
+
+
+
+
+
+
+
+
+
+更新:&nbsp;0001-01-01&nbsp;|&nbsp;字数:&nbsp;4600字&nbsp;|&nbsp;时长: 10分钟&nbsp;|&nbsp;
+作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/11%e3%80%81%e4%ba%ac%e4%b8%9c.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+
+</div>
+  </header> <aside id="toc-container" class="toc-container wide">
+    <div class="toc">
+        <details  open>
+            <summary accesskey="c" title="(Alt + C)">
+                
+				<span class="details">文章目录</span>
+            </summary>
+
+            <div class="inner"><ul>
+                    <li>
+                        <a href="#%e4%ba%ac%e4%b8%9cjava%e4%b8%ad%e7%ba%a7%e9%9d%a2%e8%af%95" aria-label="京东Java中级面试">京东Java中级面试</a><ul>
+                            
+                    <li>
+                        <a href="#1%e5%93%aa%e4%ba%9b%e6%83%85%e5%86%b5%e4%b8%8b%e7%9a%84%e5%af%b9%e8%b1%a1%e4%bc%9a%e8%a2%ab%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e6%9c%ba%e5%88%b6%e5%a4%84%e7%90%86%e6%8e%89" aria-label="1、哪些情况下的对象会被垃圾回收机制处理掉？">1、哪些情况下的对象会被垃圾回收机制处理掉？</a><ul>
+                            
+                    <li>
+                        <a href="#11-%e5%93%aa%e4%ba%9b%e5%af%b9%e8%b1%a1%e5%8f%af%e4%bb%a5%e8%a2%ab%e7%9c%8b%e5%81%9a%e6%98%af-gc-roots-%e5%91%a2" aria-label="1.1 哪些对象可以被看做是 GC Roots 呢？">1.1 哪些对象可以被看做是 <strong>GC Roots</strong> <strong>呢？</strong></a></li>
+                    <li>
+                        <a href="#12-%e5%af%b9%e8%b1%a1%e4%b8%8d%e5%8f%af%e8%be%be%e4%b8%80%e5%ae%9a%e4%bc%9a%e8%a2%ab%e5%9e%83%e5%9c%be%e6%94%b6%e9%9b%86%e5%99%a8%e5%9b%9e%e6%94%b6%e4%b9%88" aria-label="1.2 对象不可达，一定会被垃圾收集器回收么？">1.2 对象不可达，一定会被垃圾收集器回收么？</a></li></ul>
+                    </li>
+                    <li>
+                        <a href="#2%e8%ae%b2%e4%b8%80%e4%b8%8b%e5%b8%b8%e8%a7%81%e7%bc%96%e7%a0%81%e6%96%b9%e5%bc%8f" aria-label="2、讲一下常见编码方式？">2、讲一下常见编码方式？</a></li>
+                    <li>
+                        <a href="#3utf-8-%e7%bc%96%e7%a0%81%e4%b8%ad%e7%9a%84%e4%b8%ad%e6%96%87%e5%8d%a0%e5%87%a0%e4%b8%aa%e5%ad%97%e8%8a%82" aria-label="3、utf-8 编码中的中文占几个字节">3、utf-8 编码中的中文占几个字节</a></li>
+                    <li>
+                        <a href="#4%e9%9d%99%e6%80%81%e4%bb%a3%e7%90%86%e5%92%8c%e5%8a%a8%e6%80%81%e4%bb%a3%e7%90%86%e7%9a%84%e5%8c%ba%e5%88%ab%e4%bb%80%e4%b9%88%e5%9c%ba%e6%99%af%e4%bd%bf%e7%94%a8" aria-label="4、静态代理和动态代理的区别，什么场景使用？">4、静态代理和动态代理的区别，什么场景使用？</a></li>
+                    <li>
+                        <a href="#5java-%e7%9a%84%e5%bc%82%e5%b8%b8%e4%bd%93%e7%b3%bb" aria-label="5、Java 的异常体系">5、Java 的异常体系</a></li>
+                    <li>
+                        <a href="#6%e8%b0%88%e8%b0%88%e4%bd%a0%e5%af%b9%e8%a7%a3%e6%9e%90%e4%b8%8e%e5%88%86%e6%b4%be%e7%9a%84%e8%ae%a4%e8%af%86" aria-label="6、谈谈你对解析与分派的认识。">6、谈谈你对解析与分派的认识。</a></li>
+                    <li>
+                        <a href="#7%e4%bf%ae%e6%94%b9%e5%af%b9%e8%b1%a1-a-%e7%9a%84-equals-%e6%96%b9%e6%b3%95%e7%9a%84%e7%ad%be%e5%90%8d%e9%82%a3%e4%b9%88%e4%bd%bf%e7%94%a8-hashmap-%e5%ad%98%e6%94%be%e8%bf%99%e4%b8%aa%e5%af%b9%e8%b1%a1%e5%ae%9e%e4%be%8b%e7%9a%84%e6%97%b6%e5%80%99%e4%bc%9a%e8%b0%83%e7%94%a8%e5%93%aa%e4%b8%aa-equals-%e6%96%b9%e6%b3%95" aria-label="7、修改对象 A 的 equals 方法的签名，那么使用 HashMap 存放这个对象实例的时候，会调用哪个 equals 方法？">7、修改对象 A 的 equals 方法的签名，那么使用 HashMap 存放这个对象实例的时候，会调用哪个 equals 方法？</a></li>
+                    <li>
+                        <a href="#8java-%e4%b8%ad%e5%ae%9e%e7%8e%b0%e5%a4%9a%e6%80%81%e7%9a%84%e6%9c%ba%e5%88%b6%e6%98%af%e4%bb%80%e4%b9%88" aria-label="8、Java 中实现多态的机制是什么？">8、Java 中实现多态的机制是什么？</a></li>
+                    <li>
+                        <a href="#9%e5%a6%82%e4%bd%95%e5%b0%86%e4%b8%80%e4%b8%aa-java-%e5%af%b9%e8%b1%a1%e5%ba%8f%e5%88%97%e5%8c%96%e5%88%b0%e6%96%87%e4%bb%b6%e9%87%8c" aria-label="9、如何将一个 Java 对象序列化到文件里？">9、如何将一个 Java 对象序列化到文件里？</a></li>
+                    <li>
+                        <a href="#10%e8%af%b4%e8%af%b4%e4%bd%a0%e5%af%b9-java-%e5%8f%8d%e5%b0%84%e7%9a%84%e7%90%86%e8%a7%a3" aria-label="10、说说你对 Java 反射的理解">10、说说你对 Java 反射的理解</a></li>
+                    <li>
+                        <a href="#11%e8%af%b4%e8%af%b4%e4%bd%a0%e5%af%b9-java-%e6%b3%a8%e8%a7%a3%e7%9a%84%e7%90%86%e8%a7%a3" aria-label="11、说说你对 Java 注解的理解">11、说说你对 Java 注解的理解</a></li>
+                    <li>
+                        <a href="#12%e8%af%b4%e4%b8%80%e4%b8%8b%e6%b3%9b%e5%9e%8b%e5%8e%9f%e7%90%86%e5%b9%b6%e4%b8%be%e4%be%8b%e8%af%b4%e6%98%8e" aria-label="12、说一下泛型原理，并举例说明">12、说一下泛型原理，并举例说明</a></li>
+                    <li>
+                        <a href="#13java-%e4%b8%ad-string-%e7%9a%84%e4%ba%86%e8%a7%a3" aria-label="13、Java 中 String 的了解">13、Java 中 String 的了解</a></li>
+                    <li>
+                        <a href="#14string-%e4%b8%ba%e4%bb%80%e4%b9%88%e8%a6%81%e8%ae%be%e8%ae%a1%e6%88%90%e4%b8%8d%e5%8f%af%e5%8f%98%e7%9a%84" aria-label="14、String 为什么要设计成不可变的？">14、String 为什么要设计成不可变的？</a>
+                    </li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+        </details>
+    </div>
+</aside>
+<script>
+    let activeElement;
+    let elements;
+    window.addEventListener('DOMContentLoaded', function (event) {
+        checkTocPosition();
+
+        elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
+         
+         activeElement = elements[0];
+         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+     }, false);
+
+    window.addEventListener('resize', function(event) {
+        checkTocPosition();
+    }, false);
+
+    window.addEventListener('scroll', () => {
+        
+        activeElement = Array.from(elements).find((element) => {
+            if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
+                (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
+                return element;
+            }
+        }) || activeElement
+
+        elements.forEach(element => {
+             const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             if (element === activeElement){
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+             } else {
+                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+             }
+         })
+     }, false);
+
+    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
+    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
+    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+
+    function checkTocPosition() {
+        const width = document.body.scrollWidth;
+
+        if (width - main - (toc * 2) - (gap * 4) > 0) {
+            document.getElementById("toc-container").classList.add("wide");
+        } else {
+            document.getElementById("toc-container").classList.remove("wide");
+        }
+    }
+
+    function getOffsetTop(element) {
+        if (!element.getClientRects().length) {
+            return 0;
+        }
+        let rect = element.getBoundingClientRect();
+        let win = element.ownerDocument.defaultView;
+        return rect.top + win.pageYOffset;   
+    }
+</script>
+
+  <div class="post-content"><h1 id="京东java中级面试">京东Java中级面试<a hidden class="anchor" aria-hidden="true" href="#京东java中级面试">#</a></h1>
+<h2 id="1哪些情况下的对象会被垃圾回收机制处理掉">1、哪些情况下的对象会被垃圾回收机制处理掉？<a hidden class="anchor" aria-hidden="true" href="#1哪些情况下的对象会被垃圾回收机制处理掉">#</a></h2>
+<p>利用可达性分析算法，虚拟机会将一些对象定义为 GC Roots，从 GC Roots 出发沿着引用链</p>
+<p>向下寻找，如果某个对象不能通过 GC Roots 寻找到，虚拟机就认为该对象可以被回收掉。</p>
+<h3 id="11-哪些对象可以被看做是-gc-roots-呢">1.1 哪些对象可以被看做是 <strong>GC Roots</strong> <strong>呢？</strong><a hidden class="anchor" aria-hidden="true" href="#11-哪些对象可以被看做是-gc-roots-呢">#</a></h3>
+<p>1）虚拟机栈（栈帧中的本地变量表）中引用的对象；</p>
+<p>2）方法区中的类静态属性引用的对象，常量引用的对象；</p>
+<p>3）本地方法栈中 JNI(Native 方法）引用的对象；</p>
+<h3 id="12-对象不可达一定会被垃圾收集器回收么">1.2 对象不可达，一定会被垃圾收集器回收么？<a hidden class="anchor" aria-hidden="true" href="#12-对象不可达一定会被垃圾收集器回收么">#</a></h3>
+<p>即使不可达，对象也不一定会被垃圾收集器回收，</p>
+<p>1）先判断对象是否有必要执行 finalize()方法，对象必须重写 finalize()方法且没有被运行过。</p>
+<p>2）若有必要执行，会把对象放到一个队列中，JVM 会开一个线程去回收它们，这是对象最后一次可以逃逸清理的机会。</p>
+<h2 id="2讲一下常见编码方式">2、讲一下常见编码方式？<a hidden class="anchor" aria-hidden="true" href="#2讲一下常见编码方式">#</a></h2>
+<p>编码的意义：计算机中存储的最小单元是一个字节即 8bit，所能表示的字符范围是 255 个， 而人类要表示的符号太多，无法用一个字节来完全表示，固需要将符号编码，将各种语言翻 译成计算机能懂的语言。</p>
+<p>1）</p>
+<p>ASCII 码：总共 128 个，用一个字节的低 7 位表示，</p>
+<p>0〜31 控制字符如换回车删除等；</p>
+<p>32~126 是打印字符，可通过键盘输入并显示出来；</p>
+<p>2）ISO-8859-1,用来扩展 ASCII 编码，256 个字符，涵盖了大多数西欧语言字符。</p>
+<p>3）GB2312:双字节编码，总编码范围是 A1-A7,A1-A9 是符号区，包含 682 个字符，B0-B7 是</p>
+<p>汉字区，包含 6763 个汉字；</p>
+<p>4）GBK 为了扩展 GB2312,加入了更多的汉字，编码范围是 8140~FEFE，有 23940 个码位，能</p>
+<p>表示 21003 个汉字。</p>
+<p>5）UTF-16: ISO 试图想创建一个全新的超语言字典，世界上所有语言都可通过这本字典</p>
+<p>Unicode 来相互翻译，而 UTF-16 定义了 Unicode 字符在计算机中存取方法，用两个字节来表</p>
+<p>示 Unicode 转化格式。不论什么字符都可用两字节表示，即 16bit，固叫 UTF-16。</p>
+<p>6）UTF-8：UTF-16 统一采用两字节表示一个字符，但有些字符只用一个字节就可表示，浪</p>
+<p>费存储空间，而 UTF-8 采用一种变长技术，每个编码区域有不同的字码长度。 不同类型的字符可以由1~6个字节组成。</p>
+<h2 id="3utf-8-编码中的中文占几个字节">3、utf-8 编码中的中文占几个字节<a hidden class="anchor" aria-hidden="true" href="#3utf-8-编码中的中文占几个字节">#</a></h2>
+<p>int 型几个字节？</p>
+<p>utf-8 是一种变长编码技术，utf-8 编码中的中文占用的字节不确定，可能 2 个、3 个、4 个，</p>
+<p>int 型占 4 个字节。</p>
+<h2 id="4静态代理和动态代理的区别什么场景使用">4、静态代理和动态代理的区别，什么场景使用？<a hidden class="anchor" aria-hidden="true" href="#4静态代理和动态代理的区别什么场景使用">#</a></h2>
+<p>代理是一种常用的设计模式，目的是：为其他对象提供一个代理以控制对某个对象的访问， 将两个类的关系解耦。代理类和委托类都要实现相同的接口，因为代理真正调用的是委托类的方法。</p>
+<p>区别：</p>
+<p>1）静态代理：由程序员创建或是由特定工具生成，在代码编译时就确定了被代理的类是哪一个是静态代理。静态代理通常只代理一个类；</p>
+<p>2）动态代理：在代码运行期间，运用反射机制动态创建生成。动态代理代理的是一个接口下的多个实现类；</p>
+<p><strong>实现步骤</strong>：a.实现 InvocationHandler 接口创建自己的调用处理器；b.给 Proxy 类提供ClassLoader 和代理接口类型数组创建动态代理类；c.利用反射机制得到动态代理类的构造函数；d.利用动态代理类的构造函数创建动态代理类对象；</p>
+<p><strong>使用场景</strong>：Retrofit 中直接调用接口的方法；Spring 的 AOP 机制；</p>
+<h2 id="5java-的异常体系">5、Java 的异常体系<a hidden class="anchor" aria-hidden="true" href="#5java-的异常体系">#</a></h2>
+<p>Java 中 Throwable 是所有异常和错误的超类，两个直接子类是 Error（错误）和 Exception（异常）：</p>
+<p>1）Error 是程序无法处理的错误，由 JVM 产生和抛出，如 OOM、ThreadDeath 等。这些异常发生时，JVM 一般会选择终止程序。</p>
+<p>2）Exception 是程序本身可以处理的异常，又分为运行时异常(RuntimeException)(也叫 Checked Eception) 和 非 运 行 时 异 常 ( 不 检 查 异 常 Unchecked Exception) 。 运 行 时 异 常 有 NullPointerException\IndexOutOfBoundsException 等，这些异常一般是由程序逻辑错误引起的，应尽可能避免。非运行时异常有 IOException\SQLException\FileNotFoundException 以及 由用户自定义的 Exception 异常等。</p>
+<h2 id="6谈谈你对解析与分派的认识">6、谈谈你对解析与分派的认识。<a hidden class="anchor" aria-hidden="true" href="#6谈谈你对解析与分派的认识">#</a></h2>
+<p>解析指方法在运行前，即编译期间就可知的，有一个确定的版本，运行期间也不会改变。解析是静态的，在类加载的解析阶段就可将符号引用转变成直接引用。</p>
+<p>分派可分为静态分派和动态分派，重载属于静态分派，覆盖属于动态分派。静态分派是指在重载时通过参数的静态类型而非实际类型作为判断依据，在编译阶段，编译器可根据参数的静态类型决定使用哪一个重载版本。动态分派则需要根据实际类型来调用相应的方法。</p>
+<h2 id="7修改对象-a-的-equals-方法的签名那么使用-hashmap-存放这个对象实例的时候会调用哪个-equals-方法">7、修改对象 A 的 equals 方法的签名，那么使用 HashMap 存放这个对象实例的时候，会调用哪个 equals 方法？<a hidden class="anchor" aria-hidden="true" href="#7修改对象-a-的-equals-方法的签名那么使用-hashmap-存放这个对象实例的时候会调用哪个-equals-方法">#</a></h2>
+<p>会调用对象的 equals 方法，如果对象的 equals 方法没有被重写，equals 方法和==都是比较栈内局部变量表中指向堆内存地址值是否相等。</p>
+<h2 id="8java-中实现多态的机制是什么">8、Java 中实现多态的机制是什么？<a hidden class="anchor" aria-hidden="true" href="#8java-中实现多态的机制是什么">#</a></h2>
+<p>多态是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编译时不确定，在运行期间才确定，一个引用变量到底会指向哪个类的实例。这样就可以不用修改源程序，就可以让引用变量绑定到各种不同的类实现上。</p>
+<p>Java 实现多态有三个必要条件：</p>
+<p>继承、重定、向上转型，在多态中需要将子类的引用赋值给父类对象，只有这样该引用才能够具备调用父类方法和子类的方法。</p>
+<h2 id="9如何将一个-java-对象序列化到文件里">9、如何将一个 Java 对象序列化到文件里？<a hidden class="anchor" aria-hidden="true" href="#9如何将一个-java-对象序列化到文件里">#</a></h2>
+<p>ObjectOutputStream.writeObject()负责将指定的流写入，ObjectInputStream.readObject()从指定流读取序列化数据。</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">12
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">13
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">14
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">15
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">16
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">17
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#4e4e4e">//写入 
+</span><span style="color:#4e4e4e"></span>
+<span style="color:#5f8700">try</span> { 
+
+    ObjectOutputStream os = <span style="color:#5f8700">new</span> ObjectOutputStream(<span style="color:#5f8700">new</span> FileOutputStream(<span style="color:#00afaf">&#34;D:/student.txt&#34;</span>)); 
+    os.writeObject(studentList); 
+    os.close(); 
+
+} <span style="color:#5f8700">catch</span>(FileNotFoundException e) { 
+
+    e.printStackTrace(); 
+
+} <span style="color:#5f8700">catch</span>(IOException e) { 
+
+    e.printStackTrace(); 
+
+}
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="10说说你对-java-反射的理解">10、说说你对 Java 反射的理解<a hidden class="anchor" aria-hidden="true" href="#10说说你对-java-反射的理解">#</a></h2>
+<p>在运行状态中，对任意一个类，都能知道这个类的所有属性和方法，对任意一个对象，都能调用它的任意一个方法和属性。这种能动态获取信息及动态调用对象方法的功能称为 java语言的反射机制。</p>
+<p>反射的作用：开发过程中，经常会遇到某个类的某个成员变量、方法或属性是私有的，或只对系统应用开放，这里就可以利用 java 的反射机制通过反射来获取所需的私有成员或是方法。</p>
+<ol>
+<li>
+<p>获取类的 Class 对象实例 Class clz = Class.forName(&ldquo;com.zhenai.api.Apple&rdquo;);</p>
+</li>
+<li>
+<p>根 据 Class 对 象 实 例 获 取 Constructor 对 象</p>
+</li>
+</ol>
+<p>Constructor appConstructor = clz.getConstructor();</p>
+<ol start="3">
+<li>
+<p>使 用 Constructor 对 象 的 newInstance 方 法 获 取 反 射 类 对 象 Object appleObj = appConstructor.newInstance();</p>
+</li>
+<li>
+<p>获取方法的 Method 对象 Method setPriceMethod = clz.getMethod(&ldquo;setPrice&rdquo;, int.class);5) 利用 invoke 方法调用方法 setPriceMethod.invoke(appleObj, 14);</p>
+</li>
+<li>
+<p>通过 getFields()可以获取 Class 类的属性，但无法获取私有属性，而 getDeclaredFields()可以获取到包括私有属性在内的所有属性。带有 Declared 修饰的方法可以反射到私有的方法，没有 Declared 修饰的只能用来反射公有的方法，其他如 Annotation\Field\Constructor 也是如此。</p>
+</li>
+</ol>
+<h2 id="11说说你对-java-注解的理解">11、说说你对 Java 注解的理解<a hidden class="anchor" aria-hidden="true" href="#11说说你对-java-注解的理解">#</a></h2>
+<p>注解是通过@interface 关键字来进行定义的，形式和接口差不多，只是前面多了一个@</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#0087ff">public</span> <span style="color:#0087ff">@interface</span> TestAnnotation { 
+
+}
+</code></pre></td></tr></table>
+</div>
+</div><p>使用时@TestAnnotation 来引用，要使注解能正常工作，还需要使用元注解，它是可以注解 到注解上的注解。元标签有@Retention @Documented @Target @Inherited @Repeatable 五种</p>
+<p>@Retention 说明注解的存活时间，取值有 RetentionPolicy.SOURCE 注解只在源码阶段保留， 在编译器进行编译时被丢弃；RetentionPolicy.CLASS 注解只保留到编译进行的时候，并不会被加载到 JVM 中。</p>
+<p>RetentionPolicy.RUNTIME 可以留到程序运行的时候，它会被加载进入到 JVM 中，所以在程序运行时可以获取到它们。</p>
+<p>@Documented 注解中的元素包含到 javadoc 中去</p>
+<p>@Target</p>
+<p>限 定 注 解 的 应 用 场 景 ， ElementType.FIELD 给 属 性 进 行 注 解 ；</p>
+<p>ElementType.LOCAL_VARIABLE 可以给局部变量进行注解；ElementType.METHOD 可以给方法进行注解；ElementType.PACKAGE 可以给一个包进行注解 ElementType.TYPE 可以给一个类型进行注解，如类、接口、枚举</p>
+<p>@Inherited 若一个超类被@Inherited 注解过的注解进行注解，它的子类没有被任何注解应用的话，该子类就可继承超类的注解；</p>
+<p><strong>注解的作用：</strong></p>
+<p>1）提供信息给编译器：编译器可利用注解来探测错误和警告信息</p>
+<p>2）编译阶段：软件工具可以利用注解信息来生成代码、html 文档或做其它相应处理；</p>
+<p>3）运行阶段：程序运行时可利用注解提取代码</p>
+<p>注解是通过反射获取的，可以通过 Class 对象的 isAnnotationPresent()方法判断它是否应用了某个注解，再通过 getAnnotation()方法获取 Annotation 对象</p>
+<h2 id="12说一下泛型原理并举例说明">12、说一下泛型原理，并举例说明<a hidden class="anchor" aria-hidden="true" href="#12说一下泛型原理并举例说明">#</a></h2>
+<p>泛型就是将类型变成参数传入，使得可以使用的类型多样化，从而实现解耦。Java 泛型是在Java1.5 以后出现的，为保持对以前版本的兼容，使用了擦除的方法实现泛型。擦除是指在一定程度无视类型参数 T，直接从 T 所在的类开始向上 T 的父类去擦除，如调用泛型方法，传入类型参数 T 进入方法内部，若没在声明时做类似 public T methodName(T extends Fathert){}，Java 就进行了向上类型的擦除，直接把参数 t 当做 Object 类来处理，而不是传进去的 T。</p>
+<p>即在有泛型的任何类和方法内部，它都无法知道自己的泛型参数，擦除和转型都是在边界上发生，即传进去的参在进入类或方法时被擦除掉，但传出来的时候又被转成了我们设置的 T。</p>
+<p>在泛型类或方法内，任何涉及到具体类型（即擦除后的类型的子类）操作都不能进行，如new T()，或者 T.play()（play 为某子类的方法而不是擦除后的类的方法）</p>
+<h2 id="13java-中-string-的了解">13、Java 中 String 的了解<a hidden class="anchor" aria-hidden="true" href="#13java-中-string-的了解">#</a></h2>
+<p>1）String 类是 final 型，固 String 类不能被继承，它的成员方法也都默认为 final 方法。String对象一旦创建就固定不变了，对 String 对象的任何改变都不影响到原对象，相关的任何改变操作都会生成新的 String 对象。</p>
+<p>2）String 类是通过 char 数组来保存字符串的，String 对 equals 方法进行了重定，比较的是值相等。</p>
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
+<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">1
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">2
+</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">3
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">String a = <span style="color:#00afaf">&#34;test&#34;</span>; 
+String b = <span style="color:#00afaf">&#34;test&#34;</span>; 
+String c = <span style="color:#5f8700">new</span> String(<span style="color:#00afaf">&#34;test&#34;</span>); 
+</code></pre></td></tr></table>
+</div>
+</div><p>a、b 和字面上的 test 都是指向 JVM 字符串常量池中的&quot;test&quot;对象，他们指向同一个对象。而new 关键字一定会产生一个对象 test，该对象存储在堆中。所以 new String(&ldquo;test&rdquo;)产生了两个对象，保存在栈中的 c 和保存在堆中的 test。而在 java 中根本就不存在两个完全一模一样的字符串对象，故在堆中的 test 应该是引用字符串常量池中的 test。</p>
+<p>例：</p>
+<p>String str1 = &ldquo;abc&rdquo;; //栈中开辟一块空间存放引用 str1，str1 <em>指向池中</em> <em>String</em> 常量&quot;abc&quot;</p>
+<p>String str2 = &ldquo;def&rdquo;; //栈中开辟一块空间存放引用 str2，str2指向池中 <em>String</em> 常量&quot;def&quot;</p>
+<p>String str3 = str1 + str2;//栈中开辟一块空间存放引用 str3</p>
+<p>//str1+str2 通过 StringBuilder 的最后一步 toString()方法返回一个新的 <em>String</em> 对象&quot;abcdef&quot;</p>
+<p>//会在堆中开辟一块空间存放此对象，引用str3指向堆中的(str1+str2)所返回的新String对象。</p>
+<p>System.out.println(str3 == &ldquo;abcdef&rdquo;);//返回 <em>false</em></p>
+<p>因为 str3 指向堆中的&quot;abcdef&quot;对象，而&quot;abcdef&quot;是字符池中的对象，所以结果为 false。JVM对 String str=&ldquo;abc&quot;对象放在常量池是在编译时做的，而 String str3=str1+str2 是在运行时才知道的，new 对象也是在运行时才做的。</p>
+<h2 id="14string-为什么要设计成不可变的">14、String 为什么要设计成不可变的？<a hidden class="anchor" aria-hidden="true" href="#14string-为什么要设计成不可变的">#</a></h2>
+<p>1）字符串常量池需要 String 不可变。因为 String 设计成不可变，当创建一个 String 对象时，若此字符串值已经存在于常量池中，则不会创建一个新的对象，而是引用已经存在的对象。</p>
+<p>如果字符串变量允许必变，会导致各种逻辑错误，如改变一个对象会影响到另一个独立对象。</p>
+<p>2）String 对象可以缓存 hashCode。字符串的不可变性保证了 hash 码的唯一性，因此可以缓存 String 的 hashCode，这样不用每次去重新计算哈希码。在进行字符串比较时，可以直接比较 hashCode，提高了比较性能；</p>
+<p>3）安全性。String 被许多 java 类用来当作参数，如 url 地址，文件 path 路径，反射机制所需的 Strign 参数等，若 String 可变，将会引起各种安全隐患。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://coderrenxy.github.io/posts/read/10%E7%99%BE%E5%BA%A6/">
+    <span class="title">« 上一篇</span>
+    <br>
+    <span></span>
+  </a>
+  <a class="next" href="https://coderrenxy.github.io/posts/read/12%E8%9A%82%E8%9A%81/">
+    <span class="title">下一篇 »</span>
+    <br>
+    <span></span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+	<h2>分享至: &nbsp &nbsp</h>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https://coderrenxy.github.io/posts/">
+        <svg t="1651680695552" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3017" width="81" height="81"><path d="M985.742 749.936c0 130.864-106.178 236.964-237.17 236.964H274.298c-130.954 0-237.092-106.102-237.092-236.964V276.018c0-130.902 106.138-236.966 237.092-236.966h474.274c130.992 0 237.17 106.064 237.17 236.966v473.918z" fill="#235B9E" p-id="3018"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3019"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="3020"></path><path d="M556.712 216.778l91.59 0.384v101.512H581.76c-10.808 0-26.208 5.362-26.208 28.464v47.362h94.252l-10.808 118.482H551v296.192h-118.568V512.982H373.14V394.5h58.792v-53.534c0-48.478 23.118-124.188 124.78-124.188m0-19.754c-64.452 0-98.87 28.234-116.394 51.92-24.486 33.094-28.142 71.862-28.142 92.024v33.78H373.14c-10.91 0-19.754 8.844-19.754 19.754v118.482c0 10.91 8.844 19.754 19.754 19.754h39.54v276.438c0 10.91 8.844 19.754 19.754 19.754h118.568c10.91 0 19.754-8.844 19.754-19.754V532.738h68.242a19.756 19.756 0 0 0 19.672-17.96l10.808-118.482a19.76 19.76 0 0 0-19.672-21.55h-74.498v-27.608c0-4.532 0.948-6.908 1.758-7.568 0.7-0.568 2.422-1.142 4.696-1.142h66.542c10.91 0 19.754-8.844 19.754-19.754v-101.512a19.752 19.752 0 0 0-19.67-19.754l-91.59-0.384h-0.086z" fill="#1A4477" p-id="3021"></path><path d="M728.078 956.122H294.83c-124.896 0-226.506-101.636-226.506-226.566V296.358c0-124.908 101.61-226.526 226.506-226.526h433.248c124.918 0 226.544 101.62 226.544 226.526v433.198c0.002 124.928-101.626 226.566-226.544 226.566zM294.83 89.636c-113.976 0-206.702 92.734-206.702 206.72v433.198c0 114.008 92.726 206.762 206.702 206.762h433.248c113.996 0 206.74-92.754 206.74-206.762V296.358c0-113.986-92.744-206.72-206.74-206.72H294.83z" fill="#1A4477" p-id="3022"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on whatsapp"
+        href="https://api.whatsapp.com/send?text=%20-%20https%3a%2f%2fcoderrenxy.github.io%2fposts%2fread%2f11%25E4%25BA%25AC%25E4%25B8%259C%2f">
+        <svg t="1651681184624" class="icon" viewBox="0 0 1586 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9888" width="81" height="81"><path d="M160.587294 1019.542588h1261.327059a145.568627 145.568627 0 0 0 145.548549-145.52847V146.291451A145.528471 145.528471 0 0 0 1421.914353 0.803137H160.587294A145.568627 145.568627 0 0 0 15.058824 146.311529V874.014118a145.588706 145.588706 0 0 0 145.52847 145.548549z" fill="#F4B459" p-id="9889"></path><path d="M63.849412 981.955765l607.091451-467.184941L65.174588 37.205333C34.695529 63.909647 15.058824 102.600784 15.058824 146.311529V874.014118c0 43.028078 19.07451 81.317647 48.790588 107.961725zM1518.371137 38.048627l-629.539137 478.067451 628.956863 466.56251c30.278275-26.644078 49.694118-65.254902 49.694117-108.684549V146.331608c0-43.208784-19.215059-81.598745-49.091764-108.282981z" fill="#E8AB54" p-id="9890"></path><path d="M1548.247843 944.971294L1018.096941 520.774275l536.495686-433.894902a145.66902 145.66902 0 0 0-55.737725-63.688785L813.578039 571.371922 109.748706 10.380549A145.608784 145.608784 0 0 0 40.357647 64.471843l566.673569 454.515451L47.666196 964.668235A144.946196 144.946196 0 0 0 122.88 1013.960784l554.164706-438.312157 33.812078 27.26651a142.436392 142.436392 0 0 0 205.603138 0l31.48298-25.459451 538.423216 426.36549a145.086745 145.086745 0 0 0 61.861647-58.829803z" fill="#FADAAC" p-id="9891"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on telegram"
+        href="https://telegram.me/share/url?text=&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fread%2f11%25E4%25BA%25AC%25E4%25B8%259C%2f">
+        <svg t="1651680820373" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3832" width="81" height="81"><path d="M679.424 746.862l84.005-395.996c7.424-34.852-12.581-48.567-35.438-40.009L234.277 501.138c-33.72 13.13-33.134 32-5.706 40.558l126.282 39.424 293.156-184.576c13.714-9.143 26.295-3.986 16.018 5.157L426.898 615.973l-9.143 130.304c13.13 0 18.871-5.706 25.71-12.581l61.696-59.429 128 94.282c23.442 13.129 40.01 6.29 46.3-21.724zM1024 512c0 282.843-229.157 512-512 512S0 794.843 0 512 229.157 0 512 0s512 229.157 512 512z" fill="#1296DB" p-id="3833"></path></svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  on reddit"
+        href="https://twitter.com/intent/tweet/?text=&amp;url=https%3a%2f%2fcoderrenxy.github.io%2fposts%2fread%2f11%25E4%25BA%25AC%25E4%25B8%259C%2f&amp;hashtags=">
+        <svg t="1651764155941" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1736" width="81" height="81"><path d="M295.2 338c120.2 61 221.7 57.4 221.7 57.4s-38.5-134.8 80.5-194.6 200.9 41 200.9 41 20.8-5.7 36.2-11.4c15.5-5.7 37.8-15.9 37.8-15.9l-36.7 65.8 56.5-6s-7 10.2-29.6 31-31.9 31.6-31.9 31.6 8.1 162.3-77 287.2C668.5 749 558.6 824 398.9 839.8c-159.7 15.8-263.7-49.2-263.7-49.2s69.8-4 114.3-21.1S358 707.4 358 707.4s-91-28.1-123.7-59.8c-32.7-31.6-40.8-50.4-40.8-50.4l89.8-1.2s-94.5-50.4-121.3-90.3-30.3-78.5-30.3-78.5l69.1 28s-57.4-78.4-65.6-139.4c-8.2-61 10.5-93.8 10.5-93.8s29.3 55 149.5 116z" fill="#5DD7FC" p-id="1737"></path></svg>
+    </a>
+	
+</div>
+
+  </footer>
+</article>
+    </main>
+    
+<script src="https://utteranc.es/client.js"
+repo="coderRenxy/coderrenxy.github.io"
+issue-term="title"
+theme="github-light"
+crossorigin="anonymous"
+async>
+</script>
+
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+	<span id="busuanzi_container_site_pv">
+    访问量：<span id="busuanzi_value_site_pv"></span>次
+</span>
+&nbsp;
+<span id="busuanzi_container_site_uv">
+    您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+</span>
+<hr>
+<span>
+    如果对您有帮助请赞赏我
+</span>
+
+<img src="/img/money.jpg" width=800px; align:center/>
+
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+ <div>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerText = 'copy';
+
+        function copyingDone() {
+            copybutton.innerText = 'copied!';
+            setTimeout(() => {
+                copybutton.innerText = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+
+
+</body>
+
+</html>

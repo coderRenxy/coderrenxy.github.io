@@ -2,9 +2,16 @@
 ---
 title: "LeetCode 一周小记 No.3"
 date: 2022-03-10T02:56:12+08:00
-draft: false
+author: ["小任同学"]
+draft: false # 是否为草稿
+hidemeta: false # 是否隐藏文章的元信息，如发布日期、作者等
+disableShare: true # 底部不显示分享栏
+showbreadcrumbs: true #顶部显示当前路径
+description: 其实每个周都不止一周好吧，只是规则性收缩了。避免二刷速度快要反复切换文章来编辑。
+lastmod: 2022-05-05T23:33:37+08:00	#更新文章的时候手动改一下时间就可以
+tags: 
+- 算法
 ---
-> description：其实每个周都不止一周好吧，只是规则性收缩了。避免二刷速度快要反复切换文章来编辑。
 ## Monday
 ### 18.四数之和
 **思路** ：就是昨天三数之和多了一个 for 循环。

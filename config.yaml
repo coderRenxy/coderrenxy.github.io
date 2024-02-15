@@ -37,7 +37,7 @@ languages:
       profileMode:
         enabled: true
         title: (〃'▽'〃)
-        subtitle: "🧨学而时习之，不亦说乎？有朋自远方来，不亦乐乎？<br/>👏🏼欢迎光临<b>小任同学</b>的博客<br/>👇联系方式"
+        subtitle: "🧨一个简朴、持续更新的博客<br/>👏🏼欢迎光临<b>小任同学</b>的博客<br/>👇联系方式 😆"
         imageUrl: "img/icon-512.png"
         imageTitle: 
         imageWidth: 150
@@ -53,10 +53,7 @@ languages:
           #   url: https://www.xyming108.top
       menu:
         main:
-          - identifier: search
-            name: 🔍搜索
-            url: search
-            weight: 1
+          
           - identifier: home
             name: 🏠主页
             url: /
@@ -65,22 +62,14 @@ languages:
             name: 📚文章
             url: posts
             weight: 3
-          # - identifier: tech
-          #   name: 👨🏻‍💻技术文章
-          #   url: posts/tech
-          #   weight: 5
-          # - identifier: life
-          #   name: 🏖记录生活
-          #   url: posts/life
-          #   weight: 6
           - identifier: archives
             name: ⏱时间轴
             url: archives/
             weight: 20
-          # - identifier: categories
-          #   name: 🧩分类
-          #   url: categories
-          #   weight: 30
+          #- identifier: search
+          #  name: 🔍搜索
+          #  url: search
+          #  weight: 1
           - identifier: tags
             name: 🔖标签
             url: tags
@@ -106,7 +95,7 @@ params:
     author: 小任同学
     # author: ["Me", "You"] # multiple authors
 
-    description: "小任同学的个人博客,Hugo,Papermod,Java,MySQL,异常,算法,数据结构,Spring,Mybatis,Spring MVC,SpringBoot,Redis"
+    description: "一个不两极分化的博客"
   
     defaultTheme: auto  # defaultTheme: light or  dark 
     disableThemeToggle: false
@@ -121,7 +110,6 @@ params:
     hideFooter: false # 隐藏页脚
     ShowWordCounts: true
     VisitCount: true
-
     ShowLastMod: true #显示文章更新时间
 
     ShowToc: true # 显示目录
@@ -136,7 +124,7 @@ params:
         #  url:  "img/twitter.png"
         - name: facebook
           url: "https://www.facebook.com/profile.php?id=100078348180825"
-        - name: Telegram
+        - name: Telegramcd 。。
           url: "https://t.me/RenCigarette"
         - name: QQ
           url: "img/qq.jpg"
@@ -149,14 +137,11 @@ params:
         - name: RSS
           url: "index.xml"
 
-    # editPost:
-    #     URL: "https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite/content"
-    #     Text: "Suggest Changes" # edit text
-    #     appendFilePath: true # to append file path to Edit link
+    
 
-    # label:
-    #     text: "Home"
-    #     icon: icon.png
+    label:
+    #     text: "小任同学's Blog"
+         icon: img/icon-32.png
     #     iconHeight: 35
 
     # analytics:
@@ -175,6 +160,17 @@ params:
     #     hidden: true # hide everywhere but not in structured data
     #     hiddenInList: true # hide on list pages and home
     #     hiddenInSingle: true # hide on single page
+    
+    utteranc:
+        enable: true
+        repo: "coderRenxy/coderrenxy.github.io"    # The repo to store comments
+        issueTerm: "title"
+        theme: "github-light"
+    
+    editPost:
+        URL: "https://github.com/coderRenxy/coderrenxy.github.io/content"
+        Text: "🖍️修改" # edit text
+        appendFilePath: true # to append file path to Edit link
 
     fuseOpts:
         isCaseSensitive: false
@@ -203,8 +199,8 @@ markup:
         guessSyntax: true
         lineNos: true
         # noClasses: false
-        # style: monokai
-        style: darcula
+        style: solarized-dark256 
+        # style: darcula
 
         # codeFences：代码围栏功能，这个功能一般都要设为 true 的，不然很难看，就是干巴巴的-代码文字，没有颜色。
         # guessSyntax：猜测语法，这个功能建议设置为 true, 如果你没有设置要显示的语言则会自动匹配。

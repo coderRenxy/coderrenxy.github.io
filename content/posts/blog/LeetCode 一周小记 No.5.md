@@ -1,10 +1,16 @@
 
 ---
-title: "LeetCode 一周小记 No.4"
+title: "LeetCode 一周小记 No.5"
 date: 2022-03-31T05:13:32+08:00
-draft: false
+author: ["小任同学"]
+draft: false # 是否为草稿
+hidemeta: false # 是否隐藏文章的元信息，如发布日期、作者等
+disableShare: true # 底部不显示分享栏
+showbreadcrumbs: true #顶部显示当前路径
+lastmod: 2022-05-02T23:33:37+08:00	#更新文章的时候手动改一下时间就可以
+tags: 
+- 算法
 ---
-> description：前序+中序 / 中序+后序返回树想破脑袋，然后以后要每天花 monring 来复习考试内容，一日之际在于晨，每天题量直接 cut off。接下来是篇关于树的文章，可以好好了解一下。树里我踩过的坑。
 
 ## Monday
 ### ****106.从中序与后序遍历序列构造二叉树****

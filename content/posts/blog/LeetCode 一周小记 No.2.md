@@ -2,7 +2,15 @@
 ---
 title: "LeetCode 一周小记 No.2"
 date: 2022-03-02T02:45:59+08:00
-draft: false
+author: ["小任同学"]
+draft: false # 是否为草稿
+hidemeta: false # 是否隐藏文章的元信息，如发布日期、作者等
+disableShare: true # 底部不显示分享栏
+showbreadcrumbs: true #顶部显示当前路径
+lastmod: 2022-05-05T23:33:37+08:00	#更新文章的时候手动改一下时间就可以
+tags: 
+- 算法
+
 ---
 有点感觉了，一直持续刷下去！各位看官跟我一起成长啊！
 

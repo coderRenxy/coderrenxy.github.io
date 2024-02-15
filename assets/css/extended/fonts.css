@@ -2,15 +2,56 @@
         font-family:MaShanZheng-Regular;
         src:url("/fonts/MaShanZheng-Regular.ttf") format("truetype");
       }
+	  @font-face{
+        font-family:monaco;
+        src:url("/fonts/monaco.ttf") format("truetype")
+      }
+	  @font-face{
+        font-family:consola;
+        src:url("/fonts/consola.ttf") format("truetype")
+      }
       @font-face{
         font-family:NeverMindHand-Regular;
         src:url("/fonts/NeverMindHand-Regular.ttf") format("truetype")
       }
- 
-      * {
-        font-family: NeverMindHand-Regular,MaShanZheng-Regular;
-        font-size: 18px;
-        line-height: 2;
-       # color:#008000;
+	  @font-face{
+        font-family:hwxw;
+        src:url("/fonts/hwxw.ttf") format("truetype")
       }
+	  @font-face{
+        font-family:segoeui;
+        src:url("/fonts/segoeui.ttf") format("truetype")
+      }
+	  @font-face{
+        font-family:Segoe UI Bold;
+        src:url("/fonts/Segoe UI Bold.ttf") format("truetype")
+      }
+	  
+	  .post-content {
+		font-family: consola,Segoe UI Bold,segoeui;
+		font-size: 18px;
+		line-height: 2;
+		}
+		.toc,.header,.button,.page-header,.post-entry,.post-header,.frienddiv {
+		font-family: NeverMindHand-Regular,MaShanZheng-Regular;
+		font-size: 18px;
+		line-height: 2;
+		}
+		span {
+		font-family: monaco,NeverMindHand-Regular,MaShanZheng-Regular;
+		font-size: 18px;
+		line-height: 2;
+		}
+		code {
+		font-family: consola;
+		font-size: 13px;
+		line-height: 2;
+		background-color: white;
+		}
+      #* {
+      #  font-family: NeverMindHand-Regular,MaShanZheng-Regular;
+      #  font-size: 18px;
+      #  line-height: 2;
+       # color:#008000;
+      #}
 
