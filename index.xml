@@ -6,7 +6,7 @@
     <description>Recent content on 小任同学&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 30 Jun 2023 00:19:47 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Feb 2024 00:19:47 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🔍搜索</title>
       <link>https://coderrenxy.github.io/search/</link>
@@ -14,6 +14,24 @@
       
       <guid>https://coderrenxy.github.io/search/</guid>
       <description>/* 手机适配 */ @media screen and (max-width: 500px) { .search{ padding-right: 25px; } .search input{ width: 100%; } .search button{ display: none; } } /* 电脑适配 */ @media screen and (min-width: 500px) { .search{ width: 500px; } .search input{ width: 444px; } } /* 通用样式 */ .search{ margin: auto; } .search input{ outline: none; border: 2px solid #c05b4d; height: 32px; padding:</description>
+    </item>
+    
+    <item>
+      <title>春招前总结</title>
+      <link>https://coderrenxy.github.io/posts/blog/23%E5%B9%B4%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Tue, 13 Feb 2024 00:19:47 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/blog/23%E5%B9%B4%E6%80%BB%E7%BB%93/</guid>
+      <description>近一年的状态</description>
+    </item>
+    
+    <item>
+      <title>React</title>
+      <link>https://coderrenxy.github.io/posts/read/react%E7%AF%87/</link>
+      <pubDate>Sun, 27 Aug 2023 02:45:59 +0800</pubDate>
+      
+      <guid>https://coderrenxy.github.io/posts/read/react%E7%AF%87/</guid>
+      <description>面试题</description>
     </item>
     
     <item>
@@ -689,15 +707,6 @@
       
       <guid>https://coderrenxy.github.io/posts/read/qingdao/</guid>
       <description>青岛 最近我发现青岛的呼声很高，所以我就先把青岛安排了。我和青岛的缘分来自于我的山东舍友、同学以及师兄。在三年的研究生生活中，以及我山东舍友带</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://coderrenxy.github.io/posts/read/react%E7%AF%87/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://coderrenxy.github.io/posts/read/react%E7%AF%87/</guid>
-      <description>一、组件基础 1. React 事件机制 1 &amp;lt;div onClick={this.handleClick.bind(this)}&amp;gt;点我&amp;lt;/div&amp;gt; R</description>
     </item>
     
     <item>
