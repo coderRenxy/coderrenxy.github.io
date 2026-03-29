@@ -9,13 +9,43 @@
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <meta name="keywords" content="" />
-<meta name="description" content="美团 一面 挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。 进程线程区别。 死锁，死锁条件。">
+<meta name="description" content="美团
+一面
+
+挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。
+进程线程区别。
+死锁，死锁条件。
+知不知道中断和轮询的区别。
+数据库索引，讨论了一下B&#43;树能存多少数据。
+数据库存储引擎知道哪些，有什么区别。
+数据库锁。
+算法题：起始点到终点最短路径。
+
+二面
+
+问项目。
+什么是序列化反序列化。
+负载均衡，知道哪些负载均衡 。
+什么时候会OOM，服务OOM怎么办，如何排查。
+Spring 启动流程。
+Spring 设计模式。
+对于模版模式的理解，应用场景，你在项目中是怎么使用的。
+HTTP 请求过程 。
+TCP 和 UDP 区别。
+Linux知道哪些命令。
+设置索引有什么注意的地方。
+最近看了哪些书，有什么收获。
+算法题：合并有序数组 O(N)时间 O(1)空间。
+数据库设计：只能以半小时为单位订会议室。
+
+
+">
 <meta name="author" content="
 作者:&nbsp;小任同学">
 <link rel="canonical" href="https://coderrenxy.github.io/posts/read/08%E7%BE%8E%E5%9B%A2%E5%8D%8E%E4%B8%BA%E5%AD%97%E8%8A%82/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.a72221503009ebb69a3a9b181466ab3d9a645200323c4ba68b8b9cc95b7befbd.css" integrity="sha256-pyIhUDAJ67aaOpsYFGarPZpkUgAyPEumi4ucyVt7770=" rel="preload stylesheet" as="style">
 <link rel="preload" href="img/icon-32.png" as="image">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.199271f351c4b46f0d0536b6e2eb89a4766040c0e8df57f1a695c6570d8a4e0f.js" integrity="sha256-GZJx81HEtG8NBTa24uuJpHZgQMDo31fxppXGVw2KTg8="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
@@ -24,7 +54,8 @@
 <link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.1" />
+<meta name="generator" content="Hugo 0.159.1">
+<link rel="alternate" hreflang="en" href="https://coderrenxy.github.io/posts/read/08%E7%BE%8E%E5%9B%A2%E5%8D%8E%E4%B8%BA%E5%AD%97%E8%8A%82/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -62,7 +93,37 @@
 
     </style>
 </noscript><meta property="og:title" content="" />
-<meta property="og:description" content="美团 一面 挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。 进程线程区别。 死锁，死锁条件。" />
+<meta property="og:description" content="美团
+一面
+
+挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。
+进程线程区别。
+死锁，死锁条件。
+知不知道中断和轮询的区别。
+数据库索引，讨论了一下B&#43;树能存多少数据。
+数据库存储引擎知道哪些，有什么区别。
+数据库锁。
+算法题：起始点到终点最短路径。
+
+二面
+
+问项目。
+什么是序列化反序列化。
+负载均衡，知道哪些负载均衡 。
+什么时候会OOM，服务OOM怎么办，如何排查。
+Spring 启动流程。
+Spring 设计模式。
+对于模版模式的理解，应用场景，你在项目中是怎么使用的。
+HTTP 请求过程 。
+TCP 和 UDP 区别。
+Linux知道哪些命令。
+设置索引有什么注意的地方。
+最近看了哪些书，有什么收获。
+算法题：合并有序数组 O(N)时间 O(1)空间。
+数据库设计：只能以半小时为单位订会议室。
+
+
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://coderrenxy.github.io/posts/read/08%E7%BE%8E%E5%9B%A2%E5%8D%8E%E4%B8%BA%E5%AD%97%E8%8A%82/" /><meta property="article:section" content="posts" />
 
@@ -70,8 +131,37 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="美团 一面 挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。 进程线程区别。 死锁，死锁条件。"/>
+<meta name="twitter:description" content="美团
+一面
 
+挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。
+进程线程区别。
+死锁，死锁条件。
+知不知道中断和轮询的区别。
+数据库索引，讨论了一下B&#43;树能存多少数据。
+数据库存储引擎知道哪些，有什么区别。
+数据库锁。
+算法题：起始点到终点最短路径。
+
+二面
+
+问项目。
+什么是序列化反序列化。
+负载均衡，知道哪些负载均衡 。
+什么时候会OOM，服务OOM怎么办，如何排查。
+Spring 启动流程。
+Spring 设计模式。
+对于模版模式的理解，应用场景，你在项目中是怎么使用的。
+HTTP 请求过程 。
+TCP 和 UDP 区别。
+Linux知道哪些命令。
+设置索引有什么注意的地方。
+最近看了哪些书，有什么收获。
+算法题：合并有序数组 O(N)时间 O(1)空间。
+数据库设计：只能以半小时为单位订会议室。
+
+
+"/>
 
 <script type="application/ld+json">
 {
@@ -105,11 +195,11 @@
   "@type": "BlogPosting",
   "headline": "",
   "name": "",
-  "description": "美团 一面 挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。 进程线程区别。 死锁，死锁条件。",
+  "description": "美团 一面 挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。 进程线程区别。 死锁，死锁条件。 知不知道中断和轮询的区别。 数据库索引，讨论了一下B+树能存多少数据。 数据库存储引擎知道哪些，有什么区别。 数据库锁。 算法题：起始点到终点最短路径。 二面 问项目。 什么是序列化反序列化。 负载均衡，知道哪些负载均衡 。 什么时候会OOM，服务OOM怎么办，如何排查。 Spring 启动流程。 Spring 设计模式。 对于模版模式的理解，应用场景，你在项目中是怎么使用的。 HTTP 请求过程 。 TCP 和 UDP 区别。 Linux知道哪些命令。 设置索引有什么注意的地方。 最近看了哪些书，有什么收获。 算法题：合并有序数组 O(N)时间 O(1)空间。 数据库设计：只能以半小时为单位订会议室。 ",
   "keywords": [
     
   ],
-  "articleBody": "美团 一面  挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。 进程线程区别。 死锁，死锁条件。 知不知道中断和轮询的区别。 数据库索引，讨论了一下B+树能存多少数据。 数据库存储引擎知道哪些，有什么区别。 数据库锁。 算法题：起始点到终点最短路径。  二面  问项目。 什么是序列化反序列化。 负载均衡，知道哪些负载均衡 。 什么时候会OOM，服务OOM怎么办，如何排查。 Spring 启动流程。 Spring 设计模式。 对于模版模式的理解，应用场景，你在项目中是怎么使用的。 HTTP 请求过程 。 TCP 和 UDP 区别。 Linux知道哪些命令。 设置索引有什么注意的地方。 最近看了哪些书，有什么收获。 算法题：合并有序数组 O(N)时间 O(1)空间。 数据库设计：只能以半小时为单位订会议室。  华为 一面  项目、论文。 String 能否被继承。 Java 内存泄露和排查。 Hash 方式和 Hash 冲突解决。 静态代理和动态代理。 线程通信方式。 Volitate关键字。 Java 高效拷贝数组。 算法题 跳跃游戏 leetcode 55。  二面  简单说说项目、论文。 项目是自己学习的还是落地项目。 本科保研绩点高，为啥研究生期间没有刷绩点。 对华为的了解，这个聊了比较久 因为我本身就是华为用户，比较了解，主管也给我介绍和补充。 实习时间。 反问部门、技术栈，是否可以自己选项目。  字节 一面  问项目，聊怎么实现，从项目里学到什么。 手写单例模式，和 Spring 的单例有什么区别。 算法题：给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。 SQL 题：根据题目要求写出对应的 SQL，由于太久没写，不会做。 智力题 1-N批次其中有一批次重量不合格 用最少称重次数找到  1） 刚开始说二分 面试官说不是最优\n2） 提示可以从每批次拿不同数量：第N批拿N个 算重量差值就可以确定\n二面  问项目。 volitate 关键字。 JVM新生代怎么划分，大对象怎么分配。 新生代有哪些垃圾回收器。 ParNew 原理。 Innodb 默认隔离级别，RR能防止幻读吗，RR默认使用间隙锁吗。 怎么理解最终一致性，有哪些实现方案。 分布式事务。 算法题：数组里每个数右边第一个比他大的数。  三面  问项目。 RAFT 脑裂、一致性。 负载均衡。 各种排序算法，分析复杂度和稳定性。 其他想不起来了，八股很少，一直问项目。 算法题：旋转图像(90度旋转矩阵)。  ",
+  "articleBody": "美团 一面 挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。 进程线程区别。 死锁，死锁条件。 知不知道中断和轮询的区别。 数据库索引，讨论了一下B+树能存多少数据。 数据库存储引擎知道哪些，有什么区别。 数据库锁。 算法题：起始点到终点最短路径。 二面 问项目。 什么是序列化反序列化。 负载均衡，知道哪些负载均衡 。 什么时候会OOM，服务OOM怎么办，如何排查。 Spring 启动流程。 Spring 设计模式。 对于模版模式的理解，应用场景，你在项目中是怎么使用的。 HTTP 请求过程 。 TCP 和 UDP 区别。 Linux知道哪些命令。 设置索引有什么注意的地方。 最近看了哪些书，有什么收获。 算法题：合并有序数组 O(N)时间 O(1)空间。 数据库设计：只能以半小时为单位订会议室。 华为 一面 项目、论文。 String 能否被继承。 Java 内存泄露和排查。 Hash 方式和 Hash 冲突解决。 静态代理和动态代理。 线程通信方式。 Volitate关键字。 Java 高效拷贝数组。 算法题 跳跃游戏 leetcode 55。 二面 简单说说项目、论文。 项目是自己学习的还是落地项目。 本科保研绩点高，为啥研究生期间没有刷绩点。 对华为的了解，这个聊了比较久 因为我本身就是华为用户，比较了解，主管也给我介绍和补充。 实习时间。 反问部门、技术栈，是否可以自己选项目。 字节 一面 问项目，聊怎么实现，从项目里学到什么。 手写单例模式，和 Spring 的单例有什么区别。 算法题：给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。 SQL 题：根据题目要求写出对应的 SQL，由于太久没写，不会做。 智力题 1-N批次其中有一批次重量不合格 用最少称重次数找到 1） 刚开始说二分 面试官说不是最优\n2） 提示可以从每批次拿不同数量：第N批拿N个 算重量差值就可以确定\n二面 问项目。 volitate 关键字。 JVM新生代怎么划分，大对象怎么分配。 新生代有哪些垃圾回收器。 ParNew 原理。 Innodb 默认隔离级别，RR能防止幻读吗，RR默认使用间隙锁吗。 怎么理解最终一致性，有哪些实现方案。 分布式事务。 算法题：数组里每个数右边第一个比他大的数。 三面 问项目。 RAFT 脑裂、一致性。 负载均衡。 各种排序算法，分析复杂度和稳定性。 其他想不起来了，八股很少，一直问项目。 算法题：旋转图像(90度旋转矩阵)。 ",
   "wordCount" : "907",
   "inLanguage": "en",
   "datePublished": "0001-01-01T00:00:00Z",
@@ -173,6 +263,8 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
             </span>
         </div>
         <ul id="menu">
@@ -234,8 +326,8 @@
 
 
 
-更新:&nbsp;0001-01-01&nbsp;|&nbsp;字数:&nbsp;907字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
-作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/08%e3%80%81%e7%be%8e%e5%9b%a2%e3%80%81%e5%8d%8e%e4%b8%ba%e3%80%81%e5%ad%97%e8%8a%82.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+更新:&amp;nbsp;0001-01-01&amp;nbsp;|&amp;nbsp;字数:&amp;nbsp;907字&amp;nbsp;|&amp;nbsp;时长: 2分钟&amp;nbsp;|&amp;nbsp;
+作者:&amp;nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/08%e3%80%81%e7%be%8e%e5%9b%a2%e3%80%81%e5%8d%8e%e4%b8%ba%e3%80%81%e5%ad%97%e8%8a%82.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -287,10 +379,12 @@
         checkTocPosition();
 
         elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
-         
-         activeElement = elements[0];
-         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
-         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        if (elements.length) {
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            const firstLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
+            if (firstLink) firstLink.classList.add('active');
+        }
      }, false);
 
     window.addEventListener('resize', function(event) {
@@ -298,7 +392,7 @@
     }, false);
 
     window.addEventListener('scroll', () => {
-        
+        if (!elements || !elements.length) return;
         activeElement = Array.from(elements).find((element) => {
             if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
                 (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
@@ -308,25 +402,35 @@
 
         elements.forEach(element => {
              const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             const link = document.querySelector(`.inner ul li a[href="#${id}"]`);
+             if (!link) return;
              if (element === activeElement){
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                 link.classList.add('active');
              } else {
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                 link.classList.remove('active');
              }
          })
      }, false);
 
-    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
-    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
-    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+    function readCssPx(name, fallback) {
+        const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+        const n = parseInt(raw, 10);
+        return Number.isFinite(n) && n > 0 ? n : fallback;
+    }
 
     function checkTocPosition() {
-        const width = document.body.scrollWidth;
+        const main = readCssPx('--article-width', 650);
+        const toc = readCssPx('--toc-width', 300);
+        const gap = readCssPx('--gap', 24);
+        const width = document.documentElement.clientWidth;
+        const el = document.getElementById("toc-container");
+        if (!el) return;
 
-        if (width - main - (toc * 2) - (gap * 4) > 0) {
-            document.getElementById("toc-container").classList.add("wide");
+         
+        if (width - main - (toc * 2) - (gap * 2) > 0) {
+            el.classList.add("wide");
         } else {
-            document.getElementById("toc-container").classList.remove("wide");
+            el.classList.remove("wide");
         }
     }
 
@@ -480,7 +584,7 @@ async>
 </script>
 
 <footer class="footer">
-    <span>&copy; 2023 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>&copy; 2026 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
@@ -494,11 +598,7 @@ async>
     您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 </span>
 <hr>
-<span>
-    如果对您有帮助请赞赏我
-</span>
 
-<img src="/img/money.jpg" width=800px; align:center/>
 
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">

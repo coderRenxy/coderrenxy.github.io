@@ -9,13 +9,15 @@
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <meta name="keywords" content="" />
-<meta name="description" content="JAVA补充面试题 五种IO模型与理解 IO最常接触的场景是读取文件和等待网络信息，一般而言，用户态是不能够直接操纵IO的，这就说明一定要向操作">
+<meta name="description" content="JAVA补充面试题
+五种IO模型与理解
+IO最常接触的场景是读取文件和等待网络信息，一般而言，用户态是不能够直接操纵IO的，这就说明一定要向操作系统调用IO，主要分为两步：（1）操作系统的内核态会先等待数据准备好，（2）再从内核空间将数据拷贝到用户空间。">
 <meta name="author" content="
 作者:&nbsp;小任同学">
 <link rel="canonical" href="https://coderrenxy.github.io/posts/blog/io/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.a72221503009ebb69a3a9b181466ab3d9a645200323c4ba68b8b9cc95b7befbd.css" integrity="sha256-pyIhUDAJ67aaOpsYFGarPZpkUgAyPEumi4ucyVt7770=" rel="preload stylesheet" as="style">
 <link rel="preload" href="img/icon-32.png" as="image">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.199271f351c4b46f0d0536b6e2eb89a4766040c0e8df57f1a695c6570d8a4e0f.js" integrity="sha256-GZJx81HEtG8NBTa24uuJpHZgQMDo31fxppXGVw2KTg8="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
@@ -24,7 +26,8 @@
 <link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.1" />
+<meta name="generator" content="Hugo 0.159.1">
+<link rel="alternate" hreflang="en" href="https://coderrenxy.github.io/posts/blog/io/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -62,7 +65,9 @@
 
     </style>
 </noscript><meta property="og:title" content="" />
-<meta property="og:description" content="JAVA补充面试题 五种IO模型与理解 IO最常接触的场景是读取文件和等待网络信息，一般而言，用户态是不能够直接操纵IO的，这就说明一定要向操作" />
+<meta property="og:description" content="JAVA补充面试题
+五种IO模型与理解
+IO最常接触的场景是读取文件和等待网络信息，一般而言，用户态是不能够直接操纵IO的，这就说明一定要向操作系统调用IO，主要分为两步：（1）操作系统的内核态会先等待数据准备好，（2）再从内核空间将数据拷贝到用户空间。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://coderrenxy.github.io/posts/blog/io/" /><meta property="article:section" content="posts" />
 
@@ -70,8 +75,9 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="JAVA补充面试题 五种IO模型与理解 IO最常接触的场景是读取文件和等待网络信息，一般而言，用户态是不能够直接操纵IO的，这就说明一定要向操作"/>
-
+<meta name="twitter:description" content="JAVA补充面试题
+五种IO模型与理解
+IO最常接触的场景是读取文件和等待网络信息，一般而言，用户态是不能够直接操纵IO的，这就说明一定要向操作系统调用IO，主要分为两步：（1）操作系统的内核态会先等待数据准备好，（2）再从内核空间将数据拷贝到用户空间。"/>
 
 <script type="application/ld+json">
 {
@@ -105,11 +111,11 @@
   "@type": "BlogPosting",
   "headline": "",
   "name": "",
-  "description": "JAVA补充面试题 五种IO模型与理解 IO最常接触的场景是读取文件和等待网络信息，一般而言，用户态是不能够直接操纵IO的，这就说明一定要向操作",
+  "description": "JAVA补充面试题 五种IO模型与理解 IO最常接触的场景是读取文件和等待网络信息，一般而言，用户态是不能够直接操纵IO的，这就说明一定要向操作系统调用IO，主要分为两步：（1）操作系统的内核态会先等待数据准备好，（2）再从内核空间将数据拷贝到用户空间。\n",
   "keywords": [
     
   ],
-  "articleBody": "JAVA补充面试题 五种IO模型与理解 IO最常接触的场景是读取文件和等待网络信息，一般而言，用户态是不能够直接操纵IO的，这就说明一定要向操作系统调用IO，主要分为两步：（1）操作系统的内核态会先等待数据准备好，（2）再从内核空间将数据拷贝到用户空间。\n同步阻塞IO \r\r以计算机网络编程为例，会调用read方法读取数据，而本质上是调用了内核的recvfrom方法。\n  此方法会被阻塞住，直到数据报准备好，也就是1阶段。\n  然后在数据报被从内核复制到用户空间这一过程中，该线程会再次阻塞，直到复制完成，这一过程对应上图的序号2的过程；\n  无论数据有没有被准备好，此IO过程都会被阻塞，数据准备好时只会阻塞2阶段，数据为准备好会阻塞1，2两个阶段。\n同步非阻塞IO \r\r这个过程分为了两种情况：\n  数据未准备好时，会一直调用recvfrom函数，如果数据没准备好会返回EWOULDBLOCK错误。即不会将用户进程（线程）至于阻塞状态。\n  数据准备好后，此时recvfrom系统调用，用户进程（线程）还是会阻塞，直到内核中的数据报已经拷贝到了用户空间，此时用户进程（线程）才会被唤醒来处理接收的数据报。\n  但是，进程（线程）不断轮训，因此这是非常耗费CPU的。\nIO多路复用模型 阻塞和非阻塞模型的缺点是一个线程只能监控一个IO(也可以称为文件描述符fd)。如果系统并发度很高，线程就会大量创建，并不断轮训。系统资源会被大量浪费。\n\r\rIO多路复用的思想是用一个线程监听多个文件描述符。当有数据准备就绪之后再分配对应的线程去读取数据，这么做就可以节省出大量的线程资源出来，这个就是IO复用模型的思路。\n\r\rIO复用模型的思路就是系统提供了一种函数可以同时监控多个fd的操作，这个函数就是我们常说到的select、poll、epoll函数，有了这个函数后，应用线程通过调用select函数就可以同时监控多个fd，select函数监控的fd中只要有任何一个数据状态准备就绪了，select函数就会返回可读状态，这时询问线程再去通知处理数据的线程，对应线程此时再发起recvfrom请求去读取数据。\n\r\r信号驱动IO IO多路复用解决了一个线程监控多个fd的问题。但是还有一个大问题，等待数据准备中一直要轮询，这不是很傻逼吗？于是就有了信号驱动IO，当数据准备好后通知线程，而不需要轮询。\n\r\r首先需要在线程和fd之间建立一个SIGIO信号联系，这是通过sigaction建立的，当内核数据准备好后通过SIGIO通知线程。线程再调用recvfrom从内核拷贝数据到用户空间。\n\r\r信号驱动IO模型在等待数据报期间是不会阻塞的，即用户进程（线程）发送一个sigaction系统调用后，此时立刻返回，并不会阻塞，然后用户进程（线程）继续执行；当数据报准备好时，此时内核就为该进程（线程）产生一个SIGIO信号，此时该进程（线程）就发生一次recvfrom系统调用将数据报从内核复制到用户空间，注意，这个阶段是阻塞的。\n异步IO模型 \r\r异步IO最大的优点是在准备数据和拷贝数据两个过程都不会被阻塞。\n 用户进程发生系统调用时，会立刻返回，不被阻塞。执行其他任务。 当内核把数据拷贝完毕后，通知线程数据已经准备好，这个过程也不会阻塞。  异步IO模型跟信号驱动IO模型的区别在于当内核准备好数据报后，对于信号驱动IO模型，此时内核会通知用户进程说数据报准备好啦，你需要发起系统调用来将数据报从内核拷贝到用户空间，此过程是同步阻塞的；而对于异步IO模型，当数据报准备好时，内核不会再通知用户进程，而是自己默默将数据报从内核拷贝到用户空间后然后再通知用户进程说，数据已经拷贝到用户空间啦，你直接进行业务逻辑处理就行。\nJava中的IO模型，BIO,NIO,AIO BIO(Blocking I/O)同步阻塞IO 在客户端连接数量不高的情况下，是没问题的。但是，当面对十万甚至百万级连接的时候，传统的 BIO 模型是无能为力的。因此，我们需要一种更高效的 I/O 处理模型来应对更高的并发量.\nNIO(Non-blocking/New I/O)多路复用IO Java 中的 NIO ，有一个非常重要的选择器 ( Selector ) 的概念，也可以被称为 多路复用器。通过它，只需要一个线程便可以管理多个客户端连接。当客户端数据到了之后，才会为其服务。\nAIO(Asynchronous I/O)异步IO AIO 也就是 NIO 2。Java 7 中引入了 NIO 的改进版 NIO 2,它是异步 IO 模型。异步 IO 是基于事件和回调机制实现的，也就是应用操作之后会直接返回，不会堵塞在那里，当后台处理完成，操作系统会通知相应的线程进行后续的操作。\n",
+  "articleBody": "JAVA补充面试题 五种IO模型与理解 IO最常接触的场景是读取文件和等待网络信息，一般而言，用户态是不能够直接操纵IO的，这就说明一定要向操作系统调用IO，主要分为两步：（1）操作系统的内核态会先等待数据准备好，（2）再从内核空间将数据拷贝到用户空间。\n同步阻塞IO 以计算机网络编程为例，会调用read方法读取数据，而本质上是调用了内核的recvfrom方法。\n此方法会被阻塞住，直到数据报准备好，也就是1阶段。\n然后在数据报被从内核复制到用户空间这一过程中，该线程会再次阻塞，直到复制完成，这一过程对应上图的序号2的过程；\n无论数据有没有被准备好，此IO过程都会被阻塞，数据准备好时只会阻塞2阶段，数据为准备好会阻塞1，2两个阶段。\n同步非阻塞IO 这个过程分为了两种情况：\n数据未准备好时，会一直调用recvfrom函数，如果数据没准备好会返回EWOULDBLOCK错误。即不会将用户进程（线程）至于阻塞状态。\n数据准备好后，此时recvfrom系统调用，用户进程（线程）还是会阻塞，直到内核中的数据报已经拷贝到了用户空间，此时用户进程（线程）才会被唤醒来处理接收的数据报。\n但是，进程（线程）不断轮训，因此这是非常耗费CPU的。\nIO多路复用模型 阻塞和非阻塞模型的缺点是一个线程只能监控一个IO(也可以称为文件描述符fd)。如果系统并发度很高，线程就会大量创建，并不断轮训。系统资源会被大量浪费。\nIO多路复用的思想是用一个线程监听多个文件描述符。当有数据准备就绪之后再分配对应的线程去读取数据，这么做就可以节省出大量的线程资源出来，这个就是IO复用模型的思路。\nIO复用模型的思路就是系统提供了一种函数可以同时监控多个fd的操作，这个函数就是我们常说到的select、poll、epoll函数，有了这个函数后，应用线程通过调用select函数就可以同时监控多个fd，select函数监控的fd中只要有任何一个数据状态准备就绪了，select函数就会返回可读状态，这时询问线程再去通知处理数据的线程，对应线程此时再发起recvfrom请求去读取数据。\n信号驱动IO IO多路复用解决了一个线程监控多个fd的问题。但是还有一个大问题，等待数据准备中一直要轮询，这不是很傻逼吗？于是就有了信号驱动IO，当数据准备好后通知线程，而不需要轮询。\n首先需要在线程和fd之间建立一个SIGIO信号联系，这是通过sigaction建立的，当内核数据准备好后通过SIGIO通知线程。线程再调用recvfrom从内核拷贝数据到用户空间。\n信号驱动IO模型在等待数据报期间是不会阻塞的，即用户进程（线程）发送一个sigaction系统调用后，此时立刻返回，并不会阻塞，然后用户进程（线程）继续执行；当数据报准备好时，此时内核就为该进程（线程）产生一个SIGIO信号，此时该进程（线程）就发生一次recvfrom系统调用将数据报从内核复制到用户空间，注意，这个阶段是阻塞的。\n异步IO模型 异步IO最大的优点是在准备数据和拷贝数据两个过程都不会被阻塞。\n用户进程发生系统调用时，会立刻返回，不被阻塞。执行其他任务。 当内核把数据拷贝完毕后，通知线程数据已经准备好，这个过程也不会阻塞。 异步IO模型跟信号驱动IO模型的区别在于当内核准备好数据报后，对于信号驱动IO模型，此时内核会通知用户进程说数据报准备好啦，你需要发起系统调用来将数据报从内核拷贝到用户空间，此过程是同步阻塞的；而对于异步IO模型，当数据报准备好时，内核不会再通知用户进程，而是自己默默将数据报从内核拷贝到用户空间后然后再通知用户进程说，数据已经拷贝到用户空间啦，你直接进行业务逻辑处理就行。\nJava中的IO模型，BIO,NIO,AIO BIO(Blocking I/O)同步阻塞IO 在客户端连接数量不高的情况下，是没问题的。但是，当面对十万甚至百万级连接的时候，传统的 BIO 模型是无能为力的。因此，我们需要一种更高效的 I/O 处理模型来应对更高的并发量.\nNIO(Non-blocking/New I/O)多路复用IO Java 中的 NIO ，有一个非常重要的选择器 ( Selector ) 的概念，也可以被称为 多路复用器。通过它，只需要一个线程便可以管理多个客户端连接。当客户端数据到了之后，才会为其服务。\nAIO(Asynchronous I/O)异步IO AIO 也就是 NIO 2。Java 7 中引入了 NIO 的改进版 NIO 2,它是异步 IO 模型。异步 IO 是基于事件和回调机制实现的，也就是应用操作之后会直接返回，不会堵塞在那里，当后台处理完成，操作系统会通知相应的线程进行后续的操作。\n",
   "wordCount" : "1811",
   "inLanguage": "en",
   "datePublished": "0001-01-01T00:00:00Z",
@@ -173,6 +179,8 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
             </span>
         </div>
         <ul id="menu">
@@ -234,8 +242,8 @@
 
 
 
-更新:&nbsp;0001-01-01&nbsp;|&nbsp;字数:&nbsp;1811字&nbsp;|&nbsp;时长: 4分钟&nbsp;|&nbsp;
-作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/blog/IO.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+更新:&amp;nbsp;0001-01-01&amp;nbsp;|&amp;nbsp;字数:&amp;nbsp;1811字&amp;nbsp;|&amp;nbsp;时长: 4分钟&amp;nbsp;|&amp;nbsp;
+作者:&amp;nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/blog/IO.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -290,10 +298,12 @@
         checkTocPosition();
 
         elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
-         
-         activeElement = elements[0];
-         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
-         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        if (elements.length) {
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            const firstLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
+            if (firstLink) firstLink.classList.add('active');
+        }
      }, false);
 
     window.addEventListener('resize', function(event) {
@@ -301,7 +311,7 @@
     }, false);
 
     window.addEventListener('scroll', () => {
-        
+        if (!elements || !elements.length) return;
         activeElement = Array.from(elements).find((element) => {
             if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
                 (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
@@ -311,25 +321,35 @@
 
         elements.forEach(element => {
              const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             const link = document.querySelector(`.inner ul li a[href="#${id}"]`);
+             if (!link) return;
              if (element === activeElement){
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                 link.classList.add('active');
              } else {
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                 link.classList.remove('active');
              }
          })
      }, false);
 
-    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
-    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
-    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+    function readCssPx(name, fallback) {
+        const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+        const n = parseInt(raw, 10);
+        return Number.isFinite(n) && n > 0 ? n : fallback;
+    }
 
     function checkTocPosition() {
-        const width = document.body.scrollWidth;
+        const main = readCssPx('--article-width', 650);
+        const toc = readCssPx('--toc-width', 300);
+        const gap = readCssPx('--gap', 24);
+        const width = document.documentElement.clientWidth;
+        const el = document.getElementById("toc-container");
+        if (!el) return;
 
-        if (width - main - (toc * 2) - (gap * 4) > 0) {
-            document.getElementById("toc-container").classList.add("wide");
+         
+        if (width - main - (toc * 2) - (gap * 2) > 0) {
+            el.classList.add("wide");
         } else {
-            document.getElementById("toc-container").classList.remove("wide");
+            el.classList.remove("wide");
         }
     }
 
@@ -422,10 +442,10 @@
     <ul class="post-tags">
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/">
+  <a class="prev" href="https://coderrenxy.github.io/posts/read/xian/">
     <span class="title">« 上一篇</span>
     <br>
-    <span>异常</span>
+    <span>西安</span>
   </a>
   <a class="next" href="https://coderrenxy.github.io/posts/read/01%E6%80%9D%E7%89%B9%E5%A5%87/">
     <span class="title">下一篇 »</span>
@@ -469,7 +489,7 @@ async>
 </script>
 
 <footer class="footer">
-    <span>&copy; 2023 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>&copy; 2026 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
@@ -483,11 +503,7 @@ async>
     您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 </span>
 <hr>
-<span>
-    如果对您有帮助请赞赏我
-</span>
 
-<img src="/img/money.jpg" width=800px; align:center/>
 
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">

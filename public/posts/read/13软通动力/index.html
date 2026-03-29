@@ -9,13 +9,22 @@
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <meta name="keywords" content="" />
-<meta name="description" content="软通动力Java中级 1、锁可以锁在哪里？ Java 为程序加锁的方式主要有两种：synchronized 与 Lock。 1、synchronized 可以修">
+<meta name="description" content="软通动力Java中级
+1、锁可以锁在哪里？
+Java 为程序加锁的方式主要有两种：synchronized 与 Lock。
+1、synchronized 可以修饰的作用域如下：
+
+非静态方法（加的锁为对象锁）；
+静态方法（加的锁为类锁）；
+代码块（对象锁与类锁均可）；
+
+2、Lock 采用 lock()对代码加锁，unlock()进行解锁">
 <meta name="author" content="
 作者:&nbsp;小任同学">
 <link rel="canonical" href="https://coderrenxy.github.io/posts/read/13%E8%BD%AF%E9%80%9A%E5%8A%A8%E5%8A%9B/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.a72221503009ebb69a3a9b181466ab3d9a645200323c4ba68b8b9cc95b7befbd.css" integrity="sha256-pyIhUDAJ67aaOpsYFGarPZpkUgAyPEumi4ucyVt7770=" rel="preload stylesheet" as="style">
 <link rel="preload" href="img/icon-32.png" as="image">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.199271f351c4b46f0d0536b6e2eb89a4766040c0e8df57f1a695c6570d8a4e0f.js" integrity="sha256-GZJx81HEtG8NBTa24uuJpHZgQMDo31fxppXGVw2KTg8="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
@@ -24,7 +33,8 @@
 <link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.1" />
+<meta name="generator" content="Hugo 0.159.1">
+<link rel="alternate" hreflang="en" href="https://coderrenxy.github.io/posts/read/13%E8%BD%AF%E9%80%9A%E5%8A%A8%E5%8A%9B/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -62,7 +72,16 @@
 
     </style>
 </noscript><meta property="og:title" content="" />
-<meta property="og:description" content="软通动力Java中级 1、锁可以锁在哪里？ Java 为程序加锁的方式主要有两种：synchronized 与 Lock。 1、synchronized 可以修" />
+<meta property="og:description" content="软通动力Java中级
+1、锁可以锁在哪里？
+Java 为程序加锁的方式主要有两种：synchronized 与 Lock。
+1、synchronized 可以修饰的作用域如下：
+
+非静态方法（加的锁为对象锁）；
+静态方法（加的锁为类锁）；
+代码块（对象锁与类锁均可）；
+
+2、Lock 采用 lock()对代码加锁，unlock()进行解锁" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://coderrenxy.github.io/posts/read/13%E8%BD%AF%E9%80%9A%E5%8A%A8%E5%8A%9B/" /><meta property="article:section" content="posts" />
 
@@ -70,8 +89,16 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="软通动力Java中级 1、锁可以锁在哪里？ Java 为程序加锁的方式主要有两种：synchronized 与 Lock。 1、synchronized 可以修"/>
+<meta name="twitter:description" content="软通动力Java中级
+1、锁可以锁在哪里？
+Java 为程序加锁的方式主要有两种：synchronized 与 Lock。
+1、synchronized 可以修饰的作用域如下：
 
+非静态方法（加的锁为对象锁）；
+静态方法（加的锁为类锁）；
+代码块（对象锁与类锁均可）；
+
+2、Lock 采用 lock()对代码加锁，unlock()进行解锁"/>
 
 <script type="application/ld+json">
 {
@@ -105,11 +132,11 @@
   "@type": "BlogPosting",
   "headline": "",
   "name": "",
-  "description": "软通动力Java中级 1、锁可以锁在哪里？ Java 为程序加锁的方式主要有两种：synchronized 与 Lock。 1、synchronized 可以修",
+  "description": "软通动力Java中级 1、锁可以锁在哪里？ Java 为程序加锁的方式主要有两种：synchronized 与 Lock。\n1、synchronized 可以修饰的作用域如下：\n非静态方法（加的锁为对象锁）； 静态方法（加的锁为类锁）； 代码块（对象锁与类锁均可）； 2、Lock 采用 lock()对代码加锁，unlock()进行解锁\n",
   "keywords": [
     
   ],
-  "articleBody": "软通动力Java中级 1、锁可以锁在哪里？ Java 为程序加锁的方式主要有两种：synchronized 与 Lock。\n1、synchronized 可以修饰的作用域如下：\n 非静态方法（加的锁为对象锁）； 静态方法（加的锁为类锁）； 代码块（对象锁与类锁均可）；  2、Lock 采用 lock()对代码加锁，unlock()进行解锁\n参考文章：https://blog.csdn.net/yx0628/article/details/79086511\n2、怎么利用反射获取类中的对象？\n 获取 Class 对象 通过 Class 对象获取构造方法 通过构造方法调用 newInstance()方法创建对象实例  参考文章 ：https://baijiahao.baidu.com/s?id=1619748187138646880\u0026wfr=spider\u0026for=pc\n3、HTTP 和 https 区别？ 1、 HTTP 明文传输，数据都是未加密的，安全性较差，HTTPS（SSL+HTTP） 数据传输过程是加密的，安全性较好。\n2、使用 HTTPS 协议需要到 CA（Certificate Authority，数字证书认证机构） 申请证书，一般免费证书较少，因而需要一定费用。\n3、HTTP 页面响应速度比 HTTPS 快，主要是因为 HTTP 使用 TCP 三次握手建立连接，客户端和服务器需要交换 3 个包，而 HTTPS 除了 TCP 的三个包，还要加上 ssl 握手需要的 9 个包，所以一共是 12 个包。\n4、http 和 https 使用的是完全不同的连接方式，用的端口也不一样，前者是 80， 后者是 443。\n5、HTTPS 其实就是建构在 SSL/TLS 之上的 HTTP 协议，所以，要比较 HTTPS比 HTTP 要更耗费服务器资源。\n参考文章：https://www.runoob.com/w3cnote/http-vs-https.html\n4、谈谈你对 TCP / IP 协议的了解 \\1. TCP/IP 是一个协议簇，是一个开放的协议标准，所有人都可以免费使用，并且是独立于硬件和操作系统的。\n2、TCP/IP 协议是不区分网络硬件的，它在局域网，广域网和互联网中都被广泛使用。\n3、TCP/IP 协议使用统一的网络地址分配的方案，网络中的每台电脑都具有唯一的 IP地址。\n\\4. TCP/IP 协议是一个标准的高层协议，拥有极高的可靠性，可以为用户提供可靠的服务。\n参考文章： https://blog.csdn.net/my_learning_road/article/details/79941273\n5、说说 Aop 和 IOC 的应用 IOC 的主要应用场景体现在 BeanFactory 接口，BeanFactory 下面有具体的实现类来实现 IOC 的功能。\nAOP 的主要应用场景：日志、权限、事物等。\n6、Spring 中 bean 是线程安全的吗？ Spring 容器中的 Bean 本身不具备线程安全的特性，但是具体还是要结合具体scope 的 Bean 去研究。\n1、Spring 容器中的 Bean 默认是单例的，所有线程都共享一个单实例的 Bean，因此是存在资源的竞争。\n如果单例 Bean,是一个无状态 Bean，也就是线程中的操作不会对 Bean 的成员执行查询以外的操作，那么这个单例 Bean 是线程安全的。\n比如Spring mvc 的 Controller、Service、Dao 等，这些 Bean 大多是无状态的，只关注于方法本身。对于有状态的 bean，是线程不安全的，但是我们可以通过ThreadLocal 去解决线程安全的方法。\n2、对于原型 Bean（即 scope=“prototype”）,每次创建一个新对象，也就是线程之间并不存在 Bean 共享，自然是不会有线程安全的问题。\n参考文章：https://blog.csdn.net/qq_29645505/article/details/88432001\n7、Maven 中 package 和 install 区别 package 是把 jar 打到本项目的 target 下，而 install 时把 target 下的 jar 安装到本地仓库，供其他项目使用。\n8、遇到过哪些设计模式？ 参考文章：https://www.cnblogs.com/Leo_wl/p/6067267.html\n9、谈谈简单工厂和抽象工厂的区别 简单工厂模式：是由一个工厂对象创建产品实例，简单工厂模式的工厂类一般是使用静态方法，通过不同的参数的创建不同的对象实例 可以生产结构中的任意产品，不能增加新的产品\n抽象工厂模式： 提供一个创建一系列相关或相互依赖对象的接口，而无需制定他们具体的类，生产多个系列产品 生产不同产品族的全部产品，不能新增产品，可以新增产品族\n参考文章：https://www.cnblogs.com/gclokok/p/10029088.html\n10、说说你常用的 Linux 基本操作命令\nls - 用来显示目标列表\ncd - 用来切换工作目录\npwd - 以绝对路径的方式显示用户当前工作目录\ncat - 文件内容查看\ngrep - 是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行\n打印出来tail - 输出文件中的尾部内容\nps - 用于报告当前系统的进程状态\nkill - 命令用来删除执行中的程序或工作\ntop - 可以实时动态地查看系统的整体运行情况\n11、谈谈 Currenthashmap 的扩容机制 JDK1.7**：**\n先对数组的长度增加一倍，然后遍历原来的旧的 table 数组，把每一个数组元素也就是 Node 链表迁移到新的数组里面，最后迁移完毕之后，把新数组的引用直接替换旧的。\nJDK1.8**：**\n扩容时候会判断这个值，如果超过阈值就要扩容，首先根据运算得到需要遍历的次数i，然后利用 tabAt 方法获得 i 位置的元素 f，初始化一个 forwardNode 实例 fwd，如果 f == null，则在 table 中的 i 位置放入 fwd，否则采用头插法的方式把当前旧table 数组的指定任务范围的数据给迁移到新的数组中，然后 给旧 table 原位置赋值fwd。\n直到遍历过所有的节点以后就完成了复制工作，把 table 指向 nextTable，并更新 sizeCtl 为新数组大小的 0.75 倍 ，扩容完成。在此期间如果其他线程的有读写操作都会判断 head 节点是否为 forwardNode 节点，如果是就帮助扩容。\n参考文章：https://blog.csdn.net/axibaaa/article/details/97109455\n",
+  "articleBody": "软通动力Java中级 1、锁可以锁在哪里？ Java 为程序加锁的方式主要有两种：synchronized 与 Lock。\n1、synchronized 可以修饰的作用域如下：\n非静态方法（加的锁为对象锁）； 静态方法（加的锁为类锁）； 代码块（对象锁与类锁均可）； 2、Lock 采用 lock()对代码加锁，unlock()进行解锁\n参考文章：https://blog.csdn.net/yx0628/article/details/79086511\n2、怎么利用反射获取类中的对象？\n获取 Class 对象 通过 Class 对象获取构造方法 通过构造方法调用 newInstance()方法创建对象实例 参考文章 ：https://baijiahao.baidu.com/s?id=1619748187138646880\u0026wfr=spider\u0026for=pc\n3、HTTP 和 https 区别？ 1、 HTTP 明文传输，数据都是未加密的，安全性较差，HTTPS（SSL+HTTP） 数据传输过程是加密的，安全性较好。\n2、使用 HTTPS 协议需要到 CA（Certificate Authority，数字证书认证机构） 申请证书，一般免费证书较少，因而需要一定费用。\n3、HTTP 页面响应速度比 HTTPS 快，主要是因为 HTTP 使用 TCP 三次握手建立连接，客户端和服务器需要交换 3 个包，而 HTTPS 除了 TCP 的三个包，还要加上 ssl 握手需要的 9 个包，所以一共是 12 个包。\n4、http 和 https 使用的是完全不同的连接方式，用的端口也不一样，前者是 80， 后者是 443。\n5、HTTPS 其实就是建构在 SSL/TLS 之上的 HTTP 协议，所以，要比较 HTTPS比 HTTP 要更耗费服务器资源。\n参考文章：https://www.runoob.com/w3cnote/http-vs-https.html\n4、谈谈你对 TCP / IP 协议的了解 \\1. TCP/IP 是一个协议簇，是一个开放的协议标准，所有人都可以免费使用，并且是独立于硬件和操作系统的。\n2、TCP/IP 协议是不区分网络硬件的，它在局域网，广域网和互联网中都被广泛使用。\n3、TCP/IP 协议使用统一的网络地址分配的方案，网络中的每台电脑都具有唯一的 IP地址。\n\\4. TCP/IP 协议是一个标准的高层协议，拥有极高的可靠性，可以为用户提供可靠的服务。\n参考文章： https://blog.csdn.net/my_learning_road/article/details/79941273\n5、说说 Aop 和 IOC 的应用 IOC 的主要应用场景体现在 BeanFactory 接口，BeanFactory 下面有具体的实现类来实现 IOC 的功能。\nAOP 的主要应用场景：日志、权限、事物等。\n6、Spring 中 bean 是线程安全的吗？ Spring 容器中的 Bean 本身不具备线程安全的特性，但是具体还是要结合具体scope 的 Bean 去研究。\n1、Spring 容器中的 Bean 默认是单例的，所有线程都共享一个单实例的 Bean，因此是存在资源的竞争。\n如果单例 Bean,是一个无状态 Bean，也就是线程中的操作不会对 Bean 的成员执行查询以外的操作，那么这个单例 Bean 是线程安全的。\n比如Spring mvc 的 Controller、Service、Dao 等，这些 Bean 大多是无状态的，只关注于方法本身。对于有状态的 bean，是线程不安全的，但是我们可以通过ThreadLocal 去解决线程安全的方法。\n2、对于原型 Bean（即 scope=“prototype”）,每次创建一个新对象，也就是线程之间并不存在 Bean 共享，自然是不会有线程安全的问题。\n参考文章：https://blog.csdn.net/qq_29645505/article/details/88432001\n7、Maven 中 package 和 install 区别 package 是把 jar 打到本项目的 target 下，而 install 时把 target 下的 jar 安装到本地仓库，供其他项目使用。\n8、遇到过哪些设计模式？ 参考文章：https://www.cnblogs.com/Leo_wl/p/6067267.html\n9、谈谈简单工厂和抽象工厂的区别 简单工厂模式：是由一个工厂对象创建产品实例，简单工厂模式的工厂类一般是使用静态方法，通过不同的参数的创建不同的对象实例 可以生产结构中的任意产品，不能增加新的产品\n抽象工厂模式： 提供一个创建一系列相关或相互依赖对象的接口，而无需制定他们具体的类，生产多个系列产品 生产不同产品族的全部产品，不能新增产品，可以新增产品族\n参考文章：https://www.cnblogs.com/gclokok/p/10029088.html\n10、说说你常用的 Linux 基本操作命令\nls - 用来显示目标列表\ncd - 用来切换工作目录\npwd - 以绝对路径的方式显示用户当前工作目录\ncat - 文件内容查看\ngrep - 是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行\n打印出来tail - 输出文件中的尾部内容\nps - 用于报告当前系统的进程状态\nkill - 命令用来删除执行中的程序或工作\ntop - 可以实时动态地查看系统的整体运行情况\n11、谈谈 Currenthashmap 的扩容机制 JDK1.7**：**\n先对数组的长度增加一倍，然后遍历原来的旧的 table 数组，把每一个数组元素也就是 Node 链表迁移到新的数组里面，最后迁移完毕之后，把新数组的引用直接替换旧的。\nJDK1.8**：**\n扩容时候会判断这个值，如果超过阈值就要扩容，首先根据运算得到需要遍历的次数i，然后利用 tabAt 方法获得 i 位置的元素 f，初始化一个 forwardNode 实例 fwd，如果 f == null，则在 table 中的 i 位置放入 fwd，否则采用头插法的方式把当前旧table 数组的指定任务范围的数据给迁移到新的数组中，然后 给旧 table 原位置赋值fwd。\n直到遍历过所有的节点以后就完成了复制工作，把 table 指向 nextTable，并更新 sizeCtl 为新数组大小的 0.75 倍 ，扩容完成。在此期间如果其他线程的有读写操作都会判断 head 节点是否为 forwardNode 节点，如果是就帮助扩容。\n参考文章：https://blog.csdn.net/axibaaa/article/details/97109455\n",
   "wordCount" : "2296",
   "inLanguage": "en",
   "datePublished": "0001-01-01T00:00:00Z",
@@ -173,6 +200,8 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
             </span>
         </div>
         <ul id="menu">
@@ -234,8 +263,8 @@
 
 
 
-更新:&nbsp;0001-01-01&nbsp;|&nbsp;字数:&nbsp;2296字&nbsp;|&nbsp;时长: 5分钟&nbsp;|&nbsp;
-作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/13%e3%80%81%e8%bd%af%e9%80%9a%e5%8a%a8%e5%8a%9b.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+更新:&amp;nbsp;0001-01-01&amp;nbsp;|&amp;nbsp;字数:&amp;nbsp;2296字&amp;nbsp;|&amp;nbsp;时长: 5分钟&amp;nbsp;|&amp;nbsp;
+作者:&amp;nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/13%e3%80%81%e8%bd%af%e9%80%9a%e5%8a%a8%e5%8a%9b.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -283,10 +312,12 @@
         checkTocPosition();
 
         elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
-         
-         activeElement = elements[0];
-         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
-         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        if (elements.length) {
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            const firstLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
+            if (firstLink) firstLink.classList.add('active');
+        }
      }, false);
 
     window.addEventListener('resize', function(event) {
@@ -294,7 +325,7 @@
     }, false);
 
     window.addEventListener('scroll', () => {
-        
+        if (!elements || !elements.length) return;
         activeElement = Array.from(elements).find((element) => {
             if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
                 (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
@@ -304,25 +335,35 @@
 
         elements.forEach(element => {
              const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             const link = document.querySelector(`.inner ul li a[href="#${id}"]`);
+             if (!link) return;
              if (element === activeElement){
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                 link.classList.add('active');
              } else {
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                 link.classList.remove('active');
              }
          })
      }, false);
 
-    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
-    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
-    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+    function readCssPx(name, fallback) {
+        const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+        const n = parseInt(raw, 10);
+        return Number.isFinite(n) && n > 0 ? n : fallback;
+    }
 
     function checkTocPosition() {
-        const width = document.body.scrollWidth;
+        const main = readCssPx('--article-width', 650);
+        const toc = readCssPx('--toc-width', 300);
+        const gap = readCssPx('--gap', 24);
+        const width = document.documentElement.clientWidth;
+        const el = document.getElementById("toc-container");
+        if (!el) return;
 
-        if (width - main - (toc * 2) - (gap * 4) > 0) {
-            document.getElementById("toc-container").classList.add("wide");
+         
+        if (width - main - (toc * 2) - (gap * 2) > 0) {
+            el.classList.add("wide");
         } else {
-            document.getElementById("toc-container").classList.remove("wide");
+            el.classList.remove("wide");
         }
     }
 
@@ -457,7 +498,7 @@ async>
 </script>
 
 <footer class="footer">
-    <span>&copy; 2023 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>&copy; 2026 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
@@ -471,11 +512,7 @@ async>
     您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 </span>
 <hr>
-<span>
-    如果对您有帮助请赞赏我
-</span>
 
-<img src="/img/money.jpg" width=800px; align:center/>
 
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">

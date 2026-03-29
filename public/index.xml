@@ -6,21 +6,188 @@
     <description>Recent content on 小任同学&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 30 Jun 2023 00:19:47 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Dec 2025 10:00:00 +0800</lastBuildDate><atom:link href="https://coderrenxy.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>🔍搜索</title>
       <link>https://coderrenxy.github.io/search/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/search/</guid>
-      <description>/* 手机适配 */ @media screen and (max-width: 500px) { .search{ padding-right: 25px; } .search input{ width: 100%; } .search button{ display: none; } } /* 电脑适配 */ @media screen and (min-width: 500px) { .search{ width: 500px; } .search input{ width: 444px; } } /* 通用样式 */ .search{ margin: auto; } .search input{ outline: none; border: 2px solid #c05b4d; height: 32px; padding:</description>
+      <description>&lt;style&gt;
+  /* 手机适配 */
+  @media screen and (max-width: 500px) {
+     .search{
+       padding-right: 25px;
+     }
+
+     .search input{
+       width: 100%;
+     }
+
+     .search button{
+       display: none;
+     }
+  }
+  /* 电脑适配 */
+  @media screen and (min-width: 500px) {
+      .search{
+        width: 500px;
+      }
+
+      .search input{
+        width: 444px;
+      }
+  }
+
+  /* 通用样式 */
+  .search{
+    margin: auto;
+  }
+
+  .search input{
+    outline: none;
+    border: 2px solid #c05b4d;
+    height: 32px;
+    padding: 10px;
+  }
+  .search button{
+    outline: none;
+    border: 0px;
+    height: 56px;
+    width:56px;
+    position:absolute;
+    background-color:#c05b4d ;
+  }
+  .search .icon{
+    width: 28px;
+    height: 28px;
+  }
+&lt;/style&gt;
+&lt;div class=&#34;search&#34;&gt;
+  &lt;input type=&#34;text&#34; placeholder=&#34;请输入搜索内容...&#34; id=&#34;search-key&#34; /&gt;
+  &lt;button onclick=&#34;search()&#34;&gt;
+    &lt;svg t=&#34;1583982313567&#34; class=&#34;icon&#34; viewBox=&#34;0 0 1024 1024&#34; version=&#34;1.1&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; p-id=&#34;1271&#34;
+      width=&#34;200&#34; height=&#34;200&#34; xmlns:xlink=&#34;http://www.w3.org/1999/xlink&#34;&gt;
+      &lt;defs&gt;
+        &lt;style type=&#34;text/css&#34;&gt;&lt;/style&gt;
+      &lt;/defs&gt;
+      &lt;path d=&#34;M694.857143 475.428571q0-105.714286-75.142857-180.857142T438.857143 219.428571 258 294.571429 182.857143 475.428571t75.142857 180.857143T438.857143 731.428571t180.857143-75.142857T694.857143 475.428571z m292.571428 475.428572q0 29.714286-21.714285 51.428571t-51.428572 21.714286q-30.857143 0-51.428571-21.714286l-196-195.428571q-102.285714 70.857143-228 70.857143-81.714286 0-156.285714-31.714286t-128.571429-85.714286-85.714286-128.571428T36.571429 475.428571t31.714285-156.285714 85.714286-128.571428 128.571429-85.714286T438.857143 73.142857t156.285714 31.714286 128.571429 85.714286 85.714285 128.571428T841.142857 475.428571q0 125.714286-70.857143 228l196 196q21.142857 21.142857 21.142857 51.428572z&#34;
+        p-id=&#34;1272&#34; fill=&#34;#ffffff&#34;&gt;&lt;/path&gt;
+    &lt;/svg&gt;
+  &lt;/button&gt;
+&lt;/div&gt;
+&lt;h1 id=&#34;search-tip&#34; style=&#34;color: #c05b4d;text-align: center;display: none;&#34;&gt;搜索中，请稍后 ...&lt;/h1&gt;
+&lt;br /&gt;
+&lt;div id=&#34;result&#34;&gt;&lt;/div&gt;
+
+&lt;script type=&#34;text/javascript&#34;&gt;
+  // enter
+  window.onload = function() {
+    document.onkeydown = function(ev) {
+      var event = ev || event
+      if (event.keyCode == 13) {
+        search()
+      }
+    }
+  }
+
+  // search
+  function search() {
+    key = document.getElementById(&#34;search-key&#34;).value;
+    if (key === &#34;&#34;) {
+      return;
+    }
+    document.getElementById(&#34;search-key&#34;).value = &#34;&#34;;
+
+    // tip
+    document.getElementById(&#34;search-tip&#34;).innerText = &#34;搜索中，请稍后 ...&#34;;
+    document.getElementById(&#34;search-tip&#34;).style.display = &#34;block&#34;;
+
+    // clear
+    var el = document.getElementById(&#39;result&#39;);
+    var childs = el.childNodes;
+    for (var i = childs.length - 1; i &gt;= 0; i--) {
+      el.removeChild(childs[i]);
+    }
+
+    // xml
+    xmltext = new XMLHttpRequest;
+    xmltext.open(&#34;GET&#34;, &#34;/index.xml&#34;, false);
+    xmltext.send();
+    resp = xmltext.responseXML;
+    items = resp.getElementsByTagName(&#34;item&#34;);
+    // search
+    var i = 0;
+    haveResult = false;
+    while (i &lt; items.length) {
+      txt = items[i].getElementsByTagName(&#34;title&#34;)[0].innerHTML + items[i].getElementsByTagName(&#34;description&#34;)[0].innerHTML
+      if (txt.indexOf(key) &gt; -1) {
+        haveResult = true;
+        title = items[i].getElementsByTagName(&#34;title&#34;)[0].innerHTML;
+        link = items[i].getElementsByTagName(&#34;link&#34;)[0].innerHTML;
+        time = items[i].getElementsByTagName(&#34;pubDate&#34;)[0].innerHTML;
+        mark = items[i].getElementsByTagName(&#34;description&#34;)[0].innerHTML;
+        addItem(title, link, time, mark)
+      }
+      i++;
+    }
+    if (!haveResult) {
+      document.getElementById(&#34;search-tip&#34;).innerText = &#34;搜索完毕，未发现结果 ...&#34;;
+      document.getElementById(&#34;search-tip&#34;).style.display = &#34;block&#34;;
+    }
+  }
+
+  // add
+  function addItem(title, link, time, mark) {
+    document.getElementById(&#34;search-tip&#34;).style.display = &#34;none&#34;;
+    tmpl = &#34;&lt;article class=\&#34;post\&#34; style=\&#34;border-bottom: 1px solid #e6e6e6;\&#34; &gt;&#34; +
+      &#34;&lt;header class=\&#34;post-header\&#34;&gt;&#34; +
+      &#34;&lt;h1 class=\&#34;post-title\&#34;&gt;&lt;a class=\&#34;post-link\&#34; href=\&#34;&#34; + link + &#34;\&#34; target=\&#34;_blank\&#34;&gt;&#34; + title + &#34;&lt;/a&gt;&lt;/h1&gt;&#34; +
+      &#34;&lt;div class=\&#34;post-meta\&#34;&gt;&#34; +
+      &#34; &lt;span class=\&#34;post-time\&#34;&gt;&#34; + time + &#34;&lt;/span&gt;&#34; +
+      &#34;&lt;/div&gt;&#34; +
+      &#34; &lt;/header&gt;&#34; +
+      &#34;&lt;div class=\&#34;post-content\&#34;&gt;&#34; +
+      &#34;&lt;div class=\&#34;post-summary\&#34;&gt;&#34; + mark + &#34;&lt;/div&gt;&#34; +
+      &#34;&lt;div class=\&#34;read-more\&#34;&gt;&#34; +
+      &#34;&lt;a href=\&#34;&#34; + link + &#34;\&#34; class=\&#34;read-more-link\&#34; target=\&#34;_blank\&#34;&gt;阅读更多&lt;/a&gt;&#34; +
+      &#34;&lt;/div&gt;&#34; +
+      &#34; &lt;/div&gt;&#34; +
+      &#34;&lt;/article&gt;&#34;
+    div = document.createElement(&#34;div&#34;)
+    div.innerHTML = tmpl;
+    document.getElementById(&#39;result&#39;).appendChild(div)
+  }
+&lt;/script&gt;</description>
+    </item>
+    
+    <item>
+      <title>深港澳五一旅游全攻略 (2026.5.2-6)</title>
+      <link>https://coderrenxy.github.io/posts/life/%E6%B7%B1%E6%B8%AF%E6%BE%B3%E4%BA%94%E4%B8%80%E6%97%85%E6%B8%B8%E5%85%A8%E6%94%BB%E7%95%A5-2026.5.2-6/</link>
+      <pubDate>Mon, 01 Dec 2025 10:00:00 +0800</pubDate>
+      <guid>https://coderrenxy.github.io/posts/life/%E6%B7%B1%E6%B8%AF%E6%BE%B3%E4%BA%94%E4%B8%80%E6%97%85%E6%B8%B8%E5%85%A8%E6%94%BB%E7%95%A5-2026.5.2-6/</guid>
+      <description>2026年五一假期深圳、香港、澳门五日游全攻略，包含天气、行程、住宿、美食、交通和行前准备</description>
+    </item>
+    
+    <item>
+      <title>春招前总结</title>
+      <link>https://coderrenxy.github.io/posts/blog/23%E5%B9%B4%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Tue, 13 Feb 2024 00:19:47 +0800</pubDate>
+      <guid>https://coderrenxy.github.io/posts/blog/23%E5%B9%B4%E6%80%BB%E7%BB%93/</guid>
+      <description>近一年的状态</description>
+    </item>
+    
+    <item>
+      <title>React</title>
+      <link>https://coderrenxy.github.io/posts/read/react%E7%AF%87/</link>
+      <pubDate>Sun, 27 Aug 2023 02:45:59 +0800</pubDate>
+      <guid>https://coderrenxy.github.io/posts/read/react%E7%AF%87/</guid>
+      <description>面试题</description>
     </item>
     
     <item>
       <title>实习周记1</title>
       <link>https://coderrenxy.github.io/posts/life/%E5%AE%9E%E4%B9%A0%E5%91%A8%E8%AE%B01/</link>
       <pubDate>Fri, 30 Jun 2023 00:19:47 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/%E5%AE%9E%E4%B9%A0%E5%91%A8%E8%AE%B01/</guid>
       <description>近一周工作、反思、后续计划</description>
     </item>
@@ -29,7 +196,6 @@
       <title>CSS</title>
       <link>https://coderrenxy.github.io/posts/read/4-css%E7%AF%87/</link>
       <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/4-css%E7%AF%87/</guid>
       <description>css</description>
     </item>
@@ -38,7 +204,6 @@
       <title>HTML</title>
       <link>https://coderrenxy.github.io/posts/read/3-html%E7%AF%87/</link>
       <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/3-html%E7%AF%87/</guid>
       <description>HTML</description>
     </item>
@@ -47,7 +212,6 @@
       <title>JS</title>
       <link>https://coderrenxy.github.io/posts/read/5-javascript%E7%AF%87/</link>
       <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/5-javascript%E7%AF%87/</guid>
       <description>JS</description>
     </item>
@@ -56,7 +220,6 @@
       <title>vue</title>
       <link>https://coderrenxy.github.io/posts/read/13-vue%E7%AF%87/</link>
       <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/13-vue%E7%AF%87/</guid>
       <description>vue</description>
     </item>
@@ -65,7 +228,6 @@
       <title>November.No.3 Weekly Summary</title>
       <link>https://coderrenxy.github.io/posts/life/november.no3-weekly-summary/</link>
       <pubDate>Sun, 20 Nov 2022 11:40:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/november.no3-weekly-summary/</guid>
       <description>11月第三篇周总结</description>
     </item>
@@ -74,7 +236,6 @@
       <title>10月总结</title>
       <link>https://coderrenxy.github.io/posts/life/10%E6%9C%88%E6%80%BB%E7%BB%93/</link>
       <pubDate>Thu, 03 Nov 2022 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/10%E6%9C%88%E6%80%BB%E7%BB%93/</guid>
       <description>10月总结和11月及未来三个月计划</description>
     </item>
@@ -83,7 +244,6 @@
       <title>12月总结</title>
       <link>https://coderrenxy.github.io/posts/life/12%E6%9C%88%E6%80%BB%E7%BB%93/</link>
       <pubDate>Thu, 03 Nov 2022 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/12%E6%9C%88%E6%80%BB%E7%BB%93/</guid>
       <description>12月总结和11月及未来三个月计划</description>
     </item>
@@ -92,7 +252,6 @@
       <title>October.No3 Weekly Summary</title>
       <link>https://coderrenxy.github.io/posts/life/october.no3-weekly-summary/</link>
       <pubDate>Sun, 23 Oct 2022 11:40:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/october.no3-weekly-summary/</guid>
       <description>10月第三篇周总结</description>
     </item>
@@ -101,7 +260,6 @@
       <title>October.No2 Weekly Summary</title>
       <link>https://coderrenxy.github.io/posts/life/october.no2-weekly-summary/</link>
       <pubDate>Sat, 15 Oct 2022 11:40:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/october.no2-weekly-summary/</guid>
       <description>10月第二篇周总结</description>
     </item>
@@ -110,7 +268,6 @@
       <title>9月总结</title>
       <link>https://coderrenxy.github.io/posts/life/9%E6%9C%88%E6%80%BB%E7%BB%93/</link>
       <pubDate>Sat, 01 Oct 2022 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/9%E6%9C%88%E6%80%BB%E7%BB%93/</guid>
       <description>9月总结和10月及未来三个月计划</description>
     </item>
@@ -119,7 +276,6 @@
       <title>September.No4 Weekly Summary</title>
       <link>https://coderrenxy.github.io/posts/life/september.no4-weekly-summary/</link>
       <pubDate>Sat, 24 Sep 2022 11:40:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/september.no4-weekly-summary/</guid>
       <description>9月第四篇周总结</description>
     </item>
@@ -127,8 +283,7 @@
     <item>
       <title>September.No3 Weekly Summary</title>
       <link>https://coderrenxy.github.io/posts/life/september.no3-weekly-summary/</link>
-      <pubDate>Sat, 17 Sep 2022 12:15:37 +0800</pubDate>
-      
+      <pubDate>Sat, 17 Sep 2022 11:40:37 +0800</pubDate>
       <guid>https://coderrenxy.github.io/posts/life/september.no3-weekly-summary/</guid>
       <description>9月第三篇周总结</description>
     </item>
@@ -136,8 +291,7 @@
     <item>
       <title>September.No2 Weekly Summary</title>
       <link>https://coderrenxy.github.io/posts/life/september.no2-weekly-summary/</link>
-      <pubDate>Sun, 11 Sep 2022 12:15:37 +0800</pubDate>
-      
+      <pubDate>Sun, 11 Sep 2022 11:40:37 +0800</pubDate>
       <guid>https://coderrenxy.github.io/posts/life/september.no2-weekly-summary/</guid>
       <description>9月第二篇周总结</description>
     </item>
@@ -146,7 +300,6 @@
       <title>September.No1 Weekly Summary</title>
       <link>https://coderrenxy.github.io/posts/life/september.no1-weekly-summary/</link>
       <pubDate>Sat, 03 Sep 2022 11:40:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/september.no1-weekly-summary/</guid>
       <description>9月第一篇周总结</description>
     </item>
@@ -155,7 +308,6 @@
       <title>LeetCode 二叉树(二)</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%BA%8C/</link>
       <pubDate>Thu, 01 Sep 2022 09:29:42 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%BA%8C/</guid>
       <description>二叉树模块二刷。</description>
     </item>
@@ -164,7 +316,6 @@
       <title>LeetCode 栈、队列(二)</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E6%A0%88%E9%98%9F%E5%88%97%E4%BA%8C/</link>
       <pubDate>Thu, 01 Sep 2022 09:23:42 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E6%A0%88%E9%98%9F%E5%88%97%E4%BA%8C/</guid>
       <description>栈、队列模块二刷。</description>
     </item>
@@ -173,7 +324,6 @@
       <title>LeetCode 字符串(二)</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BA%8C/</link>
       <pubDate>Thu, 01 Sep 2022 07:23:42 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BA%8C/</guid>
       <description>字符串模块二刷。</description>
     </item>
@@ -182,7 +332,6 @@
       <title>LeetCode 哈希表(二)</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%BA%8C/</link>
       <pubDate>Thu, 01 Sep 2022 05:23:42 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E5%93%88%E5%B8%8C%E8%A1%A8%E4%BA%8C/</guid>
       <description>哈希表模块二刷。</description>
     </item>
@@ -191,7 +340,6 @@
       <title>LeetCode 链表（二）</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E9%93%BE%E8%A1%A8%E4%BA%8C/</link>
       <pubDate>Thu, 01 Sep 2022 05:23:42 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E9%93%BE%E8%A1%A8%E4%BA%8C/</guid>
       <description>二刷链表。</description>
     </item>
@@ -200,7 +348,6 @@
       <title>8月总结</title>
       <link>https://coderrenxy.github.io/posts/life/8%E6%9C%88%E6%80%BB%E7%BB%93/</link>
       <pubDate>Thu, 01 Sep 2022 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/8%E6%9C%88%E6%80%BB%E7%BB%93/</guid>
       <description>8月总结和9月及未来三个月计划</description>
     </item>
@@ -209,7 +356,6 @@
       <title>Augest No.4 Weekly Summary</title>
       <link>https://coderrenxy.github.io/posts/life/augest.no4-weekly-summary/</link>
       <pubDate>Sat, 27 Aug 2022 11:40:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/augest.no4-weekly-summary/</guid>
       <description>8月第4篇周总结</description>
     </item>
@@ -218,7 +364,6 @@
       <title>Augest No.3 Weekly Summary</title>
       <link>https://coderrenxy.github.io/posts/life/augest.no3-weekly-summary/</link>
       <pubDate>Sat, 20 Aug 2022 11:40:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/augest.no3-weekly-summary/</guid>
       <description>8月第3篇周总结</description>
     </item>
@@ -227,7 +372,6 @@
       <title>Augest No.2 Weekly Summary</title>
       <link>https://coderrenxy.github.io/posts/life/augest.no2-weekly-summary/</link>
       <pubDate>Sat, 13 Aug 2022 11:40:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/augest.no2-weekly-summary/</guid>
       <description>8月第2篇周总结</description>
     </item>
@@ -236,7 +380,6 @@
       <title>Augest No.1 Weekly Summary</title>
       <link>https://coderrenxy.github.io/posts/life/augest.no1-weekly-summary/</link>
       <pubDate>Sat, 06 Aug 2022 11:40:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/augest.no1-weekly-summary/</guid>
       <description>8月第一篇周总结</description>
     </item>
@@ -245,7 +388,6 @@
       <title>7月总结</title>
       <link>https://coderrenxy.github.io/posts/life/7%E6%9C%88%E6%80%BB%E7%BB%93/</link>
       <pubDate>Tue, 02 Aug 2022 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/7%E6%9C%88%E6%80%BB%E7%BB%93/</guid>
       <description>7月总结和8月及未来三个月计划</description>
     </item>
@@ -254,7 +396,6 @@
       <title>LeetCode 数组(二)</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E6%95%B0%E7%BB%84%E4%BA%8C/</link>
       <pubDate>Wed, 27 Jul 2022 05:23:42 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E6%95%B0%E7%BB%84%E4%BA%8C/</guid>
       <description>数组模块二刷。</description>
     </item>
@@ -263,7 +404,6 @@
       <title>LeetCode 动态规划</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</link>
       <pubDate>Tue, 26 Jul 2022 05:23:42 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</guid>
       <description>只包含 01背包、完全背包。</description>
     </item>
@@ -272,7 +412,6 @@
       <title>LeetCode 贪心</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E8%B4%AA%E5%BF%83/</link>
       <pubDate>Tue, 26 Jul 2022 05:23:42 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E8%B4%AA%E5%BF%83/</guid>
       <description>贪心算法：局部最优推出全局最优。</description>
     </item>
@@ -280,8 +419,7 @@
     <item>
       <title>July No.2 Weekly Summary</title>
       <link>https://coderrenxy.github.io/posts/life/july.no2-weekly-summary/</link>
-      <pubDate>Mon, 25 Jul 2022 12:15:37 +0800</pubDate>
-      
+      <pubDate>Mon, 25 Jul 2022 11:40:37 +0800</pubDate>
       <guid>https://coderrenxy.github.io/posts/life/july.no2-weekly-summary/</guid>
       <description>七月第二篇周总结</description>
     </item>
@@ -290,7 +428,6 @@
       <title>July No.1 Weekly Summary</title>
       <link>https://coderrenxy.github.io/posts/life/july.no1-weekly-summary/</link>
       <pubDate>Sat, 09 Jul 2022 11:40:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/july.no1-weekly-summary/</guid>
       <description>七月第一篇周总结</description>
     </item>
@@ -299,7 +436,6 @@
       <title>6月总结</title>
       <link>https://coderrenxy.github.io/posts/life/6%E6%9C%88%E6%80%BB%E7%BB%93/</link>
       <pubDate>Sun, 26 Jun 2022 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/6%E6%9C%88%E6%80%BB%E7%BB%93/</guid>
       <description>六月总结和未来三个月计划</description>
     </item>
@@ -308,7 +444,6 @@
       <title>LeetCode 回溯</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E5%9B%9E%E6%BA%AF/</link>
       <pubDate>Sat, 25 Jun 2022 05:23:42 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E5%9B%9E%E6%BA%AF/</guid>
       <description>由此正式浸润回溯，其实之前也用到过回溯，现在系统刷一遍题目。</description>
     </item>
@@ -317,7 +452,6 @@
       <title>接口和抽象的区别</title>
       <link>https://coderrenxy.github.io/posts/blog/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%9A%84%E5%8C%BA%E5%88%AB/</link>
       <pubDate>Wed, 25 May 2022 14:13:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/%E6%8E%A5%E5%8F%A3%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%9A%84%E5%8C%BA%E5%88%AB/</guid>
       <description>记我第一次面大公司坐牢的面试题</description>
     </item>
@@ -326,7 +460,6 @@
       <title>进度</title>
       <link>https://coderrenxy.github.io/posts/life/%E5%87%86%E5%A4%87%E8%BF%9B%E5%BA%A6/</link>
       <pubDate>Thu, 12 May 2022 17:26:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/%E5%87%86%E5%A4%87%E8%BF%9B%E5%BA%A6/</guid>
       <description>最近准备面试的复习进度</description>
     </item>
@@ -335,7 +468,6 @@
       <title>作息搭配</title>
       <link>https://coderrenxy.github.io/posts/life/%E4%BD%9C%E6%81%AF%E6%90%AD%E9%85%8D/</link>
       <pubDate>Wed, 11 May 2022 15:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/life/%E4%BD%9C%E6%81%AF%E6%90%AD%E9%85%8D/</guid>
       <description>第一篇生活专题下的blog</description>
     </item>
@@ -344,7 +476,6 @@
       <title>Mybatis</title>
       <link>https://coderrenxy.github.io/posts/blog/mybatis/</link>
       <pubDate>Tue, 10 May 2022 13:18:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/mybatis/</guid>
       <description>关于Mybatis的学习笔记。</description>
     </item>
@@ -353,34 +484,41 @@
       <title>🙋🏻‍♂️关于</title>
       <link>https://coderrenxy.github.io/about/</link>
       <pubDate>Thu, 05 May 2022 23:33:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/about/</guid>
-      <description>关于我 英文名： 暂无 职业： 程序员 运动： 跑步、乒乓球、羽毛球、游泳、足球、篮球、桌球、排球、跳绳</description>
+      <description>&lt;p&gt;关于我
+&lt;br&gt;&lt;br&gt;
+英文名：  暂无
+&lt;br&gt;
+职业：    程序员
+&lt;br&gt;
+运动：   跑步、乒乓球、羽毛球、游泳、足球、篮球、桌球、排球、跳绳&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>LeetCode 一周小记 No.5</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.5/</link>
       <pubDate>Thu, 31 Mar 2022 05:13:32 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.5/</guid>
-      <description>Monday 106.从中序与后序遍历序列构造二叉树 key1：中后序的第一个元素一定是左下角那个，因为中序是：左中右，后序是：左右中。都是先递归左。、后</description>
+      <description>&lt;h2 id=&#34;monday&#34;&gt;Monday&lt;/h2&gt;
+&lt;h3 id=&#34;106从中序与后序遍历序列构造二叉树&#34;&gt;&lt;strong&gt;&lt;strong&gt;106.从中序与后序遍历序列构造二叉树&lt;/strong&gt;&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;key1&lt;/strong&gt;：中后序的第一个元素一定是左下角那个，因为中序是：左中右，后序是：左右中。都是先递归左。、后序的最后一个元素一定是 root，左右中，最后才吃到 root。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>LeetCode 一周小记 No.4</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.4/</link>
       <pubDate>Tue, 15 Mar 2022 05:13:45 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.4/</guid>
-      <description>Monday 102.二叉树的层序遍历 递归思路：仍然是先深度到顶确定好 deep 把每一深度的 ArrayList new 出来，再往里依次添值。 是否创建 ArrayList 用 if 判断，进了递归的方法 deep 就要 +</description>
+      <description>&lt;h2 id=&#34;monday&#34;&gt;Monday&lt;/h2&gt;
+&lt;h3 id=&#34;102二叉树的层序遍历&#34;&gt;102.二叉树的层序遍历&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;递归思路&lt;/strong&gt;：仍然是先深度到顶确定好 deep 把每一深度的 ArrayList new 出来，再往里依次添值。
+是否创建 ArrayList 用 if 判断，进了递归的方法 deep 就要 +1，因为递归进递归会先走到 left 的底，再依次出递归 deep 只会回到原来的值。总之每次进递归的方法的初始参数都是当前参数中的结点、参数节点的上一深度，然后 deep++，就变成了当前节点、当前节点深度操作。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>LeetCode 一周小记 No.3</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.3/</link>
       <pubDate>Thu, 10 Mar 2022 02:56:12 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.3/</guid>
       <description>其实每个周都不止一周好吧，只是规则性收缩了。避免二刷速度快要反复切换文章来编辑。</description>
     </item>
@@ -389,7 +527,6 @@
       <title>集合浅原理篇</title>
       <link>https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/</link>
       <pubDate>Mon, 07 Mar 2022 05:52:59 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/%E9%9B%86%E5%90%88%E6%B5%85%E5%8E%9F%E7%90%86%E7%AF%87/</guid>
       <description>对集合的一些理解。</description>
     </item>
@@ -398,25 +535,30 @@
       <title>LeetCode 一周小记 No.2</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.2/</link>
       <pubDate>Wed, 02 Mar 2022 02:45:59 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.2/</guid>
-      <description>有点感觉了，一直持续刷下去！各位看官跟我一起成长啊！ Monday 面试题 02.07. 链表相交 注意：暴力循环一定要注意边界条件：A or B 链子为空，只有这一个边界！！！</description>
+      <description>&lt;p&gt;有点感觉了，一直持续刷下去！各位看官跟我一起成长啊！&lt;/p&gt;
+&lt;h2 id=&#34;monday&#34;&gt;Monday&lt;/h2&gt;
+&lt;h3 id=&#34;面试题-0207-链表相交&#34;&gt;面试题 02.07. 链表相交&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：暴力循环一定要注意边界条件：A or B 链子为空，只有这一个边界！！！边界只有《0 - 1》，没有《1 - 2》。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>LeetCode 一周小记 No.1</title>
       <link>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/</link>
       <pubDate>Thu, 24 Feb 2022 02:45:59 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/leetcode-%E4%B8%80%E5%91%A8%E5%B0%8F%E8%AE%B0-no.1/</guid>
-      <description>刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy 题都也被卡，目前进度为 2-3 medium / day。 Monday （科普知识） 反码、补码 二进制的第一位是符号位，0是+，1是-，</description>
+      <description>&lt;p&gt;刷的脑壳疼，在螺旋矩阵卡了很久，其他的 easy 题都也被卡，目前进度为 2-3 medium / day。&lt;/p&gt;
+&lt;h2 id=&#34;monday---科普知识&#34;&gt;Monday   （科普知识）&lt;/h2&gt;
+&lt;h4 id=&#34;反码补码&#34;&gt;反码、补码&lt;/h4&gt;
+&lt;p&gt;二进制的第一位是符号位，0是+，1是-，如果是1，怎么得到具体数字？
+二进制数全都取反，再+1就是对应结果的的绝对值 。
+例如-1的二进制数全为1，则将后31个1全取反并+1，得到 000&amp;hellip;1 的十进制数就是1 。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Spring MVC小结</title>
       <link>https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/</link>
       <pubDate>Wed, 02 Feb 2022 02:45:59 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/spring-mvc%E5%B0%8F%E7%BB%93/</guid>
       <description>正文开始。</description>
     </item>
@@ -425,17 +567,15 @@
       <title>Spring杂记（顺着链条自上往下看）</title>
       <link>https://coderrenxy.github.io/posts/blog/spring%E6%9D%82%E8%AE%B0/</link>
       <pubDate>Wed, 02 Feb 2022 02:45:59 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/spring%E6%9D%82%E8%AE%B0/</guid>
       <description>本篇文章都是本人的理解，看不懂可以评论，会回复评论。</description>
     </item>
     
     <item>
       <title>我对MySQL的碎碎念念（持续更新...）怒肝12k字</title>
-      <link>https://coderrenxy.github.io/posts/blog/%E6%88%91%E5%AF%B9mysql%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%E5%BF%B5%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0...%E6%80%92%E8%82%9D16k%E5%AD%97-%E5%89%AF%E6%9C%AC/</link>
+      <link>https://coderrenxy.github.io/posts/blog/%E6%88%91%E5%AF%B9mysql%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%E5%BF%B5%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0...%E6%80%92%E8%82%9D16k%E5%AD%97---%E5%89%AF%E6%9C%AC/</link>
       <pubDate>Wed, 02 Feb 2022 02:45:59 +0800</pubDate>
-      
-      <guid>https://coderrenxy.github.io/posts/blog/%E6%88%91%E5%AF%B9mysql%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%E5%BF%B5%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0...%E6%80%92%E8%82%9D16k%E5%AD%97-%E5%89%AF%E6%9C%AC/</guid>
+      <guid>https://coderrenxy.github.io/posts/blog/%E6%88%91%E5%AF%B9mysql%E7%9A%84%E7%A2%8E%E7%A2%8E%E5%BF%B5%E5%BF%B5%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0...%E6%80%92%E8%82%9D16k%E5%AD%97---%E5%89%AF%E6%9C%AC/</guid>
       <description>一点理解</description>
     </item>
     
@@ -443,315 +583,730 @@
       <title>二叉树遍历小结</title>
       <link>https://coderrenxy.github.io/posts/blog/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</link>
       <pubDate>Sat, 08 Jan 2022 23:33:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</guid>
-      <description>首先二叉树的遍历分为，深度优先遍历（dfs）、广度优先遍历（bfs）。 注意：但凡遍历都要注意根节点为 null； 深度优先遍历又分为前中后序遍历</description>
+      <description>&lt;p&gt;首先二叉树的遍历分为，深度优先遍历（dfs）、广度优先遍历（bfs）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：但凡遍历都要注意&lt;strong&gt;根节点为 null；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;深度&lt;/strong&gt;优先遍历又分为前中后序遍历，前面文章都讲过了，递归三个语句换个位置就解决了。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>以下暂为转载，作者《大白》</title>
       <link>https://coderrenxy.github.io/posts/read/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</link>
       <pubDate>Sat, 08 Jan 2022 23:33:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%81%8D%E5%8E%86%E5%B0%8F%E7%BB%93/</guid>
-      <description>正文&amp;hellip;. test&amp;hellip;..</description>
+      <description>&lt;p&gt;正文&amp;hellip;.
+test&amp;hellip;..&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>异常</title>
       <link>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</link>
       <pubDate>Sat, 08 Jan 2022 23:33:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</guid>
-      <description>description：面试可能问到的异常相关八股文。 （一）finally 块中的代码什么时候会执行？ 在 Java 语言的异常处理中，finally 块的</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;description：面试可能问到的异常相关八股文。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一finally-块中的代码什么时候会执行&#34;&gt;（一）finally 块中的代码什么时候会执行？&lt;/h3&gt;
+&lt;p&gt;在 Java 语言的异常处理中，finally 块的作用就是为了保证无论出现什么情况，finally 块里的代码一定会被执行。&lt;br&gt;
+由于程序执行 return 就意味着结束对当前函数的调用并跳出这个函数体，因此任何语句要执行都只能在 return 前执行（除非碰到 exit 函数），	因此 finally 块里的代码也是在 return 之前执行的。&lt;br&gt;
+此外，如果 try-finally 或者 catch-finally 中都有 return，那么 finally 块中	的 return 将会覆盖别处的 return 语句，最终返回到调用者那里的是 finally 中 return 的值。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>西安</title>
+      <link>https://coderrenxy.github.io/posts/read/xian/</link>
+      <pubDate>Tue, 15 Jun 2021 12:00:00 +0800</pubDate>
+      <guid>https://coderrenxy.github.io/posts/read/xian/</guid>
+      <description>以程序员视角介绍西安的工作机会、生活环境与生活成本（含读者补充）。</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/blog/io/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/io/</guid>
-      <description>JAVA补充面试题 五种IO模型与理解 IO最常接触的场景是读取文件和等待网络信息，一般而言，用户态是不能够直接操纵IO的，这就说明一定要向操作</description>
+      <description>&lt;h1 id=&#34;java补充面试题&#34;&gt;JAVA补充面试题&lt;/h1&gt;
+&lt;h2 id=&#34;五种io模型与理解&#34;&gt;五种IO模型与理解&lt;/h2&gt;
+&lt;p&gt;IO最常接触的场景是读取文件和等待网络信息，一般而言，用户态是不能够直接操纵IO的，这就说明一定要向操作系统调用IO，主要分为两步：（1）操作系统的内核态会先等待数据准备好，（2）再从内核空间将数据拷贝到用户空间。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/01%E6%80%9D%E7%89%B9%E5%A5%87/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/01%E6%80%9D%E7%89%B9%E5%A5%87/</guid>
-      <description>思特奇 一面 1.自我介绍 和 项目介绍 &amp;hellip; 2.Java有多少种数据类型 各占多少个字节 6数字，1字符，1布尔 int4，short2，byte1，lon</description>
+      <description>&lt;h1 id=&#34;思特奇&#34;&gt;思特奇&lt;/h1&gt;
+&lt;h2 id=&#34;一面&#34;&gt;一面&lt;/h2&gt;
+&lt;p&gt;1.自我介绍 和 项目介绍
+&amp;hellip;&lt;/p&gt;
+&lt;p&gt;2.Java有多少种数据类型 各占多少个字节
+6数字，1字符，1布尔
+int4，short2，byte1，long8，float4，double8，char2，boolean未说明，但按理说应该是1&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/02%E5%93%88%E7%BD%97/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/02%E5%93%88%E7%BD%97/</guid>
-      <description>哈罗 开始 1.自我介绍&amp;amp;项目介绍 我的是新闻门户网站,介绍了一下都用到了什么技术,几个人开发,怎么协作 2.先聊聊java基础,说说jav</description>
+      <description>&lt;h1 id=&#34;哈罗&#34;&gt;哈罗&lt;/h1&gt;
+&lt;p&gt;开始&lt;/p&gt;
+&lt;p&gt;1.自我介绍&amp;amp;项目介绍&lt;/p&gt;
+&lt;p&gt;我的是新闻门户网站,介绍了一下都用到了什么技术,几个人开发,怎么协作&lt;/p&gt;
+&lt;p&gt;2.先聊聊java基础,说说java面向对象的三大特征&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/03%E9%87%91%E8%9D%B6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/03%E9%87%91%E8%9D%B6/</guid>
-      <description>金蝶 一面 自我介绍 项目的架构图画一下 项目是怎么部署到服务器的 为什么要用 Docker 做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。 项目数据库表</description>
+      <description>&lt;h1 id=&#34;金蝶&#34;&gt;金蝶&lt;/h1&gt;
+&lt;h2 id=&#34;一面&#34;&gt;一面&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;自我介绍&lt;/li&gt;
+&lt;li&gt;项目的架构图画一下&lt;/li&gt;
+&lt;li&gt;项目是怎么部署到服务器的&lt;/li&gt;
+&lt;li&gt;为什么要用 Docker&lt;/li&gt;
+&lt;li&gt;做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。&lt;/li&gt;
+&lt;li&gt;项目数据库表怎么设计的&lt;/li&gt;
+&lt;li&gt;项目的日志怎么做的&lt;/li&gt;
+&lt;li&gt;项目有没有做权限管理，怎么做的&lt;/li&gt;
+&lt;li&gt;说一下自己对 IoC、AOP 的理解&lt;/li&gt;
+&lt;li&gt;网络协议说一下&lt;/li&gt;
+&lt;li&gt;数据库优化&lt;/li&gt;
+&lt;li&gt;有没有用过针对多表查询如何优化&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;hr面&#34;&gt;HR面&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;自我介绍&lt;/li&gt;
+&lt;li&gt;学校的成绩，有没有获得过什么奖项&lt;/li&gt;
+&lt;li&gt;介绍一下项目，业务情况，当时是怎么做这个项目的&lt;/li&gt;
+&lt;li&gt;项目中充当的角色，负责做什么&lt;/li&gt;
+&lt;li&gt;项目带给你最大的收获是什么&lt;/li&gt;
+&lt;li&gt;说一件你在校园中做过对自己来说最有价值的事情&lt;/li&gt;
+&lt;li&gt;你觉得一个好的开发工程师应该具备怎样的素质&lt;/li&gt;
+&lt;li&gt;平时有健身运动的习惯么，频率怎么样&lt;/li&gt;
+&lt;li&gt;讲讲你的个人优势&lt;/li&gt;
+&lt;li&gt;手里的 offer 情况&lt;/li&gt;
+&lt;li&gt;反问&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;二面&#34;&gt;二面&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Spring,Spring MVC,Spring Boot 之间什么关系?&lt;/li&gt;
+&lt;li&gt;@Autowired 和 @Resource 的区别是什么？&lt;/li&gt;
+&lt;li&gt;静态代理和动态代理的区别&lt;/li&gt;
+&lt;li&gt;除了 JDK 提供的动态代理实现还有其他实现方式么(CGLIB )&lt;/li&gt;
+&lt;li&gt;谈谈对 MySQL 索引的了解，哪些字段应该考虑创建索引，哪些字段尽量不要创建索引&lt;/li&gt;
+&lt;li&gt;为什么 InnoDB 引擎要选择 B+Tree 作为索引数据结构？&lt;/li&gt;
+&lt;li&gt;MySQL 中 一条 SQL 语句的执行流程&lt;/li&gt;
+&lt;li&gt;从执行流程的层面说说如何优化一条 SQL 语句的查询速度，发生在哪个部分&lt;/li&gt;
+&lt;li&gt;多表联合查询的时候，SQL语句的执行流程&lt;/li&gt;
+&lt;li&gt;目前正在学习什么知识&lt;/li&gt;
+&lt;li&gt;反问：新人培训体系是怎么样的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;三面&#34;&gt;三面&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;自我介绍&lt;/li&gt;
+&lt;li&gt;简单介绍一下自己的项目&lt;/li&gt;
+&lt;li&gt;项目中用了哪些设计模式&lt;/li&gt;
+&lt;li&gt;单例模式有什么好处&lt;/li&gt;
+&lt;li&gt;项目中用了线程池干什么&lt;/li&gt;
+&lt;li&gt;为什么实际生产建议使用 &lt;code&gt;ThreadPoolExecutor&lt;/code&gt; 构造函数来创建线程池&lt;/li&gt;
+&lt;li&gt;如何理解线程安全和不安全&lt;/li&gt;
+&lt;li&gt;平时怎么学习的&lt;/li&gt;
+&lt;li&gt;反问：公司目前的技术栈，是否有 CodeReview&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;三面这个面试官基本没怎么问题技术，后面找我唠嗑半天就闲聊一些大学生活啥的。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/04%E6%AD%A5%E6%AD%A5%E9%AB%98/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/04%E6%AD%A5%E6%AD%A5%E9%AB%98/</guid>
-      <description>步步高 一面（50分钟） 介绍一下项目 项目是视频还是通过什么途径学习的？ 你认为项目中复杂的点是什么？ Redis的使用场景？ Redis的高并发是依</description>
+      <description>&lt;h1 id=&#34;步步高&#34;&gt;步步高&lt;/h1&gt;
+&lt;h2 id=&#34;一面50分钟&#34;&gt;一面（50分钟）&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;介绍一下项目&lt;/li&gt;
+&lt;li&gt;项目是视频还是通过什么途径学习的？&lt;/li&gt;
+&lt;li&gt;你认为项目中复杂的点是什么？&lt;/li&gt;
+&lt;li&gt;Redis的使用场景？&lt;/li&gt;
+&lt;li&gt;Redis的高并发是依靠什么去保证的？&lt;/li&gt;
+&lt;li&gt;ThreadLocal 用在哪，为什么选择 ThreadLocal呢？&lt;/li&gt;
+&lt;li&gt;项目上线了嘛？部署在哪里？怎么部署的？&lt;/li&gt;
+&lt;li&gt;注解实现缓存和日志统一处理是怎么做的？&lt;/li&gt;
+&lt;li&gt;SpringBoot分哪些模块？&lt;/li&gt;
+&lt;li&gt;项目中的分页是怎么实现的？&lt;/li&gt;
+&lt;li&gt;项目中都有哪些sql表说一下吧？&lt;/li&gt;
+&lt;li&gt;消息队列MQ用过吗？说一下？-&lt;/li&gt;
+&lt;li&gt;分布式锁这块有用到吗？-&lt;/li&gt;
+&lt;li&gt;说一下常用的一些集合？&lt;/li&gt;
+&lt;li&gt;说一下 HashSet的原理？&lt;/li&gt;
+&lt;li&gt;说一下 HashSet 与 HashMap的区别？&lt;/li&gt;
+&lt;li&gt;线程安全的集合类有哪些？&lt;/li&gt;
+&lt;li&gt;锁重入了解过嘛？那些锁支持锁重入？&lt;/li&gt;
+&lt;li&gt;说一下锁升级的过程？&lt;/li&gt;
+&lt;li&gt;数据库中的锁有哪些？&lt;/li&gt;
+&lt;li&gt;Java8 的新特性 Stream 流、Lambda 表达式说一下？&lt;/li&gt;
+&lt;li&gt;TCP和HTTP 协议之间的关系，有什么区别？&lt;/li&gt;
+&lt;li&gt;TCP/IP 参考模型，每层都是封装的什么？&lt;/li&gt;
+&lt;li&gt;TCP是可靠的嘛？那么UDP呢？&lt;/li&gt;
+&lt;li&gt;TCP如何保证我们的可靠传输的？&lt;/li&gt;
+&lt;li&gt;说一下TCP中拥塞控制的一个过程？&lt;/li&gt;
+&lt;li&gt;Linux查看ip地址的命令？&lt;/li&gt;
+&lt;li&gt;说一下聚簇索引和非聚簇的区别？&lt;/li&gt;
+&lt;li&gt;事务的隔离级别和每个级别所产生的问题?&lt;/li&gt;
+&lt;li&gt;实际开发中最常使用的隔离界别&lt;/li&gt;
+&lt;li&gt;创建线程的方式?说一下？&lt;/li&gt;
+&lt;li&gt;讲一下同步和异步的区别？&lt;/li&gt;
+&lt;li&gt;说一下项目中Nginx的作用？&lt;/li&gt;
+&lt;li&gt;说一下JMM吧&lt;/li&gt;
+&lt;li&gt;说一下常见的垃圾回收算法吧？&lt;/li&gt;
+&lt;li&gt;JMM的三个特性是哪三个？&lt;/li&gt;
+&lt;li&gt;如何保证原子性，volatile的作用呢？&lt;/li&gt;
+&lt;li&gt;ThreadLocal和synchronized的区别&lt;/li&gt;
+&lt;li&gt;Redis的rdb和aof说一下吧，区别呢？&lt;/li&gt;
+&lt;li&gt;为什么fork一个子进程呢？&lt;/li&gt;
+&lt;li&gt;Redis有持久化为什么还要用MySQL呢？&lt;/li&gt;
+&lt;li&gt;MySQL数据也会有丢失的情况呀？是如何保证的呢？&lt;/li&gt;
+&lt;li&gt;单节点和集群的区别，集群解决了什么问题？&lt;/li&gt;
+&lt;li&gt;主从复制解决了什么问题？&lt;/li&gt;
+&lt;li&gt;Redis集群的原理&lt;/li&gt;
+&lt;li&gt;MySQL为什么要采用读写分离呢？&lt;/li&gt;
+&lt;li&gt;除了MySQL、Redis外还了解过其他数据库嘛？&lt;/li&gt;
+&lt;li&gt;用过Docker嘛？&lt;/li&gt;
+&lt;li&gt;使用Docker部署的好处是什么？相比原始部署？&lt;/li&gt;
+&lt;li&gt;最近看了哪些书呢？&lt;/li&gt;
+&lt;li&gt;反问&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;二面25分钟&#34;&gt;二面(25分钟)&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Redis为什么快？&lt;/li&gt;
+&lt;li&gt;线程的创建方式？&lt;/li&gt;
+&lt;li&gt;怎么在Linux服务器上部署项目？&lt;/li&gt;
+&lt;li&gt;使用过Docker嘛？&lt;/li&gt;
+&lt;li&gt;Docker与Linux相比为什么性能更好？&lt;/li&gt;
+&lt;li&gt;如何进行sql优化？你自己实践哪些手段？&lt;/li&gt;
+&lt;li&gt;我们MySQL读写压力很大，怎么解决？&lt;/li&gt;
+&lt;li&gt;说一下TCP三次握手、四次挥手？&lt;/li&gt;
+&lt;li&gt;MQ是什么？&lt;/li&gt;
+&lt;li&gt;项目是怎么做的？实习项目还是自己做的？&lt;/li&gt;
+&lt;li&gt;如何设计秒杀系统&lt;/li&gt;
+&lt;li&gt;实际开发中如何解决高并发的问题？你知道哪些手段？实践过哪些手段？&lt;/li&gt;
+&lt;li&gt;校园的实践经历&lt;/li&gt;
+&lt;li&gt;为什么来参加春招，是没offer吗？&lt;/li&gt;
+&lt;li&gt;手里有几个offer ？&lt;/li&gt;
+&lt;li&gt;以后的发展方向是走技术管理，还是架构方向？&lt;/li&gt;
+&lt;li&gt;说一下在你眼里技术管理和技术架构的区别？&lt;/li&gt;
+&lt;li&gt;如果领导让你3天完成一个任务，但是你4天才能完成&lt;/li&gt;
+&lt;li&gt;谈一下你对加班的看法？&lt;/li&gt;
+&lt;li&gt;你将来计划打算学到什么，提升Java哪方面技能？&lt;/li&gt;
+&lt;li&gt;反问&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;三面hr面20分钟&#34;&gt;三面（HR面，20分钟）&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;为什么会有写博客的习惯呢，出发点是什么？&lt;/li&gt;
+&lt;li&gt;这个博客是有粉丝的吗？你有多少粉丝呢?&lt;/li&gt;
+&lt;li&gt;大学校园经历中有意义的一些事情？&lt;/li&gt;
+&lt;li&gt;大学当中跟室友的关系怎么样？&lt;/li&gt;
+&lt;li&gt;为什么没有参加秋招呢？&lt;/li&gt;
+&lt;li&gt;找工作跟考研之间是怎么权衡的呢？&lt;/li&gt;
+&lt;li&gt;讲一下在自己的个人项目中学到了什么呢？&lt;/li&gt;
+&lt;li&gt;大学期间有没有低谷期间&lt;/li&gt;
+&lt;li&gt;手里有其他的公司的offer吗？&lt;/li&gt;
+&lt;li&gt;offer是哪家公司的？&lt;/li&gt;
+&lt;li&gt;期望薪资是多少，年薪呢？&lt;/li&gt;
+&lt;li&gt;反问&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;四面终面7分钟&#34;&gt;四面（终面，7分钟）&lt;/h2&gt;
+&lt;p&gt;一个非常让人讨厌的领导，说话阴阳怪气的，开头第一句话就是你的成绩不咋地啊（无挂科平均成绩在80+）。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/05%E8%A1%8C%E4%BA%91%E9%9B%86%E5%9B%A2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/05%E8%A1%8C%E4%BA%91%E9%9B%86%E5%9B%A2/</guid>
-      <description>行云集团 自我介绍 实习用到的技术栈和编程语言是什么？ (实习是学校很水的5G通信实习，压根不沾边，随便就过了) Java是什么时候开始接触和学习的</description>
+      <description>&lt;h1 id=&#34;行云集团&#34;&gt;行云集团&lt;/h1&gt;
+&lt;p&gt;自我介绍&lt;/p&gt;
+&lt;p&gt;实习用到的技术栈和编程语言是什么？&lt;/p&gt;
+&lt;p&gt;(实习是学校很水的5G通信实习，压根不沾边，随便就过了)&lt;/p&gt;
+&lt;p&gt;Java是什么时候开始接触和学习的？&lt;/p&gt;
+&lt;p&gt;学习数据结构的时候，对于Map这种数据结构，它的底层是怎么实现的或者有什么特征？&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/06%E4%B8%AD%E7%A8%8E%E6%B1%87%E9%87%91/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/06%E4%B8%AD%E7%A8%8E%E6%B1%87%E9%87%91/</guid>
-      <description>中税汇金 1.你的redis怎么和mysql同步数据的？（我已经忘了我当时做的那个收藏功能同步没有同步，问下xdm这样的收藏功能一般是怎么做的</description>
+      <description>&lt;h1 id=&#34;中税汇金&#34;&gt;中税汇金&lt;/h1&gt;
+&lt;p&gt;1.你的redis怎么和mysql同步数据的？（我已经忘了我当时做的那个收藏功能同步没有同步，问下xdm这样的收藏功能一般是怎么做的）&lt;/p&gt;
+&lt;p&gt;2.你的项目中有MinIO，是什么？&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/07%E5%AD%97%E8%8A%82%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E9%83%A8%E9%97%A8/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/07%E5%AD%97%E8%8A%82%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E9%83%A8%E9%97%A8/</guid>
-      <description>字节大数据基础架构部门 字节面经 一面 2.17 自我介绍 接口和抽象类的区别 了解过啥设计模式 单例模式是啥 工厂模式的作用，为什么要用工厂模式？ 解耦, 把对象的</description>
+      <description>&lt;h1 id=&#34;字节大数据基础架构部门&#34;&gt;字节大数据基础架构部门&lt;/h1&gt;
+&lt;p&gt;字节面经 一面 2.17&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;自我介绍&lt;/li&gt;
+&lt;li&gt;接口和抽象类的区别&lt;/li&gt;
+&lt;li&gt;了解过啥设计模式&lt;/li&gt;
+&lt;li&gt;单例模式是啥&lt;/li&gt;
+&lt;li&gt;工厂模式的作用，为什么要用工厂模式？
+解耦, 把对象的创建和使用的过程分开(就是Class A 想调用Class B,那么只是调用B的方法，而至于B的实例化，就交给工厂类)&lt;/li&gt;
+&lt;li&gt;建造者模式的实现方式&lt;/li&gt;
+&lt;li&gt;在设计模式中你使用抽象类还是接口比较多&lt;/li&gt;
+&lt;li&gt;了解哪些Java锁&lt;/li&gt;
+&lt;li&gt;死锁的必要条件&lt;/li&gt;
+&lt;li&gt;Mysql索引了解吗(那时候不会就直接说不会了)&lt;/li&gt;
+&lt;li&gt;MySql事务隔离级别&lt;/li&gt;
+&lt;li&gt;说一下你用过的Java框架
+(说了Spring 的 ioc/aop 还没说aop就下一问了)&lt;/li&gt;
+&lt;li&gt;项目中如何使用git和maven的
+代码题:
+&lt;ol&gt;
+&lt;li&gt;写一个快排
+1. 快排是否稳定
+2. 什么情况下会退化
+3. 如何优化
+4. 时间复杂度&lt;/li&gt;
+&lt;li&gt;写一个二分查找
+1. 复杂度
+代码题写的太快了, 然后他说时间还没到在问几个问题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;了解分布式吗(NO)&lt;/li&gt;
+&lt;li&gt;说一下Java基础类型&lt;/li&gt;
+&lt;li&gt;为什么int是2的31次方&lt;/li&gt;
+&lt;li&gt;了解Docker吗(NO)&lt;/li&gt;
+&lt;li&gt;什么是Java同步和异步&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;反问:
+1. 部门的业务
+2. 对我的评价&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/08%E7%BE%8E%E5%9B%A2%E5%8D%8E%E4%B8%BA%E5%AD%97%E8%8A%82/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/08%E7%BE%8E%E5%9B%A2%E5%8D%8E%E4%B8%BA%E5%AD%97%E8%8A%82/</guid>
-      <description>美团 一面 挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。 进程线程区别。 死锁，死锁条件。</description>
+      <description>&lt;h1 id=&#34;美团&#34;&gt;美团&lt;/h1&gt;
+&lt;h2 id=&#34;一面&#34;&gt;一面&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;挖项目，问的太多了，这里就不一一列举了，大部分是某个功能是怎么实现的或者如果要加某个功能应该怎么实现。&lt;/li&gt;
+&lt;li&gt;进程线程区别。&lt;/li&gt;
+&lt;li&gt;死锁，死锁条件。&lt;/li&gt;
+&lt;li&gt;知不知道中断和轮询的区别。&lt;/li&gt;
+&lt;li&gt;数据库索引，讨论了一下B+树能存多少数据。&lt;/li&gt;
+&lt;li&gt;数据库存储引擎知道哪些，有什么区别。&lt;/li&gt;
+&lt;li&gt;数据库锁。&lt;/li&gt;
+&lt;li&gt;算法题：起始点到终点最短路径。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;二面&#34;&gt;二面&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;问项目。&lt;/li&gt;
+&lt;li&gt;什么是序列化反序列化。&lt;/li&gt;
+&lt;li&gt;负载均衡，知道哪些负载均衡 。&lt;/li&gt;
+&lt;li&gt;什么时候会OOM，服务OOM怎么办，如何排查。&lt;/li&gt;
+&lt;li&gt;Spring 启动流程。&lt;/li&gt;
+&lt;li&gt;Spring 设计模式。&lt;/li&gt;
+&lt;li&gt;对于模版模式的理解，应用场景，你在项目中是怎么使用的。&lt;/li&gt;
+&lt;li&gt;HTTP 请求过程 。&lt;/li&gt;
+&lt;li&gt;TCP 和 UDP 区别。&lt;/li&gt;
+&lt;li&gt;Linux知道哪些命令。&lt;/li&gt;
+&lt;li&gt;设置索引有什么注意的地方。&lt;/li&gt;
+&lt;li&gt;最近看了哪些书，有什么收获。&lt;/li&gt;
+&lt;li&gt;算法题：合并有序数组 O(N)时间 O(1)空间。&lt;/li&gt;
+&lt;li&gt;数据库设计：只能以半小时为单位订会议室。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;D:%5c%e5%9b%be%e7%89%87%5ctypora%e5%9b%be%e7%89%87%5c1658910627581.png&#34; alt=&#34;1658910627581&#34;  /&gt;
+&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/09%E5%BF%B5%E7%A5%9E%E9%9D%A2%E7%BB%8F/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/09%E5%BF%B5%E7%A5%9E%E9%9D%A2%E7%BB%8F/</guid>
-      <description>念神面经篇 Java基础篇 JDK &amp;amp; JVM &amp;amp; JRE的区别 包装类型的常量池技术 接口和抽象类的区别 String、StringBuffer、StringBui</description>
+      <description>&lt;h1 id=&#34;念神面经篇&#34;&gt;念神面经篇&lt;/h1&gt;
+&lt;h2 id=&#34;java基础篇&#34;&gt;Java基础篇&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;JDK &amp;amp; JVM &amp;amp; JRE的区别&lt;/li&gt;
+&lt;li&gt;包装类型的常量池技术&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;接口和抽象类的区别&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;String、StringBuffer、StringBuilder的区别&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;泛型擦除的原理&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;反射的应用场景&lt;/li&gt;
+&lt;li&gt;异常的类型，具体的例子有哪些&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;说说常用的容器和各自的特点&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;ArrayList的扩容机制&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HashMap源码实现&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ConcurrentHashMap的底层实现&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Lambda表达式有什么好处，什么坏处，应用场景有哪些&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;java并发篇&#34;&gt;Java并发篇&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;为什么要使用多线程，有什么好处，举例具体场景&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;线程的生命周期以及每个周期进入和结束的标志&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;避免死锁的三个必要条件&lt;/li&gt;
+&lt;li&gt;简述哲学家进餐问题和银行家算法&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法？&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;场景题：&lt;strong&gt;如何实现一个实时排序的游戏战力榜单&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;场景题：&lt;strong&gt;如何实现一个竞技场挑战功能，考虑高并发&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;volatile的用法&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;synchronized和ReentrantLock的区别&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;乐观锁和悲观锁的底层实现&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不加锁如何保证线程安全&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;synchronized是可重入锁么&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;使用了vector就一定能保证线程安全吗&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;多线程的实现方式&lt;/li&gt;
+&lt;li&gt;场景题：&lt;strong&gt;高并发的情况下保证数据的一致性怎么做到&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;场景题：&lt;strong&gt;有10个线程分别对 i = 0 做10次自增操作，最后 i 的值会是多少，为什么&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;ThreadLocal的原理&lt;/li&gt;
+&lt;li&gt;场景题：&lt;strong&gt;在生产者消费者问题中怎么保证当消费者用完产品后生产者会马上得知，不能使用while循环去解决&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Java的线程池类型有哪些&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Java线程池的参数以及其具体意义&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;线程池的拒绝策略&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;jvm篇&#34;&gt;JVM篇&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;JVM的基本结构&lt;/li&gt;
+&lt;li&gt;双亲委派模型的好处&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;运行时数据区的基本结构，各种结构都有什么用途&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;垃圾回收策略&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;垃圾回收器都有哪些&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;如何判断一个类是无用的类&lt;/li&gt;
+&lt;li&gt;查看运行内存，JVM状态有什么方法&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;G1回收器与之前的回收器相比最大的不同是什么&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;类加载的过程是什么，每个过程具体做到了什么事&lt;/li&gt;
+&lt;li&gt;JVM的常用参数有哪些&lt;/li&gt;
+&lt;li&gt;JVM调优常用的手段是什么&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;spring篇&#34;&gt;Spring篇&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Spring的特性和优势是什么&lt;/li&gt;
+&lt;li&gt;Spring有哪些组件&lt;/li&gt;
+&lt;li&gt;场景题：&lt;strong&gt;如果实现一个你自己的Spring框架需要考虑那些方面，简单聊聊&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Spring MVC底层实现原理&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;IOC 和 AOP 具体介绍一下&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Spring Bean是什么&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;IOC 和 DI 是什么关系&lt;/li&gt;
+&lt;li&gt;IOC 配置的三种方式&lt;/li&gt;
+&lt;li&gt;依赖注入的三种方式&lt;/li&gt;
+&lt;li&gt;为什么推荐构造器注入方式？&lt;/li&gt;
+&lt;li&gt;场景题：&lt;strong&gt;在使用构造器注入方式时注入了太多的类导致Bad Smell怎么办&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;AspectJ注解方式接触过吗，具体说说有什么特点和不足&lt;/li&gt;
+&lt;li&gt;Spring为何不能解决非单例属性之外的循环依赖？&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Spring中Bean的生命周期介绍一下&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;场景题：自定义一个你自己的starter怎么实现（开共享屏幕实现）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;mybatis篇&#34;&gt;MyBatis篇&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;接口层和数据库交互的方式有哪些&lt;/li&gt;
+&lt;li&gt;简述MyBatis的层次结构&lt;/li&gt;
+&lt;li&gt;sqlSessionFactory 与 SqlSession介绍一下&lt;/li&gt;
+&lt;li&gt;Excutor的概念&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;动态SQL有哪些，都有什么用途&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;为什么要使用连接池&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;$ 和 # 的区别&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;计算机网络篇&#34;&gt;计算机网络篇&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OSI和TCP/IP介绍一下&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTTP和HTTPS的区别&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;HTTPS的加密手段是什么&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;三次握手的过程以及每一次起到了什么作用&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;四次挥手的过程以及每一次起到了什么作用&lt;/li&gt;
+&lt;li&gt;TCP协议中的流量控制起到什么作用&lt;/li&gt;
+&lt;li&gt;介绍一下ARQ协议&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;从输入URL到页面加载发生了什么&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTTP 如何保存用户状态&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cookie 的作用是什么&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cookie 和 Session 有什么区别&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTTP状态码有哪些&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;数据库篇&#34;&gt;数据库篇&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;数据库设计通常分为哪几步&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MySQL的分页怎么做的&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MyISAM和InnoDB的区别&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MySQL日志都有什么，分别有什么作用&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;读锁和写锁实现的底层原理&lt;/li&gt;
+&lt;li&gt;表级锁和行级锁的实现原理&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;事务的特性&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;并发事务带来的问题有哪些&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;事务隔离级别有哪些&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;场景题：MySQL对于千万级的数据库或者大表怎么处理&lt;/li&gt;
+&lt;li&gt;MVCC解决什么问题&lt;/li&gt;
+&lt;li&gt;索引有什么作用&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;索引的底层数据结构&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;为什么InnoDB使用B+树作为索引的数据结构&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;索引有哪些种类&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;为什么会出现回表查询，怎么避免&lt;/li&gt;
+&lt;li&gt;解释一下最左前缀法则&lt;/li&gt;
+&lt;li&gt;覆盖索引是什么意思&lt;/li&gt;
+&lt;li&gt;MySQL读写分离方案&lt;/li&gt;
+&lt;li&gt;MySQL主从复制是什么意思&lt;/li&gt;
+&lt;li&gt;MySQL主从的延迟怎么解决&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;redis篇&#34;&gt;Redis篇&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;为什么Redis 是单线程的&lt;/li&gt;
+&lt;li&gt;Redis 一般有哪些使用场景&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Redis 有哪些数据类型，每一种都有什么实际应用&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;sds存在的意义&lt;/li&gt;
+&lt;li&gt;为什么会设计Redis Stream&lt;/li&gt;
+&lt;li&gt;Redis Stream消费者崩溃带来的会不会消息丢失问题&lt;/li&gt;
+&lt;li&gt;Redis Steam 坏消息问题，死信问题&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Redis 的持久化机制是什么&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;AOF是写前日志还是写后日志&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Redis 过期键的删除策略有哪些&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Redis 内存淘汰算法有哪些&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Redis如何做内存优化&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Redis事务相关命令&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Redis事务中出现错误的处理&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;为什么 Redis 不支持回滚&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Redis缓存有哪些问题，如何解决&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Redis6.0之前为什么一致不用多线程&lt;/li&gt;
+&lt;/ul&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/10%E7%99%BE%E5%BA%A6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/10%E7%99%BE%E5%BA%A6/</guid>
-      <description>百度Java中级面试 Spring BeanFactory 和 ApplicationContext 有什么区别 1、BeanFactory 可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义， 以便在</description>
+      <description>&lt;h1 id=&#34;百度java中级面试&#34;&gt;百度Java中级面试&lt;/h1&gt;
+&lt;h1 id=&#34;spring&#34;&gt;Spring&lt;/h1&gt;
+&lt;h2 id=&#34;beanfactory-和-applicationcontext-有什么区别&#34;&gt;BeanFactory 和 ApplicationContext 有什么区别&lt;/h2&gt;
+&lt;p&gt;1、BeanFactory 可以理解为含有 bean 集合的工厂类。BeanFactory 包含了种 bean 的定义， 以便在接收到客户端请求时将对应的 bean 实例化。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/11%E4%BA%AC%E4%B8%9C/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/11%E4%BA%AC%E4%B8%9C/</guid>
-      <description>京东Java中级面试 1、哪些情况下的对象会被垃圾回收机制处理掉？ 利用可达性分析算法，虚拟机会将一些对象定义为 GC Roots，从 GC Roots 出发沿着引用</description>
+      <description>&lt;h1 id=&#34;京东java中级面试&#34;&gt;京东Java中级面试&lt;/h1&gt;
+&lt;h2 id=&#34;1哪些情况下的对象会被垃圾回收机制处理掉&#34;&gt;1、哪些情况下的对象会被垃圾回收机制处理掉？&lt;/h2&gt;
+&lt;p&gt;利用可达性分析算法，虚拟机会将一些对象定义为 GC Roots，从 GC Roots 出发沿着引用链&lt;/p&gt;
+&lt;p&gt;向下寻找，如果某个对象不能通过 GC Roots 寻找到，虚拟机就认为该对象可以被回收掉。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/12%E8%9A%82%E8%9A%81/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/12%E8%9A%82%E8%9A%81/</guid>
-      <description>蚂蚁面试题总结 1. jdk1.7到jdk1.8 Map发生了什么变化(底层)? 1.8之后hashMap的数据结构发生了变化，从之前的单纯的数组+链</description>
+      <description>&lt;h1 id=&#34;蚂蚁面试题总结&#34;&gt;蚂蚁面试题总结&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;1. jdk1.7到jdk1.8 Map发生了什么变化(底层)?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1.8之后hashMap的数据结构发生了变化，从之前的单纯的数组+链表结构变成数组+链表+红黑树。也就是说在JVM存储hashMap的K-V时仅仅通过key来决定每一个entry的存储槽位（Node[]中的index）。并且Value以链表的形式挂在到对应槽位上（1.8以后如果value长度大于8则转为红黑树）。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/13%E8%BD%AF%E9%80%9A%E5%8A%A8%E5%8A%9B/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/13%E8%BD%AF%E9%80%9A%E5%8A%A8%E5%8A%9B/</guid>
-      <description>软通动力Java中级 1、锁可以锁在哪里？ Java 为程序加锁的方式主要有两种：synchronized 与 Lock。 1、synchronized 可以修</description>
+      <description>&lt;h1 id=&#34;软通动力java中级&#34;&gt;软通动力Java中级&lt;/h1&gt;
+&lt;h2 id=&#34;1锁可以锁在哪里&#34;&gt;1、锁可以锁在哪里？&lt;/h2&gt;
+&lt;p&gt;Java 为程序加锁的方式主要有两种：synchronized 与 Lock。&lt;/p&gt;
+&lt;p&gt;1、synchronized 可以修饰的作用域如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;非静态方法（加的锁为对象锁）；&lt;/li&gt;
+&lt;li&gt;静态方法（加的锁为类锁）；&lt;/li&gt;
+&lt;li&gt;代码块（对象锁与类锁均可）；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2、Lock 采用 lock()对代码加锁，unlock()进行解锁&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/</guid>
-      <description>银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成： Eureka：各个服务启动时，Eur</description>
+      <description>&lt;h1 id=&#34;银盛支付java中级&#34;&gt;银盛支付Java中级&lt;/h1&gt;
+&lt;h2 id=&#34;1-说说springcloud的作原理&#34;&gt;1. 说说springcloud的⼯作原理&lt;/h2&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;D:%5c%e5%9b%be%e7%89%87%5ctypora%e5%9b%be%e7%89%87%5c1655976037341.png&#34; alt=&#34;1655976037341&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;springcloud由以下⼏个核⼼组件构成：&lt;/p&gt;
+&lt;p&gt;Eureka：各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/15%E4%B8%AD%E8%BD%AF%E5%9B%BD%E9%99%85/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/15%E4%B8%AD%E8%BD%AF%E5%9B%BD%E9%99%85/</guid>
-      <description>中软国际Java中级 1、java 中==和 equals 和 hashCode 的区别 1）==若是基本数据类型比较，是比较值，若是引用类型，则比较的是他们在内存中的存放地址。</description>
+      <description>&lt;h1 id=&#34;中软国际java中级&#34;&gt;中软国际Java中级&lt;/h1&gt;
+&lt;h2 id=&#34;1java-中和-equals-和-hashcode-的区别&#34;&gt;1、java 中==和 equals 和 hashCode 的区别&lt;/h2&gt;
+&lt;p&gt;1）==若是基本数据类型比较，是比较值，若是引用类型，则比较的是他们在内存中的存放地址。对象是存放在堆中，栈中存放的对象的引用，所以==是对栈中的值进行比较，若返回 true 代表变量的内存地址相等；&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/beijing-01/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/beijing-01/</guid>
-      <description>北京(上) 大家好，我是大白，以程序员的视角看北京系列终于和大家见面了。因为北京适合程序员工作的企业实在太多了，所以怎样给大家介绍北京适合程序</description>
+      <description>&lt;h1 id=&#34;北京上&#34;&gt;北京(上)&lt;/h1&gt;
+&lt;p&gt;大家好，我是大白，以程序员的视角看北京系列终于和大家见面了。因为北京适合程序员工作的企业实在太多了，所以怎样给大家介绍北京适合程序员的工作机会一直让我十分头疼。如果写的太简单，我跟大家说北京有百度、腾讯、阿里、美团等等，大家一定觉得我是在废话，但把所有企业一次性全介绍了工作量太大，并且文章也看不出重点了。所以我最终决定，北京拆成三篇来讲，一篇介绍北京的国企央企研究所、一篇介绍北京的大型互联网公司和大型外企、一篇介绍北京的中小型互联网公司。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/beijing-02/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/beijing-02/</guid>
-      <description>北京(下) 大家好呀，我是大白。第一篇“程序员在北京可以选择哪些国企、央企以及研究所”发出后被一些读者和号主夸奖了，十分开心。没看过的朋友也可</description>
+      <description>&lt;h1 id=&#34;北京下&#34;&gt;北京(下)&lt;/h1&gt;
+&lt;p&gt;大家好呀，我是大白。第一篇“&lt;a href=&#34;https://mp.weixin.qq.com/s/OcmLbLqzogZzdg285NIhWg&#34;&gt;程序员在北京可以选择哪些国企、央企以及研究所&lt;/a&gt;”发出后被一些读者和号主夸奖了，十分开心。没看过的朋友也可以通过链接进去看看呀。今天我们就继续来看看北京有哪些大型的互联网公司。写完这篇再写下北京比较不错的中小型互联网公司，就可以收官了。&lt;/p&gt;
+&lt;p&gt;北京的繁华程度自然不用我多说。特别是对于程序员来说，北京有数量庞大的互联网公司。所以许多计算机相关专业的学生刚毕业时都会想着来北京闯一闯，一方面多学点东西，另一方面多挣点钱。今天这篇文章我们会介绍一下互联网大厂和大型外企在北京这边的部门以及特点。再讲下大厂程序员在北京的生活。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/changsha/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/changsha/</guid>
-      <description>长沙 大家好，我是大白。这篇文章首发在我的公众号【CS指南】上，发出后受到了很大读者的支持，也有许多读者对文章信息进行了补充。目前的信息已经越</description>
+      <description>&lt;h1 id=&#34;长沙&#34;&gt;长沙&lt;/h1&gt;
+&lt;p&gt;大家好，我是大白。这篇文章首发在我的公众号【CS指南】上，发出后受到了很大读者的支持，也有许多读者对文章信息进行了补充。目前的信息已经越来越全面了，但相同公司不同部门不同组的情况也差别很大，这里只能介绍一个总体情况，如果大家有更多的信息，欢迎联系我补充呀。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/chengdu/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/chengdu/</guid>
-      <description>成都 在一些读者的强烈要求后，我终于开始对成都下手了。成都近些年发展的速度极其的快，感觉西部地区的互联网环境能发展成这样实属不易。今天我们就以</description>
+      <description>&lt;h1 id=&#34;成都&#34;&gt;成都&lt;/h1&gt;
+&lt;p&gt;在一些读者的强烈要求后，我终于开始对成都下手了。成都近些年发展的速度极其的快，感觉西部地区的互联网环境能发展成这样实属不易。今天我们就以程序员的视角带你看成都。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/dalian/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/dalian/</guid>
-      <description>大连 大家好呀，我是大白。今天我们来以程序员的视角看一下美丽的大连。话说我印象中大连是没有什么程序员的就业机会的。但是一直有读者想让我写，那我</description>
+      <description>&lt;h1 id=&#34;大连&#34;&gt;大连&lt;/h1&gt;
+&lt;p&gt;大家好呀，我是大白。今天我们来以程序员的视角看一下美丽的大连。话说我印象中大连是没有什么程序员的就业机会的。但是一直有读者想让我写，那我就安排一下。不过在调研大连的互联网环境时，还是发现几个让我惊喜的公司，还有号称山海关以北最强的开发团队。一起来看吧！&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/guangzhou/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/guangzhou/</guid>
-      <description>广州 大家好呀，这篇文章首发在我的微信公众号CS指南上，发出来以后受到了许多读者的支持，也有大量读者对信息进行了补充，信息已经越来越全面了。我</description>
+      <description>&lt;h1 id=&#34;广州&#34;&gt;广州&lt;/h1&gt;
+&lt;p&gt;大家好呀，这篇文章首发在我的微信公众号&lt;strong&gt;CS指南&lt;/strong&gt;上，发出来以后受到了许多读者的支持，也有大量读者对信息进行了补充，信息已经越来越全面了。我把我最近收集到的信息以及读者的补充添加到了文章中。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/hangzhou/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/hangzhou/</guid>
-      <description>杭州 一二线大厂 字节跳动 基本情况 ：字节总部在北京，在上海、深圳、杭州、广州、成都等地都有办公室。今年 6 月，抖音电商落户杭州。 业务方向 ：抖音电商</description>
+      <description>&lt;h1 id=&#34;杭州&#34;&gt;杭州&lt;/h1&gt;
+&lt;h2 id=&#34;一二线大厂&#34;&gt;一二线大厂&lt;/h2&gt;
+&lt;h3 id=&#34;字节跳动&#34;&gt;字节跳动&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f498726d346f425883cb82addb9dc98d~tplv-k3u1fbpfcp-zoom-1.image&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;基本情况&lt;/strong&gt; ：字节总部在北京，在上海、深圳、杭州、广州、成都等地都有办公室。今年 6 月，抖音电商落户杭州。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;业务方向&lt;/strong&gt; ：抖音电商、抖音餐饮、字节跳动广告业务、字节跳动本地生活&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;工作地点&lt;/strong&gt; ：余杭区中国杭州 5G 创新园 5 层、余杭区杭州巨量引擎网络技术有限公司 1401&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;福利情况&lt;/strong&gt;：六险一金(12%)、包三餐、免费下午茶+零食、免费健身房、Top 薪酬、住房补贴&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;招聘情况&lt;/strong&gt;：主要招聘后端（Java、Go）、前端、测试等岗位。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;面试&lt;/strong&gt; ： 面试这块的话，主要是问计算机基础知识，一般先会让你做一道算法题，算法题的难度还是比较大的。字节的面试有个好处是可以对你反复进行打捞，就是说你面挂一个部门以后，可以马上再转投另一个部门，并且好多部门是不用笔试直接进面试的。我前前后后面了字节三个部门，并且都是第二面，或者三面挂&amp;hellip;我有种感觉就是整个 九月 都在跟字节面试官聊天。但最终也没通过字节面试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;阿里系&#34;&gt;阿里系&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6730ba457c6f4a90acc16ffa90c3f541~tplv-k3u1fbpfcp-zoom-1.image&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/nanjing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/nanjing/</guid>
-      <description>南京 大家好呀，我是大白。被读者催了好久，我终于开始调研南京的互联网公司了。南京是很有吸引力的一座城市，我在西安读研时听我导师和其它老师闲聊，</description>
+      <description>&lt;h1 id=&#34;南京&#34;&gt;南京&lt;/h1&gt;
+&lt;p&gt;大家好呀，我是大白。被读者催了好久，我终于开始调研南京的互联网公司了。南京是很有吸引力的一座城市，我在西安读研时听我导师和其它老师闲聊，就说很多我们学院看上的老师，最后都被南京的学校抢走了。最近我也发现许多安徽人都选择去南京工作生活。有句话说的很对，”安徽不能没有南京，就像东北不能没有三亚“。不过我调研中也发现，对于程序员来说，想要在南京留下也不是件很容易的事情，因为南京程序员的工作机会只能算一般，薪资水平这两年许多大公司选择在南京设立分部后才带起来一些，但是南京的房价已经很高了。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/qingdao/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/qingdao/</guid>
-      <description>青岛 最近我发现青岛的呼声很高，所以我就先把青岛安排了。我和青岛的缘分来自于我的山东舍友、同学以及师兄。在三年的研究生生活中，以及我山东舍友带</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://coderrenxy.github.io/posts/read/react%E7%AF%87/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://coderrenxy.github.io/posts/read/react%E7%AF%87/</guid>
-      <description>一、组件基础 1. React 事件机制 1 &amp;lt;div onClick={this.handleClick.bind(this)}&amp;gt;点我&amp;lt;/div&amp;gt; R</description>
+      <description>&lt;h1 id=&#34;青岛&#34;&gt;青岛&lt;/h1&gt;
+&lt;p&gt;最近我发现青岛的呼声很高，所以我就先把青岛安排了。我和青岛的缘分来自于我的山东舍友、同学以及师兄。在三年的研究生生活中，以及我山东舍友带我们宿舍去青岛的毕业旅行，让我深刻的体会到了山东文化。我身边的山东同学一直给我一种努力并且踏实的感觉，还很热心。另外我发现山东人大部分都能哈酒，特别讲究酒文化，那个山东舍友带我们宿舍去青岛还有日照哈了一周的酒，最后真顶不住了。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/shanghai/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/shanghai/</guid>
-      <description>上海 大家中午好啊！我是大白。 程序员视角观城市系列已经更新有 6 期了，我们一起看了西安、长沙、天津、广州、青岛。除了广州之外，其余的都是二线城市</description>
+      <description>&lt;h1 id=&#34;上海&#34;&gt;上海&lt;/h1&gt;
+&lt;p&gt;大家中午好啊！我是大白。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzIxNDM1NjAyMQ==&amp;amp;action=getalbum&amp;amp;album_id=1917623991146446855&amp;amp;scene=173&amp;amp;from_msgid=2247485546&amp;amp;from_itemidx=1&amp;amp;count=3&amp;amp;nolastread=1#wechat_redirect&#34;&gt;程序员视角观城市&lt;/a&gt;系列已经更新有 6 期了，我们一起看了西安、长沙、天津、广州、青岛。除了广州之外，其余的都是二线城市。&lt;/p&gt;
+&lt;p&gt;最近，上海的呼声比较高（在上海工作的小伙伴很多啊）。于是，我利用晚上下班回家之后的自由支配时间整理了一下上海的互联网公司和生活情况。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/suzhou/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/suzhou/</guid>
-      <description>苏州 大家好呀，我是大白，许多读者想让我写一下苏州，我们今天就来看下苏州的互联网环境。 有句话叫做上有天堂，下有苏杭，不过有一说一，互联网环境方</description>
+      <description>&lt;h1 id=&#34;苏州&#34;&gt;苏州&lt;/h1&gt;
+&lt;p&gt;大家好呀，我是大白，许多读者想让我写一下苏州，我们今天就来看下苏州的互联网环境。&lt;/p&gt;
+&lt;p&gt;有句话叫做上有天堂，下有苏杭，不过有一说一，互联网环境方面苏州和杭州可是差了一大截。但是我个人还是很看好苏州的，而且从 18 年左右开始，苏州的互联网环境开始有了明显的改善。生活方面无论是苏州的地理位置，还是人文环境，都是十分适合居住生活的。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/tianjin/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/tianjin/</guid>
-      <description>天津 大家好，我是大白。这篇文章首发在我的公众号【CS指南】上，发出后受到了很大读者的支持，也有许多读者对文章信息进行了补充。目前的信息已经越</description>
+      <description>&lt;h1 id=&#34;天津&#34;&gt;天津&lt;/h1&gt;
+&lt;p&gt;大家好，我是大白。这篇文章首发在我的公众号【CS指南】上，发出后受到了很大读者的支持，也有许多读者对文章信息进行了补充。目前的信息已经越来越全面了，但相同公司不同部门不同组的情况也差别很大，这里只能介绍一个总体情况，如果大家有更多的信息，欢迎联系我补充呀。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/wuhan/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/wuhan/</guid>
-      <description>武汉 国内一二线大厂 字节跳动 基本情况 ：字节总部在北京，在上海、深圳、杭州、广州、成都等地都有办公室。字节跳动 2018 年来到武汉，近几年的招聘规模非常</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://coderrenxy.github.io/posts/read/xian/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://coderrenxy.github.io/posts/read/xian/</guid>
-      <description>西安 大家好呀，这篇文章首发在我的微信公众号CS指南上，发出来以后受到了许多读者的支持，也有大量读者对信息进行了补充，信息已经越来越全面了。我</description>
+      <description>&lt;h1 id=&#34;武汉&#34;&gt;武汉&lt;/h1&gt;
+&lt;h2 id=&#34;国内一二线大厂&#34;&gt;国内一二线大厂&lt;/h2&gt;
+&lt;h3 id=&#34;字节跳动&#34;&gt;字节跳动&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://img-blog.csdnimg.cn/c8f21424ac2449efaf1e740d48f77534.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;基本情况&lt;/strong&gt; ：字节总部在北京，在上海、深圳、杭州、广州、成都等地都有办公室。字节跳动 2018 年来到武汉，近几年的招聘规模非常大，研发人员的数目也越来越多！&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;业务方向&lt;/strong&gt; ：效率工程（Efficiency Engineering）、飞书、aPaaS（对标业内顶级 PaaS 和 SaaS 平台产品）、抖音电商。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;工作地点&lt;/strong&gt; ：洪山区关山大道保利广场保利国际中心&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;福利情况&lt;/strong&gt;：六险一金(12%)、包三餐、免费下午茶+零食、免费健身房、Top 薪酬、住房补贴&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;招聘情况&lt;/strong&gt;：主要招聘后端（Java、Go）、前端、测试等岗位。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;面试&lt;/strong&gt; ： 面试这块的话，主要是问计算机基础知识，一般先会让你做一道算法题，算法题的难度还是比较大的。字节的面试有个好处是可以对你反复进行打捞，就是说你面挂一个部门以后，可以马上再转投另一个部门，并且好多部门是不用笔试直接进面试的。我前前后后面了字节三个部门，并且都是第二面，或者三面挂&amp;hellip;我有种感觉就是整个 九月 都在跟字节面试官聊天。但最终也没通过字节面试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;华为&#34;&gt;华为&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://img-blog.csdnimg.cn/489838698c2542a7a1c9ff178bd452b6.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;</description>
     </item>
     
     <item>
       <title></title>
       <link>https://coderrenxy.github.io/posts/read/zhengzhou/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/zhengzhou/</guid>
-      <description>郑州 大家好，我是大白。这篇文章首发在我的公众号【CS指南】上，发出后受到了很大读者的支持，也有许多读者对文章信息进行了补充。 由于我本人对郑州</description>
+      <description>&lt;h1 id=&#34;郑州&#34;&gt;郑州&lt;/h1&gt;
+&lt;p&gt;大家好，我是大白。这篇文章首发在我的公众号【CS指南】上，发出后受到了很大读者的支持，也有许多读者对文章信息进行了补充。&lt;/p&gt;
+&lt;p&gt;由于我本人对郑州不是很了解，于是我咨询了很多在郑州工作和上学的朋友之后才把郑州的给安排了！&lt;/p&gt;</description>
     </item>
     
     
@@ -759,9 +1314,61 @@
       <title>🤝友链</title>
       <link>https://coderrenxy.github.io/links/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://coderrenxy.github.io/links/</guid>
-      <description>小任同学&amp;#39;s Blog 小任同学的博客 BanTanger 这是半糖先生的博客 小林coding 这是林佬的网站 添加 期待加入... 👉友链格式 名称： 小任同学 网址： https://coderrenxy.github.io/ 图标</description>
+      <description>&lt;p&gt;&lt;a target=&#34;_blank&#34; href=https://coderrenxy.github.io/ title=小任同学&amp;#39;s&amp;#32;Blog class=&#34;friendurl&#34;&gt;
+  &lt;div class=&#34;frienddiv&#34;&gt;
+    &lt;div class=&#34;frienddivleft&#34;&gt;
+      &lt;img class=&#34;myfriend&#34; src=https://coderrenxy.github.io/img/icon-512.png /&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;frienddivright&#34;&gt;
+      &lt;div class=&#34;friendname&#34;&gt;小任同学&amp;#39;s Blog&lt;/div&gt;
+      &lt;div class=&#34;friendinfo&#34;&gt;小任同学的博客&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/a&gt;
+
+&lt;a target=&#34;_blank&#34; href=https://bantanger.github.io/ title=BanTanger class=&#34;friendurl&#34;&gt;
+  &lt;div class=&#34;frienddiv&#34;&gt;
+    &lt;div class=&#34;frienddivleft&#34;&gt;
+      &lt;img class=&#34;myfriend&#34; src=https://coderrenxy.github.io/img/babyshark.jpg /&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;frienddivright&#34;&gt;
+      &lt;div class=&#34;friendname&#34;&gt;BanTanger&lt;/div&gt;
+      &lt;div class=&#34;friendinfo&#34;&gt;这是半糖先生的博客&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/a&gt;
+
+&lt;a target=&#34;_blank&#34; href=https://xiaolincoding.com/ title=小林coding class=&#34;friendurl&#34;&gt;
+  &lt;div class=&#34;frienddiv&#34;&gt;
+    &lt;div class=&#34;frienddivleft&#34;&gt;
+      &lt;img class=&#34;myfriend&#34; src=https://xiaolincoding.com/logo.webp /&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;frienddivright&#34;&gt;
+      &lt;div class=&#34;friendname&#34;&gt;小林coding&lt;/div&gt;
+      &lt;div class=&#34;friendinfo&#34;&gt;这是林佬的网站&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/a&gt;
+
+&lt;a target=&#34;_blank&#34; href=https://t.me/RenCigarette title=添加 class=&#34;friendurl&#34;&gt;
+  &lt;div class=&#34;frienddiv&#34;&gt;
+    &lt;div class=&#34;frienddivleft&#34;&gt;
+      &lt;img class=&#34;myfriend&#34; src=https://coderrenxy.github.io/img/add.png /&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;frienddivright&#34;&gt;
+      &lt;div class=&#34;friendname&#34;&gt;添加&lt;/div&gt;
+      &lt;div class=&#34;friendinfo&#34;&gt;期待加入...&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/a&gt;
+
+&lt;br&gt;&lt;br&gt;
+👉友链格式 &lt;br&gt;&lt;br&gt;
+名称：  小任同学&lt;hr&gt;
+网址：  https://coderrenxy.github.io/&lt;hr&gt;
+图标：  https://coderrenxy.github.io/img/icon-512.png&lt;hr&gt;
+描述：  小任同学的博客&lt;hr&gt;&lt;br&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -9,13 +9,18 @@
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <meta name="keywords" content="" />
-<meta name="description" content="银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成： Eureka：各个服务启动时，Eur">
+<meta name="description" content="银盛支付Java中级
+1. 说说springcloud的⼯作原理
+
+
+springcloud由以下⼏个核⼼组件构成：
+Eureka：各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉">
 <meta name="author" content="
 作者:&nbsp;小任同学">
 <link rel="canonical" href="https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.a72221503009ebb69a3a9b181466ab3d9a645200323c4ba68b8b9cc95b7befbd.css" integrity="sha256-pyIhUDAJ67aaOpsYFGarPZpkUgAyPEumi4ucyVt7770=" rel="preload stylesheet" as="style">
 <link rel="preload" href="img/icon-32.png" as="image">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.199271f351c4b46f0d0536b6e2eb89a4766040c0e8df57f1a695c6570d8a4e0f.js" integrity="sha256-GZJx81HEtG8NBTa24uuJpHZgQMDo31fxppXGVw2KTg8="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
@@ -24,7 +29,8 @@
 <link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.1" />
+<meta name="generator" content="Hugo 0.159.1">
+<link rel="alternate" hreflang="en" href="https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -62,7 +68,12 @@
 
     </style>
 </noscript><meta property="og:title" content="" />
-<meta property="og:description" content="银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成： Eureka：各个服务启动时，Eur" />
+<meta property="og:description" content="银盛支付Java中级
+1. 说说springcloud的⼯作原理
+
+
+springcloud由以下⼏个核⼼组件构成：
+Eureka：各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://coderrenxy.github.io/posts/read/14%E9%93%B6%E7%9B%9B%E6%94%AF%E4%BB%98/" /><meta property="article:section" content="posts" />
 
@@ -70,8 +81,12 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成： Eureka：各个服务启动时，Eur"/>
+<meta name="twitter:description" content="银盛支付Java中级
+1. 说说springcloud的⼯作原理
 
+
+springcloud由以下⼏个核⼼组件构成：
+Eureka：各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉"/>
 
 <script type="application/ld+json">
 {
@@ -105,11 +120,11 @@
   "@type": "BlogPosting",
   "headline": "",
   "name": "",
-  "description": "银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成： Eureka：各个服务启动时，Eur",
+  "description": "银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成：\nEureka：各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉\n",
   "keywords": [
     
   ],
-  "articleBody": "银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成：\nEureka：各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉\n取注册表，从⽽知道其他服务在哪⾥\nRibbon：服务间发起请求的时候，基于Ribbon做负载均衡，从⼀个服务的多台机器中选择⼀台\nFeign：基于Feign的动态代理机制，根据注解和选择的机器，拼接请求URL地址，发起请求\nHystrix：发起请求是通过Hystrix的线程池来⾛的，不同的服务⾛不同的线程池，实现了不同服务调⽤的隔离，避免了服务雪崩\n的问题\nZuul：如果前端、移动端要调⽤后端系统，统⼀从Zuul⽹关进⼊，由Zuul⽹关转发请求给对应的服务\n2. ⽤什么组件发请求 在Spring Cloud中使⽤Feign, 我们可以做到使⽤HTTP请求远程服务时能与调⽤本地⽅法⼀样的编码体验，开发者完全感知不到\n这是远程⽅法，更感知不到这是个HTTP请求。\n3. 注册中心心跳是几秒 1、Eureka的客户端默认每隔30s会向eureka服务端更新实例，注册中⼼也会定时进⾏检查，发现某个实例默认90s内没有再收到\n⼼跳，会注销此实例，这些时间间隔是可配置的。\n2、不过注册中⼼还有⼀个保护模式（服务端在短时间内丢失过多客户端的时候，就会进⼊保护模式），在这个保护模式下，他\n会认为是⽹络问题，不会注销任何过期的实例。\n4. 消费者是如何发现服务提供者的 a. 当⼀个服务实例启动，会将它的ip地址等信息注册到eureka；\nb. 当a服务调⽤b服务，a服务会通过Ribbon检查本地是否有b服务实例信息的缓存；\nc. Ribbon会定期从eureka刷新本地缓存。\n5. 多个消费者调用同⼀接⼝，eruka默认的分配方式是什么 a. RoundRobinRule:轮询策略，Ribbon以轮询的⽅式选择服务器，这个是默认值。所以示例中所启动的两个服务会被循环访问;\nb. RandomRule:随机选择，也就是说Ribbon会随机从服务器列表中选择⼀个进⾏访问;\nc. BestAvailableRule:最⼤可⽤策略，即先过滤出故障服务器后，选择⼀个当前并发请求数最⼩的;\nd. WeightedResponseTimeRule:带有加权的轮询策略，对各个服务器响应时间进⾏加权处理，然后在采⽤轮询的⽅式来获取相\n应的服务器;\ne. AvailabilityFilteringRule:可⽤过滤策略，先过滤出故障的或并发请求⼤于阈值⼀部分服务实例，然后再以线性轮询的⽅式从\n过滤后的实例清单中选出⼀个;\nf. ZoneAvoidanceRule:区域感知策略，先使⽤主过滤条件（区域负载器，选择最优区域）对所有实例过滤并返回过滤后的实例\n清单，依次使⽤次过滤条件列表中的过滤条件对主过滤条件的结果进⾏过滤，判断最⼩过滤数（默认1）和最⼩过滤百分⽐（默\n认0），最后对满⾜条件的服务器则使⽤RoundRobinRule(轮询⽅式)选择⼀个服务器实例。\n6. 说说常⽤的springboot注解，及其实现？\na. @Bean：注册Bean\ni. 默认使⽤⽅法名作为id，可以在后⾯定义id如@Bean(“xx”)；\nii. 默认为单例。\niii. 可以指定init⽅法和destroy⽅法：\n  对象创建和赋值完成，调⽤初始化⽅法；\n  单实例bean在容器销毁的时候执⾏destroy⽅法；\n  多实例bean，容器关闭是不会调⽤destroy⽅法。\n  b. @Scope：Bean作⽤域\ni. 默认为singleton；\nii. 类型：\n singleton单实例（默认值）：ioc容器启动时会调⽤⽅法创建对象放到ioc容器中，以后每次获取就是直接从容器中拿  实例；\n prototype多实例：ioc容器启动不会创建对象，每次获取时才会调⽤⽅法创建实例；\n  request同⼀次请求创建⼀个实例；\n  session同⼀个session创建⼀个实例。\n  c. @Value：给变量赋值\ni. 代码：\n1 2 3 4 5 6 7 8 9 10 11  import org.springframework.beans.factory.annotation.Value; public class Person extends BaseEntity{ @Value(\"xuan\") private String name; @Value(\"27\") private int age; @Value(\"#{20-7}\") private int count; @Value(\"$person.nickName}\") private String nickName; }   i. ⽅式：\n  基本数字\n  可以写SpEL（Spring EL表达式）：#{}\n  可以写${}，取出配置⽂件中的值（在运⾏环境变量⾥⾯的值）\n  d. @Autowired：⾃动装配\ni. 默认优先按照类型去容器中找对应的组件：BookService bookService = applicationContext.getBean(BookService.class);\nii. 默认⼀定要找到，如果没有找到则报错。可以使⽤@Autowired(required = false)标记bean为⾮必须的。\niii. 如果找到多个相同类型的组件，再根据属性名称去容器中查找。\niv. @Qualifier(“bookDao2”)明确的指定要装配的bean。\nv. @Primary：让spring默认装配⾸选的bean，也可以使⽤@Qualifier()指定要装配的bean。\ne. @Profile：环境标识\ni. Spring为我们提供的可以根据当前环境，动态的激活和切换⼀系列组件的功能；\nii. @Profile指定组件在哪个环境才能被注册到容器中，默认为\"default\"@Profile(“default”)。\niii. 激活⽅式：\n  运⾏时添加虚拟机参数：-Dspring.profiles.active=test\n  代码⽅式：\n  7. spring的事务注解是什么？什么情况下事物才会回滚 a. spring事务实现机制：\nb. 事务注解@transactional；\nc. 默认情况下，如果在事务中抛出了未检查异常（继承⾃ RuntimeException 的异常）或者 Error，则 Spring 将回滚事务。\nd. @Transactional 只能应⽤到 public ⽅法才有效：只有@Transactional 注解应⽤到 public ⽅法，才能进⾏事务管理。这是因为\n在使⽤ Spring AOP 代理时，Spring 在调⽤在图 1 中的 TransactionInterceptor 在⽬标⽅法执⾏前后进⾏拦截之前，\nDynamicAdvisedInterceptor（CglibAopProxy 的内部类）的的 intercept ⽅法或 JdkDynamicAopProxy 的 invoke ⽅法会间接调\n⽤ AbstractFallbackTransactionAttributeSource（Spring 通过这个类获取表 1. @Transactional 注解的事务属性配置属性信息）\n的 computeTransactionAttribute ⽅法。\n8. 说说spring事物的传播性和隔离级别 a. 七个事传播属性：\n  PROPAGATION_REQUIRED – ⽀持当前事务，如果当前没有事务，就新建⼀个事务。这是最常⻅的选择。\n  PROPAGATION_SUPPORTS – ⽀持当前事务，如果当前没有事务，就以⾮事务⽅式执⾏。\n  PROPAGATION_MANDATORY – ⽀持当前事务，如果当前没有事务，就抛出异常。\n  PROPAGATIONREQUIRESNEW – 新建事务，如果当前存在事务，把当前事务挂起\n  PROPAGATIONNOTSUPPORTED – 以⾮事务⽅式执⾏操作，如果当前存在事务，就把当前事务挂起。\n  PROPAGATION_NEVER – 以⾮事务⽅式执⾏，如果当前存在事务，则抛出异常。\n  PROPAGATIONNESTED – 如果当前存在事务，则在嵌套事务内执⾏。如果当前没有事务，则进⾏与 PROPAGATIONREQUIRED类似的操作。\n  b. 五个隔离级别：\n  ISOLATION_DEFAULT 这是⼀个PlatfromTransactionManager默认的隔离级别，使⽤数据库默认的事务隔离级别.\n  另外四个与JDBC的隔离级别相对应：\n  ISOLATIONREADUNCOMMITTED 这是事务最低的隔离级别，它充许别外⼀个事务可以看到这个事务未提交的数据。这种\n  隔离级别会产⽣脏读，不可重复读和幻读。\n ISOLATIONREADCOMMITTED 保证⼀个事务修改的数据提交后才能被另外⼀个事务读取。另外⼀个事务不能读取该事务未提交的数据。这种事务隔离级别可以避免脏读出现，但是可能会出现不可重复读和幻读。\n  ISOLATIONREPEATABLEREAD 这种事务隔离级别可以防⽌脏读，不可重复读。但是可能出现幻读。它除了保证⼀个事务不能读取另⼀个事务未提交的数据外，还保证了避免不可重复读。\n  ISOLATION_SERIALIZABLE 这是花费最⾼代价但是最可靠的事务隔离级别。事务被处理为顺序执⾏。除了防⽌脏读，不可重复读外，还避免了幻读。\n  c. 关键词：\n1、脏读（新增或删除）：脏读就是指当⼀个事务正在访问数据，并且对数据进⾏了修改，⽽这种修改还没有提交到数据库 中，这时，另外⼀个事务也访问这个数据，然后使⽤了这个数据；\n Mary的原工资为1000，财务人员将Mary的工资改为了8000（但未提交事务） Mary读取自己的工资，发现自己的工资变为了8000，欢天喜地！ 而财务发现操作有误，回滚了事务，May的工资又变为了1000像这样，Mary记取的工资数8000是一个脏数据。  2、不可重复读（修改）：是指在⼀个事务内，多次读同⼀数据。在这个事务还没有结束时，另外⼀个事务也访问该同⼀数据。那么，在第⼀个事务中的两次读数据之间，由于第⼆个事务的修改，那么第⼀个事务两次读到的的数据可能是不⼀样的。这样在⼀个事务内两次读到的数据是不⼀样的，因此称为是不可重复读。（解决：只有在修改事务完全提交之后才可以读取数据，则可以避免该问题）；\n 在事务1中，May读取了自己的工资为1000，操作并没有完成 在事务2中，这时财务人员修改了Mary的工资为2000，并提交了事务. 在事务1中，Mary再次读取自己的工资时，工资变为了2000  3、幻读（新增或删除）：是指当事务不是独⽴执⾏时发⽣的⼀种现象，例如第⼀个事务对⼀个表中的数据进⾏了修改，这种修改涉及到表中的全部数据⾏。同时，第⼆个事务也修改这个表中的数据，这种修改是向表中插⼊⼀⾏新数据。那么，以后就会发⽣操作第⼀个事务的⽤户发现表中还有没有修改的数据⾏，就好象发⽣了幻觉⼀样（解决：如果在操作事务完成数据处理之前，任何其他事务都不可以添加新数据，则可避免该问题）。\n目前工资为1000的员工有10人。\n 事务1，读取所有工资为1000的员工。 这时事务2向employee表插入了一条员工记录，工资也为1000 事务1再次读取所有工资为1000的员工共读取到了11条记录。  9. mysql的引擎有什么？他们的区别 a. InnoDB：\n  ⽀持事务处理\n  ⽀持外键\n  ⽀持⾏锁\n  不⽀持FULLTEXT类型的索引（在Mysql5.6已引⼊）\n  不保存表的具体⾏数，扫描表来计算有多少行\n  对于AUTO_INCREMENT类型的字段，必须包含只有该字段的索引\n  DELETE 表时，是一行一行的删除\n  InnoDB 把数据和索引存放在表空间⾥⾯\n  跨平台可直接拷⻉使⽤\n  表格很难被压缩\n  b. MyISAM：\n  不⽀持事务，回滚将造成不完全回滚，不具有原⼦性\n  不⽀持外键\n  ⽀持全⽂搜索\n  保存表的具体⾏数,不带where时，直接返回保存的⾏数\n  DELETE 表时，先drop表，然后重建表\n  MyISAM 表被存放在三个⽂件 。frm ⽂件存放表格定义。 数据⽂件是MYD (MYData) 。 索引⽂件是MYI (MYIndex)引伸\n  跨平台很难直接拷⻉\n  AUTO_INCREMENT类型字段可以和其他字段⼀起建⽴联合索引\n  表格可以被压缩\n  c. 选择：因为MyISAM相对简单所以在效率上要优于InnoDB.如果系统读多，写少。对原⼦性要求低。那么MyISAM最好的选择。且MyISAM恢复速度快。可直接⽤备份覆盖恢复。如果系统读少，写多的时候，尤其是并发写⼊⾼的时候。InnoDB就是⾸选了。两种类型都有⾃⼰优缺点，选择那个完全要看⾃⼰的实际类弄。\n10. innodb如何实现mysql的事务 事务进行过程中，每次sql语句执⾏，都会记录undo log和redo log，然后更新数据形成脏⻚，然后redo log按照时间或者空间等条件进⾏落盘，undo log和脏⻚按照checkpoint进⾏落盘，落盘后相应的redo log就可以删除了。此时，事务还未COMMIT，如果发⽣崩溃，则⾸先检查checkpoint记录，使⽤相应的redo log进⾏数据和undo log的恢复，然后查看undo log的状态发现事务尚未提交，然后就使⽤undo log进⾏事务回滚。事务执⾏COMMIT操作时，会将本事务相关的所有redo log都进行落盘，只有所有redo log落盘成功，才算COMMIT成功。然后内存中的数据脏⻚继续按照checkpoint进⾏落盘。如果此时发生了崩溃，则只使⽤redo log恢复数据。\n11.mysql索引谈⼀谈 12.说说b+树的原理 a. B-tree：\nB-tree 利⽤了磁盘块的特性进⾏构建的树。每个磁盘块⼀个节点，每个节点包含了很关键字。把树的节点关键字增多后树的层级⽐原来的⼆叉树少了，减少数据查找的次数和复杂度。\nB-tree巧妙利⽤了磁盘预读原理，将⼀个节点的⼤⼩设为等于⼀个⻚（每⻚为4K），这样每个节点只需要⼀次I/O就可以完全载入。\nB-tree 的数据可以存在任何节点中。\n B+tree：  B+tree 是 B-tree 的变种，B+tree 数据只存储在叶⼦节点中。这样在B树的基础上每个节点存储的关键字数更多，树的层级更少\n所以查询数据更快，所有指关键字指针都存在叶⼦节点，所以每次查找的次数都相同所以查询速度更稳定;\n13. 让你设计⼀个索引，你会怎么设计 a. mysql默认存储引擎innodb只显式⽀持B树索引，对于频繁访问的表，innodb会透明建⽴⾃适应hash索引，即在B树索引基础上建⽴hash索引，可以显著提⾼查找效率，对于客户端是透明的，不可控制的，隐式的。\n14. 还问了git和svn的区别 1、Git是分布式的，⽽Svn不是；\n2、GIT把内容按元数据⽅式存储，⽽SVN是按⽂件\n3、分⽀不同：git分⽀切换很⽅便；svn分⽀就是版本库的另外⼀个⽬录；\n4、GIT没有⼀个全局的版本号，⽽svn有，SVN的版本号实际是任何⼀个相应时间的源代码快照。\n5、GIT的内容完整性要优于SVN(GIT的内容存储使⽤的是SHA-1哈希算法。这能确保代码内容的完整性，确保在遇到磁盘故障和⽹络问题\n时降低对版本库的破坏。)\n15. git命令的⼀些底层原理以及流程 https://www.jianshu.com/p/2b47a3078a46\na. git init：使⽤git init初始化⼀个新的⽬录时，会⽣成⼀个.git的⽬录，该⽬录即为本地仓库。⼀个新初始化的本地仓库是这样的：\n1 2 3 4 5 6 7 8 9 10 11  - HEAD - branches - config - description - hook - objects - - info - - pack - refs - - heads - - tags    description⽤于GitWeb程序 config配置特定于该仓库的设置（还记得git config的三个配置级别么） hooks放置客户端或服务端的hook脚本 HEAD传说中的HEAD指针，指明当前处于哪个分⽀ objectsGit对象存储⽬录 refsGit引⽤存储⽬录 branches放置分⽀引⽤的⽬录 其中description、config和hooks这些不在讨论中，后⽂会直接忽略。  b. git add：Git commit之前先要通过git add添加⽂件：\n可以看到，多了⼀个index⽂件。并且在objects⽬录下多了⼀个9f的⽬录，其中多了⼀个\n4d96d5b00d98959ea9960f069585ce42b1349a⽂件。\n其实9f4d96d5b00d98959ea9960f069585ce42b1349a就是⼀个Git对象，称为blob对象。\nc. git commit：\n",
+  "articleBody": "银盛支付Java中级 1. 说说springcloud的⼯作原理 springcloud由以下⼏个核⼼组件构成：\nEureka：各个服务启动时，Eureka Client都会将服务注册到Eureka Server，并且Eureka Client还可以反过来从Eureka Server拉\n取注册表，从⽽知道其他服务在哪⾥\nRibbon：服务间发起请求的时候，基于Ribbon做负载均衡，从⼀个服务的多台机器中选择⼀台\nFeign：基于Feign的动态代理机制，根据注解和选择的机器，拼接请求URL地址，发起请求\nHystrix：发起请求是通过Hystrix的线程池来⾛的，不同的服务⾛不同的线程池，实现了不同服务调⽤的隔离，避免了服务雪崩\n的问题\nZuul：如果前端、移动端要调⽤后端系统，统⼀从Zuul⽹关进⼊，由Zuul⽹关转发请求给对应的服务\n2. ⽤什么组件发请求 在Spring Cloud中使⽤Feign, 我们可以做到使⽤HTTP请求远程服务时能与调⽤本地⽅法⼀样的编码体验，开发者完全感知不到\n这是远程⽅法，更感知不到这是个HTTP请求。\n3. 注册中心心跳是几秒 1、Eureka的客户端默认每隔30s会向eureka服务端更新实例，注册中⼼也会定时进⾏检查，发现某个实例默认90s内没有再收到\n⼼跳，会注销此实例，这些时间间隔是可配置的。\n2、不过注册中⼼还有⼀个保护模式（服务端在短时间内丢失过多客户端的时候，就会进⼊保护模式），在这个保护模式下，他\n会认为是⽹络问题，不会注销任何过期的实例。\n4. 消费者是如何发现服务提供者的 a. 当⼀个服务实例启动，会将它的ip地址等信息注册到eureka；\nb. 当a服务调⽤b服务，a服务会通过Ribbon检查本地是否有b服务实例信息的缓存；\nc. Ribbon会定期从eureka刷新本地缓存。\n5. 多个消费者调用同⼀接⼝，eruka默认的分配方式是什么 a. RoundRobinRule:轮询策略，Ribbon以轮询的⽅式选择服务器，这个是默认值。所以示例中所启动的两个服务会被循环访问;\nb. RandomRule:随机选择，也就是说Ribbon会随机从服务器列表中选择⼀个进⾏访问;\nc. BestAvailableRule:最⼤可⽤策略，即先过滤出故障服务器后，选择⼀个当前并发请求数最⼩的;\nd. WeightedResponseTimeRule:带有加权的轮询策略，对各个服务器响应时间进⾏加权处理，然后在采⽤轮询的⽅式来获取相\n应的服务器;\ne. AvailabilityFilteringRule:可⽤过滤策略，先过滤出故障的或并发请求⼤于阈值⼀部分服务实例，然后再以线性轮询的⽅式从\n过滤后的实例清单中选出⼀个;\nf. ZoneAvoidanceRule:区域感知策略，先使⽤主过滤条件（区域负载器，选择最优区域）对所有实例过滤并返回过滤后的实例\n清单，依次使⽤次过滤条件列表中的过滤条件对主过滤条件的结果进⾏过滤，判断最⼩过滤数（默认1）和最⼩过滤百分⽐（默\n认0），最后对满⾜条件的服务器则使⽤RoundRobinRule(轮询⽅式)选择⼀个服务器实例。\n6. 说说常⽤的springboot注解，及其实现？\na. @Bean：注册Bean\ni. 默认使⽤⽅法名作为id，可以在后⾯定义id如@Bean(“xx”)；\nii. 默认为单例。\niii. 可以指定init⽅法和destroy⽅法：\n对象创建和赋值完成，调⽤初始化⽅法；\n单实例bean在容器销毁的时候执⾏destroy⽅法；\n多实例bean，容器关闭是不会调⽤destroy⽅法。\nb. @Scope：Bean作⽤域\ni. 默认为singleton；\nii. 类型：\nsingleton单实例（默认值）：ioc容器启动时会调⽤⽅法创建对象放到ioc容器中，以后每次获取就是直接从容器中拿 实例；\nprototype多实例：ioc容器启动不会创建对象，每次获取时才会调⽤⽅法创建实例；\nrequest同⼀次请求创建⼀个实例；\nsession同⼀个session创建⼀个实例。\nc. @Value：给变量赋值\ni. 代码：\n1 2 3 4 5 6 7 8 9 10 11 import org.springframework.beans.factory.annotation.Value; public class Person extends BaseEntity{ @Value(\"xuan\") private String name; @Value(\"27\") private int age; @Value(\"#{20-7}\") private int count; @Value(\"$person.nickName}\") private String nickName; } i. ⽅式：\n基本数字\n可以写SpEL（Spring EL表达式）：#{}\n可以写${}，取出配置⽂件中的值（在运⾏环境变量⾥⾯的值）\nd. @Autowired：⾃动装配\ni. 默认优先按照类型去容器中找对应的组件：BookService bookService = applicationContext.getBean(BookService.class);\nii. 默认⼀定要找到，如果没有找到则报错。可以使⽤@Autowired(required = false)标记bean为⾮必须的。\niii. 如果找到多个相同类型的组件，再根据属性名称去容器中查找。\niv. @Qualifier(“bookDao2”)明确的指定要装配的bean。\nv. @Primary：让spring默认装配⾸选的bean，也可以使⽤@Qualifier()指定要装配的bean。\ne. @Profile：环境标识\ni. Spring为我们提供的可以根据当前环境，动态的激活和切换⼀系列组件的功能；\nii. @Profile指定组件在哪个环境才能被注册到容器中，默认为\"default\"@Profile(“default”)。\niii. 激活⽅式：\n运⾏时添加虚拟机参数：-Dspring.profiles.active=test\n代码⽅式：\n7. spring的事务注解是什么？什么情况下事物才会回滚 a. spring事务实现机制：\nb. 事务注解@transactional；\nc. 默认情况下，如果在事务中抛出了未检查异常（继承⾃ RuntimeException 的异常）或者 Error，则 Spring 将回滚事务。\nd. @Transactional 只能应⽤到 public ⽅法才有效：只有@Transactional 注解应⽤到 public ⽅法，才能进⾏事务管理。这是因为\n在使⽤ Spring AOP 代理时，Spring 在调⽤在图 1 中的 TransactionInterceptor 在⽬标⽅法执⾏前后进⾏拦截之前，\nDynamicAdvisedInterceptor（CglibAopProxy 的内部类）的的 intercept ⽅法或 JdkDynamicAopProxy 的 invoke ⽅法会间接调\n⽤ AbstractFallbackTransactionAttributeSource（Spring 通过这个类获取表 1. @Transactional 注解的事务属性配置属性信息）\n的 computeTransactionAttribute ⽅法。\n8. 说说spring事物的传播性和隔离级别 a. 七个事传播属性：\nPROPAGATION_REQUIRED – ⽀持当前事务，如果当前没有事务，就新建⼀个事务。这是最常⻅的选择。\nPROPAGATION_SUPPORTS – ⽀持当前事务，如果当前没有事务，就以⾮事务⽅式执⾏。\nPROPAGATION_MANDATORY – ⽀持当前事务，如果当前没有事务，就抛出异常。\nPROPAGATIONREQUIRESNEW – 新建事务，如果当前存在事务，把当前事务挂起\nPROPAGATIONNOTSUPPORTED – 以⾮事务⽅式执⾏操作，如果当前存在事务，就把当前事务挂起。\nPROPAGATION_NEVER – 以⾮事务⽅式执⾏，如果当前存在事务，则抛出异常。\nPROPAGATIONNESTED – 如果当前存在事务，则在嵌套事务内执⾏。如果当前没有事务，则进⾏与 PROPAGATIONREQUIRED类似的操作。\nb. 五个隔离级别：\nISOLATION_DEFAULT 这是⼀个PlatfromTransactionManager默认的隔离级别，使⽤数据库默认的事务隔离级别.\n另外四个与JDBC的隔离级别相对应：\nISOLATIONREADUNCOMMITTED 这是事务最低的隔离级别，它充许别外⼀个事务可以看到这个事务未提交的数据。这种\n隔离级别会产⽣脏读，不可重复读和幻读。\nISOLATIONREADCOMMITTED 保证⼀个事务修改的数据提交后才能被另外⼀个事务读取。另外⼀个事务不能读取该事务未提交的数据。这种事务隔离级别可以避免脏读出现，但是可能会出现不可重复读和幻读。\nISOLATIONREPEATABLEREAD 这种事务隔离级别可以防⽌脏读，不可重复读。但是可能出现幻读。它除了保证⼀个事务不能读取另⼀个事务未提交的数据外，还保证了避免不可重复读。\nISOLATION_SERIALIZABLE 这是花费最⾼代价但是最可靠的事务隔离级别。事务被处理为顺序执⾏。除了防⽌脏读，不可重复读外，还避免了幻读。\nc. 关键词：\n1、脏读（新增或删除）：脏读就是指当⼀个事务正在访问数据，并且对数据进⾏了修改，⽽这种修改还没有提交到数据库 中，这时，另外⼀个事务也访问这个数据，然后使⽤了这个数据；\nMary的原工资为1000，财务人员将Mary的工资改为了8000（但未提交事务） Mary读取自己的工资，发现自己的工资变为了8000，欢天喜地！ 而财务发现操作有误，回滚了事务，May的工资又变为了1000像这样，Mary记取的工资数8000是一个脏数据。 2、不可重复读（修改）：是指在⼀个事务内，多次读同⼀数据。在这个事务还没有结束时，另外⼀个事务也访问该同⼀数据。那么，在第⼀个事务中的两次读数据之间，由于第⼆个事务的修改，那么第⼀个事务两次读到的的数据可能是不⼀样的。这样在⼀个事务内两次读到的数据是不⼀样的，因此称为是不可重复读。（解决：只有在修改事务完全提交之后才可以读取数据，则可以避免该问题）；\n在事务1中，May读取了自己的工资为1000，操作并没有完成 在事务2中，这时财务人员修改了Mary的工资为2000，并提交了事务. 在事务1中，Mary再次读取自己的工资时，工资变为了2000 3、幻读（新增或删除）：是指当事务不是独⽴执⾏时发⽣的⼀种现象，例如第⼀个事务对⼀个表中的数据进⾏了修改，这种修改涉及到表中的全部数据⾏。同时，第⼆个事务也修改这个表中的数据，这种修改是向表中插⼊⼀⾏新数据。那么，以后就会发⽣操作第⼀个事务的⽤户发现表中还有没有修改的数据⾏，就好象发⽣了幻觉⼀样（解决：如果在操作事务完成数据处理之前，任何其他事务都不可以添加新数据，则可避免该问题）。\n目前工资为1000的员工有10人。\n事务1，读取所有工资为1000的员工。 这时事务2向employee表插入了一条员工记录，工资也为1000 事务1再次读取所有工资为1000的员工共读取到了11条记录。 9. mysql的引擎有什么？他们的区别 a. InnoDB：\n⽀持事务处理\n⽀持外键\n⽀持⾏锁\n不⽀持FULLTEXT类型的索引（在Mysql5.6已引⼊）\n不保存表的具体⾏数，扫描表来计算有多少行\n对于AUTO_INCREMENT类型的字段，必须包含只有该字段的索引\nDELETE 表时，是一行一行的删除\nInnoDB 把数据和索引存放在表空间⾥⾯\n跨平台可直接拷⻉使⽤\n表格很难被压缩\nb. MyISAM：\n不⽀持事务，回滚将造成不完全回滚，不具有原⼦性\n不⽀持外键\n⽀持全⽂搜索\n保存表的具体⾏数,不带where时，直接返回保存的⾏数\nDELETE 表时，先drop表，然后重建表\nMyISAM 表被存放在三个⽂件 。frm ⽂件存放表格定义。 数据⽂件是MYD (MYData) 。 索引⽂件是MYI (MYIndex)引伸\n跨平台很难直接拷⻉\nAUTO_INCREMENT类型字段可以和其他字段⼀起建⽴联合索引\n表格可以被压缩\nc. 选择：因为MyISAM相对简单所以在效率上要优于InnoDB.如果系统读多，写少。对原⼦性要求低。那么MyISAM最好的选择。且MyISAM恢复速度快。可直接⽤备份覆盖恢复。如果系统读少，写多的时候，尤其是并发写⼊⾼的时候。InnoDB就是⾸选了。两种类型都有⾃⼰优缺点，选择那个完全要看⾃⼰的实际类弄。\n10. innodb如何实现mysql的事务 事务进行过程中，每次sql语句执⾏，都会记录undo log和redo log，然后更新数据形成脏⻚，然后redo log按照时间或者空间等条件进⾏落盘，undo log和脏⻚按照checkpoint进⾏落盘，落盘后相应的redo log就可以删除了。此时，事务还未COMMIT，如果发⽣崩溃，则⾸先检查checkpoint记录，使⽤相应的redo log进⾏数据和undo log的恢复，然后查看undo log的状态发现事务尚未提交，然后就使⽤undo log进⾏事务回滚。事务执⾏COMMIT操作时，会将本事务相关的所有redo log都进行落盘，只有所有redo log落盘成功，才算COMMIT成功。然后内存中的数据脏⻚继续按照checkpoint进⾏落盘。如果此时发生了崩溃，则只使⽤redo log恢复数据。\n11.mysql索引谈⼀谈 12.说说b+树的原理 a. B-tree：\nB-tree 利⽤了磁盘块的特性进⾏构建的树。每个磁盘块⼀个节点，每个节点包含了很关键字。把树的节点关键字增多后树的层级⽐原来的⼆叉树少了，减少数据查找的次数和复杂度。\nB-tree巧妙利⽤了磁盘预读原理，将⼀个节点的⼤⼩设为等于⼀个⻚（每⻚为4K），这样每个节点只需要⼀次I/O就可以完全载入。\nB-tree 的数据可以存在任何节点中。\nB+tree： B+tree 是 B-tree 的变种，B+tree 数据只存储在叶⼦节点中。这样在B树的基础上每个节点存储的关键字数更多，树的层级更少\n所以查询数据更快，所有指关键字指针都存在叶⼦节点，所以每次查找的次数都相同所以查询速度更稳定;\n13. 让你设计⼀个索引，你会怎么设计 a. mysql默认存储引擎innodb只显式⽀持B树索引，对于频繁访问的表，innodb会透明建⽴⾃适应hash索引，即在B树索引基础上建⽴hash索引，可以显著提⾼查找效率，对于客户端是透明的，不可控制的，隐式的。\n14. 还问了git和svn的区别 1、Git是分布式的，⽽Svn不是；\n2、GIT把内容按元数据⽅式存储，⽽SVN是按⽂件\n3、分⽀不同：git分⽀切换很⽅便；svn分⽀就是版本库的另外⼀个⽬录；\n4、GIT没有⼀个全局的版本号，⽽svn有，SVN的版本号实际是任何⼀个相应时间的源代码快照。\n5、GIT的内容完整性要优于SVN(GIT的内容存储使⽤的是SHA-1哈希算法。这能确保代码内容的完整性，确保在遇到磁盘故障和⽹络问题\n时降低对版本库的破坏。)\n15. git命令的⼀些底层原理以及流程 https://www.jianshu.com/p/2b47a3078a46\na. git init：使⽤git init初始化⼀个新的⽬录时，会⽣成⼀个.git的⽬录，该⽬录即为本地仓库。⼀个新初始化的本地仓库是这样的：\n1 2 3 4 5 6 7 8 9 10 11 - HEAD - branches - config - description - hook - objects - - info - - pack - refs - - heads - - tags description⽤于GitWeb程序 config配置特定于该仓库的设置（还记得git config的三个配置级别么） hooks放置客户端或服务端的hook脚本 HEAD传说中的HEAD指针，指明当前处于哪个分⽀ objectsGit对象存储⽬录 refsGit引⽤存储⽬录 branches放置分⽀引⽤的⽬录 其中description、config和hooks这些不在讨论中，后⽂会直接忽略。 b. git add：Git commit之前先要通过git add添加⽂件：\n可以看到，多了⼀个index⽂件。并且在objects⽬录下多了⼀个9f的⽬录，其中多了⼀个\n4d96d5b00d98959ea9960f069585ce42b1349a⽂件。\n其实9f4d96d5b00d98959ea9960f069585ce42b1349a就是⼀个Git对象，称为blob对象。\nc. git commit：\n",
   "wordCount" : "5898",
   "inLanguage": "en",
   "datePublished": "0001-01-01T00:00:00Z",
@@ -173,6 +188,8 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
             </span>
         </div>
         <ul id="menu">
@@ -234,8 +251,8 @@
 
 
 
-更新:&nbsp;0001-01-01&nbsp;|&nbsp;字数:&nbsp;5898字&nbsp;|&nbsp;时长: 12分钟&nbsp;|&nbsp;
-作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/14%e3%80%81%e9%93%b6%e7%9b%9b%e6%94%af%e4%bb%98.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+更新:&amp;nbsp;0001-01-01&amp;nbsp;|&amp;nbsp;字数:&amp;nbsp;5898字&amp;nbsp;|&amp;nbsp;时长: 12分钟&amp;nbsp;|&amp;nbsp;
+作者:&amp;nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/14%e3%80%81%e9%93%b6%e7%9b%9b%e6%94%af%e4%bb%98.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -293,10 +310,12 @@
         checkTocPosition();
 
         elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
-         
-         activeElement = elements[0];
-         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
-         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        if (elements.length) {
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            const firstLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
+            if (firstLink) firstLink.classList.add('active');
+        }
      }, false);
 
     window.addEventListener('resize', function(event) {
@@ -304,7 +323,7 @@
     }, false);
 
     window.addEventListener('scroll', () => {
-        
+        if (!elements || !elements.length) return;
         activeElement = Array.from(elements).find((element) => {
             if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
                 (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
@@ -314,25 +333,35 @@
 
         elements.forEach(element => {
              const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             const link = document.querySelector(`.inner ul li a[href="#${id}"]`);
+             if (!link) return;
              if (element === activeElement){
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                 link.classList.add('active');
              } else {
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                 link.classList.remove('active');
              }
          })
      }, false);
 
-    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
-    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
-    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+    function readCssPx(name, fallback) {
+        const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+        const n = parseInt(raw, 10);
+        return Number.isFinite(n) && n > 0 ? n : fallback;
+    }
 
     function checkTocPosition() {
-        const width = document.body.scrollWidth;
+        const main = readCssPx('--article-width', 650);
+        const toc = readCssPx('--toc-width', 300);
+        const gap = readCssPx('--gap', 24);
+        const width = document.documentElement.clientWidth;
+        const el = document.getElementById("toc-container");
+        if (!el) return;
 
-        if (width - main - (toc * 2) - (gap * 4) > 0) {
-            document.getElementById("toc-container").classList.add("wide");
+         
+        if (width - main - (toc * 2) - (gap * 2) > 0) {
+            el.classList.add("wide");
         } else {
-            document.getElementById("toc-container").classList.remove("wide");
+            el.classList.remove("wide");
         }
     }
 
@@ -419,33 +448,33 @@
 </ol>
 <p>c. @Value：给变量赋值</p>
 <p>i. 代码：</p>
-<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#d75f00">import</span> org.springframework.beans.factory.annotation.Value; 
-<span style="color:#0087ff">public</span> <span style="color:#0087ff">class</span> <span style="color:#0087ff">Person</span> <span style="color:#0087ff">extends</span> BaseEntity{ 
-     <span style="color:#0087ff">@Value</span>(<span style="color:#00afaf">&#34;xuan&#34;</span>)
-    <span style="color:#0087ff">private</span> String name;
-    <span style="color:#0087ff">@Value</span>(<span style="color:#00afaf">&#34;27&#34;</span>)
-    <span style="color:#0087ff">private</span> <span style="color:#af0000">int</span> age;
-    <span style="color:#0087ff">@Value</span>(<span style="color:#00afaf">&#34;#{20-7}&#34;</span>)
-    <span style="color:#0087ff">private</span> <span style="color:#af0000">int</span> count;
-    <span style="color:#0087ff">@Value</span>(<span style="color:#00afaf">&#34;$person.nickName}&#34;</span>)
-	<span style="color:#0087ff">private</span> String nickName;
-}
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#d75f00">import</span> org.springframework.beans.factory.annotation.Value; 
+</span></span><span style="display:flex;"><span><span style="color:#0087ff">public</span> <span style="color:#0087ff">class</span> <span style="color:#0087ff">Person</span> <span style="color:#0087ff">extends</span> BaseEntity{ 
+</span></span><span style="display:flex;"><span>     <span style="color:#0087ff">@Value</span>(<span style="color:#00afaf">&#34;xuan&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#0087ff">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#0087ff">@Value</span>(<span style="color:#00afaf">&#34;27&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#0087ff">private</span> <span style="color:#af0000">int</span> age;
+</span></span><span style="display:flex;"><span>    <span style="color:#0087ff">@Value</span>(<span style="color:#00afaf">&#34;#{20-7}&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#0087ff">private</span> <span style="color:#af0000">int</span> count;
+</span></span><span style="display:flex;"><span>    <span style="color:#0087ff">@Value</span>(<span style="color:#00afaf">&#34;$person.nickName}&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#0087ff">private</span> String nickName;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>i. ⽅式：</p>
 <ol>
@@ -655,33 +684,33 @@
 <h2 id="15-git命令的些底层原理以及流程">15. git命令的⼀些底层原理以及流程<a hidden class="anchor" aria-hidden="true" href="#15-git命令的些底层原理以及流程">#</a></h2>
 <p><a href="https://www.jianshu.com/p/2b47a3078a46">https://www.jianshu.com/p/2b47a3078a46</a></p>
 <p>a. git init：使⽤git init初始化⼀个新的⽬录时，会⽣成⼀个.git的⽬录，该⽬录即为本地仓库。⼀个新初始化的本地仓库是这样的：</p>
-<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
+<div class="highlight"><div style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#454545">11
 </span></code></pre></td>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">- HEAD
-- branches
-- config
-- description
-- hook
-- objects
-- - info
-- - pack
-- refs
-- - heads
-- - tags
-</code></pre></td></tr></table>
+<pre tabindex="0" style="color:#8a8a8a;background-color:#1c1c1c;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>- HEAD
+</span></span><span style="display:flex;"><span>- branches
+</span></span><span style="display:flex;"><span>- config
+</span></span><span style="display:flex;"><span>- description
+</span></span><span style="display:flex;"><span>- hook
+</span></span><span style="display:flex;"><span>- objects
+</span></span><span style="display:flex;"><span>- - info
+</span></span><span style="display:flex;"><span>- - pack
+</span></span><span style="display:flex;"><span>- refs
+</span></span><span style="display:flex;"><span>- - heads
+</span></span><span style="display:flex;"><span>- - tags
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>description⽤于GitWeb程序</li>
@@ -757,7 +786,7 @@ async>
 </script>
 
 <footer class="footer">
-    <span>&copy; 2023 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>&copy; 2026 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
@@ -771,11 +800,7 @@ async>
     您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 </span>
 <hr>
-<span>
-    如果对您有帮助请赞赏我
-</span>
 
-<img src="/img/money.jpg" width=800px; align:center/>
 
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">

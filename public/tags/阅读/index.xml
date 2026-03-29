@@ -11,7 +11,6 @@
       <title>CSS</title>
       <link>https://coderrenxy.github.io/posts/read/4-css%E7%AF%87/</link>
       <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/4-css%E7%AF%87/</guid>
       <description>css</description>
     </item>
@@ -20,7 +19,6 @@
       <title>HTML</title>
       <link>https://coderrenxy.github.io/posts/read/3-html%E7%AF%87/</link>
       <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/3-html%E7%AF%87/</guid>
       <description>HTML</description>
     </item>
@@ -29,7 +27,6 @@
       <title>JS</title>
       <link>https://coderrenxy.github.io/posts/read/5-javascript%E7%AF%87/</link>
       <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/5-javascript%E7%AF%87/</guid>
       <description>JS</description>
     </item>
@@ -38,9 +35,16 @@
       <title>vue</title>
       <link>https://coderrenxy.github.io/posts/read/13-vue%E7%AF%87/</link>
       <pubDate>Mon, 26 Jun 2023 00:15:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/read/13-vue%E7%AF%87/</guid>
       <description>vue</description>
+    </item>
+    
+    <item>
+      <title>西安</title>
+      <link>https://coderrenxy.github.io/posts/read/xian/</link>
+      <pubDate>Tue, 15 Jun 2021 12:00:00 +0800</pubDate>
+      <guid>https://coderrenxy.github.io/posts/read/xian/</guid>
+      <description>以程序员视角介绍西安的工作机会、生活环境与生活成本（含读者补充）。</description>
     </item>
     
   </channel>

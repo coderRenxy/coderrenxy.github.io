@@ -9,13 +9,153 @@
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <meta name="keywords" content="" />
-<meta name="description" content="念神面经篇 Java基础篇 JDK &amp; JVM &amp; JRE的区别 包装类型的常量池技术 接口和抽象类的区别 String、StringBuffer、StringBui">
+<meta name="description" content="念神面经篇
+Java基础篇
+
+JDK &amp; JVM &amp; JRE的区别
+包装类型的常量池技术
+接口和抽象类的区别
+String、StringBuffer、StringBuilder的区别
+泛型擦除的原理
+反射的应用场景
+异常的类型，具体的例子有哪些
+说说常用的容器和各自的特点
+ArrayList的扩容机制
+HashMap源码实现
+ConcurrentHashMap的底层实现
+Lambda表达式有什么好处，什么坏处，应用场景有哪些
+
+Java并发篇
+
+为什么要使用多线程，有什么好处，举例具体场景
+线程的生命周期以及每个周期进入和结束的标志
+避免死锁的三个必要条件
+简述哲学家进餐问题和银行家算法
+为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法？
+场景题：如何实现一个实时排序的游戏战力榜单
+场景题：如何实现一个竞技场挑战功能，考虑高并发
+volatile的用法
+synchronized和ReentrantLock的区别
+乐观锁和悲观锁的底层实现
+不加锁如何保证线程安全
+synchronized是可重入锁么
+使用了vector就一定能保证线程安全吗
+多线程的实现方式
+场景题：高并发的情况下保证数据的一致性怎么做到
+场景题：有10个线程分别对 i = 0 做10次自增操作，最后 i 的值会是多少，为什么
+ThreadLocal的原理
+场景题：在生产者消费者问题中怎么保证当消费者用完产品后生产者会马上得知，不能使用while循环去解决
+Java的线程池类型有哪些
+Java线程池的参数以及其具体意义
+线程池的拒绝策略
+
+JVM篇
+
+JVM的基本结构
+双亲委派模型的好处
+运行时数据区的基本结构，各种结构都有什么用途
+垃圾回收策略
+垃圾回收器都有哪些
+如何判断一个类是无用的类
+查看运行内存，JVM状态有什么方法
+G1回收器与之前的回收器相比最大的不同是什么
+类加载的过程是什么，每个过程具体做到了什么事
+JVM的常用参数有哪些
+JVM调优常用的手段是什么
+
+Spring篇
+
+Spring的特性和优势是什么
+Spring有哪些组件
+场景题：如果实现一个你自己的Spring框架需要考虑那些方面，简单聊聊
+Spring MVC底层实现原理
+IOC 和 AOP 具体介绍一下
+Spring Bean是什么
+IOC 和 DI 是什么关系
+IOC 配置的三种方式
+依赖注入的三种方式
+为什么推荐构造器注入方式？
+场景题：在使用构造器注入方式时注入了太多的类导致Bad Smell怎么办
+AspectJ注解方式接触过吗，具体说说有什么特点和不足
+Spring为何不能解决非单例属性之外的循环依赖？
+Spring中Bean的生命周期介绍一下
+场景题：自定义一个你自己的starter怎么实现（开共享屏幕实现）
+
+MyBatis篇
+
+接口层和数据库交互的方式有哪些
+简述MyBatis的层次结构
+sqlSessionFactory 与 SqlSession介绍一下
+Excutor的概念
+动态SQL有哪些，都有什么用途
+为什么要使用连接池
+$ 和 # 的区别
+
+计算机网络篇
+
+OSI和TCP/IP介绍一下
+HTTP和HTTPS的区别
+HTTPS的加密手段是什么
+三次握手的过程以及每一次起到了什么作用
+四次挥手的过程以及每一次起到了什么作用
+TCP协议中的流量控制起到什么作用
+介绍一下ARQ协议
+从输入URL到页面加载发生了什么
+HTTP 如何保存用户状态
+Cookie 的作用是什么
+Cookie 和 Session 有什么区别
+HTTP状态码有哪些
+
+数据库篇
+
+数据库设计通常分为哪几步
+MySQL的分页怎么做的
+MyISAM和InnoDB的区别
+MySQL日志都有什么，分别有什么作用
+读锁和写锁实现的底层原理
+表级锁和行级锁的实现原理
+事务的特性
+并发事务带来的问题有哪些
+事务隔离级别有哪些
+场景题：MySQL对于千万级的数据库或者大表怎么处理
+MVCC解决什么问题
+索引有什么作用
+索引的底层数据结构
+为什么InnoDB使用B&#43;树作为索引的数据结构
+索引有哪些种类
+为什么会出现回表查询，怎么避免
+解释一下最左前缀法则
+覆盖索引是什么意思
+MySQL读写分离方案
+MySQL主从复制是什么意思
+MySQL主从的延迟怎么解决
+
+Redis篇
+
+为什么Redis 是单线程的
+Redis 一般有哪些使用场景
+Redis 有哪些数据类型，每一种都有什么实际应用
+sds存在的意义
+为什么会设计Redis Stream
+Redis Stream消费者崩溃带来的会不会消息丢失问题
+Redis Steam 坏消息问题，死信问题
+Redis 的持久化机制是什么
+AOF是写前日志还是写后日志
+Redis 过期键的删除策略有哪些
+Redis 内存淘汰算法有哪些
+Redis如何做内存优化
+Redis事务相关命令
+Redis事务中出现错误的处理
+为什么 Redis 不支持回滚
+Redis缓存有哪些问题，如何解决
+Redis6.0之前为什么一致不用多线程
+">
 <meta name="author" content="
 作者:&nbsp;小任同学">
 <link rel="canonical" href="https://coderrenxy.github.io/posts/read/09%E5%BF%B5%E7%A5%9E%E9%9D%A2%E7%BB%8F/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.a72221503009ebb69a3a9b181466ab3d9a645200323c4ba68b8b9cc95b7befbd.css" integrity="sha256-pyIhUDAJ67aaOpsYFGarPZpkUgAyPEumi4ucyVt7770=" rel="preload stylesheet" as="style">
 <link rel="preload" href="img/icon-32.png" as="image">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.199271f351c4b46f0d0536b6e2eb89a4766040c0e8df57f1a695c6570d8a4e0f.js" integrity="sha256-GZJx81HEtG8NBTa24uuJpHZgQMDo31fxppXGVw2KTg8="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
@@ -24,7 +164,8 @@
 <link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.1" />
+<meta name="generator" content="Hugo 0.159.1">
+<link rel="alternate" hreflang="en" href="https://coderrenxy.github.io/posts/read/09%E5%BF%B5%E7%A5%9E%E9%9D%A2%E7%BB%8F/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -62,7 +203,147 @@
 
     </style>
 </noscript><meta property="og:title" content="" />
-<meta property="og:description" content="念神面经篇 Java基础篇 JDK &amp; JVM &amp; JRE的区别 包装类型的常量池技术 接口和抽象类的区别 String、StringBuffer、StringBui" />
+<meta property="og:description" content="念神面经篇
+Java基础篇
+
+JDK &amp; JVM &amp; JRE的区别
+包装类型的常量池技术
+接口和抽象类的区别
+String、StringBuffer、StringBuilder的区别
+泛型擦除的原理
+反射的应用场景
+异常的类型，具体的例子有哪些
+说说常用的容器和各自的特点
+ArrayList的扩容机制
+HashMap源码实现
+ConcurrentHashMap的底层实现
+Lambda表达式有什么好处，什么坏处，应用场景有哪些
+
+Java并发篇
+
+为什么要使用多线程，有什么好处，举例具体场景
+线程的生命周期以及每个周期进入和结束的标志
+避免死锁的三个必要条件
+简述哲学家进餐问题和银行家算法
+为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法？
+场景题：如何实现一个实时排序的游戏战力榜单
+场景题：如何实现一个竞技场挑战功能，考虑高并发
+volatile的用法
+synchronized和ReentrantLock的区别
+乐观锁和悲观锁的底层实现
+不加锁如何保证线程安全
+synchronized是可重入锁么
+使用了vector就一定能保证线程安全吗
+多线程的实现方式
+场景题：高并发的情况下保证数据的一致性怎么做到
+场景题：有10个线程分别对 i = 0 做10次自增操作，最后 i 的值会是多少，为什么
+ThreadLocal的原理
+场景题：在生产者消费者问题中怎么保证当消费者用完产品后生产者会马上得知，不能使用while循环去解决
+Java的线程池类型有哪些
+Java线程池的参数以及其具体意义
+线程池的拒绝策略
+
+JVM篇
+
+JVM的基本结构
+双亲委派模型的好处
+运行时数据区的基本结构，各种结构都有什么用途
+垃圾回收策略
+垃圾回收器都有哪些
+如何判断一个类是无用的类
+查看运行内存，JVM状态有什么方法
+G1回收器与之前的回收器相比最大的不同是什么
+类加载的过程是什么，每个过程具体做到了什么事
+JVM的常用参数有哪些
+JVM调优常用的手段是什么
+
+Spring篇
+
+Spring的特性和优势是什么
+Spring有哪些组件
+场景题：如果实现一个你自己的Spring框架需要考虑那些方面，简单聊聊
+Spring MVC底层实现原理
+IOC 和 AOP 具体介绍一下
+Spring Bean是什么
+IOC 和 DI 是什么关系
+IOC 配置的三种方式
+依赖注入的三种方式
+为什么推荐构造器注入方式？
+场景题：在使用构造器注入方式时注入了太多的类导致Bad Smell怎么办
+AspectJ注解方式接触过吗，具体说说有什么特点和不足
+Spring为何不能解决非单例属性之外的循环依赖？
+Spring中Bean的生命周期介绍一下
+场景题：自定义一个你自己的starter怎么实现（开共享屏幕实现）
+
+MyBatis篇
+
+接口层和数据库交互的方式有哪些
+简述MyBatis的层次结构
+sqlSessionFactory 与 SqlSession介绍一下
+Excutor的概念
+动态SQL有哪些，都有什么用途
+为什么要使用连接池
+$ 和 # 的区别
+
+计算机网络篇
+
+OSI和TCP/IP介绍一下
+HTTP和HTTPS的区别
+HTTPS的加密手段是什么
+三次握手的过程以及每一次起到了什么作用
+四次挥手的过程以及每一次起到了什么作用
+TCP协议中的流量控制起到什么作用
+介绍一下ARQ协议
+从输入URL到页面加载发生了什么
+HTTP 如何保存用户状态
+Cookie 的作用是什么
+Cookie 和 Session 有什么区别
+HTTP状态码有哪些
+
+数据库篇
+
+数据库设计通常分为哪几步
+MySQL的分页怎么做的
+MyISAM和InnoDB的区别
+MySQL日志都有什么，分别有什么作用
+读锁和写锁实现的底层原理
+表级锁和行级锁的实现原理
+事务的特性
+并发事务带来的问题有哪些
+事务隔离级别有哪些
+场景题：MySQL对于千万级的数据库或者大表怎么处理
+MVCC解决什么问题
+索引有什么作用
+索引的底层数据结构
+为什么InnoDB使用B&#43;树作为索引的数据结构
+索引有哪些种类
+为什么会出现回表查询，怎么避免
+解释一下最左前缀法则
+覆盖索引是什么意思
+MySQL读写分离方案
+MySQL主从复制是什么意思
+MySQL主从的延迟怎么解决
+
+Redis篇
+
+为什么Redis 是单线程的
+Redis 一般有哪些使用场景
+Redis 有哪些数据类型，每一种都有什么实际应用
+sds存在的意义
+为什么会设计Redis Stream
+Redis Stream消费者崩溃带来的会不会消息丢失问题
+Redis Steam 坏消息问题，死信问题
+Redis 的持久化机制是什么
+AOF是写前日志还是写后日志
+Redis 过期键的删除策略有哪些
+Redis 内存淘汰算法有哪些
+Redis如何做内存优化
+Redis事务相关命令
+Redis事务中出现错误的处理
+为什么 Redis 不支持回滚
+Redis缓存有哪些问题，如何解决
+Redis6.0之前为什么一致不用多线程
+" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://coderrenxy.github.io/posts/read/09%E5%BF%B5%E7%A5%9E%E9%9D%A2%E7%BB%8F/" /><meta property="article:section" content="posts" />
 
@@ -70,8 +351,147 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="念神面经篇 Java基础篇 JDK &amp; JVM &amp; JRE的区别 包装类型的常量池技术 接口和抽象类的区别 String、StringBuffer、StringBui"/>
+<meta name="twitter:description" content="念神面经篇
+Java基础篇
 
+JDK &amp; JVM &amp; JRE的区别
+包装类型的常量池技术
+接口和抽象类的区别
+String、StringBuffer、StringBuilder的区别
+泛型擦除的原理
+反射的应用场景
+异常的类型，具体的例子有哪些
+说说常用的容器和各自的特点
+ArrayList的扩容机制
+HashMap源码实现
+ConcurrentHashMap的底层实现
+Lambda表达式有什么好处，什么坏处，应用场景有哪些
+
+Java并发篇
+
+为什么要使用多线程，有什么好处，举例具体场景
+线程的生命周期以及每个周期进入和结束的标志
+避免死锁的三个必要条件
+简述哲学家进餐问题和银行家算法
+为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法？
+场景题：如何实现一个实时排序的游戏战力榜单
+场景题：如何实现一个竞技场挑战功能，考虑高并发
+volatile的用法
+synchronized和ReentrantLock的区别
+乐观锁和悲观锁的底层实现
+不加锁如何保证线程安全
+synchronized是可重入锁么
+使用了vector就一定能保证线程安全吗
+多线程的实现方式
+场景题：高并发的情况下保证数据的一致性怎么做到
+场景题：有10个线程分别对 i = 0 做10次自增操作，最后 i 的值会是多少，为什么
+ThreadLocal的原理
+场景题：在生产者消费者问题中怎么保证当消费者用完产品后生产者会马上得知，不能使用while循环去解决
+Java的线程池类型有哪些
+Java线程池的参数以及其具体意义
+线程池的拒绝策略
+
+JVM篇
+
+JVM的基本结构
+双亲委派模型的好处
+运行时数据区的基本结构，各种结构都有什么用途
+垃圾回收策略
+垃圾回收器都有哪些
+如何判断一个类是无用的类
+查看运行内存，JVM状态有什么方法
+G1回收器与之前的回收器相比最大的不同是什么
+类加载的过程是什么，每个过程具体做到了什么事
+JVM的常用参数有哪些
+JVM调优常用的手段是什么
+
+Spring篇
+
+Spring的特性和优势是什么
+Spring有哪些组件
+场景题：如果实现一个你自己的Spring框架需要考虑那些方面，简单聊聊
+Spring MVC底层实现原理
+IOC 和 AOP 具体介绍一下
+Spring Bean是什么
+IOC 和 DI 是什么关系
+IOC 配置的三种方式
+依赖注入的三种方式
+为什么推荐构造器注入方式？
+场景题：在使用构造器注入方式时注入了太多的类导致Bad Smell怎么办
+AspectJ注解方式接触过吗，具体说说有什么特点和不足
+Spring为何不能解决非单例属性之外的循环依赖？
+Spring中Bean的生命周期介绍一下
+场景题：自定义一个你自己的starter怎么实现（开共享屏幕实现）
+
+MyBatis篇
+
+接口层和数据库交互的方式有哪些
+简述MyBatis的层次结构
+sqlSessionFactory 与 SqlSession介绍一下
+Excutor的概念
+动态SQL有哪些，都有什么用途
+为什么要使用连接池
+$ 和 # 的区别
+
+计算机网络篇
+
+OSI和TCP/IP介绍一下
+HTTP和HTTPS的区别
+HTTPS的加密手段是什么
+三次握手的过程以及每一次起到了什么作用
+四次挥手的过程以及每一次起到了什么作用
+TCP协议中的流量控制起到什么作用
+介绍一下ARQ协议
+从输入URL到页面加载发生了什么
+HTTP 如何保存用户状态
+Cookie 的作用是什么
+Cookie 和 Session 有什么区别
+HTTP状态码有哪些
+
+数据库篇
+
+数据库设计通常分为哪几步
+MySQL的分页怎么做的
+MyISAM和InnoDB的区别
+MySQL日志都有什么，分别有什么作用
+读锁和写锁实现的底层原理
+表级锁和行级锁的实现原理
+事务的特性
+并发事务带来的问题有哪些
+事务隔离级别有哪些
+场景题：MySQL对于千万级的数据库或者大表怎么处理
+MVCC解决什么问题
+索引有什么作用
+索引的底层数据结构
+为什么InnoDB使用B&#43;树作为索引的数据结构
+索引有哪些种类
+为什么会出现回表查询，怎么避免
+解释一下最左前缀法则
+覆盖索引是什么意思
+MySQL读写分离方案
+MySQL主从复制是什么意思
+MySQL主从的延迟怎么解决
+
+Redis篇
+
+为什么Redis 是单线程的
+Redis 一般有哪些使用场景
+Redis 有哪些数据类型，每一种都有什么实际应用
+sds存在的意义
+为什么会设计Redis Stream
+Redis Stream消费者崩溃带来的会不会消息丢失问题
+Redis Steam 坏消息问题，死信问题
+Redis 的持久化机制是什么
+AOF是写前日志还是写后日志
+Redis 过期键的删除策略有哪些
+Redis 内存淘汰算法有哪些
+Redis如何做内存优化
+Redis事务相关命令
+Redis事务中出现错误的处理
+为什么 Redis 不支持回滚
+Redis缓存有哪些问题，如何解决
+Redis6.0之前为什么一致不用多线程
+"/>
 
 <script type="application/ld+json">
 {
@@ -105,11 +525,11 @@
   "@type": "BlogPosting",
   "headline": "",
   "name": "",
-  "description": "念神面经篇 Java基础篇 JDK \u0026amp; JVM \u0026amp; JRE的区别 包装类型的常量池技术 接口和抽象类的区别 String、StringBuffer、StringBui",
+  "description": "念神面经篇 Java基础篇 JDK \u0026amp; JVM \u0026amp; JRE的区别 包装类型的常量池技术 接口和抽象类的区别 String、StringBuffer、StringBuilder的区别 泛型擦除的原理 反射的应用场景 异常的类型，具体的例子有哪些 说说常用的容器和各自的特点 ArrayList的扩容机制 HashMap源码实现 ConcurrentHashMap的底层实现 Lambda表达式有什么好处，什么坏处，应用场景有哪些 Java并发篇 为什么要使用多线程，有什么好处，举例具体场景 线程的生命周期以及每个周期进入和结束的标志 避免死锁的三个必要条件 简述哲学家进餐问题和银行家算法 为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法？ 场景题：如何实现一个实时排序的游戏战力榜单 场景题：如何实现一个竞技场挑战功能，考虑高并发 volatile的用法 synchronized和ReentrantLock的区别 乐观锁和悲观锁的底层实现 不加锁如何保证线程安全 synchronized是可重入锁么 使用了vector就一定能保证线程安全吗 多线程的实现方式 场景题：高并发的情况下保证数据的一致性怎么做到 场景题：有10个线程分别对 i = 0 做10次自增操作，最后 i 的值会是多少，为什么 ThreadLocal的原理 场景题：在生产者消费者问题中怎么保证当消费者用完产品后生产者会马上得知，不能使用while循环去解决 Java的线程池类型有哪些 Java线程池的参数以及其具体意义 线程池的拒绝策略 JVM篇 JVM的基本结构 双亲委派模型的好处 运行时数据区的基本结构，各种结构都有什么用途 垃圾回收策略 垃圾回收器都有哪些 如何判断一个类是无用的类 查看运行内存，JVM状态有什么方法 G1回收器与之前的回收器相比最大的不同是什么 类加载的过程是什么，每个过程具体做到了什么事 JVM的常用参数有哪些 JVM调优常用的手段是什么 Spring篇 Spring的特性和优势是什么 Spring有哪些组件 场景题：如果实现一个你自己的Spring框架需要考虑那些方面，简单聊聊 Spring MVC底层实现原理 IOC 和 AOP 具体介绍一下 Spring Bean是什么 IOC 和 DI 是什么关系 IOC 配置的三种方式 依赖注入的三种方式 为什么推荐构造器注入方式？ 场景题：在使用构造器注入方式时注入了太多的类导致Bad Smell怎么办 AspectJ注解方式接触过吗，具体说说有什么特点和不足 Spring为何不能解决非单例属性之外的循环依赖？ Spring中Bean的生命周期介绍一下 场景题：自定义一个你自己的starter怎么实现（开共享屏幕实现） MyBatis篇 接口层和数据库交互的方式有哪些 简述MyBatis的层次结构 sqlSessionFactory 与 SqlSession介绍一下 Excutor的概念 动态SQL有哪些，都有什么用途 为什么要使用连接池 $ 和 # 的区别 计算机网络篇 OSI和TCP/IP介绍一下 HTTP和HTTPS的区别 HTTPS的加密手段是什么 三次握手的过程以及每一次起到了什么作用 四次挥手的过程以及每一次起到了什么作用 TCP协议中的流量控制起到什么作用 介绍一下ARQ协议 从输入URL到页面加载发生了什么 HTTP 如何保存用户状态 Cookie 的作用是什么 Cookie 和 Session 有什么区别 HTTP状态码有哪些 数据库篇 数据库设计通常分为哪几步 MySQL的分页怎么做的 MyISAM和InnoDB的区别 MySQL日志都有什么，分别有什么作用 读锁和写锁实现的底层原理 表级锁和行级锁的实现原理 事务的特性 并发事务带来的问题有哪些 事务隔离级别有哪些 场景题：MySQL对于千万级的数据库或者大表怎么处理 MVCC解决什么问题 索引有什么作用 索引的底层数据结构 为什么InnoDB使用B+树作为索引的数据结构 索引有哪些种类 为什么会出现回表查询，怎么避免 解释一下最左前缀法则 覆盖索引是什么意思 MySQL读写分离方案 MySQL主从复制是什么意思 MySQL主从的延迟怎么解决 Redis篇 为什么Redis 是单线程的 Redis 一般有哪些使用场景 Redis 有哪些数据类型，每一种都有什么实际应用 sds存在的意义 为什么会设计Redis Stream Redis Stream消费者崩溃带来的会不会消息丢失问题 Redis Steam 坏消息问题，死信问题 Redis 的持久化机制是什么 AOF是写前日志还是写后日志 Redis 过期键的删除策略有哪些 Redis 内存淘汰算法有哪些 Redis如何做内存优化 Redis事务相关命令 Redis事务中出现错误的处理 为什么 Redis 不支持回滚 Redis缓存有哪些问题，如何解决 Redis6.0之前为什么一致不用多线程 ",
   "keywords": [
     
   ],
-  "articleBody": "念神面经篇 Java基础篇  JDK \u0026 JVM \u0026 JRE的区别 包装类型的常量池技术 接口和抽象类的区别 String、StringBuffer、StringBuilder的区别 泛型擦除的原理 反射的应用场景 异常的类型，具体的例子有哪些 说说常用的容器和各自的特点 ArrayList的扩容机制 HashMap源码实现 ConcurrentHashMap的底层实现 Lambda表达式有什么好处，什么坏处，应用场景有哪些  Java并发篇  为什么要使用多线程，有什么好处，举例具体场景 线程的生命周期以及每个周期进入和结束的标志 避免死锁的三个必要条件 简述哲学家进餐问题和银行家算法 为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法？ 场景题：如何实现一个实时排序的游戏战力榜单 场景题：如何实现一个竞技场挑战功能，考虑高并发 volatile的用法 synchronized和ReentrantLock的区别 乐观锁和悲观锁的底层实现 不加锁如何保证线程安全 synchronized是可重入锁么 使用了vector就一定能保证线程安全吗 多线程的实现方式 场景题：高并发的情况下保证数据的一致性怎么做到 场景题：有10个线程分别对 i = 0 做10次自增操作，最后 i 的值会是多少，为什么 ThreadLocal的原理 场景题：在生产者消费者问题中怎么保证当消费者用完产品后生产者会马上得知，不能使用while循环去解决 Java的线程池类型有哪些 Java线程池的参数以及其具体意义 线程池的拒绝策略  JVM篇  JVM的基本结构 双亲委派模型的好处 运行时数据区的基本结构，各种结构都有什么用途 垃圾回收策略 垃圾回收器都有哪些 如何判断一个类是无用的类 查看运行内存，JVM状态有什么方法 G1回收器与之前的回收器相比最大的不同是什么 类加载的过程是什么，每个过程具体做到了什么事 JVM的常用参数有哪些 JVM调优常用的手段是什么  Spring篇  Spring的特性和优势是什么 Spring有哪些组件 场景题：如果实现一个你自己的Spring框架需要考虑那些方面，简单聊聊 Spring MVC底层实现原理 IOC 和 AOP 具体介绍一下 Spring Bean是什么 IOC 和 DI 是什么关系 IOC 配置的三种方式 依赖注入的三种方式 为什么推荐构造器注入方式？ 场景题：在使用构造器注入方式时注入了太多的类导致Bad Smell怎么办 AspectJ注解方式接触过吗，具体说说有什么特点和不足 Spring为何不能解决非单例属性之外的循环依赖？ Spring中Bean的生命周期介绍一下 场景题：自定义一个你自己的starter怎么实现（开共享屏幕实现）  MyBatis篇  接口层和数据库交互的方式有哪些 简述MyBatis的层次结构 sqlSessionFactory 与 SqlSession介绍一下 Excutor的概念 动态SQL有哪些，都有什么用途 为什么要使用连接池 $ 和 # 的区别  计算机网络篇  OSI和TCP/IP介绍一下 HTTP和HTTPS的区别 HTTPS的加密手段是什么 三次握手的过程以及每一次起到了什么作用 四次挥手的过程以及每一次起到了什么作用 TCP协议中的流量控制起到什么作用 介绍一下ARQ协议 从输入URL到页面加载发生了什么 HTTP 如何保存用户状态 Cookie 的作用是什么 Cookie 和 Session 有什么区别 HTTP状态码有哪些  数据库篇  数据库设计通常分为哪几步 MySQL的分页怎么做的 MyISAM和InnoDB的区别 MySQL日志都有什么，分别有什么作用 读锁和写锁实现的底层原理 表级锁和行级锁的实现原理 事务的特性 并发事务带来的问题有哪些 事务隔离级别有哪些 场景题：MySQL对于千万级的数据库或者大表怎么处理 MVCC解决什么问题 索引有什么作用 索引的底层数据结构 为什么InnoDB使用B+树作为索引的数据结构 索引有哪些种类 为什么会出现回表查询，怎么避免 解释一下最左前缀法则 覆盖索引是什么意思 MySQL读写分离方案 MySQL主从复制是什么意思 MySQL主从的延迟怎么解决  Redis篇  为什么Redis 是单线程的 Redis 一般有哪些使用场景 Redis 有哪些数据类型，每一种都有什么实际应用 sds存在的意义 为什么会设计Redis Stream Redis Stream消费者崩溃带来的会不会消息丢失问题 Redis Steam 坏消息问题，死信问题 Redis 的持久化机制是什么 AOF是写前日志还是写后日志 Redis 过期键的删除策略有哪些 Redis 内存淘汰算法有哪些 Redis如何做内存优化 Redis事务相关命令 Redis事务中出现错误的处理 为什么 Redis 不支持回滚 Redis缓存有哪些问题，如何解决 Redis6.0之前为什么一致不用多线程  ",
+  "articleBody": "念神面经篇 Java基础篇 JDK \u0026 JVM \u0026 JRE的区别 包装类型的常量池技术 接口和抽象类的区别 String、StringBuffer、StringBuilder的区别 泛型擦除的原理 反射的应用场景 异常的类型，具体的例子有哪些 说说常用的容器和各自的特点 ArrayList的扩容机制 HashMap源码实现 ConcurrentHashMap的底层实现 Lambda表达式有什么好处，什么坏处，应用场景有哪些 Java并发篇 为什么要使用多线程，有什么好处，举例具体场景 线程的生命周期以及每个周期进入和结束的标志 避免死锁的三个必要条件 简述哲学家进餐问题和银行家算法 为什么我们调用 start() 方法时会执行 run() 方法，为什么我们不能直接调用 run() 方法？ 场景题：如何实现一个实时排序的游戏战力榜单 场景题：如何实现一个竞技场挑战功能，考虑高并发 volatile的用法 synchronized和ReentrantLock的区别 乐观锁和悲观锁的底层实现 不加锁如何保证线程安全 synchronized是可重入锁么 使用了vector就一定能保证线程安全吗 多线程的实现方式 场景题：高并发的情况下保证数据的一致性怎么做到 场景题：有10个线程分别对 i = 0 做10次自增操作，最后 i 的值会是多少，为什么 ThreadLocal的原理 场景题：在生产者消费者问题中怎么保证当消费者用完产品后生产者会马上得知，不能使用while循环去解决 Java的线程池类型有哪些 Java线程池的参数以及其具体意义 线程池的拒绝策略 JVM篇 JVM的基本结构 双亲委派模型的好处 运行时数据区的基本结构，各种结构都有什么用途 垃圾回收策略 垃圾回收器都有哪些 如何判断一个类是无用的类 查看运行内存，JVM状态有什么方法 G1回收器与之前的回收器相比最大的不同是什么 类加载的过程是什么，每个过程具体做到了什么事 JVM的常用参数有哪些 JVM调优常用的手段是什么 Spring篇 Spring的特性和优势是什么 Spring有哪些组件 场景题：如果实现一个你自己的Spring框架需要考虑那些方面，简单聊聊 Spring MVC底层实现原理 IOC 和 AOP 具体介绍一下 Spring Bean是什么 IOC 和 DI 是什么关系 IOC 配置的三种方式 依赖注入的三种方式 为什么推荐构造器注入方式？ 场景题：在使用构造器注入方式时注入了太多的类导致Bad Smell怎么办 AspectJ注解方式接触过吗，具体说说有什么特点和不足 Spring为何不能解决非单例属性之外的循环依赖？ Spring中Bean的生命周期介绍一下 场景题：自定义一个你自己的starter怎么实现（开共享屏幕实现） MyBatis篇 接口层和数据库交互的方式有哪些 简述MyBatis的层次结构 sqlSessionFactory 与 SqlSession介绍一下 Excutor的概念 动态SQL有哪些，都有什么用途 为什么要使用连接池 $ 和 # 的区别 计算机网络篇 OSI和TCP/IP介绍一下 HTTP和HTTPS的区别 HTTPS的加密手段是什么 三次握手的过程以及每一次起到了什么作用 四次挥手的过程以及每一次起到了什么作用 TCP协议中的流量控制起到什么作用 介绍一下ARQ协议 从输入URL到页面加载发生了什么 HTTP 如何保存用户状态 Cookie 的作用是什么 Cookie 和 Session 有什么区别 HTTP状态码有哪些 数据库篇 数据库设计通常分为哪几步 MySQL的分页怎么做的 MyISAM和InnoDB的区别 MySQL日志都有什么，分别有什么作用 读锁和写锁实现的底层原理 表级锁和行级锁的实现原理 事务的特性 并发事务带来的问题有哪些 事务隔离级别有哪些 场景题：MySQL对于千万级的数据库或者大表怎么处理 MVCC解决什么问题 索引有什么作用 索引的底层数据结构 为什么InnoDB使用B+树作为索引的数据结构 索引有哪些种类 为什么会出现回表查询，怎么避免 解释一下最左前缀法则 覆盖索引是什么意思 MySQL读写分离方案 MySQL主从复制是什么意思 MySQL主从的延迟怎么解决 Redis篇 为什么Redis 是单线程的 Redis 一般有哪些使用场景 Redis 有哪些数据类型，每一种都有什么实际应用 sds存在的意义 为什么会设计Redis Stream Redis Stream消费者崩溃带来的会不会消息丢失问题 Redis Steam 坏消息问题，死信问题 Redis 的持久化机制是什么 AOF是写前日志还是写后日志 Redis 过期键的删除策略有哪些 Redis 内存淘汰算法有哪些 Redis如何做内存优化 Redis事务相关命令 Redis事务中出现错误的处理 为什么 Redis 不支持回滚 Redis缓存有哪些问题，如何解决 Redis6.0之前为什么一致不用多线程 ",
   "wordCount" : "1802",
   "inLanguage": "en",
   "datePublished": "0001-01-01T00:00:00Z",
@@ -173,6 +593,8 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
             </span>
         </div>
         <ul id="menu">
@@ -234,8 +656,8 @@
 
 
 
-更新:&nbsp;0001-01-01&nbsp;|&nbsp;字数:&nbsp;1802字&nbsp;|&nbsp;时长: 4分钟&nbsp;|&nbsp;
-作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/09%e3%80%81%e5%bf%b5%e7%a5%9e%e9%9d%a2%e7%bb%8f.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+更新:&amp;nbsp;0001-01-01&amp;nbsp;|&amp;nbsp;字数:&amp;nbsp;1802字&amp;nbsp;|&amp;nbsp;时长: 4分钟&amp;nbsp;|&amp;nbsp;
+作者:&amp;nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/09%e3%80%81%e5%bf%b5%e7%a5%9e%e9%9d%a2%e7%bb%8f.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -281,10 +703,12 @@
         checkTocPosition();
 
         elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
-         
-         activeElement = elements[0];
-         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
-         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        if (elements.length) {
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            const firstLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
+            if (firstLink) firstLink.classList.add('active');
+        }
      }, false);
 
     window.addEventListener('resize', function(event) {
@@ -292,7 +716,7 @@
     }, false);
 
     window.addEventListener('scroll', () => {
-        
+        if (!elements || !elements.length) return;
         activeElement = Array.from(elements).find((element) => {
             if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
                 (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
@@ -302,25 +726,35 @@
 
         elements.forEach(element => {
              const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             const link = document.querySelector(`.inner ul li a[href="#${id}"]`);
+             if (!link) return;
              if (element === activeElement){
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                 link.classList.add('active');
              } else {
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                 link.classList.remove('active');
              }
          })
      }, false);
 
-    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
-    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
-    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+    function readCssPx(name, fallback) {
+        const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+        const n = parseInt(raw, 10);
+        return Number.isFinite(n) && n > 0 ? n : fallback;
+    }
 
     function checkTocPosition() {
-        const width = document.body.scrollWidth;
+        const main = readCssPx('--article-width', 650);
+        const toc = readCssPx('--toc-width', 300);
+        const gap = readCssPx('--gap', 24);
+        const width = document.documentElement.clientWidth;
+        const el = document.getElementById("toc-container");
+        if (!el) return;
 
-        if (width - main - (toc * 2) - (gap * 4) > 0) {
-            document.getElementById("toc-container").classList.add("wide");
+         
+        if (width - main - (toc * 2) - (gap * 2) > 0) {
+            el.classList.add("wide");
         } else {
-            document.getElementById("toc-container").classList.remove("wide");
+            el.classList.remove("wide");
         }
     }
 
@@ -530,7 +964,7 @@ async>
 </script>
 
 <footer class="footer">
-    <span>&copy; 2023 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>&copy; 2026 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
@@ -544,11 +978,7 @@ async>
     您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 </span>
 <hr>
-<span>
-    如果对您有帮助请赞赏我
-</span>
 
-<img src="/img/money.jpg" width=800px; align:center/>
 
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">

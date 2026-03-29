@@ -11,9 +11,14 @@
       <title>异常</title>
       <link>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</link>
       <pubDate>Sat, 08 Jan 2022 23:33:37 +0800</pubDate>
-      
       <guid>https://coderrenxy.github.io/posts/blog/%E5%BC%82%E5%B8%B8/</guid>
-      <description>description：面试可能问到的异常相关八股文。 （一）finally 块中的代码什么时候会执行？ 在 Java 语言的异常处理中，finally 块的</description>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;description：面试可能问到的异常相关八股文。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;一finally-块中的代码什么时候会执行&#34;&gt;（一）finally 块中的代码什么时候会执行？&lt;/h3&gt;
+&lt;p&gt;在 Java 语言的异常处理中，finally 块的作用就是为了保证无论出现什么情况，finally 块里的代码一定会被执行。&lt;br&gt;
+由于程序执行 return 就意味着结束对当前函数的调用并跳出这个函数体，因此任何语句要执行都只能在 return 前执行（除非碰到 exit 函数），	因此 finally 块里的代码也是在 return 之前执行的。&lt;br&gt;
+此外，如果 try-finally 或者 catch-finally 中都有 return，那么 finally 块中	的 return 将会覆盖别处的 return 语句，最终返回到调用者那里的是 finally 中 return 的值。&lt;/p&gt;</description>
     </item>
     
   </channel>

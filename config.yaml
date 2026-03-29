@@ -13,6 +13,10 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
+# 排除备份目录，避免重复扫描；减轻 Hugo 构建负担
+ignoreFiles:
+  - '/content/posts/_read_bak/'
+
 #googleAnalytics: UA-123-45 # 谷歌统计
 # Copyright: Sulv
 
@@ -27,33 +31,34 @@ permalinks:
   # post: "/:year/:month/:day/:title/"
 
 defaultContentLanguage: en # 最顶部首先展示的语言页面
-defaultContentLanguageInSubdir: true
+# 与线上一致：站点输出在 /posts/... 而非 /en/posts/...，否则列表与书签会指向旧静态文件
+defaultContentLanguageInSubdir: false
 
 languages:
     en:
       languageName: "English"
       # contentDir: content/english
       weight: 1
-      profileMode:
-        enabled: true
-        title: (〃'▽'〃)
-        subtitle: "🧨一个简朴、持续更新的博客<br/>👏🏼欢迎光临<b>小任同学</b>的博客<br/>👇联系方式 😆"
-        imageUrl: "img/icon-512.png"
-        imageTitle: 
-        imageWidth: 150
-        imageHeight: 150
-        buttons:
-          - name: 📋 文章
-            url: /posts/blog
-          - name: 🏡 生活
-            url: /posts/life
-          - name: 📕 阅读
-            url: /posts/read
-          # - name: 大佬的博客
-          #   url: https://www.xyming108.top
+      params:
+        profileMode:
+          enabled: true
+          title: (〃'▽'〃)
+          subtitle: "🧨一个简朴、持续更新的博客<br/>👏🏼欢迎光临<b>小任同学</b>的博客<br/>👇联系方式 😆"
+          imageUrl: "img/icon-512.png"
+          imageTitle: 
+          imageWidth: 150
+          imageHeight: 150
+          buttons:
+            - name: 📋 文章
+              url: /posts/blog
+            - name: 🏡 生活
+              url: /posts/life
+            - name: 📕 阅读
+              url: /posts/read
+            # - name: 大佬的博客
+            #   url: https://www.xyming108.top
       menu:
         main:
-          
           - identifier: home
             name: 🏠主页
             url: /
@@ -217,7 +222,7 @@ privacy:
         disabled: false
         simple: true
 
-    twitter:
+    x:
         disabled: false
         enableDNT: true
         simple: true
@@ -233,6 +238,6 @@ privacy:
 services:
     instagram:
         disableInlineCSS: true
-    twitter:
+    x:
         disableInlineCSS: true
-        
+

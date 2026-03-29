@@ -9,13 +9,69 @@
 
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <meta name="keywords" content="" />
-<meta name="description" content="金蝶 一面 自我介绍 项目的架构图画一下 项目是怎么部署到服务器的 为什么要用 Docker 做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。 项目数据库表">
+<meta name="description" content="金蝶
+一面
+
+自我介绍
+项目的架构图画一下
+项目是怎么部署到服务器的
+为什么要用 Docker
+做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。
+项目数据库表怎么设计的
+项目的日志怎么做的
+项目有没有做权限管理，怎么做的
+说一下自己对 IoC、AOP 的理解
+网络协议说一下
+数据库优化
+有没有用过针对多表查询如何优化
+
+HR面
+
+自我介绍
+学校的成绩，有没有获得过什么奖项
+介绍一下项目，业务情况，当时是怎么做这个项目的
+项目中充当的角色，负责做什么
+项目带给你最大的收获是什么
+说一件你在校园中做过对自己来说最有价值的事情
+你觉得一个好的开发工程师应该具备怎样的素质
+平时有健身运动的习惯么，频率怎么样
+讲讲你的个人优势
+手里的 offer 情况
+反问
+
+二面
+
+Spring,Spring MVC,Spring Boot 之间什么关系?
+@Autowired 和 @Resource 的区别是什么？
+静态代理和动态代理的区别
+除了 JDK 提供的动态代理实现还有其他实现方式么(CGLIB )
+谈谈对 MySQL 索引的了解，哪些字段应该考虑创建索引，哪些字段尽量不要创建索引
+为什么 InnoDB 引擎要选择 B&#43;Tree 作为索引数据结构？
+MySQL 中 一条 SQL 语句的执行流程
+从执行流程的层面说说如何优化一条 SQL 语句的查询速度，发生在哪个部分
+多表联合查询的时候，SQL语句的执行流程
+目前正在学习什么知识
+反问：新人培训体系是怎么样的
+
+三面
+
+自我介绍
+简单介绍一下自己的项目
+项目中用了哪些设计模式
+单例模式有什么好处
+项目中用了线程池干什么
+为什么实际生产建议使用 ThreadPoolExecutor 构造函数来创建线程池
+如何理解线程安全和不安全
+平时怎么学习的
+反问：公司目前的技术栈，是否有 CodeReview
+
+三面这个面试官基本没怎么问题技术，后面找我唠嗑半天就闲聊一些大学生活啥的。">
 <meta name="author" content="
 作者:&nbsp;小任同学">
 <link rel="canonical" href="https://coderrenxy.github.io/posts/read/03%E9%87%91%E8%9D%B6/" />
-<link crossorigin="anonymous" href="/assets/css/stylesheet.min.7623b46c5149f45c86bb2cab2316266b62404755c0674d3e97963430d13b957e.css" integrity="sha256-diO0bFFJ9FyGuyyrIxYma2JAR1XAZ00&#43;l5Y0MNE7lX4=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.min.a72221503009ebb69a3a9b181466ab3d9a645200323c4ba68b8b9cc95b7befbd.css" integrity="sha256-pyIhUDAJ67aaOpsYFGarPZpkUgAyPEumi4ucyVt7770=" rel="preload stylesheet" as="style">
 <link rel="preload" href="img/icon-32.png" as="image">
-<script defer crossorigin="anonymous" src="/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js" integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5&#43;kdJvBz5iKbt6B5PJI="
+<script defer crossorigin="anonymous" src="/assets/js/highlight.min.199271f351c4b46f0d0536b6e2eb89a4766040c0e8df57f1a695c6570d8a4e0f.js" integrity="sha256-GZJx81HEtG8NBTa24uuJpHZgQMDo31fxppXGVw2KTg8="
     onload="hljs.initHighlightingOnLoad();"></script>
 <link rel="icon" href="https://coderrenxy.github.io/img/icon-512.png">
 <link rel="icon" type="image/png" sizes="16x16" href="https://coderrenxy.github.io/img/icon-512.png">
@@ -24,7 +80,8 @@
 <link rel="mask-icon" href="https://coderrenxy.github.io/icon-512.png">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<meta name="generator" content="Hugo 0.92.1" />
+<meta name="generator" content="Hugo 0.159.1">
+<link rel="alternate" hreflang="en" href="https://coderrenxy.github.io/posts/read/03%E9%87%91%E8%9D%B6/" />
 <noscript>
     <style>
         #theme-toggle,
@@ -62,7 +119,63 @@
 
     </style>
 </noscript><meta property="og:title" content="" />
-<meta property="og:description" content="金蝶 一面 自我介绍 项目的架构图画一下 项目是怎么部署到服务器的 为什么要用 Docker 做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。 项目数据库表" />
+<meta property="og:description" content="金蝶
+一面
+
+自我介绍
+项目的架构图画一下
+项目是怎么部署到服务器的
+为什么要用 Docker
+做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。
+项目数据库表怎么设计的
+项目的日志怎么做的
+项目有没有做权限管理，怎么做的
+说一下自己对 IoC、AOP 的理解
+网络协议说一下
+数据库优化
+有没有用过针对多表查询如何优化
+
+HR面
+
+自我介绍
+学校的成绩，有没有获得过什么奖项
+介绍一下项目，业务情况，当时是怎么做这个项目的
+项目中充当的角色，负责做什么
+项目带给你最大的收获是什么
+说一件你在校园中做过对自己来说最有价值的事情
+你觉得一个好的开发工程师应该具备怎样的素质
+平时有健身运动的习惯么，频率怎么样
+讲讲你的个人优势
+手里的 offer 情况
+反问
+
+二面
+
+Spring,Spring MVC,Spring Boot 之间什么关系?
+@Autowired 和 @Resource 的区别是什么？
+静态代理和动态代理的区别
+除了 JDK 提供的动态代理实现还有其他实现方式么(CGLIB )
+谈谈对 MySQL 索引的了解，哪些字段应该考虑创建索引，哪些字段尽量不要创建索引
+为什么 InnoDB 引擎要选择 B&#43;Tree 作为索引数据结构？
+MySQL 中 一条 SQL 语句的执行流程
+从执行流程的层面说说如何优化一条 SQL 语句的查询速度，发生在哪个部分
+多表联合查询的时候，SQL语句的执行流程
+目前正在学习什么知识
+反问：新人培训体系是怎么样的
+
+三面
+
+自我介绍
+简单介绍一下自己的项目
+项目中用了哪些设计模式
+单例模式有什么好处
+项目中用了线程池干什么
+为什么实际生产建议使用 ThreadPoolExecutor 构造函数来创建线程池
+如何理解线程安全和不安全
+平时怎么学习的
+反问：公司目前的技术栈，是否有 CodeReview
+
+三面这个面试官基本没怎么问题技术，后面找我唠嗑半天就闲聊一些大学生活啥的。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://coderrenxy.github.io/posts/read/03%E9%87%91%E8%9D%B6/" /><meta property="article:section" content="posts" />
 
@@ -70,8 +183,63 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="金蝶 一面 自我介绍 项目的架构图画一下 项目是怎么部署到服务器的 为什么要用 Docker 做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。 项目数据库表"/>
+<meta name="twitter:description" content="金蝶
+一面
 
+自我介绍
+项目的架构图画一下
+项目是怎么部署到服务器的
+为什么要用 Docker
+做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。
+项目数据库表怎么设计的
+项目的日志怎么做的
+项目有没有做权限管理，怎么做的
+说一下自己对 IoC、AOP 的理解
+网络协议说一下
+数据库优化
+有没有用过针对多表查询如何优化
+
+HR面
+
+自我介绍
+学校的成绩，有没有获得过什么奖项
+介绍一下项目，业务情况，当时是怎么做这个项目的
+项目中充当的角色，负责做什么
+项目带给你最大的收获是什么
+说一件你在校园中做过对自己来说最有价值的事情
+你觉得一个好的开发工程师应该具备怎样的素质
+平时有健身运动的习惯么，频率怎么样
+讲讲你的个人优势
+手里的 offer 情况
+反问
+
+二面
+
+Spring,Spring MVC,Spring Boot 之间什么关系?
+@Autowired 和 @Resource 的区别是什么？
+静态代理和动态代理的区别
+除了 JDK 提供的动态代理实现还有其他实现方式么(CGLIB )
+谈谈对 MySQL 索引的了解，哪些字段应该考虑创建索引，哪些字段尽量不要创建索引
+为什么 InnoDB 引擎要选择 B&#43;Tree 作为索引数据结构？
+MySQL 中 一条 SQL 语句的执行流程
+从执行流程的层面说说如何优化一条 SQL 语句的查询速度，发生在哪个部分
+多表联合查询的时候，SQL语句的执行流程
+目前正在学习什么知识
+反问：新人培训体系是怎么样的
+
+三面
+
+自我介绍
+简单介绍一下自己的项目
+项目中用了哪些设计模式
+单例模式有什么好处
+项目中用了线程池干什么
+为什么实际生产建议使用 ThreadPoolExecutor 构造函数来创建线程池
+如何理解线程安全和不安全
+平时怎么学习的
+反问：公司目前的技术栈，是否有 CodeReview
+
+三面这个面试官基本没怎么问题技术，后面找我唠嗑半天就闲聊一些大学生活啥的。"/>
 
 <script type="application/ld+json">
 {
@@ -105,11 +273,11 @@
   "@type": "BlogPosting",
   "headline": "",
   "name": "",
-  "description": "金蝶 一面 自我介绍 项目的架构图画一下 项目是怎么部署到服务器的 为什么要用 Docker 做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。 项目数据库表",
+  "description": "金蝶 一面 自我介绍 项目的架构图画一下 项目是怎么部署到服务器的 为什么要用 Docker 做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。 项目数据库表怎么设计的 项目的日志怎么做的 项目有没有做权限管理，怎么做的 说一下自己对 IoC、AOP 的理解 网络协议说一下 数据库优化 有没有用过针对多表查询如何优化 HR面 自我介绍 学校的成绩，有没有获得过什么奖项 介绍一下项目，业务情况，当时是怎么做这个项目的 项目中充当的角色，负责做什么 项目带给你最大的收获是什么 说一件你在校园中做过对自己来说最有价值的事情 你觉得一个好的开发工程师应该具备怎样的素质 平时有健身运动的习惯么，频率怎么样 讲讲你的个人优势 手里的 offer 情况 反问 二面 Spring,Spring MVC,Spring Boot 之间什么关系? @Autowired 和 @Resource 的区别是什么？ 静态代理和动态代理的区别 除了 JDK 提供的动态代理实现还有其他实现方式么(CGLIB ) 谈谈对 MySQL 索引的了解，哪些字段应该考虑创建索引，哪些字段尽量不要创建索引 为什么 InnoDB 引擎要选择 B+Tree 作为索引数据结构？ MySQL 中 一条 SQL 语句的执行流程 从执行流程的层面说说如何优化一条 SQL 语句的查询速度，发生在哪个部分 多表联合查询的时候，SQL语句的执行流程 目前正在学习什么知识 反问：新人培训体系是怎么样的 三面 自我介绍 简单介绍一下自己的项目 项目中用了哪些设计模式 单例模式有什么好处 项目中用了线程池干什么 为什么实际生产建议使用 ThreadPoolExecutor 构造函数来创建线程池 如何理解线程安全和不安全 平时怎么学习的 反问：公司目前的技术栈，是否有 CodeReview 三面这个面试官基本没怎么问题技术，后面找我唠嗑半天就闲聊一些大学生活啥的。\n",
   "keywords": [
     
   ],
-  "articleBody": "金蝶 一面  自我介绍 项目的架构图画一下 项目是怎么部署到服务器的 为什么要用 Docker 做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。 项目数据库表怎么设计的 项目的日志怎么做的 项目有没有做权限管理，怎么做的 说一下自己对 IoC、AOP 的理解 网络协议说一下 数据库优化 有没有用过针对多表查询如何优化  HR面  自我介绍 学校的成绩，有没有获得过什么奖项 介绍一下项目，业务情况，当时是怎么做这个项目的 项目中充当的角色，负责做什么 项目带给你最大的收获是什么 说一件你在校园中做过对自己来说最有价值的事情 你觉得一个好的开发工程师应该具备怎样的素质 平时有健身运动的习惯么，频率怎么样 讲讲你的个人优势 手里的 offer 情况 反问  二面  Spring,Spring MVC,Spring Boot 之间什么关系? @Autowired 和 @Resource 的区别是什么？ 静态代理和动态代理的区别 除了 JDK 提供的动态代理实现还有其他实现方式么(CGLIB ) 谈谈对 MySQL 索引的了解，哪些字段应该考虑创建索引，哪些字段尽量不要创建索引 为什么 InnoDB 引擎要选择 B+Tree 作为索引数据结构？ MySQL 中 一条 SQL 语句的执行流程 从执行流程的层面说说如何优化一条 SQL 语句的查询速度，发生在哪个部分 多表联合查询的时候，SQL语句的执行流程 目前正在学习什么知识 反问：新人培训体系是怎么样的  三面  自我介绍 简单介绍一下自己的项目 项目中用了哪些设计模式 单例模式有什么好处 项目中用了线程池干什么 为什么实际生产建议使用 ThreadPoolExecutor 构造函数来创建线程池 如何理解线程安全和不安全 平时怎么学习的 反问：公司目前的技术栈，是否有 CodeReview  三面这个面试官基本没怎么问题技术，后面找我唠嗑半天就闲聊一些大学生活啥的。\n",
+  "articleBody": "金蝶 一面 自我介绍 项目的架构图画一下 项目是怎么部署到服务器的 为什么要用 Docker 做项目的过程中遇到了什么问题没有，如何解决的，学到了什么。 项目数据库表怎么设计的 项目的日志怎么做的 项目有没有做权限管理，怎么做的 说一下自己对 IoC、AOP 的理解 网络协议说一下 数据库优化 有没有用过针对多表查询如何优化 HR面 自我介绍 学校的成绩，有没有获得过什么奖项 介绍一下项目，业务情况，当时是怎么做这个项目的 项目中充当的角色，负责做什么 项目带给你最大的收获是什么 说一件你在校园中做过对自己来说最有价值的事情 你觉得一个好的开发工程师应该具备怎样的素质 平时有健身运动的习惯么，频率怎么样 讲讲你的个人优势 手里的 offer 情况 反问 二面 Spring,Spring MVC,Spring Boot 之间什么关系? @Autowired 和 @Resource 的区别是什么？ 静态代理和动态代理的区别 除了 JDK 提供的动态代理实现还有其他实现方式么(CGLIB ) 谈谈对 MySQL 索引的了解，哪些字段应该考虑创建索引，哪些字段尽量不要创建索引 为什么 InnoDB 引擎要选择 B+Tree 作为索引数据结构？ MySQL 中 一条 SQL 语句的执行流程 从执行流程的层面说说如何优化一条 SQL 语句的查询速度，发生在哪个部分 多表联合查询的时候，SQL语句的执行流程 目前正在学习什么知识 反问：新人培训体系是怎么样的 三面 自我介绍 简单介绍一下自己的项目 项目中用了哪些设计模式 单例模式有什么好处 项目中用了线程池干什么 为什么实际生产建议使用 ThreadPoolExecutor 构造函数来创建线程池 如何理解线程安全和不安全 平时怎么学习的 反问：公司目前的技术栈，是否有 CodeReview 三面这个面试官基本没怎么问题技术，后面找我唠嗑半天就闲聊一些大学生活啥的。\n",
   "wordCount" : "637",
   "inLanguage": "en",
   "datePublished": "0001-01-01T00:00:00Z",
@@ -173,6 +341,8 @@
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
                 </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
             </span>
         </div>
         <ul id="menu">
@@ -234,8 +404,8 @@
 
 
 
-更新:&nbsp;0001-01-01&nbsp;|&nbsp;字数:&nbsp;637字&nbsp;|&nbsp;时长: 2分钟&nbsp;|&nbsp;
-作者:&nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/03%e3%80%81%e9%87%91%e8%9d%b6.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
+更新:&amp;nbsp;0001-01-01&amp;nbsp;|&amp;nbsp;字数:&amp;nbsp;637字&amp;nbsp;|&amp;nbsp;时长: 2分钟&amp;nbsp;|&amp;nbsp;
+作者:&amp;nbsp;小任同学&nbsp;|&nbsp;<a href="https://github.com/coderRenxy/coderrenxy.github.io/content/posts/read/03%e3%80%81%e9%87%91%e8%9d%b6.md" rel="noopener noreferrer" target="_blank">🖍️修改</a>
 
 </div>
   </header> <aside id="toc-container" class="toc-container wide">
@@ -275,10 +445,12 @@
         checkTocPosition();
 
         elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
-         
-         activeElement = elements[0];
-         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
-         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        if (elements.length) {
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            const firstLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
+            if (firstLink) firstLink.classList.add('active');
+        }
      }, false);
 
     window.addEventListener('resize', function(event) {
@@ -286,7 +458,7 @@
     }, false);
 
     window.addEventListener('scroll', () => {
-        
+        if (!elements || !elements.length) return;
         activeElement = Array.from(elements).find((element) => {
             if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
                 (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
@@ -296,25 +468,35 @@
 
         elements.forEach(element => {
              const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             const link = document.querySelector(`.inner ul li a[href="#${id}"]`);
+             if (!link) return;
              if (element === activeElement){
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                 link.classList.add('active');
              } else {
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                 link.classList.remove('active');
              }
          })
      }, false);
 
-    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
-    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
-    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+    function readCssPx(name, fallback) {
+        const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+        const n = parseInt(raw, 10);
+        return Number.isFinite(n) && n > 0 ? n : fallback;
+    }
 
     function checkTocPosition() {
-        const width = document.body.scrollWidth;
+        const main = readCssPx('--article-width', 650);
+        const toc = readCssPx('--toc-width', 300);
+        const gap = readCssPx('--gap', 24);
+        const width = document.documentElement.clientWidth;
+        const el = document.getElementById("toc-container");
+        if (!el) return;
 
-        if (width - main - (toc * 2) - (gap * 4) > 0) {
-            document.getElementById("toc-container").classList.add("wide");
+         
+        if (width - main - (toc * 2) - (gap * 2) > 0) {
+            el.classList.add("wide");
         } else {
-            document.getElementById("toc-container").classList.remove("wide");
+            el.classList.remove("wide");
         }
     }
 
@@ -440,7 +622,7 @@ async>
 </script>
 
 <footer class="footer">
-    <span>&copy; 2023 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
+    <span>&copy; 2026 <a href="https://coderrenxy.github.io/">小任同学&#39;s Blog</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
@@ -454,11 +636,7 @@ async>
     您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
 </span>
 <hr>
-<span>
-    如果对您有帮助请赞赏我
-</span>
 
-<img src="/img/money.jpg" width=800px; align:center/>
 
 </footer>
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
