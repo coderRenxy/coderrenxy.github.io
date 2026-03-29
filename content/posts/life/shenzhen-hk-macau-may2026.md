@@ -5,8 +5,9 @@ draft: false # 是否为草稿
 hidemeta: false # 是否隐藏文章的元信息，如发布日期、作者等
 disableShare: flase # 底部不显示分享栏
 showbreadcrumbs: true #顶部显示当前路径
-date: 2026-03-29T12:00:00+08:00
-lastmod: 2026-03-29T12:00:00+08:00	#更新文章的时候手动改一下时间就可以
+# 须早于「当前构建时间」，否则 buildFuture:false 时整篇不会参与构建 → 线上 404
+date: 2025-12-01T10:00:00+08:00
+lastmod: 2025-12-01T10:00:00+08:00	#更新文章的时候手动改一下时间就可以
 tags: 
 - 生活
 - 旅游
@@ -30,6 +31,7 @@ aliases:
   - /posts/深港澳五一旅游全攻略-2026.5.2-6/
   - /posts/life/shenzhen-hk-macau-may2026/
   - /en/posts/life/shenzhen-hk-macau-may2026/
+  - /en/posts/life/深港澳五一旅游全攻略-2026.5.2-6/
 
 cover:
     image: ""
