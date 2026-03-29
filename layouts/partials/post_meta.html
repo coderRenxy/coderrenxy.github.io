@@ -1,31 +1,26 @@
-{{- $scratch := newScratch }}
-<!-- 创建时间 -->
-{{- if not .Date.IsZero -}}
-{{- $scratch.Add "meta" (slice (printf "创建:&nbsp;<span title='%s'>%s</span>" (.Date) (.Date.Format (default "January 2, 2006" .Site.Params.DateFormat)))) }}
+{{- $df := default "2006-01-02" .Site.Params.DateFormat -}}
+{{- $lmf := default "2006-01-02" .Site.Params.dateFormat -}}
+
+{{- if not .Date.IsZero }}
+<span class="meta-item">创建:&nbsp;<span title="{{ .Date }}">{{ .Date.Format $df }}</span></span>
 {{- end }}
 
-<!-- 更新时间 -->
-{{- if (.Param "ShowLastMod") -}}
-{{- $scratch.Add "meta" (slice (printf "更新:&nbsp;%s" (.Lastmod.Format (.Site.Params.dateFormat | default "2006-01-02")))) }}
+{{- if (.Param "ShowLastMod") }}
+{{- if not .Date.IsZero }}<span class="meta-sep">&nbsp;|&nbsp;</span>{{ end }}
+<span class="meta-item">更新:&nbsp;{{ .Lastmod.Format $lmf }}</span>
 {{- end }}
 
-<!-- 统计字数 -->
-{{- if (.Param "ShowWordCounts") -}}
-{{- $scratch.Add "meta" (slice (default (printf "字数:&nbsp;%d字" .WordCount))) }}
+{{- if (.Param "ShowWordCounts") }}
+{{- if or (not .Date.IsZero) (.Param "ShowLastMod") }}<span class="meta-sep">&nbsp;|&nbsp;</span>{{ end }}
+<span class="meta-item">字数:&nbsp;{{ .WordCount }}字</span>
 {{- end }}
 
-<!-- 大概需要花费的阅读时间 -->
-{{- if (.Param "ShowReadingTime") -}}
-{{- $scratch.Add "meta" (slice (default (printf "时长: %d分钟" .ReadingTime))) }}
+{{- if (.Param "ShowReadingTime") }}
+{{- if or (not .Date.IsZero) (.Param "ShowLastMod") (.Param "ShowWordCounts") }}<span class="meta-sep">&nbsp;|&nbsp;</span>{{ end }}
+<span class="meta-item">时长:&nbsp;{{ .ReadingTime }}分钟</span>
 {{- end }}
 
-<!-- 作者 -->
-{{- with (partial "author.html" .) }}
-{{- $scratch.Add "meta" (slice .) }}
+{{- if or .Params.author .Site.Params.author }}
+{{- if or (not .Date.IsZero) (.Param "ShowLastMod") (.Param "ShowWordCounts") (.Param "ShowReadingTime") }}<span class="meta-sep">&nbsp;|&nbsp;</span>{{ end }}
+{{- partial "author.html" . -}}
 {{- end }}
-
-
-<!-- 分隔方式 -->
-{{- with ($scratch.Get "meta") }}
-{{- delimit . "&nbsp;|&nbsp;" -}}
-{{- end -}}
