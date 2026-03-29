@@ -100,10 +100,12 @@
         checkTocPosition();
 
         elements = document.querySelectorAll('h1[id],h2[id],h3[id],h4[id],h5[id],h6[id]');
-         // Make the first header active
-         activeElement = elements[0];
-         const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
-         document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+        if (elements.length) {
+            activeElement = elements[0];
+            const id = encodeURI(activeElement.getAttribute('id')).toLowerCase();
+            const firstLink = document.querySelector(`.inner ul li a[href="#${id}"]`);
+            if (firstLink) firstLink.classList.add('active');
+        }
      }, false);
 
     window.addEventListener('resize', function(event) {
@@ -111,7 +113,7 @@
     }, false);
 
     window.addEventListener('scroll', () => {
-        // Check if there is an object in the top half of the screen or keep the last item active
+        if (!elements || !elements.length) return;
         activeElement = Array.from(elements).find((element) => {
             if ((getOffsetTop(element) - window.pageYOffset) > 0 && 
                 (getOffsetTop(element) - window.pageYOffset) < window.innerHeight/2) {
@@ -121,25 +123,35 @@
 
         elements.forEach(element => {
              const id = encodeURI(element.getAttribute('id')).toLowerCase();
+             const link = document.querySelector(`.inner ul li a[href="#${id}"]`);
+             if (!link) return;
              if (element === activeElement){
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.add('active');
+                 link.classList.add('active');
              } else {
-                 document.querySelector(`.inner ul li a[href="#${id}"]`).classList.remove('active');
+                 link.classList.remove('active');
              }
          })
      }, false);
 
-    const main = parseInt(getComputedStyle(document.body).getPropertyValue('--article-width'), 10);
-    const toc = parseInt(getComputedStyle(document.body).getPropertyValue('--toc-width'), 10);
-    const gap = parseInt(getComputedStyle(document.body).getPropertyValue('--gap'), 10);
+    function readCssPx(name, fallback) {
+        const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+        const n = parseInt(raw, 10);
+        return Number.isFinite(n) && n > 0 ? n : fallback;
+    }
 
     function checkTocPosition() {
-        const width = document.body.scrollWidth;
+        const main = readCssPx('--article-width', 650);
+        const toc = readCssPx('--toc-width', 300);
+        const gap = readCssPx('--gap', 24);
+        const width = document.documentElement.clientWidth;
+        const el = document.getElementById("toc-container");
+        if (!el) return;
 
-        if (width - main - (toc * 2) - (gap * 4) > 0) {
-            document.getElementById("toc-container").classList.add("wide");
+        /* 略放宽条件，避免 NaN 或略窄屏时目录永远不收成侧栏 */
+        if (width - main - (toc * 2) - (gap * 2) > 0) {
+            el.classList.add("wide");
         } else {
-            document.getElementById("toc-container").classList.remove("wide");
+            el.classList.remove("wide");
         }
     }
 

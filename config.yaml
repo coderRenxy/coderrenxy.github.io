@@ -44,11 +44,11 @@ languages:
         imageHeight: 150
         buttons:
           - name: 📋 文章
-            url: posts/blog
+            url: /posts/blog
           - name: 🏡 生活
-            url: posts/life
+            url: /posts/life
           - name: 📕 阅读
-            url: posts/read
+            url: /posts/read
           # - name: 大佬的博客
           #   url: https://www.xyming108.top
       menu:

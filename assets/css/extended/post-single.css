@@ -1,3 +1,8 @@
+/* 文章页目录 position:absolute 的定位参考，便于宽屏时 TOC 出现在正文左侧 */
+.post-single {
+    position: relative;
+}
+
 .page-header,
 .post-header {
     margin: 24px auto var(--content-gap) auto;
