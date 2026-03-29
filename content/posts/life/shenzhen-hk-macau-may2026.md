@@ -27,11 +27,7 @@ slug: "深港澳五一旅游全攻略-2026.5.2-6"
 url: "/posts/life/深港澳五一旅游全攻略-2026.5.2-6/"
 
 aliases:
-  - /posts/travel/深港澳五一旅游全攻略-2026.5.2-6/
-  - /posts/深港澳五一旅游全攻略-2026.5.2-6/
   - /posts/life/shenzhen-hk-macau-may2026/
-  - /en/posts/life/shenzhen-hk-macau-may2026/
-  - /en/posts/life/深港澳五一旅游全攻略-2026.5.2-6/
 
 cover:
     image: ""
