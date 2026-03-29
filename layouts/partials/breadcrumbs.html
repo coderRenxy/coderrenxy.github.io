@@ -15,5 +15,9 @@
     {{- end }}
 
     {{- end -}}
+
+    {{- if and (eq .Kind "page") .Title -}}
+    {{- print "&nbsp;»&nbsp;" | safeHTML -}}<span class="breadcrumbs-current" aria-current="page">{{ .Title }}</span>
+    {{- end -}}
 </div>
 {{- end -}}

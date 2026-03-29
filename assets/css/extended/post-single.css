@@ -32,6 +32,12 @@
     font-size: 16px;
 }
 
+.breadcrumbs .breadcrumbs-current {
+    font-size: 16px;
+    color: var(--primary);
+    font-weight: 500;
+}
+
 .post-content {
     color: var(--content);
 }
