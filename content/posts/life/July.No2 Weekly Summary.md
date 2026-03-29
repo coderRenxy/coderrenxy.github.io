@@ -5,7 +5,7 @@ draft: false # 是否为草稿
 hidemeta: false # 是否隐藏文章的元信息，如发布日期、作者等
 disableShare: flase # 底部不显示分享栏
 showbreadcrumbs: true #顶部显示当前路径
-date: 2022-07-025T11:40:37+08:00
+date: 2022-07-25T11:40:37+08:00
 lastmod: 2022-07-25T12:15:37+08:00	#更新文章的时候手动改一下时间就可以
 tags: 
 - 生活

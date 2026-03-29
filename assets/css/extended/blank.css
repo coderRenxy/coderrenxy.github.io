@@ -260,21 +260,46 @@ input[type=button]:hover{
 .post-entry {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
+    gap: var(--gap);
 }
 
-.entry-cover {
+.post-entry .entry-cover {
+    flex: 0 0 38%;
+    max-width: 280px;
     overflow: hidden;
-    padding-left: 18px;
-    height: 100%;
-    width: 50%;
-    margin-bottom: unset;
+    padding-left: 0;
+    margin-bottom: 0;
+    height: auto;
+}
+
+.post-entry .entry-cover img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
 }
 
 .post-info {
-    display: inline-block;
+    flex: 1;
+    min-width: 0;
     overflow: hidden;
-    width: 90%;
+}
+
+@media screen and (max-width: 720px) {
+    .post-entry {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .post-entry .entry-cover {
+        flex: none;
+        max-width: none;
+        width: 100%;
+    }
+
+    .post-entry .entry-cover img {
+        max-height: none;
+    }
 }
 body{
     background-image: url(/img/body.png);
