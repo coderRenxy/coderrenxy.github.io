@@ -22,11 +22,14 @@ keywords:
   - 澳门
   - 五一攻略
 weight:  # 输入1可以顶置文章，用来给文章展示排序，不填就默认按时间排序
-slug: ""
+slug: "深港澳五一旅游全攻略-2026.5.2-6"
+url: "/posts/life/深港澳五一旅游全攻略-2026.5.2-6/"
 
 aliases:
   - /posts/travel/深港澳五一旅游全攻略-2026.5.2-6/
   - /posts/深港澳五一旅游全攻略-2026.5.2-6/
+  - /posts/life/shenzhen-hk-macau-may2026/
+  - /en/posts/life/shenzhen-hk-macau-may2026/
 
 cover:
     image: ""
